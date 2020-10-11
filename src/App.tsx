@@ -10,6 +10,9 @@ import Home from './pages/Home'
 import Layout from './layout' 
 import Category from './pages/Category';
 
+// import global styles
+import GlobalStyles from './global.styles';
+
 
 const App = () => {
 
@@ -22,6 +25,7 @@ const App = () => {
             <Route exact path={'/te'} component={Category} />
           </Switch>
         </Layout>
+        <GlobalStyles />
       </React.Fragment>
     </BrowserRouter>
   );
