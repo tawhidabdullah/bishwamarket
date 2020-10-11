@@ -8,6 +8,9 @@ import Home from './pages/Home'
 // import layout 
 import Layout from './layout' 
 
+// import global styles
+import GlobalStyles from './global.styles';
+
 
 const App = () => {
 
@@ -19,6 +22,7 @@ const App = () => {
             <Route exact path={'/'}  component={Home}  />
           </Switch>
         </Layout>
+        <GlobalStyles />
       </React.Fragment>
     </BrowserRouter>
   );
