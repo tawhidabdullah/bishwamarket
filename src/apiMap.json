@@ -1,0 +1,320 @@
+{
+  "alpha": {
+    "logo": {
+      "url": "/api/component/logo",
+      "method": "get"
+    },
+    "banner": {
+      "url": "/api/component/banner",
+      "method": "get"
+    },
+    "partners": {
+      "url": "/api/component/partners",
+      "method": "get"
+    },
+    "featuredOffer": {
+      "url": "/api/component/featuredOffer",
+      "method": "get"
+    },
+    "abousUsImage": {
+      "url": "/api/component/banner2",
+      "method": "get"
+    },
+    "adImage": {
+      "url": "/api/component/adImage",
+      "method": "get"
+    },
+    "weFollowImage": {
+      "url": "/api/component/weFollowImage",
+      "method": "get"
+    },
+    "appStoresLink": {
+      "url": "/api/component/appStoresLink",
+      "method": "get"
+    },
+    "socialLInk": {
+      "url": "/api/component/socialLInk",
+      "method": "get"
+    },
+    "promotionBanner": {
+      "url": "/api/component/promotionBanner",
+      "method": "get"
+    },
+    "welcome": {
+      "url": "/api/component/welcome",
+      "method": "get"
+    },
+    "payment": {
+      "url": "/api/component/payment",
+      "method": "get"
+    },
+    "hotline": {
+      "url": "/api/component/hotline",
+      "method": "get"
+    },
+    "navLinks": {
+      "url": "/api/component/navLinks",
+      "method": "get"
+    },
+    "slider": {
+      "url": "/api/component/slider",
+      "method": "get"
+    },
+    "sliderRight": {
+      "url": "/api/component/sliderRight",
+      "method": "get"
+    },
+    "address": {
+      "url": "/api/component/address",
+      "method": "get"
+    },
+    "phone": {
+      "url": "/api/component/phone",
+      "method": "get"
+    },
+    "newArrival": {
+      "url": "/api/component/newArrival",
+      "method": "get"
+    },
+    "flash": {
+      "url": "/api/component/flash",
+      "method": "get"
+    },
+    "popular": {
+      "url": "api/product/popular",
+      "method": "get"
+    },
+    "email": {
+      "url": "/api/component/email",
+      "method": "get"
+    },
+    "aboutText": {
+      "url": "/api/component/aboutText",
+      "method": "get"
+    },
+    "Links": {
+      "url": "/api/component/Links",
+      "method": "get"
+    },
+    "Account": {
+      "url": "/api/component/Account",
+      "method": "get"
+    },
+    "footerLinks": {
+      "url": "/api/component/footerLinks",
+      "method": "get"
+    },
+    "About Us": {
+      "url": "/api/component/About Us",
+      "method": "get"
+    },
+    "categoryList": {
+      "url": "/api/category?subCategory=isSubCategory&limit=100000000000",
+      "method": "get"
+    },
+    "categoryProducts": {
+      "url": "/api/category/:id/product?sort=sortValue&sortOrder=sortOrderValue&recursive=isRecursive&limit=limitNumber&page=pageNumber",
+      "method": "get"
+    },
+    "categoryProductsByUrl": {
+      "url": "/api/category/:categoryName/product?recursive=isRecursive&sort=sortValue&sortOrder=sortOrderValue&recursive=isRecursive",
+      "method": "get"
+    },
+    "categoryDetail": {
+      "url": "/api/category/:id",
+      "method": "get"
+    },
+    "categoryDetailByURL": {
+      "url": "/api/category/:categoryName?subCategory=isSubCategory",
+      "method": "get"
+    },
+    "postList": {
+      "url": "/api/post",
+      "method": "get"
+    },
+    "addContactForm": {
+      "url": "/api/contact",
+      "method": "post"
+    },
+    "postDetail": {
+      "url": "/api/post/:id",
+      "method": "get"
+    },
+    "postCategoryList": {
+      "url": "/api/post/category",
+      "method": "get"
+    },
+    "postCategoryDetail": {
+      "url": "/api/post/category/:id",
+      "method": "get"
+    },
+    "postCategoryPosts": {
+      "url": "/api/post/category/:id/post",
+      "method": "get"
+    },
+    "tagProducts": {
+      "url": "/api/tag/:id/product",
+      "method": "get"
+    },
+    "brandProducts": {
+      "url": "/api/brand/:id/product",
+      "method": "get"
+    },
+    "productSearch": {
+      "url": "/api/search?query=queryValue&searchCategory=categoryId&sort=sortValue&sortOrder=sortOrderValue",
+      "method": "get"
+    },
+    "productDetail": {
+      "url": "/api/product/:categoryName/:productName",
+      "method": "get"
+    },
+    "productDetailById": {
+      "url": "/api/product/:id",
+      "method": "get"
+    },
+    "productList": {
+      "url": "/api/product?limit=limitNumber",
+      "method": "get"
+    },
+    "offerListCount": {
+      "url": "/api/product?limit=limitNumber",
+      "method": "get"
+    },
+    "relatedProductList": {
+      "url": "/api/product/related/:id",
+      "method": "get"
+    },
+    "tagList": {
+      "url": "/api/tag",
+      "method": "get"
+    },
+    "brandList": {
+      "url": "/api/brand",
+      "method": "get"
+    },
+    "brandDetail": {
+      "url": "/api/brand/:id",
+      "method": "get"
+    },
+    "countryList": {
+      "url": "/api/geo/country",
+      "method": "get"
+    },
+    "cityList": {
+      "url": "/api/geo/:country/city",
+      "method": "get"
+    },
+    "getDeliveryCharge": {
+      "url": "/api/delivery/city/:cityName",
+      "method": "get"
+    },
+    "forAnalytics": {
+      "url": "/api/analytics?loc=url",
+      "method": "get"
+    },
+    "signup": {
+      "url": "/customer/auth/register",
+      "method": "post"
+    },
+    "signin": {
+      "url": "/customer/auth/login",
+      "method": "post"
+    },
+    "recoverPassword": {
+      "url": "/customer/auth/recover",
+      "method": "post"
+    },
+    "validateToken": {
+      "url": "/customer/auth/recover/validate",
+      "method": "post"
+    },
+    "resetPassword": {
+      "url": "/customer/auth/recover/reset",
+      "method": "post"
+    },
+    "getCurrentCustomerData": {
+      "url": "/customer/api/profile",
+      "method": "get"
+    },
+    "updateCurrentCustomerData": {
+      "url": "/customer/api/profile/update",
+      "method": "post"
+    },
+    "checkout": {
+      "url": "/api/checkout",
+      "method": "post"
+    },
+    "validateCoupon": {
+      "url": "/api/validateCoupon",
+      "method": "post"
+    },
+    "createOrder": {
+      "url": "/api/checkout",
+      "method": "post"
+    },
+    "getCurrentUserOrders": {
+      "url": "/customer/api/order?sort=sortItem&sortOrder=sortOrderValue",
+      "method": "get"
+    },
+    "changePassword": {
+      "url": "/customer/api/profile/changePassword",
+      "method": "post"
+    },
+    "pageList": {
+      "url": "/api/page",
+      "method": "get"
+    },
+    "pageDetail": {
+      "url": "/api/:pageUrl",
+      "method": "get"
+    },
+    "getCart": {
+      "url": "/customer/api/cart",
+      "method": "get"
+    },
+    "addtoCart": {
+      "url": "/customer/api/cart/add",
+      "method": "post"
+    },
+    "removeFromCart": {
+      "url": "/customer/api/cart/update/remove",
+      "method": "post"
+    },
+    "updateCartItem": {
+      "url": "/customer/api/cart/update/quantity",
+      "method": "post"
+    },
+    "clearCart": {
+      "url": "/customer/api/cart/update/clear",
+      "method": "get"
+    },
+    "getWishlist": {
+      "url": "/customer/api/wishlist",
+      "method": "get"
+    },
+    "addWishlist": {
+      "url": "/customer/api/wishlist/add",
+      "method": "post"
+    },
+    "removeFromWishlist": {
+      "url": "/customer/api/wishlist/update/remove/:id",
+      "method": "get"
+    },
+    "removeAllWishlist": {
+      "url": "/customer/api/wishlist/update/remove/all",
+      "method": "get"
+    },
+    "logout": {
+      "url": "/customer/auth/logout",
+      "method": "get"
+    },
+    "proanalytics": {
+      "url": "/api/analytics?type=itemType&item=itemId",
+      "method": "get"
+    },
+    "pages": {
+      "url": "/api/page",
+      "method": "get"
+    }
+  }
+}
