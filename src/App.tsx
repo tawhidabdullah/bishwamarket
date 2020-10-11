@@ -5,6 +5,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import pages 
 import Home from './pages/Home' 
 
+// import navigation container
+import {Navigation} from './containers/Navigation'
+
 // import layout 
 import Layout from './layout' 
 
@@ -18,6 +21,7 @@ const App = () => {
     <BrowserRouter>
       <React.Fragment>
         <Layout>
+          <Navigation />
           <Switch>
             <Route exact path={'/'}  component={Home}  />
           </Switch>
