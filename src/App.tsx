@@ -10,6 +10,7 @@ import {Navigation} from './containers/Navigation'
 
 // import layout 
 import Layout from './layout' 
+import Category from './pages/Category';
 
 // import global styles
 import GlobalStyles from './global.styles';
@@ -24,6 +25,7 @@ const App = () => {
           <Navigation />
           <Switch>
             <Route exact path={'/'}  component={Home}  />
+            <Route exact path={'/te'} component={Category} />
           </Switch>
         </Layout>
         <GlobalStyles />
