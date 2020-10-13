@@ -19,6 +19,7 @@ const Navigation  = () => {
 const NavigationContainer = styled.div`
   display: flex;
   flex-direction: column;
+  
 `
 
 export default Navigation;

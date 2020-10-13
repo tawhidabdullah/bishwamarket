@@ -12,6 +12,6 @@ const  TopNav = (props) => {
 
 const TopNavContainer = styled.div`
 
-`
+`;
 
 export default TopNav;

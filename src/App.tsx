@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
@@ -17,6 +17,8 @@ import GlobalStyles from './global.styles';
 
 
 const App = () => {
+
+
 
   return (
     <BrowserRouter>

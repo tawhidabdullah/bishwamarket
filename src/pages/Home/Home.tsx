@@ -1,9 +1,9 @@
 import React from 'react'
-
-const Home = (props) => {
+import  {ImageBanner} from "../../containers/ImageBanner"
+const Home = () => {
     return (
         <div>
-            Home 
+            <ImageBanner />
         </div>
     )
 }
