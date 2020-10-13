@@ -1,24 +1,44 @@
-import React from 'react';
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
 // import navbar components
-import {MainNav} from '../../components/Navigation/MainNav';
-import {TopNav} from '../../components/Navigation/TopNav';
-import {SearchNav} from '../../components/Navigation/SearchNav';
+import { MainNav } from "../../components/Navigation/MainNav";
+import { TopNav } from "../../components/Navigation/TopNav";
+// import { SearchNav } from "../../components/Navigation/SearchNav";
 
-const Navigation  = () => {
-  return(
+// dummy data
+const languageList = ["English", "Hindi", "Spanish", "Marathi"];
+const currencyList = ["Inr", "USD", "Eur"];
+
+const Navigation = ({ openSigninDrawer, openWishListDrawer }) => {
+  // state for toggling language dropdown
+  const [toggleLingual, setToggleLingual] = useState(false);
+
+  // state for toggling currency dropdown
+  const [toggleCurrency, setToggleCurrency] = useState(false);
+
+  return (
     <NavigationContainer>
-      <TopNav />
-      <MainNav />
-      <SearchNav />
+      <TopNav
+        toggleLingual={toggleLingual}
+        setToggleLingual={setToggleLingual}
+        languageList={languageList}
+        currencyList={currencyList}
+        toggleCurrency={toggleCurrency}
+        setToggleCurrency={setToggleCurrency}
+      />
+      <MainNav
+        openSigninDrawer={openSigninDrawer}
+        openWishListDrawer={openWishListDrawer}
+      />
+      {/* <SearchNav /> */}
     </NavigationContainer>
-  )
-}
+  );
+};
 
 const NavigationContainer = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 export default Navigation;
