@@ -1,7 +1,11 @@
 import React from "react";
-
-const Home = (props) => {
-  return <div></div>;
+import { ImageBanner } from "../../containers/ImageBanner";
+const Home = () => {
+  return (
+    <div>
+      <ImageBanner />
+    </div>
+  );
 };
 
 export default Home;
