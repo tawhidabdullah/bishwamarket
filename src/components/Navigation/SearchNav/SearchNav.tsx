@@ -3,6 +3,18 @@ import styled from 'styled-components';
 import image1 from "../../../assets/dropdown.png"
 import image2 from "../../../assets/1.png";
 import { IconButton, SelectCategory } from "../../../elemens";
+
+
+import nav1 from "../../../assets/nav/01.png";
+import nav2 from "../../../assets/nav/02.png";
+import nav3 from "../../../assets/nav/03.png";
+import nav4 from "../../../assets/nav/04.png";
+import nav5 from "../../../assets/nav/05.png";
+import nav6 from "../../../assets/nav/06.png";
+import nav7 from "../../../assets/nav/07.png";
+
+import nav8 from "../../../assets/nav/08.png";
+import nav9 from "../../../assets/nav/09.png";
 const  SearchNav = (props) => {
   
 
@@ -11,7 +23,94 @@ const  SearchNav = (props) => {
       <NavCategory>
         <IconButton />
         Shop By Category
-      
+        <Contents>
+          <CategoryItem>
+            <ul className="nav-cat title-font">
+              <li>
+                {" "}
+                <img src={nav1} alt="catergory-product" /> <a>western ware</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav2} alt="catergory-product" /> <a>TV, Appliances</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav3} alt="catergory-product" /> <a>Pets Products</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav4} alt="catergory-product" /> <a>Car, Motorbike</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav5} alt="catergory-product" />{" "}
+                <a>Industrial Products</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav6} alt="catergory-product" />{" "}
+                <a>Beauty, Health Products</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav7} alt="catergory-product" />{" "}
+                <a>Grocery Products </a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav8} alt="catergory-product" /> <a>Sports</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav9} alt="catergory-product" /> <a>Bags, Luggage</a>
+              </li>
+              <li>
+                {" "}
+                <img src={nav9} alt="catergory-product" /> <a>Movies, Music </a>
+              </li>
+
+              <li className="mor-slide-open" style={{ display: " none" }}>
+                <ul>
+                  <li>
+                    {" "}
+                    <img src={nav1} alt="catergory-product" /> <a>Sports</a>
+                  </li>
+                  <li>
+                    {" "}
+                    <img src={nav1} alt="catergory-product" />{" "}
+                    <a>Bags, Luggage</a>
+                  </li>
+                  <li>
+                    {" "}
+                    <img src={nav1} alt="catergory-product" />{" "}
+                    <a>Movies, Music </a>
+                  </li>
+                  <li>
+                    {" "}
+                    <img src={nav1} alt="catergory-product" />{" "}
+                    <a>Video Games</a>
+                  </li>
+                  <li>
+                    {" "}
+                    <img src={nav1} alt="catergory-product" />{" "}
+                    <a>Toys, Baby Products</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                {" "}
+                <a className="mor-slide-click">
+                  mor category <i className="fa fa-angle-down pro-down"></i>
+                  <i
+                    className="fa fa-angle-up pro-up"
+                    style={{ display: "none" }}
+                  ></i>
+                </a>
+              </li>
+            </ul>
+          </CategoryItem>
+        </Contents>
       </NavCategory>
       <SearchCategory>
         <span>
@@ -67,7 +166,28 @@ const SearchNavContainer = styled.div`
  
 `;
 
+const Contents = styled.div`
+  position: absolute;
+  top: 70px;
+  left: -40px;
+  width: 250px;
+  height: fit-content;
+  margin-top: 10px;
+  background-color: #fff;
+  margin-left: 35px;
+  border-radius: 0;
+  padding: 20px 10px 20px 20px;
+  border: 2px solid #f1f1f1;
+  z-index: 10;
 
+  // transition: height 2s;
+  // transition-timing-function: ease-in-out;
+
+  // :hover {
+  //   opacity: 1;
+  //   height: 300px;
+  // }
+`;
 const NavCategory = styled.div`
   height: 70px;
   background-color: #212529;
@@ -101,6 +221,37 @@ const NavCategory = styled.div`
   }
 `;
 
+
+const CategoryItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+
+  & img {
+    margin-right: 10px;
+    border: 2px solid #f0f0f0;
+    border-radius: 50%;
+    padding: 3px;
+    height: 46.5px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  & li {
+    list-style-type: none;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+  }
+
+  & a {
+    color: #444;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 0.03em;
+  }
+`;
 const SearchCategory = styled.div`
   background-color: #fff;
   height: 63px;

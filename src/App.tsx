@@ -18,7 +18,7 @@ import GlobalStyles from './global.styles';
 
 const App = () => {
 
-
+const [shopByCategory, setShopByCategory] = useState(true);
 
   return (
     <BrowserRouter>
@@ -26,8 +26,10 @@ const App = () => {
         <Layout>
           <Navigation />
           <Switch>
-            <Route exact path={'/'}  component={Home}  />
-            <Route exact path={'/te'} component={Category} />
+            <Route exact path={"/"}>
+              <Home />
+            </Route>
+            <Route exact path={"/te"} component={Category} />
           </Switch>
         </Layout>
         <GlobalStyles />
