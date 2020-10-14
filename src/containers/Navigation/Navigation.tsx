@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import navbar components
 import { MainNav } from "../../components/Navigation/MainNav";
 import { TopNav } from "../../components/Navigation/TopNav";
-// import { SearchNav } from "../../components/Navigation/SearchNav";
+ import { SearchNav } from "../../components/Navigation/SearchNav";
 
 // dummy data
 const languageList = ["English", "Hindi", "Spanish", "Marathi"];
@@ -31,7 +31,7 @@ const Navigation = ({ openSigninDrawer, openWishListDrawer }) => {
         openSigninDrawer={openSigninDrawer}
         openWishListDrawer={openWishListDrawer}
       />
-      {/* <SearchNav /> */}
+       <SearchNav /> 
     </NavigationContainer>
   );
 };
