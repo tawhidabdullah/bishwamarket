@@ -6,9 +6,21 @@ import CollectionItem from "../../CollectionItem/CollectionItem"
 const Collection=()=> {
     return (
       <Section>
-        <CollectionItem ></CollectionItem>
-        <CollectionItem></CollectionItem>
-        <CollectionItem></CollectionItem>
+        <CollectionItem
+          customStyles={{
+          
+          }}
+        ></CollectionItem>
+        <CollectionItem
+          customStyles={{
+            
+          }}
+        ></CollectionItem>
+        <CollectionItem
+          customStyles={{
+            
+          }}
+        ></CollectionItem>
       </Section>
     );
 }

@@ -11,7 +11,7 @@ const  ImageBanner=()=> {
         <Content></Content>
 
         <SliderBanner>
-          <SliderImage>
+           <SliderImage>
             <ul className="layout2-slide-1">
               <li
                 id="img-1"
@@ -28,13 +28,33 @@ const  ImageBanner=()=> {
               <h2>minimum 30% off</h2>
               <a className="btn btn-rounded">Shop Now</a>
             </div>
-          </SliderBannercontent>
+          </SliderBannercontent> 
+
+          {/* <CollectionItem
+            customStyles={{
+              height: "400px",
+            }}
+          ></CollectionItem> */}
+
         </SliderBanner>
 
         <BottomImage>
-          <CollectionItem></CollectionItem>
-          <CollectionItem></CollectionItem>
-          <CollectionItem></CollectionItem>
+          <CollectionItem
+            customStyles={{
+              height: "170px",
+            }}
+          ></CollectionItem>
+
+          <CollectionItem
+            customStyles={{
+              height: "170px",
+            }}
+          ></CollectionItem>
+          <CollectionItem
+            customStyles={{
+              height: "170px",
+            }}
+          ></CollectionItem>
         </BottomImage>
       </NavigationContainer>
     );
