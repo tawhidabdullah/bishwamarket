@@ -61,16 +61,16 @@ const  SearchNav = (props) => {
                 {" "}
                 <img src={nav8} alt="catergory-product" /> <a>Sports</a>
               </li>
-              <li>
+              {/*   <li>
                 {" "}
                 <img src={nav9} alt="catergory-product" /> <a>Bags, Luggage</a>
               </li>
               <li>
                 {" "}
                 <img src={nav9} alt="catergory-product" /> <a>Movies, Music </a>
-              </li>
+              </li> */}
 
-              <li className="mor-slide-open" style={{ display: " none" }}>
+              {/* <li className="mor-slide-open" style={{ display: " none" }}>
                 <ul>
                   <li>
                     {" "}
@@ -97,7 +97,7 @@ const  SearchNav = (props) => {
                     <a>Toys, Baby Products</a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li>
                 {" "}
                 <a className="mor-slide-click">
@@ -236,6 +236,8 @@ const CategoryItem = styled.div`
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
+
+
 
   & li {
     list-style-type: none;

@@ -3,14 +3,12 @@ import styled from "styled-components";
 import slider1 from "../../assets/1.1.png";
 import image from "../../assets/banner/1.jpg";
 
-
+import CollectionItem from "../../components/CollectionItem/CollectionItem"
 
 const  ImageBanner=()=> {
     return (
       <NavigationContainer>
-        <Content>
-         
-        </Content>
+        <Content></Content>
 
         <SliderBanner>
           <SliderImage>
@@ -34,55 +32,9 @@ const  ImageBanner=()=> {
         </SliderBanner>
 
         <BottomImage>
-          <Item>
-            <div className="collection-banner-main p-left">
-              <div className="collection-banner-contain">
-                <div>
-                  <h3>vivo</h3>
-                  <h4>smart phone</h4>
-                  <div className="shop">
-                    <a>
-                      shop now
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Item>
-          <Item>
-            <div className="collection-banner-main p-left">
-              <div className="collection-banner-contain">
-                <div>
-                  <h3>vivo</h3>
-                  <h4>smart phone</h4>
-                  <div className="shop">
-                    <a>
-                      shop now
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Item>
-
-          <Item>
-            <div className="collection-banner-main p-left">
-              <div className="collection-banner-contain">
-                <div>
-                  <h3>vivo</h3>
-                  <h4>smart phone</h4>
-                  <div className="shop">
-                    <a>
-                      shop now
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Item>
+          <CollectionItem></CollectionItem>
+          <CollectionItem></CollectionItem>
+          <CollectionItem></CollectionItem>
         </BottomImage>
       </NavigationContainer>
     );
@@ -92,9 +44,9 @@ const  ImageBanner=()=> {
 const NavigationContainer = styled.div`
   display: grid;
   grid-template-columns: 3fr 10fr;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(170px, auto);
   justify-content: center;
-  background-color:gray;
+  background-color:silver;
 `;
 
 const Content = styled.div`
@@ -135,7 +87,7 @@ const SliderBannercontent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
- 
+  
   padding: 0 100px;
 `;
 
@@ -144,18 +96,20 @@ const SliderBannercontent = styled.div`
 
 const BottomImage = styled.div`
  
-  margin-top: 10px;
+ 
+ 
   display: grid;
   
-  grid-gap:10px;
+  
   grid-template-columns: 2fr 2fr 1fr;
-  margin-right:30px;
+  margin-left:-10px;
+
 `;
 
 const Item = styled.div`
-  background-color: red;
+
  
-  background-image: url(${image});
+  
   background-size: cover;
   background-position: center center;
   display: flex;
