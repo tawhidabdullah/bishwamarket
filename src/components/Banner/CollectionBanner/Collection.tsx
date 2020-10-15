@@ -34,7 +34,7 @@ const Section = styled.div`
 
   grid-auto-rows: minmax(170px, auto);
 
-  background-color:gray;
+  background-color: #f2f2f2;;
 `;
 
 
