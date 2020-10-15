@@ -2,6 +2,7 @@
 import React from 'react'
 import  {ImageBanner} from "../../containers/ImageBanner"
 import {SimpleSlider} from "../../containers/Slider/Simpleslider"
+import ContentSlider  from "../../containers/Slider/ContentSlider/ContentSlider"
 import {BrandNav} from "../../components/Navigation/BrandNav"
 import {Service} from "../../components/Navigation/ServiceNav"
 import {DiscountBanner} from "../../components/Banner/DiscountBanner"
@@ -20,6 +21,7 @@ const Home = () => {
         <SimpleSlider />
 
         <DealBanner />
+        <ContentSlider />
       </>
     );
 }
