@@ -64,6 +64,7 @@ const MainContent = styled.div`
   outline: none;
   border: none;
   background-color: #f2f2f2;
+  margin:0px 20px 0px 20px;
 
   & .slick-slide {
     outline: none;
@@ -72,7 +73,6 @@ const MainContent = styled.div`
     justify-content: center;
     align-items: center;
   }
-
 `;
 const Button = styled.div`
   font-size: 16px;
@@ -80,7 +80,7 @@ const Button = styled.div`
   outline: none;
   min-width:140px;
   padding: 30px 7px;
-  margin: 1rem;
+  margin: 1rem 0px;
   position: relative;
   z-index: 1;
   overflow: hidden;

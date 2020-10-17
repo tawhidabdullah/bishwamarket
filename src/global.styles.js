@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
+    background-color:#f2f2f2;
   }
 `;
 

@@ -1,17 +1,22 @@
+
+
+
+
 import React, { useState } from "react";
 import Slider from "react-slick";
 import img from "../../../assets/banner/1.jpg";
 import fimg1 from "../../../assets/slider-tab/1.jpg";
 import bimg1 from "../../../assets/slider-tab/a1.jpg";
+import { MediaBanner } from "../../../components/Slider/MediaBanner";
 
 import styled from "styled-components";
-import {ProductsByCategory} from "../../../components/Slider/ProductsByCategory"
-const SimpleSlide = () => {
+
+const MediaBannerSlider = () => {
   const [activeSlide, setactiveSlide] = useState(0);
   const [activeSlide2, setactiveSlide2] = useState(0);
   const settings = {
-    dots: false,
-    infinite: true,
+    // dots: false,
+    // infinite: true,
     speed: 500,
 
     beforeChange: (current, next) => setactiveSlide(next),
@@ -24,7 +29,6 @@ const SimpleSlide = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows: false,
         },
       },
       {
@@ -45,51 +49,44 @@ const SimpleSlide = () => {
     ],
   };
   return (
-    <MainContent>
+      <Main> <MainContent>
       <Slider {...settings}>
-        <ProductsByCategory></ProductsByCategory>
+        <MediaBanner />
+        <MediaBanner />
+        <MediaBanner />
 
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-
-         <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-       
+        <MediaBanner />
+        <MediaBanner />
       </Slider>
     </MainContent>
+    </Main>
+   
   );
 };
 
-export default SimpleSlide;
+export default MediaBannerSlider;
+const Main = styled.div`
+  background-color: #fff;
+ 
+  padding:70px;
+`;
 const MainContent = styled.div`
   outline: none;
-  border: none;
+
   background-color: #f2f2f2;
+
+
 
   & .slick-slide {
     outline: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
-  & .productBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-right: 1px solid #ddd;
+    padding: 30px;
+    &:hover {
+    }
   }
 `;
-
-
