@@ -4,6 +4,10 @@ import  {ImageBanner} from "../../containers/ImageBanner"
 import {MediaBannerSlider} from "../../containers/Slider/MediaBannerSlider"
 import {SimpleSlider} from "../../containers/Slider/Simpleslider"
 import {CategorySlider} from "../../containers/Slider/CategorySlider"
+import {SpecilaProductSlider} from "../../containers/Slider/SpecilaProductSlider"
+
+
+
 import ContentSlider  from "../../containers/Slider/ContentSlider/ContentSlider"
 import {BrandNav} from "../../components/Navigation/BrandNav"
 import {Service} from "../../components/Navigation/ServiceNav"
@@ -27,6 +31,7 @@ const Home = () => {
         <CategorySlider />
         <MediaBannerSlider />
         <ContentSlider />
+        <SpecilaProductSlider />
       </>
     );
 }

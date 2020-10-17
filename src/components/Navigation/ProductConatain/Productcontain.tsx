@@ -28,16 +28,16 @@ const Productcontain = () => {
 export default Productcontain;
 
 const BB = styled.div`
+  height: 100px;
 
-height:100px;
-
- display: -webkit-flex !important;
- display: -ms-flex;
- display: flex !important;
- justify-content:center;
- align-items:center;
- font-size: 14px;
- flex-wrap: wrap;
+  display: -webkit-flex !important;
+  display: -ms-flex;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+  background-color: #fff;
 `;
 
 const Span = styled.div`

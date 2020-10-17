@@ -29,20 +29,20 @@ export default BrandNav;
 
 
 const BB = styled.div`
+  height: 80px;
 
-height:80px;
-
- display: -webkit-flex !important;
- display: -ms-flex;
- display: flex !important;
- justify-content:center;
- align-items:center;
- font-size: 14px;
- & span{
-     padding:10px;
-     color: #777;
+  display: -webkit-flex !important;
+  display: -ms-flex;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background-color: #fff;
+  & span {
+    padding: 10px;
+    color: #777;
     letter-spacing: 0.05em;
-}
+  }
 `;
 
 const TITLE = styled.div``;
