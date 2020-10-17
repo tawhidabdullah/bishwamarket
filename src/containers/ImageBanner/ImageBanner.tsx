@@ -2,26 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import slider1 from "../../assets/1.1.png";
 import image from "../../assets/banner/1.jpg";
-import image2 from "../../assets/1.png"
+
+import CollectionItem from "../../components/CollectionItem/CollectionItem"
+
 const  ImageBanner=()=> {
     return (
       <NavigationContainer>
-      
-
-        <Content>
-          <GiftItem>
-            <div>
-              <img src={image2} alt="image" />
-            </div>
-            <div>
-              <h5>title </h5>
-              <p>10 taka per product</p>
-            </div>
-          </GiftItem>
-        </Content>
+        <Content></Content>
 
         <SliderBanner>
-          <SliderImage>
+           <SliderImage>
             <ul className="layout2-slide-1">
               <li
                 id="img-1"
@@ -38,59 +28,33 @@ const  ImageBanner=()=> {
               <h2>minimum 30% off</h2>
               <a className="btn btn-rounded">Shop Now</a>
             </div>
-          </SliderBannercontent>
+          </SliderBannercontent> 
+
+          {/* <CollectionItem
+            customStyles={{
+              height: "400px",
+            }}
+          ></CollectionItem> */}
+
         </SliderBanner>
 
         <BottomImage>
-          <Item>
-            <div className="collection-banner-main p-left">
-              <div className="collection-banner-contain">
-                <div>
-                  <h3>vivo</h3>
-                  <h4>smart phone</h4>
-                  <div className="shop">
-                    <a>
-                      shop now
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Item>
-          <Item>
-            <div className="collection-banner-main p-left">
-              <div className="collection-banner-contain">
-                <div>
-                  <h3>vivo</h3>
-                  <h4>smart phone</h4>
-                  <div className="shop">
-                    <a>
-                      shop now
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Item>
+          <CollectionItem
+            customStyles={{
+              height: "170px",
+            }}
+          ></CollectionItem>
 
-          <Item>
-            <div className="collection-banner-main p-left">
-              <div className="collection-banner-contain">
-                <div>
-                  <h3>vivo</h3>
-                  <h4>smart phone</h4>
-                  <div className="shop">
-                    <a>
-                      shop now
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Item>
+          <CollectionItem
+            customStyles={{
+              height: "170px",
+            }}
+          ></CollectionItem>
+          <CollectionItem
+            customStyles={{
+              height: "170px",
+            }}
+          ></CollectionItem>
         </BottomImage>
       </NavigationContainer>
     );
@@ -100,58 +64,26 @@ const  ImageBanner=()=> {
 const NavigationContainer = styled.div`
   display: grid;
   grid-template-columns: 3fr 10fr;
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-rows: minmax(170px, auto);
   justify-content: center;
-  background-color:gray;
+  background-color:silver;
 `;
 
 const Content = styled.div`
-
-display: grid;
+  display: grid;
   grid-row: 1/ 3;
-  width: 250px;
-  height:2px;
-  background-color: #fff;
+  
   
 
-  border: 2px solid #f1f1f1;
+  // transition: height 2s;
+  // transition-timing-function: ease-in-out;
 
-  border-radius: 0;
-  padding: 20px 10px 20px 20px;
-  z-index: 10;
-
-  transition: height 2s;
-  transition-timing-function: linear;
-
-  :hover {
-    height: 300px;
-  }
+  // :hover {
+  //   opacity: 1;
+  //   height: 300px;
+  // }
 `;
-const GiftItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid #f1f5f8;
 
-  & img {
-    height: 45px;
-    width: 45px;
-    background-color: #ffefe6;
-    padding: 7px;
-    border-radius: 100%;
-    margin-right: 12px !important;
-  }
-
-  & h5 {
-    padding-bottom: 2px;
-    font-weight: 700;
-    margin-bottom: 0;
-    font-size: 16px;
-  }
-`;
 
 
 const SliderBanner = styled.div`
@@ -175,7 +107,7 @@ const SliderBannercontent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
- 
+  
   padding: 0 100px;
 `;
 
@@ -184,18 +116,20 @@ const SliderBannercontent = styled.div`
 
 const BottomImage = styled.div`
  
-  margin-top: 10px;
+ 
+ 
   display: grid;
   
-  grid-gap:10px;
+  
   grid-template-columns: 2fr 2fr 1fr;
-  margin-right:30px;
+  margin-left:-10px;
+
 `;
 
 const Item = styled.div`
-  background-color: red;
+
  
-  background-image: url(${image});
+  
   background-size: cover;
   background-position: center center;
   display: flex;
