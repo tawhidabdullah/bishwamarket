@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // import drawer
 import { SigninDrawer } from "../components/Drawer/SigninDrawer";
 import { WishListDrawer } from "../components/Drawer/WishListDrawer";
+import { CartDrawer } from "../components/Drawer/CartDrawer";
 
 // import navigation
 import { Navigation } from "../containers/Navigation";
@@ -20,13 +21,21 @@ const Layout = ({ children }) => {
   const openWishListnDrawer = () => setWishList(true);
   const closeWishListnDrawer = () => setWishList(false);
 
+  // state for cart drawer
+  const [cartDrawer, setCartDrawer] = useState(false);
+  // handler for open/close cart drawer
+  const openCartDrawer = () => setCartDrawer(true);
+  const closeCartDrawer = () => setCartDrawer(false);
+
   return (
     <>
       <SigninDrawer open={signinDrawer} handleClose={closeSigninDrawer} />
       <WishListDrawer open={wishtList} handleClose={closeWishListnDrawer} />
+      <CartDrawer open={cartDrawer} handleClose={closeCartDrawer} />
       <Navigation
         openSigninDrawer={openSigninDrawer}
         openWishListDrawer={openWishListnDrawer}
+        openCartDrawer={openCartDrawer}
       />
       {children}
     </>

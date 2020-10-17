@@ -9,7 +9,7 @@ import Logo from "../../../assets/logo.png";
 // unify components
 import RightNav from "./RightNav";
 
-const MainNav = ({ openSigninDrawer, openWishListDrawer }) => {
+const MainNav = ({ openSigninDrawer, openWishListDrawer, openCartDrawer }) => {
   return (
     <MainNavContainer>
       <LogoContainer>
@@ -18,6 +18,7 @@ const MainNav = ({ openSigninDrawer, openWishListDrawer }) => {
       <RightNav
         openSigninDrawer={openSigninDrawer}
         openWishListDrawer={openWishListDrawer}
+        openCartDrawer={openCartDrawer}
         customStyles={{ color: "black", "font-weight": "bold" }}
       />
     </MainNavContainer>
@@ -29,7 +30,7 @@ export default MainNav;
 const MainNavContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   padding: 20px 0;
 `;

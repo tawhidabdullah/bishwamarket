@@ -18,6 +18,7 @@ const ItemText = ({ children, customStyles, isIcon, ...props }) => {
 export default ItemText;
 
 const ItemTextContainer = styled.span`
+  position: relative;
   color: white;
   font-size: 13px;
   font-weight: 300;

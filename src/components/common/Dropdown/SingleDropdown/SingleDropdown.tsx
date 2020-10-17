@@ -17,9 +17,13 @@ const SingleDropDown = ({ listItem, customeStyles }) => {
 export default SingleDropDown;
 
 const SingleDropDownContainer = styled.div`
-  transition: max-height 1s;
-  max-height: 0;
-  z-index: 1;
+  transition: 1s ease-out;
+  /* transition: max-height 1s; */
+  /* max-height: 0; */
+  z-index: 100;
+  position: absolute;
+  margin-top: 15px;
   transition: max-height 1s;
   ${(props) => props.customStyles};
+  /* padding: 20px; */
 `;

@@ -10,7 +10,11 @@ import { TopNav } from "../../components/Navigation/TopNav";
 const languageList = ["English", "Hindi", "Spanish", "Marathi"];
 const currencyList = ["Inr", "USD", "Eur"];
 
-const Navigation = ({ openSigninDrawer, openWishListDrawer }) => {
+const Navigation = ({
+  openSigninDrawer,
+  openWishListDrawer,
+  openCartDrawer,
+}) => {
   // state for toggling language dropdown
   const [toggleLingual, setToggleLingual] = useState(false);
 
@@ -30,6 +34,7 @@ const Navigation = ({ openSigninDrawer, openWishListDrawer }) => {
       <MainNav
         openSigninDrawer={openSigninDrawer}
         openWishListDrawer={openWishListDrawer}
+        openCartDrawer={openCartDrawer}
       />
       {/* <SearchNav /> */}
     </NavigationContainer>

@@ -1,31 +1,51 @@
+//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 
-// import common component
-import { ItemText } from "../../common/ItemText";
+import HomeDropdown from "./HomeDropdown";
+import ShopDropdown from "./ShopDropdown";
+import ProductDropdown from "./ProductDropdown";
+import FeatureDropdown from "./FeatureDropdown";
+import PageDropdown from "./PageDropdown";
+import BlogDropdown from "./BlogDropdown";
 
-const RightNav = ({ customStyles, openSigninDrawer, openWishListDrawer }) => {
+import { DropdownContainerStyles, DropdownItemStyles } from "./commonStyles";
+
+const RightNav = ({
+  customStyles,
+  openSigninDrawer,
+  openWishListDrawer,
+  openCartDrawer,
+}) => {
   return (
     <NavItemContainer>
       <ToggleContainer>
-        <ItemText customStyles={customStyles} isIcon={true}>
-          HOME
-        </ItemText>
-        <ItemText customStyles={customStyles} isIcon={true}>
-          SHOP
-        </ItemText>
-        <ItemText customStyles={customStyles} isIcon={true}>
-          PRODUCTS
-        </ItemText>
-        <ItemText customStyles={customStyles} isIcon={true}>
-          FEATURE
-        </ItemText>
-        <ItemText customStyles={customStyles} isIcon={true}>
-          PAGES
-        </ItemText>
-        <ItemText customStyles={customStyles} isIcon={true}>
-          BLOG
-        </ItemText>
+        <NavItems>
+          <NavItem>
+            HOME <i className="fa fa-angle-down"></i>
+            <HomeDropdown />
+          </NavItem>
+          <NavItem>
+            SHOP <i className="fa fa-angle-down"></i>
+            <ShopDropdown />
+          </NavItem>
+          <NavItem>
+            PRODUCTS <i className="fa fa-angle-down"></i>
+            <ProductDropdown />
+          </NavItem>
+          <NavItem>
+            FEATURE <i className="fa fa-angle-down"></i>
+            <FeatureDropdown />
+          </NavItem>
+          <NavItem>
+            PAGES <i className="fa fa-angle-down"></i>
+            <PageDropdown />
+          </NavItem>
+          <NavItem>
+            BLOG <i className="fa fa-angle-down"></i>
+            <BlogDropdown />
+          </NavItem>
+        </NavItems>
       </ToggleContainer>
       <IconContainer>
         <IconWrapper onClick={openSigninDrawer}>
@@ -41,7 +61,7 @@ const RightNav = ({ customStyles, openSigninDrawer, openWishListDrawer }) => {
             <span>WISHLIST</span>
           </WishText>
         </WishBox>
-        <CartIcon>
+        <CartIcon onClick={openCartDrawer}>
           <span>0</span>
           <i className="fa fa-shopping-cart"></i>
         </CartIcon>
@@ -52,6 +72,43 @@ const RightNav = ({ customStyles, openSigninDrawer, openWishListDrawer }) => {
 
 export default RightNav;
 
+const NavItem = styled.li`
+  cursor: pointer;
+  transition: 200ms;
+  text-decoration: none;
+  list-style: none;
+  white-space: nowrap;
+  color: black;
+  position: relative;
+
+  :hover {
+    & ul {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    & div {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  /* & i {
+    padding-left: 15px;
+  } */
+`;
+
+const NavItems = styled.ul`
+  list-style: none;
+  padding: 16px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 38vw; */
+  font-size: 15px;
+`;
+
 const NavItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -60,7 +117,9 @@ const NavItemContainer = styled.div`
   font-weight: bold;
 `;
 
-const ToggleContainer = styled.div``;
+const ToggleContainer = styled.div`
+  width: 42vw;
+`;
 
 const IconContainer = styled.div`
   display: flex;

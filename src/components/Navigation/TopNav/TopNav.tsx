@@ -23,13 +23,7 @@ const TopNav = (props) => {
   );
 };
 
-<<<<<<< HEAD
 export default TopNav;
-=======
-const TopNavContainer = styled.div`
-
-`;
->>>>>>> 4ce26caeb75b167ca9729afdb9118f83195214bf
 
 const TopNavContainer = styled.div`
   background: #ff6000;
