@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Slider from "react-slick";
 import img from "../../../assets/banner/1.jpg";
@@ -5,13 +6,15 @@ import fimg1 from "../../../assets/slider-tab/1.jpg";
 import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
-import {ProductsByCategory} from "../../../components/Slider/ProductsByCategory"
-const SimpleSlide = () => {
+
+import {CategoryItem} from "../../../components/Slider/CategoryItem"
+const CategorySlider=()=> {
+  
   const [activeSlide, setactiveSlide] = useState(0);
   const [activeSlide2, setactiveSlide2] = useState(0);
   const settings = {
-    dots: false,
-    infinite: true,
+    // dots: false,
+    // infinite: true,
     speed: 500,
 
     beforeChange: (current, next) => setactiveSlide(next),
@@ -20,7 +23,7 @@ const SimpleSlide = () => {
       {
         breakpoint: 1524,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 2,
           infinite: true,
           dots: false,
@@ -46,49 +49,38 @@ const SimpleSlide = () => {
   return (
     <MainContent>
       <Slider {...settings}>
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-
-         <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-        <ProductsByCategory></ProductsByCategory>
-
-       
+        <CategoryItem />
+        <CategoryItem />
+        <CategoryItem />
+        <CategoryItem />
+        <CategoryItem /> 
+        <CategoryItem />
+        <CategoryItem />
+        <CategoryItem />
+        <CategoryItem />
       </Slider>
     </MainContent>
   );
 };
 
-export default SimpleSlide;
+
+export default CategorySlider;
 const MainContent = styled.div`
   outline: none;
   border: none;
-  background-color: #f2f2f2;
+  background-color: #ffa800;
+  padding: 50px 0 40px;
 
   & .slick-slide {
     outline: none;
-    border: none;
+   
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    flex-wrap: wrap;
 
-  & .productBox {
+    &:hover{
+
+    }
   }
 `;
-
-

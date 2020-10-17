@@ -41,18 +41,18 @@ const  ImageBanner=()=> {
         <BottomImage>
           <CollectionItem
             customStyles={{
-              height: "170px",
+      
             }}
           ></CollectionItem>
 
           <CollectionItem
             customStyles={{
-              height: "170px",
+            
             }}
           ></CollectionItem>
           <CollectionItem
             customStyles={{
-              height: "170px",
+          
             }}
           ></CollectionItem>
         </BottomImage>
