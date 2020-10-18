@@ -31,13 +31,14 @@ export default DiscountBanner;
 
 const BannerContainer = styled.div`
   width: 100%;
-  padding:30px 15px;
+  padding: 30px 15px;
   margin-right: auto;
   margin-left: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #fff;
 `;
 
 const ContentRow = styled.div`

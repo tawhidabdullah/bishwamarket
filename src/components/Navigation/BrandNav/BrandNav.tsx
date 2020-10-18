@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 const BrandNav = () => {
   return (
     <BB>
-      <Item>
+      <TITLE>
         <span>TOP BRAND</span>
         <span>:</span>
+      </TITLE>
+      <Item>
         <span>AERIE</span>
         <span>BACI LINGIER</span>
         <span>GERBE</span>
@@ -27,22 +29,25 @@ export default BrandNav;
 
 
 const BB = styled.div`
+  height: 80px;
 
-height:80px;
-
- display: -webkit-flex !important;
- display: -ms-flex;
- display: flex !important;
- justify-content:center;
- align-items:center;
- font-size: 14px;
- & span{
-     padding:10px;
-     color: #777;
+  display: -webkit-flex !important;
+  display: -ms-flex;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background-color: #fff;
+  & span {
+    padding: 10px;
+    color: #777;
     letter-spacing: 0.05em;
- }
-}
-
+  }
 `;
 
-const Item = styled.div``;
+const TITLE = styled.div``;
+const Item = styled.div`
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+`;

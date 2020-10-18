@@ -15,7 +15,7 @@ const  ImageBanner=()=> {
             <ul className="layout2-slide-1">
               <li
                 id="img-1"
-                style={{ transform: "translateX(1.9%) translateY(0.02%)" }}
+                // style={{ transform: "translateX(1.9%) translateY(0.02%)" }}
               >
                 <img src={slider1} className="img-fluid" alt="slider" />
               </li>
@@ -41,18 +41,18 @@ const  ImageBanner=()=> {
         <BottomImage>
           <CollectionItem
             customStyles={{
-              height: "170px",
+      
             }}
           ></CollectionItem>
 
           <CollectionItem
             customStyles={{
-              height: "170px",
+            
             }}
           ></CollectionItem>
           <CollectionItem
             customStyles={{
-              height: "170px",
+          
             }}
           ></CollectionItem>
         </BottomImage>
@@ -66,7 +66,7 @@ const NavigationContainer = styled.div`
   grid-template-columns: 3fr 10fr;
   grid-auto-rows: minmax(170px, auto);
   justify-content: center;
-  background-color:silver;
+  background-color: #f2f2f2;
 `;
 
 const Content = styled.div`
