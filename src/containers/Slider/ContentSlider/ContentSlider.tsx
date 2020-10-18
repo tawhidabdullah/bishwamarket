@@ -44,22 +44,35 @@ const ContentSlider = () => {
     ],
   };
   return (
-    <MainContent>
-      <Slider {...settings}>
-        <Button>80% OFF</Button>
-        <Button>On SALE</Button>
-        <Button>ONLY 49$</Button>
-        <Button>UUNDER @150</Button>
-        <Button>SAVE MONEY</Button>
-        <Button>FREE SHIPPING</Button>
-        <Button>EXTRA 10% OFF</Button>
-        <Button>10% OFF</Button>
-      </Slider>
-    </MainContent>
+    <Main>
+      <MainContent>
+        <Slider {...settings}>
+          <Button>80% OFF</Button>
+          <Button>On SALE</Button>
+          <Button>ONLY 49$</Button>
+          <Button>UUNDER @150</Button>
+          <Button>SAVE MONEY</Button>
+          <Button>FREE SHIPPING</Button>
+          <Button>EXTRA 10% OFF</Button>
+          <Button>10% OFF</Button>
+        </Slider>
+      </MainContent>
+    </Main>
   );
+  
+   
 };
 
 export default ContentSlider;
+
+const Main=styled.div`
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+`;
 const MainContent = styled.div`
   outline: none;
   border: none;

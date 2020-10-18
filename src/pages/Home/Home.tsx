@@ -25,19 +25,18 @@ const Home = () => {
         <Service />
         <DiscountBanner />
         <Collection />
-        <Productcontain />
-        <SimpleSlider />
+        {/* <Productcontain />
+        <SimpleSlider /> */}
 
         <DealBanner />
 
-        <CategorySlider />
+        {/* <CategorySlider /> */}
         <MediaBannerSlider />
-        <ContentSlider />
-
 
         <SpecilaProductSlider />
 
         <LatestBlog />
+        <ContentSlider />
       </>
     );
 }
