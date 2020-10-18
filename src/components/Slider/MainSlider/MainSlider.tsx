@@ -41,15 +41,22 @@ const MainContent = styled.div`
   border: none;
   background-color: #f2f2f2;
 
+  display: grid;
 
+  grid-template-columns: minmax(140px, auto);
   & .slick-slide {
     outline: none;
     border: none;
     display: flex;
     justify-content: start;
     align-items: start;
-    border:1px solid green;
+
+    width: 100%;
   }
 
+  & div {
   
+    display:block;
+    width:100%;
+  }
 `;
