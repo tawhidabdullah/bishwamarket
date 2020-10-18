@@ -9,6 +9,9 @@ import {CategorySlider} from "../../containers/Slider/CategorySlider"
 import {SpecilaProductSlider} from "../../containers/Slider/SpecilaProductSlider"
 import ContentSlider  from "../../containers/Slider/ContentSlider/ContentSlider"
 import {LatestBlog} from "../../containers/LatestBlog"
+import {CollectionMediaBanner} from "../../containers/CollectionMediaBanner"
+
+
 
 //components
 import {BrandNav} from "../../components/Navigation/BrandNav"
@@ -36,6 +39,7 @@ const Home = () => {
 
         <ContentSlider />
         <SpecilaProductSlider />
+        <CollectionMediaBanner />
       </>
     );
 }

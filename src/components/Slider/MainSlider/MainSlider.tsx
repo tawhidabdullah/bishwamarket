@@ -41,12 +41,14 @@ const MainContent = styled.div`
   border: none;
   background-color: #f2f2f2;
 
+
   & .slick-slide {
     outline: none;
     border: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
+    border:1px solid green;
   }
 
   
