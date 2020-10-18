@@ -25,7 +25,6 @@ const TopNav = (props) => {
 
 export default TopNav;
 
-
 const TopNavContainer = styled.div`
   background: #ff6000;
   padding: 13px 20px;

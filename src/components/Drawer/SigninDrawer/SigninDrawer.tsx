@@ -29,7 +29,10 @@ const SigninDrawer = ({ open, handleClose }) => {
             type="password"
             placeholder="Enter your password"
           />
-          <DrawerButton customStyle={{ "border-radius": "25px" }}>
+          <DrawerButton
+            wrapperStyle={{}}
+            customStyle={{ "border-radius": "25px" }}
+          >
             Login
           </DrawerButton>
           <Text customStyles={{ "font-weight": "bold", cursor: "pointer" }}>
