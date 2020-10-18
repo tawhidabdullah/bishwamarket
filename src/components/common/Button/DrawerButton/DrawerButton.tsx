@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const AuthButton = ({ children, customStyle }) => {
+const AuthButton = ({ children, customStyle, wrapperStyle }) => {
   // console.log(customStyle);
   return (
-    <AuthButtonContainer>
+    <AuthButtonContainer wrapperStyle={wrapperStyle}>
       <Button customStyle={customStyle}>{children}</Button>
     </AuthButtonContainer>
   );
@@ -16,6 +16,8 @@ const AuthButtonContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 10px 0;
+
+  ${(props) => props.wrapperStyle}
 `;
 
 const Button = styled.button`

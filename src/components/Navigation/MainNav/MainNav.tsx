@@ -9,9 +9,21 @@ import Logo from "../../../assets/logo.png";
 // unify components
 import RightNav from "./RightNav";
 
-const MainNav = ({ openSigninDrawer, openWishListDrawer, openCartDrawer }) => {
+// import style
+import { NavToggler } from "./commonStyles";
+
+const MainNav = ({
+  openSigninDrawer,
+  openWishListDrawer,
+  openCartDrawer,
+  openNavDrawer,
+  openCategoryDrawer,
+}) => {
   return (
     <MainNavContainer>
+      <NavToggler onClick={openCategoryDrawer} customStyle={{ color: "#777" }}>
+        <i className="fa fa-bars"></i>
+      </NavToggler>
       <LogoContainer>
         <img src={Logo} alt="company logo" />
       </LogoContainer>
@@ -19,7 +31,8 @@ const MainNav = ({ openSigninDrawer, openWishListDrawer, openCartDrawer }) => {
         openSigninDrawer={openSigninDrawer}
         openWishListDrawer={openWishListDrawer}
         openCartDrawer={openCartDrawer}
-        customStyles={{ color: "black", "font-weight": "bold" }}
+        openNavDrawer={openNavDrawer}
+        customStyle={{ color: "black", "font-weight": "bold" }}
       />
     </MainNavContainer>
   );

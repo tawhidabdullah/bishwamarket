@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import navbar components
 import { MainNav } from "../../components/Navigation/MainNav";
 import { TopNav } from "../../components/Navigation/TopNav";
- import { SearchNav } from "../../components/Navigation/SearchNav";
+import { SearchNav } from "../../components/Navigation/SearchNav";
 
 // dummy data
 const languageList = ["English", "Hindi", "Spanish", "Marathi"];
@@ -14,6 +14,8 @@ const Navigation = ({
   openSigninDrawer,
   openWishListDrawer,
   openCartDrawer,
+  openNavDrawer,
+  openCategoryDrawer,
 }) => {
   // state for toggling language dropdown
   const [toggleLingual, setToggleLingual] = useState(false);
@@ -35,8 +37,10 @@ const Navigation = ({
         openSigninDrawer={openSigninDrawer}
         openWishListDrawer={openWishListDrawer}
         openCartDrawer={openCartDrawer}
+        openNavDrawer={openNavDrawer}
+        openCategoryDrawer={openCategoryDrawer}
       />
-       <SearchNav /> 
+      <SearchNav />
     </NavigationContainer>
   );
 };

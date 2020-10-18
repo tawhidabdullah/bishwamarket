@@ -75,29 +75,33 @@ const CartDrawer = ({ open, handleClose }) => {
             </DrawerItem>
           </DrawerItemContainer>
           <CTAContainer>
-            <hr />
             <SubTotalContainer>
               <span>Subtotal</span>
               <span>$220</span>
             </SubTotalContainer>
-            <hr />
 
             <ButtonContainer>
               <DrawerButton
+                wrapperStyle={{
+                  margin: "unset",
+                  width: "unset",
+                }}
                 customStyle={{
                   "font-weight": "bold",
                   "margin-right": "5px",
-                  width: "80%",
                   padding: "10px",
                 }}
               >
                 View Cart
               </DrawerButton>
               <DrawerButton
+                wrapperStyle={{
+                  margin: "unset",
+                  width: "unset",
+                }}
                 customStyle={{
                   "font-weight": "bold",
                   "margin-left": "5px",
-                  width: "80%",
                   padding: "10px",
                 }}
               >
@@ -118,14 +122,14 @@ const CartDrawer = ({ open, handleClose }) => {
 export default CartDrawer;
 
 const CartDrawerContainer = styled.div`
-  font-family: PT-Sans, sans-serif;
+  font-family: PT Sans, sans-serif;
   position: fixed;
   width: 100%;
   /* max-width: 70%; */
   height: 208px;
-  /* overflow-x: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
-  right: 0; */
+  /*  right: 0; */
   /* top: 70%; */
   bottom: 0;
   z-index: 2000000;
@@ -134,10 +138,19 @@ const CartDrawerContainer = styled.div`
   transition: transform 0.6s ease-out;
   transform: ${(props) => (props.show ? "translateY(0)" : "translateY(100%)")};
 
-  /* @media (max-width: 500px) {
-    width: 80%;
-    max-width: 80%;
-  } */
+  @media screen and (max-width: 1199px) {
+    height: 100%;
+    left: 0;
+    bottom: unset;
+    width: 22rem;
+    transition: transform 0.3s ease-out;
+    transform: ${(props) =>
+      props.show ? "translateX(0)" : "translateX(-100%)"};
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -153,7 +166,8 @@ const ImageContainer = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
+  width: 100%unset;
 `;
 
 const CartContainer = styled.div`
@@ -161,18 +175,31 @@ const CartContainer = styled.div`
   padding: 30px;
   justify-content: space-between;
   /* padding-bottom: 30px; */
+
+  @media screen and (max-width: 1199px) {
+    flex-direction: column;
+  }
 `;
 
 const DrawerItemContainer = styled.div`
   /* padding: 20px 10px 20px 10px; */
   display: flex;
   /* flex-direction: column; */
+
+  @media screen and (max-width: 1199px) {
+    flex-direction: column;
+  }
 `;
 
 const CTAContainer = styled.div`
   width: 20%;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 1199px) {
+    margin-top: 20px;
+    width: 100%;
+  }
 `;
 
 const DrawerItem = styled.div`
@@ -206,4 +233,6 @@ const SubTotalContainer = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: #999999;
+  border-top: 2px solid #eee;
+  border-bottom: 2px solid #ddd;
 `;

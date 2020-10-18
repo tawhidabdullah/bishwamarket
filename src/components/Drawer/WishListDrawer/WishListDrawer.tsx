@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { Fragment } from "react";
 import styled from "styled-components";
 
@@ -75,7 +76,10 @@ const WishListDrawer = ({ open, handleClose }) => {
             <span>$220</span>
           </SubTotalContainer>
           <hr />
-          <DrawerButton customStyle={{ "font-weight": "bold" }}>
+          <DrawerButton
+            wrapperStyle={{}}
+            customStyle={{ "font-weight": "bold" }}
+          >
             View Wishlist
           </DrawerButton>
         </DrawerItemContainer>

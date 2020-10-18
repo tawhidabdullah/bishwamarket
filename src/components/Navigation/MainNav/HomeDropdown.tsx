@@ -27,6 +27,7 @@ const HomeDropdownContainer = styled.ul`
   flex-direction: column;
   width: 200px;
   padding: 20px 10px;
+
 `;
 
 const HomeDropdownItem = styled.li`

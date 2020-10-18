@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 
@@ -9,13 +8,15 @@ import FeatureDropdown from "./FeatureDropdown";
 import PageDropdown from "./PageDropdown";
 import BlogDropdown from "./BlogDropdown";
 
-import { DropdownContainerStyles, DropdownItemStyles } from "./commonStyles";
+// import styles
+import { IconWrapper, NavToggler } from "./commonStyles";
 
 const RightNav = ({
-  customStyles,
+  customStyle,
   openSigninDrawer,
   openWishListDrawer,
   openCartDrawer,
+  openNavDrawer,
 }) => {
   return (
     <NavItemContainer>
@@ -65,6 +66,10 @@ const RightNav = ({
           <span>0</span>
           <i className="fa fa-shopping-cart"></i>
         </CartIcon>
+
+        <NavToggler onClick={openNavDrawer}>
+          <i className="fa fa-bars"></i>
+        </NavToggler>
       </IconContainer>
     </NavItemContainer>
   );
@@ -92,10 +97,6 @@ const NavItem = styled.li`
       opacity: 1;
     }
   }
-
-  /* & i {
-    padding-left: 15px;
-  } */
 `;
 
 const NavItems = styled.ul`
@@ -118,7 +119,11 @@ const NavItemContainer = styled.div`
 `;
 
 const ToggleContainer = styled.div`
-  width: 42vw;
+  width: 45vw;
+
+  @media screen and (max-width: 1199px) {
+    display: none;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -126,10 +131,6 @@ const IconContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-left: 25px;
-`;
-const IconWrapper = styled.span`
-  padding: 0 10px;
-  cursor: pointer;
 `;
 
 const WishBox = styled(IconWrapper)`

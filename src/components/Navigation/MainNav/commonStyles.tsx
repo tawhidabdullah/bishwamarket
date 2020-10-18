@@ -9,6 +9,8 @@ export const DropdownContainerStyles = css`
   left: 96px;
   position: absolute;
   border: 4px solid #eee;
+  background-color: #fff;
+  z-index: 1000;
 `;
 
 export const DropdownItemStyles = css`
@@ -63,4 +65,22 @@ export const DropdownItem = styled.span`
   ${DropdownItemStyles}
   font-size: 13px;
   cursor: pointer;
+`;
+
+export const IconWrapper = styled.span`
+  padding: 0 10px;
+  cursor: pointer;
+`;
+
+export const NavToggler = styled(IconWrapper)`
+  color: #ff6000;
+  font-size: 25px;
+  padding: 0 15px;
+  display: none;
+
+  ${(props) => props.customStyle}
+
+  @media screen and (max-width: 1199px) {
+    display: unset;
+  }
 `;

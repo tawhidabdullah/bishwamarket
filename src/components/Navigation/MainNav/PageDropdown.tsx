@@ -91,10 +91,7 @@ const NestedDropdownContainer = styled.div`
   visibility: hidden !important;
   opacity: 0;
 
-  ${(props) => {
-    console.log(props.customStyle);
-    return props.customStyle;
-  }}
+  ${(props) => props.customStyle}
 `;
 
 const NestedDropdownItem = styled.span`
