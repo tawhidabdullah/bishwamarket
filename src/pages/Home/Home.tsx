@@ -32,11 +32,10 @@ const Home = () => {
 
         {/* <CategorySlider /> */}
         <MediaBannerSlider />
-
-        <SpecilaProductSlider />
-
         <LatestBlog />
+
         <ContentSlider />
+        <SpecilaProductSlider />
       </>
     );
 }

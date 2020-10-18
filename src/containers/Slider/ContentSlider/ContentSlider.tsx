@@ -24,6 +24,7 @@ const ContentSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
+          arrows:false,
         },
       },
       {

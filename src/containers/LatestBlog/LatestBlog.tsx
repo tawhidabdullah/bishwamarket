@@ -42,7 +42,7 @@ const LatestBlog=()=> {
         title="Latest Blog"
         customStyles={{
           height: "100px",
-          backgroundColor: "#fff",
+          backgroundColor: "#f2f2f2",
         }}
       />
       <BottomSection>
