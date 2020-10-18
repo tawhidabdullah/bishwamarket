@@ -4,6 +4,8 @@ import { BrandNav } from "../../components/Navigation/BrandNav";
 import { Service } from "../../components/Navigation/ServiceNav";
 import { DiscountBanner } from "../../components/Banner/DiscountBanner";
 import { Collection } from "../../components/Banner/CollectionBanner";
+import { ContactBanner } from "../../components/Banner/ContactBanner";
+
 const Home = () => {
   return (
     <>
@@ -12,6 +14,7 @@ const Home = () => {
       <Service />
       <DiscountBanner />
       <Collection />
+      <ContactBanner />
     </>
   );
 };
