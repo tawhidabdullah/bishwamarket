@@ -29,6 +29,7 @@ const MediaBannerSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
+          arrows:true,
         },
       },
       {

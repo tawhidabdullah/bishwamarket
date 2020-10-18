@@ -6,19 +6,13 @@ import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
 import { ProductsByCategory } from "../../../components/Slider/ProductsByCategory";
-
-
+import {MainSlider} from "../../../components/Slider/MainSlider"
+import {Blog} from "../../../components/Banner/Blog"
 
 const SpecilaProductSlider=()=> {
-   const [activeSlide, setactiveSlide] = useState(0);
-   const [activeSlide2, setactiveSlide2] = useState(0);
-   const settings = {
-     dots: false,
-     infinite: true,
-     speed: 500,
 
-     beforeChange: (current, next) => setactiveSlide(next),
-     afterChange: (current) => setactiveSlide2(current),
+   const responsive = {
+  
      responsive: [
        {
          breakpoint: 1524,
@@ -48,29 +42,20 @@ const SpecilaProductSlider=()=> {
      ],
    };
    return (
-     <MainContent>
-       <Slider {...settings}>
-         <ProductsByCategory></ProductsByCategory>
+     <Section>
+       <Blog
+         title="special Products"
+         customStyles={{
+           height: "100px",
+           backgroundColor: "#fff",
+         }}
+       />
 
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-
-         <ProductsByCategory></ProductsByCategory>
-       </Slider>
-     </MainContent>
+       <MainSlider
+         responsive={responsive}
+         ProductsByCategory={ProductsByCategory}
+       />
+     </Section>
    );
 }
 export default SpecilaProductSlider;
@@ -78,21 +63,8 @@ export default SpecilaProductSlider;
 
 
 
-const MainContent = styled.div`
-  outline: none;
-  border: none;
-  background-color: #f2f2f2;
-
-  & .slick-slide {
-    outline: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  & .productBox {
-  }
+const Section = styled.div`
+ 
 `;
 
 
