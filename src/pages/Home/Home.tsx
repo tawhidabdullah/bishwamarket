@@ -26,6 +26,7 @@ const Home = () => {
         <ImageBanner />
         <BrandNav />
         <Service />
+        <CollectionMediaBanner />
         <DiscountBanner />
         <Collection />
         {/* <Productcontain />
@@ -39,7 +40,6 @@ const Home = () => {
 
         <ContentSlider />
         <SpecilaProductSlider />
-        <CollectionMediaBanner />
       </>
     );
 }
