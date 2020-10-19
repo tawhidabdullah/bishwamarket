@@ -7,8 +7,9 @@ import { CartDrawer } from "../components/Drawer/CartDrawer";
 import { NavDrawer } from "../components/Drawer/NavDrawer";
 import { CategoryDrawer } from "../components/Drawer/CategoryDrawer";
 
-// import navigation
+// import fixed components
 import { Navigation } from "../containers/Navigation";
+import { Footer } from "../components/Footer";
 
 const Layout = ({ children }) => {
   // state for signin drawer
@@ -56,6 +57,7 @@ const Layout = ({ children }) => {
         openCategoryDrawer={openCategoryDrawer}
       />
       {children}
+      <Footer />
     </>
   );
 };
