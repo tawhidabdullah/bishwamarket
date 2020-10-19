@@ -31,7 +31,7 @@ const SliderBanner = styled.div`
 
   background-color: #eddbd1;
   margin-top: 10px;
-  border: 1px solid green;
+
   width: 100%;
 
  
@@ -45,7 +45,10 @@ const SliderImage = styled.div`
   & ul {
     padding-left: 0;
     margin-bottom: 0;
+
   }
+
+
   & li {
     position: absolute;
     bottom: -8px;
