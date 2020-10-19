@@ -55,7 +55,7 @@ const SliderImage = styled.div`
 
 const SliderBannercontent = styled.div`
   position: absolute;
-  top: 15%;
+  top: 0%;
   width: 100%;
   height: 100%;
   display: -webkit-box;

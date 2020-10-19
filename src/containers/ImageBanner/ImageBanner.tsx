@@ -70,7 +70,7 @@ const  ImageBanner=()=> {
             ProductsByCategory={ThemeSlider}
             customStyles={{
               width: "100%",
-              display:"block",
+          
             }}
           />
         </SliderBanner>
