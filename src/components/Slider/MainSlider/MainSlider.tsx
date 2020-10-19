@@ -39,10 +39,11 @@ export default MainSlider;
 const MainContent = styled.div`
   outline: none;
   border: none;
-  background-color: #f2f2f2;
+  background-color: ${(props) =>
+    props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
-
+  padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};
   grid-template-columns: minmax(140px, auto);
   & .slick-slide {
     outline: none;
@@ -55,6 +56,6 @@ const MainContent = styled.div`
   }
 
   & div {
-    ${(props) => props.customStyles};
+    width: ${(props) => (props.customStyles ? props.customStyles.width : "")};
   }
 `;
