@@ -1,6 +1,4 @@
-
-
-import React from 'react'
+import React from "react";
 
 //con tainer
 import  {ImageBanner} from "../../containers/ImageBanner"
@@ -38,10 +36,10 @@ const Home = () => {
         <MediaBannerSlider />
         <LatestBlog />
 
-        <ContentSlider />
-        <SpecilaProductSlider />
-      </>
-    );
-}
+      <ContentSlider />
+      <SpecilaProductSlider />
+    </>
+  );
+};
 
 export default Home;

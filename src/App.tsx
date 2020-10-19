@@ -12,6 +12,7 @@ import Category from "./pages/Category";
 import GlobalStyles from "./global.styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 const App = () => {
   return (
     <BrowserRouter>
