@@ -6,7 +6,7 @@ import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
 
-const MainSlider=({responsive,ProductsByCategory,...props})=> {
+const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 
 
  const [activeSlide, setactiveSlide] = useState(0);
@@ -21,7 +21,7 @@ const MainSlider=({responsive,ProductsByCategory,...props})=> {
      responsive: responsive.responsive,
    };
     return (
-      <MainContent>
+      <MainContent customStyles={customStyles}>
         <Slider {...settings}>
           <ProductsByCategory />
           <ProductsByCategory />
@@ -39,8 +39,18 @@ export default MainSlider;
 const MainContent = styled.div`
   outline: none;
   border: none;
-  background-color: #f2f2f2;
+  background-color: ${(props) =>
+    props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
+  display: grid;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};
+  grid-template-columns: minmax(140px, auto);
+
+  width: 100%;
 
   & .slick-slide {
     outline: none;
@@ -48,8 +58,11 @@ const MainContent = styled.div`
     display: flex;
     justify-content: start;
     align-items: start;
-    border:1px solid green;
+
+    width: 100%;
   }
 
-  
+  & div {
+    width: ${(props) => (props.customStyles ? props.customStyles.width : "")};
+  }
 `;

@@ -88,6 +88,8 @@ const MainContent = styled.div`
     align-items: center;
   }
 `;
+
+
 const Button = styled.div`
   font-size: 16px;
   background: #fff;
@@ -123,7 +125,7 @@ const Button = styled.div`
   &::after {
     left: 0;
     right: 0;
-    top: -100%;
+    left: -100%;
     bottom: 100%;
     transition: all 0.35s;
   }

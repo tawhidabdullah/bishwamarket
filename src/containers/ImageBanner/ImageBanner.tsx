@@ -2,16 +2,46 @@ import React from "react";
 import styled from "styled-components";
 import slider1 from "../../assets/1.1.png";
 import image from "../../assets/banner/1.jpg";
-
+import { MainSlider } from "../../components/Slider/MainSlider";
+import { Blog } from "../../components/Banner/Blog";
 import CollectionItem from "../../components/CollectionItem/CollectionItem"
-
+import { ThemeSlider } from "../../components/Slider/ThemeSlider";
 const  ImageBanner=()=> {
+  const responsive = {
+    responsive: [
+      {
+        breakpoint: 1524,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
     return (
       <NavigationContainer>
         <Content></Content>
 
         <SliderBanner>
-           <SliderImage>
+          {/*  <SliderImage>
             <ul className="layout2-slide-1">
               <li
                 id="img-1"
@@ -28,33 +58,28 @@ const  ImageBanner=()=> {
               <h2>minimum 30% off</h2>
               <a className="btn btn-rounded">Shop Now</a>
             </div>
-          </SliderBannercontent> 
+          </SliderBannercontent>  */}
 
           {/* <CollectionItem
             customStyles={{
               height: "400px",
             }}
           ></CollectionItem> */}
-
+          <MainSlider
+            responsive={responsive}
+            ProductsByCategory={ThemeSlider}
+            customStyles={{
+              width: "100%",
+          
+            }}
+          />
         </SliderBanner>
 
         <BottomImage>
-          <CollectionItem
-            customStyles={{
-      
-            }}
-          ></CollectionItem>
+          <CollectionItem customStyles={{}}></CollectionItem>
 
-          <CollectionItem
-            customStyles={{
-            
-            }}
-          ></CollectionItem>
-          <CollectionItem
-            customStyles={{
-          
-            }}
-          ></CollectionItem>
+          <CollectionItem customStyles={{}}></CollectionItem>
+          <CollectionItem customStyles={{}}></CollectionItem>
         </BottomImage>
       </NavigationContainer>
     );
@@ -87,7 +112,7 @@ const Content = styled.div`
 
 
 const SliderBanner = styled.div`
-  position: relative;
+ 
   background-color: #eddbd1;
   margin-top:10px;
 
