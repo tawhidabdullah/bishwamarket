@@ -46,7 +46,13 @@ const LatestBlog=()=> {
         }}
       />
       <BottomSection>
-        <MainSlider responsive={responsive} ProductsByCategory={BlogItem} />
+        <MainSlider
+          responsive={responsive}
+          ProductsByCategory={BlogItem}
+          customStyles={{
+           
+          }}
+        />
       </BottomSection>
     </Section>
   );

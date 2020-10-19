@@ -68,6 +68,10 @@ const  ImageBanner=()=> {
           <MainSlider
             responsive={responsive}
             ProductsByCategory={ThemeSlider}
+            customStyles={{
+              width: "100%",
+              display:"block",
+            }}
           />
         </SliderBanner>
 

@@ -6,7 +6,7 @@ import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
 
-const MainSlider=({responsive,ProductsByCategory,...props})=> {
+const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 
 
  const [activeSlide, setactiveSlide] = useState(0);
@@ -21,7 +21,7 @@ const MainSlider=({responsive,ProductsByCategory,...props})=> {
      responsive: responsive.responsive,
    };
     return (
-      <MainContent>
+      <MainContent customStyles={customStyles}>
         <Slider {...settings}>
           <ProductsByCategory />
           <ProductsByCategory />
@@ -55,8 +55,6 @@ const MainContent = styled.div`
   }
 
   & div {
-  
-    display:block;
-    width:100%;
+    ${(props) => props.customStyles};
   }
 `;

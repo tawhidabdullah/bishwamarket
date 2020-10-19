@@ -52,6 +52,10 @@ const SpecilaProductSlider=()=> {
        <MainSlider
          responsive={responsive}
          ProductsByCategory={ProductsByCategory}
+         customStyles={{
+           width: "100%",
+           display: "block",
+         }}
        />
      </Section>
    );
