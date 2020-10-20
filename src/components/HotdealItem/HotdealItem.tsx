@@ -56,7 +56,7 @@ const HotdealItem =()=> {
               </PriceBox>
             </div>
           </HotdealCenter>
-          <h5>today’s hot deal</h5>
+          {/* <h5>today’s hot deal</h5> */}
         </HotContain>
       </HotDealContainer>
     );

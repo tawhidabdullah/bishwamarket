@@ -5,6 +5,7 @@ import fimg1 from "../../../assets/slider-tab/1.jpg"
 import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
+
 const ProductsByCategory = () => {
 
   return (
@@ -27,7 +28,18 @@ const ProductsByCategory = () => {
           />
         </ProductBack>
       </ProductImgbox>
+      <ProductIcon>
+        <Button>
+          <i className="fa fa-shopping-bag"></i>
+        </Button>
+        <Wishlist>
+          <i className="fa fa-heart"></i>
+        </Wishlist>
 
+        <ModalView>
+          <i className="fa fa-search"></i>
+        </ModalView>
+      </ProductIcon>
       <ProductDetail>
         <DetailLeft>
           <Rating>
@@ -78,7 +90,6 @@ const ProductBack = styled.div`
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
 
- 
 `;
 
 
@@ -177,4 +188,46 @@ const Price = styled.div`
   color: #ffa800;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
   font-weight: 700;
+`;
+
+    
+const ProductIcon = styled.div`
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+  position: absolute;
+  top: 40%;
+  right: 0;
+  z-index: 20;
+
+  & a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+  }
+`;
+
+const Prod = styled.div`
+
+`;
+
+const Button = styled.div`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  color: #777;
+`;
+
+const Wishlist = styled.div`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  color: #777;
+`;
+
+const ModalView = styled.div`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  color: #777;
 `;
