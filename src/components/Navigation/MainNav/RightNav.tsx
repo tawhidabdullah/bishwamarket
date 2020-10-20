@@ -160,4 +160,11 @@ const CartIcon = styled(IconWrapper)`
   cursor: pointer;
   color: white;
   font-size: 24px;
+
+  & span {
+    right: 14%;
+    position: absolute;
+    top: 2%;
+    font-size: 20px;
+  }
 `;
