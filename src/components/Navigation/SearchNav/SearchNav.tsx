@@ -15,102 +15,83 @@ import nav7 from "../../../assets/nav/07.png";
 
 import nav8 from "../../../assets/nav/08.png";
 import nav9 from "../../../assets/nav/09.png";
-const  SearchNav = (props) => {
-  
-
+const SearchNav = ({
+  setToggleCategory,
+  toggleCategory,
+  toggleGiftBox,
+  setToggleGiftBox,
+}) => {
   return (
     <SearchNavContainer>
       <NavCategory>
-        <IconButton />
-        Shop By Category
-        <Contents>
-          <CategoryItem>
-            <ul className="nav-cat title-font">
-              <li>
-                {" "}
-                <img src={nav1} alt="catergory-product" /> <a>western ware</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav2} alt="catergory-product" /> <a>TV, Appliances</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav3} alt="catergory-product" /> <a>Pets Products</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav4} alt="catergory-product" /> <a>Car, Motorbike</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav5} alt="catergory-product" />{" "}
-                <a>Industrial Products</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav6} alt="catergory-product" />{" "}
-                <a>Beauty, Health Products</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav7} alt="catergory-product" />{" "}
-                <a>Grocery Products </a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav8} alt="catergory-product" /> <a>Sports</a>
-              </li>
-              {/*   <li>
-                {" "}
-                <img src={nav9} alt="catergory-product" /> <a>Bags, Luggage</a>
-              </li>
-              <li>
-                {" "}
-                <img src={nav9} alt="catergory-product" /> <a>Movies, Music </a>
-              </li> */}
+        <ShopCategory
+          onClick={() =>
+            setToggleCategory && setToggleCategory(!toggleCategory)
+          }
+        >
+          <IconButton />
+          Shop By Category
+        </ShopCategory>
 
-              {/* <li className="mor-slide-open" style={{ display: " none" }}>
-                <ul>
-                  <li>
-                    {" "}
-                    <img src={nav1} alt="catergory-product" /> <a>Sports</a>
-                  </li>
-                  <li>
-                    {" "}
-                    <img src={nav1} alt="catergory-product" />{" "}
-                    <a>Bags, Luggage</a>
-                  </li>
-                  <li>
-                    {" "}
-                    <img src={nav1} alt="catergory-product" />{" "}
-                    <a>Movies, Music </a>
-                  </li>
-                  <li>
-                    {" "}
-                    <img src={nav1} alt="catergory-product" />{" "}
-                    <a>Video Games</a>
-                  </li>
-                  <li>
-                    {" "}
-                    <img src={nav1} alt="catergory-product" />{" "}
-                    <a>Toys, Baby Products</a>
-                  </li>
-                </ul>
-              </li> */}
-              <li>
-                {" "}
-                <a className="mor-slide-click">
-                  mor category <i className="fa fa-angle-down pro-down"></i>
-                  <i
-                    className="fa fa-angle-up pro-up"
-                    style={{ display: "none" }}
-                  ></i>
-                </a>
-              </li>
-            </ul>
-          </CategoryItem>
-        </Contents>
+        {toggleCategory ? (
+          <Contents>
+            <CategoryItem>
+              <ul className="nav-cat title-font">
+                <li>
+                  {" "}
+                  <img src={nav1} alt="catergory-product" /> <a>western ware</a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav2} alt="catergory-product" />{" "}
+                  <a>TV, Appliances</a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav3} alt="catergory-product" />{" "}
+                  <a>Pets Products</a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav4} alt="catergory-product" />{" "}
+                  <a>Car, Motorbike</a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav5} alt="catergory-product" />{" "}
+                  <a>Industrial Products</a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav6} alt="catergory-product" />{" "}
+                  <a>Beauty, Health Products</a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav7} alt="catergory-product" />{" "}
+                  <a>Grocery Products </a>
+                </li>
+                <li>
+                  {" "}
+                  <img src={nav8} alt="catergory-product" /> <a>Sports</a>
+                </li>
+             
+                <li>
+                  
+                  <a className="mor-slide-click">
+                    more category <i className="fa fa-angle-down pro-down"></i>
+                    <i
+                      className="fa fa-angle-up pro-up"
+                      style={{ display: "none" }}
+                    ></i>
+                  </a>
+                </li>
+              </ul>
+            </CategoryItem>
+          </Contents>
+        ) : (
+          ""
+        )}
       </NavCategory>
       <SearchCategory>
         <span>
@@ -128,8 +109,9 @@ const  SearchNav = (props) => {
             <span>123-456-76890</span>
           </span>
         </Call>
-        
-        <Gift>
+        <Gift
+          onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
+        >
           <div className="gift-block" data-toggle="dropdown">
             <div className="grif-icon">
               <i className="fas fa-phone"></i>
@@ -140,21 +122,25 @@ const  SearchNav = (props) => {
             </GiftOffer>
           </div>
         </Gift>
-        <Giftcontent>
-          <GiftItem>
-            <div>
-              <img src={image2} alt="image" />
-            </div>
-            <div>
-              <h5>title </h5>
-              <p>10 taka per product</p>
-            </div>
-          </GiftItem>
-        </Giftcontent> 
+        {toggleGiftBox ? (
+          <Giftcontent>
+            <GiftItem>
+              <div>
+                <img src={image2} alt="image" />
+              </div>
+              <div>
+                <h5>title </h5>
+                <p>10 taka per product</p>
+              </div>
+            </GiftItem>
+          </Giftcontent>
+        ) : (
+          ""
+        )}
       </Rightcontent>
     </SearchNavContainer>
   );
-}
+};
 
 export default SearchNav;
 
@@ -166,6 +152,7 @@ const SearchNavContainer = styled.div`
   justify-content: space-around;
  
 `;
+
 
 const Contents = styled.div`
   position: absolute;
@@ -181,8 +168,8 @@ const Contents = styled.div`
   border: 2px solid #f1f1f1;
   z-index: 10;
 
-  // transition: height 2s;
-  // transition-timing-function: ease-in-out;
+   transition: height 2s;
+   transition-timing-function: ease-in-out;
 
   // :hover {
   //   opacity: 1;
@@ -190,6 +177,11 @@ const Contents = styled.div`
   // }
 `;
 const NavCategory = styled.div`
+  position: relative;
+
+ 
+`;
+const ShopCategory = styled.div`
   height: 70px;
   background-color: #212529;
   color: #fff;
@@ -197,10 +189,10 @@ const NavCategory = styled.div`
   padding: 0px 30px;
   display: flex;
   align-items: center;
-  position: relative;
+
   width: 250px;
   z-index: 9;
-  justify-content:center;
+  justify-content: center;
 
   & button {
     width: 20px;
@@ -212,16 +204,14 @@ const NavCategory = styled.div`
     font-size: 12px;
 
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
+
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+
     align-items: center;
     outline: none;
   }
-`;
 
+`;
 
 const CategoryItem = styled.div`
   display: flex;
@@ -234,7 +224,6 @@ const CategoryItem = styled.div`
     border-radius: 50%;
     padding: 3px;
     height: 46.5px;
-    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
 

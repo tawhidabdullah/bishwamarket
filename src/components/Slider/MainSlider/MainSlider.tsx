@@ -48,9 +48,14 @@ const MainContent = styled.div`
   margin-right: auto;
   margin-left: auto;
   padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};
+
   grid-template-columns: minmax(140px, auto);
 
   width: 100%;
+  @media only screen and (max-width: 560px) {
+    padding: ${(props) =>
+      props.customStyles ? props.customStyles.padding?"20px" : "":""};
+  }
 
   & .slick-slide {
     outline: none;

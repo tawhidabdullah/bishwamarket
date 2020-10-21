@@ -21,10 +21,10 @@ import { DealBanner } from "../../components/Banner/DealBanner";
 const Home = () => {
   return (
     <>
-      <ImageBanner />
+      {/* <ImageBanner /> */}
       <BrandNav />
       <Service />
-      <CollectionMediaBanner />
+      {/* <CollectionMediaBanner /> */}
       <DiscountBanner />
       <Collection />
 

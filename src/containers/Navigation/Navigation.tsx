@@ -23,6 +23,12 @@ const Navigation = ({
   // state for toggling currency dropdown
   const [toggleCurrency, setToggleCurrency] = useState(false);
 
+  // state for toggling category dropdown
+  const [toggleCategory, setToggleCategory] = useState(true);
+
+  // state for toggling GiftBox dropdown
+  const [toggleGiftBox, setToggleGiftBox] = useState(false);
+
   return (
     <NavigationContainer>
       <TopNav
@@ -32,6 +38,7 @@ const Navigation = ({
         currencyList={currencyList}
         toggleCurrency={toggleCurrency}
         setToggleCurrency={setToggleCurrency}
+        toggleCategory={toggleCategory}
       />
       <MainNav
         openSigninDrawer={openSigninDrawer}
@@ -40,7 +47,12 @@ const Navigation = ({
         openNavDrawer={openNavDrawer}
         openCategoryDrawer={openCategoryDrawer}
       />
-      <SearchNav />
+      <SearchNav
+        setToggleCategory={setToggleCategory}
+        toggleCategory={toggleCategory}
+        setToggleGiftBox={setToggleGiftBox}
+        toggleGiftBox={toggleGiftBox}
+      />
     </NavigationContainer>
   );
 };

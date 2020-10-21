@@ -41,6 +41,7 @@ const Item = styled.div`
   margin: 10px;
   ${(props) => props.customStyles};
 
+
   & h3 {
     color: #ff6000;
     text-transform: uppercase;

@@ -12,20 +12,10 @@ const ProductsByCategory = () => {
     <ProductBox>
       <ProductImgbox>
         <ProductFront>
-          <img
-            src={fimg1}
-            style={{ height: "360px", width: "280px" }}
-            className="img-fluid  "
-            alt="product"
-          />
+          <Image src={fimg1} className="img-fluid  " alt="product" />
         </ProductFront>
         <ProductBack>
-          <img
-            src={bimg1}
-            style={{ height: "360px", width: "280px" }}
-            className="img-fluid "
-            alt="product"
-          />
+          <Image src={bimg1} className="img-fluid " alt="product" />
         </ProductBack>
       </ProductImgbox>
       <ProductIcon>
@@ -76,6 +66,17 @@ const ProductBox = styled.div`
   flex-direction: column;
   margin: 10px;
   position: relative;
+  width: 220px;
+
+  @media only screen and (max-width: 730px) and (min-width: 580px) {
+    width: 180px;
+  }
+  @media only screen and (max-width: 490px) and (min-width: 390px) {
+    width: 160px;
+  }
+  @media only screen and (max-width: 390px) and (min-width: 320px) {
+    width: 140px;
+  }
 `;
 
 
@@ -85,9 +86,9 @@ const ProductBack = styled.div`
   top: 0;
   left: 0;
 
-  -webkit-transition: all 0.5s ease;
+
   transition: all 0.5s ease;
-  -webkit-transform: translateX(-100%);
+ 
   transform: translateX(-100%);
 
 `;
@@ -104,11 +105,34 @@ const ProductImgbox = styled.div`
 const ProductFront = styled.div`
   left: 0;
   top: 0;
-  -webkit-transition: all 0.5s ease;
+
   transition: all 0.5s ease;
+
+
+      
 
 `;
 
+
+const Image = styled.img`
+  height: 290px;
+  width: 220px;
+
+  @media only screen and (max-width: 730px) and (min-width: 580px) {
+    height: 260px;
+    width: 180px;
+  }
+
+  @media only screen and (max-width: 490px) and (min-width: 300px) {
+    width: 160px;
+    height: 220px;
+  }
+
+  @media only screen and (max-width: 390px) and (min-width: 320px) {
+    width: 140px;
+    height: 200px;
+  }
+`;
 const OnSale = styled.div`
   background-color: #ffa800;
   color: #fff;

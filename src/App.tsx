@@ -17,12 +17,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <React.Fragment>
-        <Layout>
+        {/* <Layout> */}
           <Switch>
             <Route exact path={"/"} component={Home} />
             <Route exact path={"/te"} component={Category} />
           </Switch>
-        </Layout>
+        {/* </Layout> */}
         <GlobalStyles />
       </React.Fragment>
     </BrowserRouter>

@@ -10,10 +10,20 @@ import {Blog} from "../../../components/Banner/Blog"
 const SpecilaProductSlider=()=> {
 
    const responsive = {
-  
      responsive: [
        {
          breakpoint: 1524,
+         settings: {
+           slidesToShow: 5,
+           slidesToScroll: 1,
+           infinite: true,
+           dots: false,
+           arrows: false,
+         },
+       },
+
+       {
+         breakpoint: 1154,
          settings: {
            slidesToShow: 4,
            slidesToScroll: 1,
@@ -23,18 +33,24 @@ const SpecilaProductSlider=()=> {
          },
        },
        {
-         breakpoint: 600,
+         breakpoint: 970,
          settings: {
-           slidesToShow: 2,
+           slidesToShow: 3,
            slidesToScroll: 2,
            initialSlide: 2,
+           infinite: true,
+           dots: false,
+           arrows: false,
          },
        },
        {
-         breakpoint: 480,
+         breakpoint: 580,
          settings: {
-           slidesToShow: 1,
+           slidesToShow: 2,
            slidesToScroll: 1,
+           infinite: true,
+           dots: false,
+           arrows: false,
          },
        },
      ],

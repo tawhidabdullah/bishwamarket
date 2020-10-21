@@ -24,22 +24,61 @@ const ContentSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows:false,
+          arrows: false,
+        },
+      },
+
+      {
+        breakpoint: 1124,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 980,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 5,
           slidesToScroll: 2,
           initialSlide: 2,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 820,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
     ],
@@ -48,7 +87,7 @@ const ContentSlider = () => {
     <Main>
       <MainContent>
         <Slider {...settings}>
-          <Button>80% OFF</Button>
+          <Button>80% OFF GGGG hhhhh</Button>
           <Button>On SALE</Button>
           <Button>ONLY 49$</Button>
           <Button>UUNDER @150</Button>
@@ -78,7 +117,7 @@ const MainContent = styled.div`
   outline: none;
   border: none;
   background-color: #f2f2f2;
-  margin:0px 20px 0px 20px;
+ 
 
   & .slick-slide {
     outline: none;
@@ -94,13 +133,17 @@ const Button = styled.div`
   font-size: 16px;
   background: #fff;
   outline: none;
-  min-width:140px;
+  min-width: 140px;
   padding: 30px 7px;
   margin: 1rem 0px;
   position: relative;
   z-index: 1;
   overflow: hidden;
-  text-align:center;
+  text-align: center;
+
+  @media only screen and (max-width: 900px) {
+    padding: 20px 0px;
+  }
 
   &:hover {
     color: #fff;
