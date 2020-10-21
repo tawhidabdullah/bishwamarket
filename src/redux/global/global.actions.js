@@ -1,3 +1,5 @@
+// *should be one action for all toggles
+
 // import types
 import GlobalTypes from "./global.types";
 
@@ -26,4 +28,9 @@ export const toggleNavigationDrawer = () => ({
 // open/close category drawer
 export const toggleCategoryDrawer = () => ({
   type: GlobalTypes.TOGGLE_CATEGORY_DRAWER,
+});
+
+// open/close quick view drawer
+export const toggleQuickviewDrawer = () => ({
+  type: GlobalTypes.TOGGLE_QUICKVIEW_DRAWER,
 });

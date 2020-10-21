@@ -7,6 +7,7 @@ import { WishListDrawer } from "../components/Drawer/WishListDrawer";
 import { CartDrawer } from "../components/Drawer/CartDrawer";
 import { NavDrawer } from "../components/Drawer/NavDrawer";
 import { CategoryDrawer } from "../components/Drawer/CategoryDrawer";
+import { QuickViewDrawer } from "../components/Drawer/QuickviewDrawer";
 
 // import fixed components
 import { Navigation } from "../containers/Navigation";
@@ -19,6 +20,7 @@ import {
   toggleWishlistDrawer,
   toggleCartDrawer,
   toggleNavigationDrawer,
+  toggleQuickviewDrawer,
 } from "../redux/global/global.actions";
 
 const Layout = ({ children, globals }) => {
@@ -28,6 +30,7 @@ const Layout = ({ children, globals }) => {
     openCartDrawer,
     openNavigationDrawer,
     openCategoryDrawer,
+    openQuickviewDrawer,
   } = globals;
 
   return (
@@ -37,6 +40,7 @@ const Layout = ({ children, globals }) => {
       <CartDrawer open={openCartDrawer} />
       <NavDrawer open={openNavigationDrawer} />
       <CategoryDrawer open={openCategoryDrawer} />
+      <QuickViewDrawer open={openQuickviewDrawer} />
       <Navigation />
       {children}
       <Footer />
@@ -54,6 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartDrawer: () => dispatch(toggleCartDrawer()),
   toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
   toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
+  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

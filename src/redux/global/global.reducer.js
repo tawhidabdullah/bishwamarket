@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   openCartDrawer: false,
   openNavigationDrawer: false,
   openCategoryDrawer: false,
+  openQuickviewDrawer: false,
 };
 
 const GlobalReducer = (state = INITIAL_STATE, action) => {
@@ -39,6 +40,12 @@ const GlobalReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         openCategoryDrawer: !state.openCategoryDrawer,
+      };
+
+    case GlobalTypes.TOGGLE_QUICKVIEW_DRAWER:
+      return {
+        ...state,
+        openQuickviewDrawer: !state.openQuickviewDrawer,
       };
 
     default:

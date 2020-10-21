@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 // import Slider from "react-slick";
 
 // import dummy image
@@ -7,16 +8,13 @@ import styled from "styled-components";
 import fimg1 from "../../../assets/slider-tab/1.jpg";
 import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
-// import quick view modal
-import { QuickViewModal } from "../../Modal/QuickView";
+// import toggle cart action
+import {
+  toggleCartDrawer,
+  toggleQuickviewDrawer,
+} from "../../../redux/global/global.actions";
 
-const ProductsByCategory = () => {
-  // state for toggling modal
-  const [quickView, setQuickView] = useState(false);
-  // handler for open/close modal
-  const openQuickModal = () => setQuickView(true);
-  const closeQuickModal = () => setQuickView(false);
-
+const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
   return (
     <ProductBox>
       <ProductImgbox>
@@ -38,17 +36,16 @@ const ProductsByCategory = () => {
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer>
-        <ProductIcon>
+        <ProductIcon onClick={() => toggleCartDrawer()}>
           <i className="fa fa-shopping-bag"></i>
         </ProductIcon>
         <ProductIcon>
           <i className="fa fa-heart-o"></i>
         </ProductIcon>
 
-        <ProductIcon onClick={openQuickModal}>
+        <ProductIcon onClick={() => toggleQuickviewDrawer()}>
           <i className="fa fa-search"></i>
         </ProductIcon>
-        <QuickViewModal open={quickView} handleClose={closeQuickModal} />
 
         <ProductIcon>
           <i className="fa fa-exchange"></i>
@@ -80,7 +77,12 @@ const ProductsByCategory = () => {
   );
 };
 
-export default ProductsByCategory;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartDrawer: () => dispatch(toggleCartDrawer()),
+  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(ProductsByCategory);
 
 const ProductIconContainer = styled.div`
   display: flex;
