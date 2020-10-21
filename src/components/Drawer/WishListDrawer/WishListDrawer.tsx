@@ -1,6 +1,7 @@
 //@ts-nocheck
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 // import backdrop element
 import { BackDrop } from "../../elements/Backdrop";
@@ -9,14 +10,17 @@ import { DrawerButton } from "../../common/Button/DrawerButton";
 // import dummy image
 import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 
-const WishListDrawer = ({ open, handleClose }) => {
+// import toggle drawer action
+import { toggleWishlistDrawer } from "../../../redux/global/global.actions";
+
+const WishListDrawer = ({ open, toggleWishlistDrawer }) => {
   return (
     <Fragment>
-      <BackDrop show={open} clicked={handleClose} />
+      <BackDrop show={open} clicked={() => toggleWishlistDrawer()} />
       <WishListDrawerContainer show={open}>
         <DrawerHeader>
           <HeaderText>MY WISHLIST</HeaderText>
-          <HeaderText onClick={handleClose}>
+          <HeaderText onClick={() => toggleWishlistDrawer()}>
             <i className="fa fa-times"></i>
           </HeaderText>
         </DrawerHeader>
@@ -88,7 +92,11 @@ const WishListDrawer = ({ open, handleClose }) => {
   );
 };
 
-export default WishListDrawer;
+const mapDispatchToProps = (dispatch) => ({
+  toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(WishListDrawer);
 
 const WishListDrawerContainer = styled.div`
   position: fixed;

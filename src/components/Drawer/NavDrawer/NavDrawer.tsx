@@ -1,14 +1,18 @@
 //@ts-nocheck
 import React, { Fragment, useState } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 // import backdrop element
 // import { BackDrop } from "../../elements/Backdrop";
 
+// import toggle drawer action
+import { toggleNavigationDrawer } from "../../../redux/global/global.actions";
+
 // dummy data
 import { MenuItems } from "./dummyData";
 
-const NavDrawer = ({ open, handleClose }) => {
+const NavDrawer = ({ open, toggleNavigationDrawer }) => {
   const [activeTabs, setActiveTabs] = useState([]);
   // for showing color on active tab
   // const [activeTabColor, setActiveColor] = useState("#444");
@@ -31,7 +35,7 @@ const NavDrawer = ({ open, handleClose }) => {
       {/* <BackDrop show={open} clicked={handleClose} /> */}
       <NavDrawerContainer show={open}>
         <DrawerHeader>
-          <HeaderText onClick={handleClose}>
+          <HeaderText onClick={() => toggleNavigationDrawer()}>
             Back <i className="fa fa-angle-right"></i>
           </HeaderText>
         </DrawerHeader>
@@ -77,7 +81,11 @@ const NavDrawer = ({ open, handleClose }) => {
   );
 };
 
-export default NavDrawer;
+const mapDispatchToProps = (dispatch) => ({
+  toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(NavDrawer);
 
 const NavDrawerContainer = styled.div`
   position: fixed;

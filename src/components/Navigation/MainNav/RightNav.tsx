@@ -1,5 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+// import global actions
+import {
+  toggleSigninDrawer,
+  toggleWishlistDrawer,
+  toggleCartDrawer,
+  toggleNavigationDrawer,
+} from "../../../redux/global/global.actions";
 
 import HomeDropdown from "./HomeDropdown";
 import ShopDropdown from "./ShopDropdown";
@@ -13,10 +22,10 @@ import { IconWrapper, NavToggler } from "./commonStyles";
 
 const RightNav = ({
   customStyle,
-  openSigninDrawer,
-  openWishListDrawer,
-  openCartDrawer,
-  openNavDrawer,
+  toggleSigninDrawer,
+  toggleWishlistDrawer,
+  toggleCartDrawer,
+  toggleNavigationDrawer,
 }) => {
   return (
     <NavItemContainer>
@@ -49,10 +58,10 @@ const RightNav = ({
         </NavItems>
       </ToggleContainer>
       <IconContainer>
-        <IconWrapper onClick={openSigninDrawer}>
+        <IconWrapper onClick={() => toggleSigninDrawer()}>
           <i className="fa fa-user"></i>
         </IconWrapper>
-        <WishBox onClick={openWishListDrawer}>
+        <WishBox onClick={() => toggleWishlistDrawer()}>
           <span>
             <i className="fa fa-heart"></i>
           </span>
@@ -62,12 +71,12 @@ const RightNav = ({
             <span>WISHLIST</span>
           </WishText>
         </WishBox>
-        <CartIcon onClick={openCartDrawer}>
+        <CartIcon onClick={() => toggleCartDrawer()}>
           <span>0</span>
           <i className="fa fa-shopping-cart"></i>
         </CartIcon>
 
-        <NavToggler onClick={openNavDrawer}>
+        <NavToggler onClick={() => toggleNavigationDrawer()}>
           <i className="fa fa-bars"></i>
         </NavToggler>
       </IconContainer>
@@ -75,7 +84,14 @@ const RightNav = ({
   );
 };
 
-export default RightNav;
+const mapDispatchToProps = (dispatch) => ({
+  toggleSigninDrawer: () => dispatch(toggleSigninDrawer()),
+  toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
+  toggleCartDrawer: () => dispatch(toggleCartDrawer()),
+  toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(RightNav);
 
 const NavItem = styled.li`
   cursor: pointer;

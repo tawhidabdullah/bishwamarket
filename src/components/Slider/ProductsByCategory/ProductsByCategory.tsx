@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import Slider from "react-slick";
-import img from "../../../assets/banner/1.jpg";
-import fimg1 from "../../../assets/slider-tab/1.jpg"
+import styled from "styled-components";
+// import Slider from "react-slick";
+
+// import dummy image
+// import img from "../../../assets/banner/1.jpg";
+import fimg1 from "../../../assets/slider-tab/1.jpg";
 import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
-import styled from "styled-components";
+// import quick view modal
+import { QuickViewModal } from "../../Modal/QuickView";
 
 const ProductsByCategory = () => {
+  // state for toggling modal
+  const [quickView, setQuickView] = useState(false);
+  // handler for open/close modal
+  const openQuickModal = () => setQuickView(true);
+  const closeQuickModal = () => setQuickView(false);
 
   return (
     <ProductBox>
@@ -28,18 +37,23 @@ const ProductsByCategory = () => {
           />
         </ProductBack>
       </ProductImgbox>
-      <ProductIcon>
-        <Button>
+      <ProductIconContainer>
+        <ProductIcon>
           <i className="fa fa-shopping-bag"></i>
-        </Button>
-        <Wishlist>
-          <i className="fa fa-heart"></i>
-        </Wishlist>
+        </ProductIcon>
+        <ProductIcon>
+          <i className="fa fa-heart-o"></i>
+        </ProductIcon>
 
-        <ModalView>
+        <ProductIcon onClick={openQuickModal}>
           <i className="fa fa-search"></i>
-        </ModalView>
-      </ProductIcon>
+        </ProductIcon>
+        <QuickViewModal open={quickView} handleClose={closeQuickModal} />
+
+        <ProductIcon>
+          <i className="fa fa-exchange"></i>
+        </ProductIcon>
+      </ProductIconContainer>
       <ProductDetail>
         <DetailLeft>
           <Rating>
@@ -68,17 +82,19 @@ const ProductsByCategory = () => {
 
 export default ProductsByCategory;
 
-
-const ProductBox = styled.div`
+const ProductIconContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin: 10px;
-  position: relative;
+
+  transition: all 0.5s ease;
+  transform: translateX(100%);
+  visibility: hidden;
+
+  position: absolute;
+  top: 38.5%;
+  right: 0;
+  z-index: 20;
 `;
-
-
 
 const ProductBack = styled.div`
   position: absolute;
@@ -89,25 +105,67 @@ const ProductBack = styled.div`
   transition: all 0.5s ease;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-
 `;
 
+const ProductBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover ${ProductIconContainer} {
+    transform: translateX(0%);
+    visibility: visible;
+  }
+
+  &:hover ${ProductBack} {
+    transform: translateX(0%);
+  }
+`;
+
+const ProductIcon = styled.span`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  color: #777;
+  cursor: pointer;
+`;
 
 const ProductImgbox = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #fff;
-  &:hover ${ProductBack} {
-    transform: translateX(0%);
-  }
 `;
 const ProductFront = styled.div`
   left: 0;
   top: 0;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-
 `;
+
+// const Button = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 15px;
+//   /* color: #777; */
+// `;
+
+// const Wishlist = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 15px;
+//   /* color: #777; */
+// `;
+
+// const ModalView = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 15px;
+//   /* color: #777; */
+// `;
 
 const OnSale = styled.div`
   background-color: #ffa800;
@@ -140,7 +198,6 @@ const NewLevel = styled.div`
   }
 
   & div {
-   
     text-transform: uppercase;
     -webkit-transform: rotate(-50deg);
     transform: rotate(-45deg);
@@ -149,28 +206,25 @@ const NewLevel = styled.div`
     width: fit-content;
     font-size: calc(10px + (14 - 10) * ((100vw - 320px) / (1920 - 320)));
     margin-top: 3px;
-    color:#fff;
+    color: #fff;
   }
 `;
 
 const ProductDetail = styled.div`
   padding-top: 10px;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
-const DetailLeft= styled.div`
-
-& h6{
-  text-transform: capitalize;
+const DetailLeft = styled.div`
+  & h6 {
+    text-transform: capitalize;
     color: #777;
     font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
-}
-
+  }
 `;
 const DetailRight = styled.div`
-font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
-
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
 `;
 const Rating = styled.div`
   & i {
@@ -190,44 +244,4 @@ const Price = styled.div`
   font-weight: 700;
 `;
 
-    
-const ProductIcon = styled.div`
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-
-  position: absolute;
-  top: 40%;
-  right: 0;
-  z-index: 20;
-
-  & a {
-    color: #007bff;
-    text-decoration: none;
-    background-color: transparent;
-  }
-`;
-
-const Prod = styled.div`
-
-`;
-
-const Button = styled.div`
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  color: #777;
-`;
-
-const Wishlist = styled.div`
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  color: #777;
-`;
-
-const ModalView = styled.div`
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  color: #777;
-`;
+const Prod = styled.div``;
