@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 // import backdrop element
@@ -11,15 +12,18 @@ import DrawerHeader from "../DrawerElements/DrawerHeader";
 // import dummy image
 import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 
-const CartDrawer = ({ open, handleClose }) => {
+// import toggle drawer action
+import { toggleCartDrawer } from "../../../redux/global/global.actions";
+
+const CartDrawer = ({ open, toggleCartDrawer }) => {
   return (
     <Fragment>
-      <BackDrop show={open} clicked={handleClose} />
+      <BackDrop show={open} clicked={() => toggleCartDrawer()} />
       <CartDrawerContainer show={open}>
         <DrawerHeader
           customStyle={{ "background-color": "#f1f1f1" }}
           content="MY CART"
-          handleClose={handleClose}
+          handleClose={() => toggleCartDrawer()}
         />
 
         <CartContainer>
@@ -119,7 +123,11 @@ const CartDrawer = ({ open, handleClose }) => {
   );
 };
 
-export default CartDrawer;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartDrawer: () => dispatch(toggleCartDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(CartDrawer);
 
 const CartDrawerContainer = styled.div`
   font-family: PT Sans, sans-serif;

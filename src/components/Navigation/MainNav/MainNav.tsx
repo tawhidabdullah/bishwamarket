@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 // import statics, will be replaced in api implementation
 import Logo from "../../../assets/logo.png";
@@ -9,36 +10,34 @@ import Logo from "../../../assets/logo.png";
 // unify components
 import RightNav from "./RightNav";
 
+// import toggle category action
+import { toggleCategoryDrawer } from "../../../redux/global/global.actions";
+
 // import style
 import { NavToggler } from "./commonStyles";
 
-const MainNav = ({
-  openSigninDrawer,
-  openWishListDrawer,
-  openCartDrawer,
-  openNavDrawer,
-  openCategoryDrawer,
-}) => {
+const MainNav = ({ toggleCategoryDrawer }) => {
   return (
     <MainNavContainer>
-      <NavToggler onClick={openCategoryDrawer} customStyle={{ color: "#777" }}>
+      <NavToggler
+        onClick={() => toggleCategoryDrawer()}
+        customStyle={{ color: "#777" }}
+      >
         <i className="fa fa-bars"></i>
       </NavToggler>
       <LogoContainer>
         <img src={Logo} alt="company logo" />
       </LogoContainer>
-      <RightNav
-        openSigninDrawer={openSigninDrawer}
-        openWishListDrawer={openWishListDrawer}
-        openCartDrawer={openCartDrawer}
-        openNavDrawer={openNavDrawer}
-        customStyle={{ color: "black", "font-weight": "bold" }}
-      />
+      <RightNav customStyle={{ color: "black", "font-weight": "bold" }} />
     </MainNavContainer>
   );
 };
 
-export default MainNav;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(MainNav);
 
 const MainNavContainer = styled.div`
   display: flex;

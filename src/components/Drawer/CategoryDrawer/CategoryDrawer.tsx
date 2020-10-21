@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 // import backdrop element
@@ -11,13 +12,18 @@ import styled from "styled-components";
 // import dummy data
 import { categoryList } from "./dummyData";
 
-const CategoryDrawer = ({ open, handleClose }) => {
+// import toggle drawer action
+import { toggleCategoryDrawer } from "../../../redux/global/global.actions";
+
+// dummy data
+
+const CategoryDrawer = ({ open, toggleCategoryDrawer }) => {
   return (
     <Fragment>
       {/* <BackDrop show={open} clicked={handleClose} /> */}
       <CategoryDrawerContainer show={open}>
         <DrawerHeader>
-          <HeaderText onClick={handleClose}>
+          <HeaderText onClick={() => toggleCategoryDrawer()}>
             Back <i className="fa fa-angle-right"></i>
           </HeaderText>
         </DrawerHeader>
@@ -32,7 +38,11 @@ const CategoryDrawer = ({ open, handleClose }) => {
   );
 };
 
-export default CategoryDrawer;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(CategoryDrawer);
 
 const CategoryDrawerContainer = styled.div`
   position: fixed;

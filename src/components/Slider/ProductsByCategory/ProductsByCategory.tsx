@@ -127,11 +127,7 @@ const Image = styled.img`
     width: 160px;
     height: 220px;
   }
-
-  @media only screen and (max-width: 390px) and (min-width: 320px) {
-    width: 140px;
-    height: 200px;
-  }
+  
 `;
 const OnSale = styled.div`
   background-color: #ffa800;

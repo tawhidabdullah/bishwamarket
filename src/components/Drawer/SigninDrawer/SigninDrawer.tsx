@@ -1,21 +1,25 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 // import backdrop element
 import { BackDrop } from "../../elements/Backdrop";
+
+// import toggle drawer action
+import { toggleSigninDrawer } from "../../../redux/global/global.actions";
 
 // import form component
 import { InputField } from "../../common/InputField";
 import { DrawerButton } from "../../common/Button/DrawerButton";
 
-const SigninDrawer = ({ open, handleClose }) => {
+const SigninDrawer = ({ open, toggleSigninDrawer }) => {
   return (
     <Fragment>
-      <BackDrop show={open} clicked={handleClose} />
+      <BackDrop show={open} clicked={() => toggleSigninDrawer()} />
       <SigninDrawerContainer show={open}>
         <DrawerHeader>
           <HeaderText>MY ACCOUNT</HeaderText>
-          <HeaderText onClick={handleClose}>
+          <HeaderText onClick={() => toggleSigninDrawer()}>
             <i className="fa fa-times"></i>
           </HeaderText>
         </DrawerHeader>
@@ -47,7 +51,11 @@ const SigninDrawer = ({ open, handleClose }) => {
   );
 };
 
-export default SigninDrawer;
+const mapDispatchToProps = (dispatch) => ({
+  toggleSigninDrawer: () => dispatch(toggleSigninDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(SigninDrawer);
 
 const SigninDrawerContainer = styled.div`
   position: fixed;
