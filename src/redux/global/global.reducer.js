@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   openNavigationDrawer: false,
   openCategoryDrawer: false,
   openQuickviewDrawer: false,
+  openSettingsDrawer: false,
+  openSearchDrawer: false,
 };
 
 const GlobalReducer = (state = INITIAL_STATE, action) => {
@@ -46,6 +48,18 @@ const GlobalReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         openQuickviewDrawer: !state.openQuickviewDrawer,
+      };
+
+    case GlobalTypes.TOGGLE_SETTINGS_DRAWER:
+      return {
+        ...state,
+        openSettingsDrawer: !state.openSettingsDrawer,
+      };
+
+    case GlobalTypes.TOGGLE_SEARCH_DRAWER:
+      return {
+        ...state,
+        openSearchDrawer: !state.openSearchDrawer,
       };
 
     default:

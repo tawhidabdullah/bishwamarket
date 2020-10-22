@@ -6,7 +6,7 @@ const DrawerHeader = ({ content, handleClose, customStyle }) => {
     <DrawerHeaderContainer customStyle={customStyle}>
       <HeaderText>{content}</HeaderText>
       <HeaderText onClick={handleClose}>
-        <i className="fa fa-times"></i>
+        <i className="fa fa-times" />
       </HeaderText>
     </DrawerHeaderContainer>
   );
@@ -19,6 +19,7 @@ const DrawerHeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 15px 35px;
+  border-bottom: 1px solid #ddd;
   ${(props) => props.customStyle}
 `;
 

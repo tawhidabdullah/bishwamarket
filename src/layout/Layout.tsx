@@ -8,6 +8,9 @@ import { CartDrawer } from "../components/Drawer/CartDrawer";
 import { NavDrawer } from "../components/Drawer/NavDrawer";
 import { CategoryDrawer } from "../components/Drawer/CategoryDrawer";
 import { QuickViewDrawer } from "../components/Drawer/QuickviewDrawer";
+import { BottomDrawer } from "../components/Drawer/BottomDrawer";
+import { SettingsDrawer } from "../components/Drawer/SettingsDrawer";
+import { SearchDrawer } from "../components/Drawer/SearchDrawer";
 
 // import fixed components
 import { Navigation } from "../containers/Navigation";
@@ -21,6 +24,8 @@ import {
   toggleCartDrawer,
   toggleNavigationDrawer,
   toggleQuickviewDrawer,
+  toggleSettingsDrawer,
+  toggleSearchDrawer,
 } from "../redux/global/global.actions";
 
 const Layout = ({ children, globals }) => {
@@ -31,6 +36,8 @@ const Layout = ({ children, globals }) => {
     openNavigationDrawer,
     openCategoryDrawer,
     openQuickviewDrawer,
+    openSettingsDrawer,
+    openSearchDrawer,
   } = globals;
 
   return (
@@ -41,6 +48,9 @@ const Layout = ({ children, globals }) => {
       <NavDrawer open={openNavigationDrawer} />
       <CategoryDrawer open={openCategoryDrawer} />
       <QuickViewDrawer open={openQuickviewDrawer} />
+      <SettingsDrawer open={openSettingsDrawer} />
+      <SearchDrawer open={openSearchDrawer} />
+      <BottomDrawer />
       <Navigation />
       {children}
       <Footer />
@@ -59,6 +69,8 @@ const mapDispatchToProps = (dispatch) => ({
   toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
   toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+  toggleSettingsDrawer: () => dispatch(toggleSettingsDrawer()),
+  toggleSearchDrawer: () => dispatch(toggleSearchDrawer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

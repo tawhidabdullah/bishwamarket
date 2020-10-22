@@ -21,7 +21,7 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
       <BackDrop show={open} clicked={() => toggleCartDrawer()} />
       <CartDrawerContainer show={open}>
         <DrawerHeader
-          customStyle={{ "background-color": "#f1f1f1" }}
+          customStyle={{ "font-size": "18px", "font-weight": "normal" }}
           content="MY CART"
           handleClose={() => toggleCartDrawer()}
         />
