@@ -67,22 +67,28 @@ export default Service;
 
 
 const BB = styled.div`
-  height: 80px;
   background-color: #ffa800;
 
-  display: -webkit-flex !important;
-  display: -ms-flex;
-  display: flex !important;
+  display: grid !important;
 
-  justify-content: space-around;
-  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  @media only screen and (max-width: 900px) and (min-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media only screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 
   & .media {
-    webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    padding: 20px;
+    @media only screen and (max-width: 700px) {
+      flex-direction: column;
+    }
   }
 
   & svg {
@@ -97,7 +103,6 @@ const BB = styled.div`
   & svg:hover {
     width: 40px;
     height: 50px;
-  
   }
 `;
 

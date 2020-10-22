@@ -29,11 +29,21 @@ const MediaBannerSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows:true,
+          arrows: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 1124,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 980,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -41,7 +51,7 @@ const MediaBannerSlider = () => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 580,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -68,15 +78,17 @@ const MediaBannerSlider = () => {
 export default MediaBannerSlider;
 const Main = styled.div`
   background-color: #fff;
- 
-  padding:70px;
+
+  padding: 70px;
+
+  @media only screen and (max-width: 600px) {
+    padding:20px 10px;
+  }
 `;
 const MainContent = styled.div`
   outline: none;
 
   background-color: #f2f2f2;
-
-
 
   & .slick-slide {
     outline: none;
@@ -87,7 +99,7 @@ const MainContent = styled.div`
     flex-wrap: wrap;
     border-right: 1px solid #ddd;
     padding: 30px;
-    &:hover {
-    }
+   
+   
   }
 `;

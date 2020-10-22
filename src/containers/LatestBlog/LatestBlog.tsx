@@ -7,35 +7,51 @@ import {BlogItem} from "../../components/Slider/BlogItem"
 
 const LatestBlog=()=> {
     const responsive = {
-  
-     responsive: [
-       {
-         breakpoint: 1524,
-         settings: {
-           slidesToShow: 3,
-           slidesToScroll: 2,
-           infinite: true,
-           dots: false,
-           arrows: false,
-         },
-       },
-       {
-         breakpoint: 600,
-         settings: {
-           slidesToShow: 2,
-           slidesToScroll: 2,
-           initialSlide: 2,
-         },
-       },
-       {
-         breakpoint: 480,
-         settings: {
-           slidesToShow: 1,
-           slidesToScroll: 1,
-         },
-       },
-     ],
-   };
+      responsive: [
+        {
+          breakpoint: 1524,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 2,
+            infinite: true,
+            dots: false,
+            arrows: false,
+          },
+        },
+        {
+          breakpoint: 980,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2,
+            infinite: true,
+            dots: false,
+            arrows: false,
+          },
+        },
+        {
+          breakpoint: 680,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false,
+            arrows: false,
+          },
+        },
+
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false,
+            arrows: false,
+          },
+        },
+      ],
+    };
   return (
     <Section>
       <Blog
@@ -61,8 +77,7 @@ export default LatestBlog;
 const Section = styled.div``;
 const BottomSection = styled.div`
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+
+ 
+ 
 `;

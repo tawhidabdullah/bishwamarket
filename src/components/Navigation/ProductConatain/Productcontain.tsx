@@ -28,8 +28,6 @@ const Productcontain = () => {
 export default Productcontain;
 
 const BB = styled.div`
-  height: 100px;
-
   display: -webkit-flex !important;
   display: -ms-flex;
   display: flex !important;
@@ -38,6 +36,11 @@ const BB = styled.div`
   font-size: 14px;
   flex-wrap: wrap;
   background-color: #fff;
+
+  @media only screen and (max-width: 680px) {
+    padding-bottom: 41px;
+    padding-top: 41px;
+  }
 `;
 
 const Span = styled.div`
@@ -52,8 +55,13 @@ const Span = styled.div`
   font-weight: 700;
   font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
 
-  & :hover{
-      color:red;
+  & :hover {
+    color: red;
+  }
+
+  @media only screen and (max-width: 680px) {
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 `;
 

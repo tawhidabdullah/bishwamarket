@@ -18,6 +18,14 @@ const BrandNav = () => {
         <span>ULTIMO</span>
         <span>VASSARETE</span>
         <span>WONDERBRA</span>
+
+        <span>GERBE</span>
+        <span>JOLIDON</span>
+        <span>OYSHO</span>
+
+        <span>ULTIMO</span>
+        <span>VASSARETE</span>
+        <span>WONDERBRA</span>
       </Item>
     </BB>
   );
@@ -29,25 +37,56 @@ export default BrandNav;
 
 
 const BB = styled.div`
-  height: 80px;
+  display: grid !important;
 
-  display: -webkit-flex !important;
-  display: -ms-flex;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
+  grid-template-columns: 1fr 4fr;
   font-size: 14px;
   background-color: #fff;
+
   & span {
     padding: 10px;
-    color: #777;
+
     letter-spacing: 0.05em;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: 1fr ;
   }
 `;
 
-const TITLE = styled.div``;
+const TITLE = styled.div`
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: start;
+  flex-wrap: wrap;
+
+  & span {
+    color: #ff6000;
+    font-weight: 700;
+    @media only screen and (max-width: 1000px) {
+   
+      border-bottom: 2px solid #ff6000;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    justify-content: center;
+  }
+`;
 const Item = styled.div`
   display: flex !important;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  flex-wrap: wrap;
+
+  & span {
+    color: #777;
+   
+    font-weight: 700;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    justify-content: center;
+  }
 `;

@@ -32,25 +32,53 @@ const CategorySlider = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 980,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
           slidesToScroll: 2,
           initialSlide: 2,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 700,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
+
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+
+      // {
+      //   breakpoint: 300,
+      //   settings: {
+      //     slidesToShow: 2,
+      //     slidesToScroll: 1,
+      //     infinite: true,
+      //     dots: false,
+      //     arrows: false,
+      //   },
+      // },
     ],
   };
   return (
     <Section>
-      <DealBanner />
+      {/* <DealBanner /> */}
 
       <MainSlider
         responsive={responsive}
@@ -67,84 +95,3 @@ const CategorySlider = () => {
 export default CategorySlider;
 
 const Section = styled.div``;
-
-
-
-
-
-
-// const CategorySlider=()=> {
-  
-//   const [activeSlide, setactiveSlide] = useState(0);
-//   const [activeSlide2, setactiveSlide2] = useState(0);
-//   const settings = {
-//     // dots: false,
-//     // infinite: true,
-//     speed: 500,
-
-//     beforeChange: (current, next) => setactiveSlide(next),
-//     afterChange: (current) => setactiveSlide2(current),
-//     responsive: [
-//       {
-//         breakpoint: 1524,
-//         settings: {
-//           slidesToShow: 5,
-//           slidesToScroll: 2,
-//           infinite: true,
-//           dots: false,
-//         },
-//       },
-//       {
-//         breakpoint: 600,
-//         settings: {
-//           slidesToShow: 2,
-//           slidesToScroll: 2,
-//           initialSlide: 2,
-//         },
-//       },
-//       {
-//         breakpoint: 480,
-//         settings: {
-//           slidesToShow: 1,
-//           slidesToScroll: 1,
-//         },
-//       },
-//     ],
-//   };
-//   return (
-//     <MainContent>
-//       <Slider {...settings}>
-//         <CategoryItem />
-//         <CategoryItem />
-//         <CategoryItem />
-//         <CategoryItem />
-//         <CategoryItem /> 
-//         <CategoryItem />
-//         <CategoryItem />
-//         <CategoryItem />
-//         <CategoryItem />
-//       </Slider>
-//     </MainContent>
-//   );
-// };
-
-
-// export default CategorySlider;
-// const MainContent = styled.div`
-//   outline: none;
-//   border: none;
-//   
-
-//   & .slick-slide {
-//     outline: none;
-   
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-wrap: wrap;
-
-//     &:hover{
-
-//     }
-//   }
-// `;

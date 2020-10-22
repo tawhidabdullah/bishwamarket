@@ -43,12 +43,13 @@ const BannerContainer = styled.div`
 
 const ContentRow = styled.div`
   display: flex;
-  -ms-flex-wrap: wrap;
+ 
   flex-wrap: wrap;
 
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align:center;
 
   & h2 {
     font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320)));
@@ -80,7 +81,7 @@ const ContentRow = styled.div`
     font-weight: 600;
     font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
     letter-spacing: 0.08em;
-    line-height: 1;
+   
     border-radius: 50px;
   }
 

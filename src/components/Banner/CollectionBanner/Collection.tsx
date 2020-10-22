@@ -28,13 +28,16 @@ const Collection=()=> {
 export default Collection;
 
 const Section = styled.div`
-
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
 
   grid-auto-rows: minmax(170px, auto);
 
-  background-color: #f2f2f2;;
+  background-color: #f2f2f2;
+
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: 1fr 
+  }
 `;
 
 

@@ -13,7 +13,9 @@ const BlogItem = () => {
           <h4>Latest News Post</h4>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            eleifend a massa rhoncus gravida.
+            eleifend a massa rhoncus
+            gravida.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+            cristiano
           </p>
           <span>
             <a href="#">read more</a>
@@ -35,17 +37,21 @@ const Content = styled.div`
   padding:5px;
 `;
 const BlogContain = styled.div`
-  margin-right: 15px;
+
   position: relative;
+  min-width:280px;
 `;
 const BlogImage = styled.div`
   overflow: hidden;
   border: 2px solid #fff;
-  
+  width: 100%;
+  & img {
+    width: 100%;
+  }
 `;
 const BlogDetails = styled.div`
   background-color: #fff;
-  padding: 20px;
+
   display: flex;
   flex-wrap: wrap;
 
@@ -55,6 +61,7 @@ const BlogDetails = styled.div`
     font-size: calc(17px + (18 - 17) * ((100vw - 320px) / (1920 - 320)));
     letter-spacing: 1px;
     font-weight: 600;
+    padding: 10px;
   }
 
   & p {
@@ -62,15 +69,13 @@ const BlogDetails = styled.div`
     text-transform: capitalize;
     margin-bottom: 5px;
     letter-spacing: 0.5px;
+    padding: 10px;
   }
 
   & a {
-
- 
-
     text-decoration: none;
     background-color: transparent;
-
+    padding: 10px;
     color: #ff6000;
     text-transform: capitalize;
     font-weight: 700;

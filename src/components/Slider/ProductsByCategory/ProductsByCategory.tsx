@@ -19,20 +19,10 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
     <ProductBox>
       <ProductImgbox>
         <ProductFront>
-          <img
-            src={fimg1}
-            style={{ height: "360px", width: "280px" }}
-            className="img-fluid  "
-            alt="product"
-          />
+          <Image src={fimg1} className="img-fluid  " alt="product" />
         </ProductFront>
         <ProductBack>
-          <img
-            src={bimg1}
-            style={{ height: "360px", width: "280px" }}
-            className="img-fluid "
-            alt="product"
-          />
+          <Image src={bimg1} className="img-fluid " alt="product" />
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer>
@@ -40,7 +30,7 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
           <i className="fa fa-shopping-bag"></i>
         </ProductIcon>
         <ProductIcon>
-          <i className="fa fa-heart-o"></i>
+          <i className="fa fa-heart"></i>
         </ProductIcon>
 
         <ProductIcon onClick={() => toggleQuickviewDrawer()}>
@@ -88,25 +78,23 @@ const ProductIconContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  transition: all 0.5s ease;
-  transform: translateX(100%);
-  visibility: hidden;
-
-  position: absolute;
-  top: 38.5%;
+  /* position: absolute;
+  top: 40%;
   right: 0;
-  z-index: 20;
+  z-index: 20; */
+
+  /* & a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+  } */
 `;
 
-const ProductBack = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
+const ProductIcon = styled.span`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  color: #777;
 `;
 
 const ProductBox = styled.div`
@@ -116,59 +104,55 @@ const ProductBox = styled.div`
   flex-direction: column;
   margin: 10px;
   position: relative;
-  overflow: hidden;
+  width: 220px;
 
-  &:hover ${ProductIconContainer} {
-    transform: translateX(0%);
-    visibility: visible;
+  @media only screen and (max-width: 730px) and (min-width: 580px) {
+    width: 180px;
   }
-
-  &:hover ${ProductBack} {
-    transform: translateX(0%);
+  @media only screen and (max-width: 490px) and (min-width: 390px) {
+    width: 160px;
+  }
+  @media only screen and (max-width: 390px) and (min-width: 320px) {
+    width: 140px;
   }
 `;
 
-const ProductIcon = styled.span`
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  color: #777;
-  cursor: pointer;
+const ProductBack = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease;
+  transform: translateX(-100%);
 `;
 
 const ProductImgbox = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #fff;
+  &:hover ${ProductBack} {
+    transform: translateX(0%);
+  }
 `;
 const ProductFront = styled.div`
   left: 0;
   top: 0;
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 `;
 
-// const Button = styled.div`
-//   background-color: #fff;
-//   border: 1px solid #ddd;
-//   padding: 15px;
-//   /* color: #777; */
-// `;
+const Image = styled.img`
+  height: 290px;
+  width: 220px;
 
-// const Wishlist = styled.div`
-//   background-color: #fff;
-//   border: 1px solid #ddd;
-//   padding: 15px;
-//   /* color: #777; */
-// `;
+  @media only screen and (max-width: 730px) and (min-width: 580px) {
+    height: 260px;
+    width: 180px;
+  }
 
-// const ModalView = styled.div`
-//   background-color: #fff;
-//   border: 1px solid #ddd;
-//   padding: 15px;
-//   /* color: #777; */
-// `;
-
+  @media only screen and (max-width: 490px) and (min-width: 300px) {
+    width: 160px;
+    height: 220px;
+  }
+`;
 const OnSale = styled.div`
   background-color: #ffa800;
   color: #fff;
@@ -247,3 +231,24 @@ const Price = styled.div`
 `;
 
 const Prod = styled.div``;
+
+// const Button = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 15px;
+//   color: #777;
+// `;
+
+// const Wishlist = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 15px;
+//   color: #777;
+// `;
+
+// const ModalView = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 15px;
+//   color: #777;
+// `;

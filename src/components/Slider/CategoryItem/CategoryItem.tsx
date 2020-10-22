@@ -24,7 +24,7 @@ const ImgWrapper = styled.div`
   border-radius: 50%;
   margin: 0 auto;
   position: relative;
-  -webkit-transition: 0.5s ease;
+
 
   & img {
     border-radius: 100%;
