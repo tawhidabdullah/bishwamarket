@@ -124,17 +124,17 @@ const RightSlider = styled.div`
 `;
 const NavigationContainer = styled.div`
   display: grid;
-  grid-template-columns: 3fr 10fr;
+  grid-template-columns: 25% 75%;
   grid-auto-rows: minmax(170px, auto);
   justify-content: center;
   background-color: #f2f2f2;
 
   @media only screen and (min-width: 1450px) {
-    grid-template-columns: 3fr 10fr 2fr;
+    grid-template-columns: 25% 50% 20%;
   }
 
   @media only screen and (min-width: 1151px) and (max-width: 1449px) {
-    grid-template-columns: 3fr 10fr;
+    grid-template-columns: 25% 75%;
   }
   @media only screen and (max-width: 1150px) {
     grid-template-columns: 1fr;
@@ -185,7 +185,7 @@ const BottomImage = styled.div`
   }
 
   @media only screen and (min-width: 1450px) {
-    grid-column: 2/ 12;
+    grid-column: 2/ 10;
     grid-template-columns: 2fr 2fr 2fr;
   }
   @media only screen and (min-width: 1151px) and (max-width: 1449px) {

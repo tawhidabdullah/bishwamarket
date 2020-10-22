@@ -168,8 +168,12 @@ const Contents = styled.div`
   border: 2px solid #f1f1f1;
   z-index: 10;
 
-   transition: height 2s;
-   transition-timing-function: ease-in-out;
+  transition: height 2s;
+  transition-timing-function: ease-in-out;
+
+  @media only screen and (max-width: 1150px) {
+    display: none;
+  }
 
   // :hover {
   //   opacity: 1;
