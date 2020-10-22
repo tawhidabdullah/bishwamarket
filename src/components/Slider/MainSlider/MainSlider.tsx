@@ -21,26 +21,35 @@ const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
      responsive: responsive.responsive,
    };
     return (
-      <MainContent customStyles={customStyles}>
-        <Slider {...settings}>
-          <ProductsByCategory />
-          <ProductsByCategory />
-          <ProductsByCategory />
-          <ProductsByCategory />
-          <ProductsByCategory />
-        </Slider>
-      </MainContent>
+      <Layout customStyles={customStyles}>
+        <MainContent customStyles={customStyles}>
+          <Slider {...settings}>
+            <ProductsByCategory />
+            <ProductsByCategory />
+            <ProductsByCategory />
+            <ProductsByCategory />
+            <ProductsByCategory />
+            <ProductsByCategory />
+            <ProductsByCategory />
+          </Slider>
+        </MainContent>
+      </Layout>
     );
 }
 
 
 export default MainSlider;
-
+const Layout = styled.div`
+  margin: 0 auto;
+  background-color: ${(props) =>
+    props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
+`;
 const MainContent = styled.div`
   outline: none;
   border: none;
+  max-width:1400px;
   background-color: ${(props) =>
-    props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
+  props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
   padding-right: 15px;

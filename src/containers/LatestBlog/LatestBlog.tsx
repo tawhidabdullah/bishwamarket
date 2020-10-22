@@ -9,7 +9,7 @@ const LatestBlog=()=> {
     const responsive = {
       responsive: [
         {
-          breakpoint: 1524,
+          breakpoint: 3224,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 2,

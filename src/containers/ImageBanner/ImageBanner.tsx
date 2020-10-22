@@ -10,7 +10,7 @@ const  ImageBanner=()=> {
   const responsive = {
     responsive: [
       {
-        breakpoint: 1524,
+        breakpoint: 3224,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -22,9 +22,12 @@ const  ImageBanner=()=> {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
       {
@@ -32,6 +35,9 @@ const  ImageBanner=()=> {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
       },
     ],
@@ -74,6 +80,9 @@ const  ImageBanner=()=> {
             }}
           />
         </SliderBanner>
+        <RightSlider>
+  <p>hjkkkkkhsdsddd</p>
+        </RightSlider>
 
         <BottomImage>
           <CollectionItem customStyles={{}}></CollectionItem>
@@ -86,19 +95,16 @@ const  ImageBanner=()=> {
 }
 
 
-const NavigationContainer = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 10fr;
-  grid-auto-rows: minmax(170px, auto);
-  justify-content: center;
-  background-color: #f2f2f2;
-`;
+export default ImageBanner;
 
 const Content = styled.div`
   display: grid;
   grid-row: 1/ 3;
-  
-  
+
+  @media only screen and (max-width: 1150px) {
+    display: none;
+   
+  }
 
   // transition: height 2s;
   // transition-timing-function: ease-in-out;
@@ -110,6 +116,30 @@ const Content = styled.div`
 `;
 
 
+const RightSlider = styled.div`
+  display: none;
+  @media only screen and (min-width: 1450px) {
+    display: flex;
+  }
+`;
+const NavigationContainer = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 10fr;
+  grid-auto-rows: minmax(170px, auto);
+  justify-content: center;
+  background-color: #f2f2f2;
+
+  @media only screen and (min-width: 1450px) {
+    grid-template-columns: 3fr 10fr 2fr;
+  }
+
+  @media only screen and (min-width: 1151px) and (max-width: 1449px) {
+    grid-template-columns: 3fr 10fr;
+  }
+  @media only screen and (max-width: 1150px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const SliderBanner = styled.div`
  
@@ -140,15 +170,28 @@ const SliderBannercontent = styled.div`
 
 
 const BottomImage = styled.div`
- 
- 
- 
   display: grid;
-  
-  
+  width: 100%;
   grid-template-columns: 2fr 2fr 1fr;
-  margin-left:-10px;
+  margin-left: -10px;
 
+  @media only screen and (max-width: 1150px) and (min-width: 580px) {
+    grid-template-columns: 2fr 2fr 2fr;
+ 
+  }
+
+  @media only screen and (max-width: 580px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media only screen and (min-width: 1450px) {
+    grid-column: 2/ 12;
+    grid-template-columns: 2fr 2fr 2fr;
+  }
+  @media only screen and (min-width: 1151px) and (max-width: 1449px) {
+    grid-column: 2/ 9;
+    grid-template-columns: 2fr 2fr 2fr;
+  }
 `;
 
 const Item = styled.div`
@@ -191,5 +234,5 @@ const Item = styled.div`
   }
 `;
 
-export default ImageBanner;
+
 

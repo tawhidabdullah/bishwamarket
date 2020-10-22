@@ -17,11 +17,11 @@ import { BrandNav } from "../../components/Navigation/BrandNav";
 import { Service } from "../../components/Navigation/ServiceNav";
 import { DiscountBanner } from "../../components/Banner/DiscountBanner";
 import { Collection } from "../../components/Banner/CollectionBanner";
-import { DealBanner } from "../../components/Banner/DealBanner";
+
 const Home = () => {
   return (
     <>
-      {/* <ImageBanner /> */}
+      <ImageBanner />
       <BrandNav />
       <Service />
       {/* <CollectionMediaBanner /> */}
