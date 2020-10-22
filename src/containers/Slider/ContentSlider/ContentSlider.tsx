@@ -18,6 +18,26 @@ const ContentSlider = () => {
     afterChange: (current) => setactiveSlide2(current),
     responsive: [
       {
+        breakpoint: 2924,
+        settings: {
+          slidesToShow: 8,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 1724,
+        settings: {
+          slidesToShow: 8,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false,
+          arrows: false,
+        },
+      },
+      {
         breakpoint: 1524,
         settings: {
           slidesToShow: 7,
@@ -84,34 +104,44 @@ const ContentSlider = () => {
     ],
   };
   return (
-    <Main>
-      <MainContent>
-        <Slider {...settings}>
-          <Button>80% OFF GGGG hhhhh</Button>
-          <Button>On SALE</Button>
-          <Button>ONLY 49$</Button>
-          <Button>UUNDER @150</Button>
-          <Button>SAVE MONEY</Button>
-          <Button>FREE SHIPPING</Button>
-          <Button>EXTRA 10% OFF</Button>
-          <Button>10% OFF</Button>
-        </Slider>
-      </MainContent>
-    </Main>
+     <Maxconatiner>
+      <Main>
+        <MainContent>
+          <Slider {...settings}>
+            <Button>80% OFF </Button>
+            <Button>On SALE</Button>
+            <Button>ONLY 49$</Button>
+            <Button>UUNDER @150</Button>
+            <Button>SAVE MONEY</Button>
+            <Button>FREE SHIPPING</Button>
+            <Button>EXTRA 10% OFF</Button>
+            <Button>10% OFF</Button>
+          </Slider>
+        </MainContent>
+      </Main>
+     </Maxconatiner> 
   );
   
    
 };
 
 export default ContentSlider;
+const Maxconatiner=styled.div`
+display:flex;
+justify-content:center;
 
-const Main=styled.div`
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-
+`;
+const Main = styled.div`
+  /* max-width: 1500px; */
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media only screen and (max-width: 580px) {
+    padding-right: 2px;
+    padding-left: 2px;
+  }
 `;
 const MainContent = styled.div`
   outline: none;
@@ -133,7 +163,9 @@ const Button = styled.div`
   font-size: 16px;
   background: #fff;
   outline: none;
-  min-width: 140px;
+
+
+  min-width: 150px;
   padding: 30px 7px;
   margin: 1rem 0px;
   position: relative;
@@ -143,6 +175,9 @@ const Button = styled.div`
 
   @media only screen and (max-width: 900px) {
     padding: 20px 0px;
+  }
+  @media only screen and (min-width: 1724px) {
+    min-width: 200px;
   }
 
   &:hover {

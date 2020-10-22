@@ -9,7 +9,7 @@ const ProductByCategory = () => {
   const responsive = {
     responsive: [
       {
-        breakpoint: 1524,
+        breakpoint: 3224,
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,

@@ -23,7 +23,7 @@ const MediaBannerSlider = () => {
     afterChange: (current) => setactiveSlide2(current),
     responsive: [
       {
-        breakpoint: 1524,
+        breakpoint: 3224,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
