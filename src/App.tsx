@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 // import layout
 import Layout from "./layout";
 import Category from "./pages/Category";
-
+import Search from  "./pages/Search";
 // import global styles
 import GlobalStyles from "./global.styles";
 import "slick-carousel/slick/slick.css";
@@ -18,10 +18,11 @@ const App = () => {
     <BrowserRouter>
       <React.Fragment>
         <Layout>
-          <Switch>
-            <Route exact path={"/"} component={Home} />
-            <Route exact path={"/te"} component={Category} />
-          </Switch>
+        <Switch>
+          <Route exact path={"/"} component={Home} />
+          <Route exact path={"/te"} component={Category} />
+          <Route exact path={"/Search"} component={Search} />
+        </Switch>
         </Layout>
         <GlobalStyles />
       </React.Fragment>

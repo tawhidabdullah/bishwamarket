@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 // import dummy image
 // import img from "../../../assets/banner/1.jpg";
 import fimg1 from "../../../assets/slider-tab/1.jpg";
+
 import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 // import toggle cart action
