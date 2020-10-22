@@ -3,36 +3,37 @@ import styled from "styled-components"
 import { ProductsByCategory } from "../../components/Slider/ProductsByCategory/";
 const Search=()=> {
     return (
-      //   <Breadcrumbmain>
-      //     <Contain>
-      //       <h2>search</h2>
-      //       <List>
-      //         <li>
-      //           <a href="#">home</a>
-      //         </li>
-      //         <li>
-      //           <i className="fa fa-angle-double-right"></i>
-      //         </li>
-      //         <li>
-      //           <a href="#">search</a>
-      //         </li>
-      //       </List>
-      //     </Contain>
-      //   </Breadcrumbmain>
+      <Section>
+         <Breadcrumbmain>
+           <Contain>
+             <h2>search</h2>
+             <List>
+               <li>
+                 <a href="#">home</a>
+              </li>
+               <li>
+              <i className="fa fa-angle-double-right"></i>
+               </li>
+              <li>
+                 <a href="#">search</a>
+               </li>
+             </List>
+           </Contain>
+        </Breadcrumbmain>
 
-      // <InputBox>
-      //   <input
-      //     type="text"
+      <InputBox>
+        <input
+          type="text"
 
-      //     aria-label="Amount (to the nearest dollar)"
-      //     placeholder="Search Products......"
-      //   />
+          aria-label="Amount (to the nearest dollar)"
+          placeholder="Search Products......"
+        />
 
-      //     <button className="btn btn-normal">
-      //       <i className="fa fa-search"></i>Search
-      //     </button>
+          <button className="btn btn-normal">
+           <i className="fa fa-search"></i>Search
+          </button>
 
-      // </InputBox>
+      </InputBox>
       <Main>
         <ProductsByCategory />
         <ProductsByCategory />
@@ -51,6 +52,8 @@ const Search=()=> {
         <ProductsByCategory />
         <ProductsByCategory />
       </Main>
+
+      </Section>
     );
 }
 
@@ -130,3 +133,5 @@ const InputBox = styled.div`
  }
   }
 `;
+
+const Section=styled.div``;
