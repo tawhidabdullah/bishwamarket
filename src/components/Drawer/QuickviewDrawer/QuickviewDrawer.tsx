@@ -1,15 +1,23 @@
+// @ts-nocheck
+
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { InputGroup, FormControl } from "react-bootstrap";
 
-// import backdrop element
+// import elements
 import { BackDrop } from "../../elements/Backdrop";
+import { Text } from "../../elements/Text";
+import { Color, Size } from "../../elements/RoundButton/RoundButton";
 
 // import toggle drawer action
 import { toggleQuickviewDrawer } from "../../../redux/global/global.actions";
 
 // import dummy quick view image
 import quickViewImage from "../../../assets/quickview.jpg";
+
+// import drawer button
+import { DrawerButton } from "../../common/Button/DrawerButton";
 
 const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
   return (
@@ -25,12 +33,14 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
             <Text>Woman T-shirt</Text>
             <Text
               customStyle={{ cursor: "pointer" }}
-              onClick={() => toggleQuickviewDrawer()}
+              clickAction={() => toggleQuickviewDrawer()}
             >
               &#10005;
             </Text>
           </DrawerHeader>
-          <Text customStyle={{ "font-weight": "bold" }}>$32.00</Text>
+          <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
+            $32.00
+          </Text>
 
           <ColorContainer>
             <Color customStyle={{ "background-color": "#f1e7e6" }} />
@@ -77,6 +87,43 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
           >
             Quantity
           </Text>
+
+          <QuantityBox>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <QuantityAction>
+                  <i className="fa fa-angle-left"></i>
+                </QuantityAction>
+              </InputGroup.Prepend>
+              <FormControl />
+              <InputGroup.Append>
+                <QuantityAction>
+                  <i className="fa fa-angle-right"></i>
+                </QuantityAction>
+              </InputGroup.Append>
+            </InputGroup>
+          </QuantityBox>
+
+          <ButtonContainer>
+            <DrawerButton
+              customStyle={{
+                "font-weight": "bold",
+                "margin-right": "7px",
+                padding: "7px",
+              }}
+            >
+              Add To Cart
+            </DrawerButton>
+            <DrawerButton
+              customStyle={{
+                "font-weight": "bold",
+                "margin-left": "7px",
+                padding: "7px",
+              }}
+            >
+              View Details
+            </DrawerButton>
+          </ButtonContainer>
         </DetailsContainer>
       </QuickviewDrawerContainer>
     </Fragment>
@@ -93,7 +140,6 @@ const QuickviewDrawerContainer = styled.div`
   position: fixed;
   width: 800px;
   height: 500px;
-  /* margin: 0 auto; */
   right: 20%;
   top: 10%;
   z-index: 2000000;
@@ -123,21 +169,28 @@ const DetailsContainer = styled.div`
   width: 50%;
 `;
 
+const QuantityBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  width: 10vw;
+`;
+
+const QuantityAction = styled(InputGroup.Text)`
+  background-color: white;
+  cursor: pointer;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 20vw;
+`;
+
 const DrawerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-`;
-
-const Text = styled.span`
-  font-size: 22px;
-  padding: 15px 10px;
-  font-family: Roboto, sans-serif;
-  letter-spacing: 1px;
-  line-height: 1.2em;
-  padding-left: 0;
-
-  ${(props) => props.customStyle}
 `;
 
 const ColorContainer = styled.div`
@@ -145,14 +198,6 @@ const ColorContainer = styled.div`
   justify-content: space-between;
   width: 10vw;
   margin-bottom: 10px;
-`;
-
-const Color = styled.span`
-  border-radius: 50%;
-  padding: 20px;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  ${(props) => props.customStyle}
 `;
 
 const ProductDetailTextContainer = styled.div`
@@ -167,16 +212,5 @@ const SizeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 15vw;
-  padding: 25px 0;
-`;
-
-const Size = styled(Color)`
-  width: 35px;
-  height: 35px;
-  padding: 7px 8px;
-  transition: 0.4s ease-in-out;
-
-  :hover {
-    background-color: #ddd;
-  }
+  padding: 15px 0 8px 0;
 `;

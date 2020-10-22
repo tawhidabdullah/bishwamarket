@@ -31,6 +31,10 @@ const Button = styled.button`
   transition: 0.4s;
   outline: none;
 
+  :focus {
+    outline: none;
+  }
+
   ${(props) => props.customStyle}
 
   :hover {
