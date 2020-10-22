@@ -75,9 +75,8 @@ const SearchNav = ({
                   {" "}
                   <img src={nav8} alt="catergory-product" /> <a>Sports</a>
                 </li>
-             
+
                 <li>
-                  
                   <a className="mor-slide-click">
                     more category <i className="fa fa-angle-down pro-down"></i>
                     <i
@@ -104,24 +103,25 @@ const SearchNav = ({
       </SearchCategory>
       <Rightcontent>
         <Call>
-          <i className="fas fa-phone"></i>
+          <i className="fa fa-phone"></i>
           <span>
             <span>123-456-76890</span>
           </span>
         </Call>
+
+       
         <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
         >
-          <div className="gift-block" data-toggle="dropdown">
-            <div className="grif-icon">
-              <i className="fas fa-phone"></i>
-            </div>
-            <GiftOffer>
-              <p>gift box</p>
-              <p>Festival Offer</p>
-            </GiftOffer>
-          </div>
+          <GiftIcon>
+            <i className="fa fa-phone"></i>
+          </GiftIcon>
+          <GiftOffer>
+            <span>gift box</span>
+            <span>Festivel Offer</span>
+          </GiftOffer>
         </Gift>
+
         {toggleGiftBox ? (
           <Giftcontent>
             <GiftItem>
@@ -168,8 +168,12 @@ const Contents = styled.div`
   border: 2px solid #f1f1f1;
   z-index: 10;
 
-   transition: height 2s;
-   transition-timing-function: ease-in-out;
+  transition: height 2s;
+  transition-timing-function: ease-in-out;
+
+  @media only screen and (max-width: 1150px) {
+    display: none;
+  }
 
   // :hover {
   //   opacity: 1;
@@ -178,8 +182,9 @@ const Contents = styled.div`
 `;
 const NavCategory = styled.div`
   position: relative;
-
- 
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 const ShopCategory = styled.div`
   height: 70px;
@@ -313,25 +318,27 @@ const Rightcontent=styled.div`
 display:flex;
 position:relative;
 `;
-const Call=styled.div`
-padding:20px 0;
-margin-left:20px;
+const Call = styled.div`
+  padding: 20px 0;
+  margin-left: 20px;
+  @media only screen and (max-width: 980px) {
+    display: none;
+  }
 `;
 const Gift = styled.div`
-  color: orange;
-  
-  & div {
-    background-color: #ffa800;
-    padding: 8px 6px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-
-    margin-left: 15px;
-    border: 0;
+  background-color: orange;
+  margin-left: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 10px;
+  color: #fff;
+ 
+`;
+const GiftIcon = styled.div`
+  padding: 12px 10px;
+  @media only screen and (max-width: 980px) and (min-width:750px) {
+    display: none;
   }
 `;
 
@@ -339,6 +346,11 @@ const GiftOffer = styled.div`
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 750px) {
+    display: none;
+  }
 `;
 
 const Giftcontent = styled.div`
@@ -404,3 +416,4 @@ const GiftItem = styled.div`
     font-size: 16px;
   }
 `;
+
