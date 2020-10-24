@@ -22,7 +22,7 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
         <ProductFront>
           <img
             src={fimg1}
-            style={{ height: "360px", width: "280px" }}
+            style={{ height: "300px", width: "235px" }}
             className="img-fluid  "
             alt="product"
           />
@@ -30,7 +30,7 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
         <ProductBack>
           <img
             src={bimg1}
-            style={{ height: "360px", width: "280px" }}
+            style={{ height: "300px", width: "235px" }}
             className="img-fluid "
             alt="product"
           />
@@ -70,10 +70,10 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
           <Price>$ 24.05</Price>
         </DetailRight>
       </ProductDetail>
-      <NewLevel>
+      {/* <NewLevel>
         <div>new</div>
       </NewLevel>
-      <OnSale>on sale</OnSale>
+      <OnSale>on sale</OnSale> */}
     </ProductBox>
   );
 };
@@ -96,6 +96,8 @@ const ProductIconContainer = styled.div`
   position: absolute;
   top: 32.5%;
   right: 0;
+  /* bottom:0;
+  right:25%; */
   z-index: 20;
 `;
 
@@ -104,10 +106,19 @@ const ProductBack = styled.div`
   top: 0;
   left: 0;
 
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  -webkit-transform: translateX(-100%);
+
   transform: translateX(-100%);
+`;
+
+
+const ProductDetail = styled.div`
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+
+   width:100%;
+   background-color:#f2f2f2;
 `;
 
 const ProductBox = styled.div`
@@ -115,9 +126,11 @@ const ProductBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px;
+
   position: relative;
   overflow: hidden;
+  background-color: #fff;
+  border:1px solid red;
 
   &:hover ${ProductIconContainer} {
     transform: translateX(0%);
@@ -127,6 +140,10 @@ const ProductBox = styled.div`
   &:hover ${ProductBack} {
     transform: translateX(0%);
   }
+
+  /* &:hover ${ProductDetail} {
+    visibility: hidden;
+  } */
 `;
 
 const ProductIcon = styled.span`
@@ -145,7 +162,7 @@ const ProductImgbox = styled.div`
 const ProductFront = styled.div`
   left: 0;
   top: 0;
-  -webkit-transition: all 0.5s ease;
+ 
   transition: all 0.5s ease;
 `;
 
@@ -192,11 +209,7 @@ const NewLevel = styled.div`
   }
 `;
 
-const ProductDetail = styled.div`
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-between;
-`;
+
 
 const DetailLeft = styled.div`
   & h6 {

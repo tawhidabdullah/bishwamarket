@@ -35,7 +35,7 @@ const Search=()=> {
 
       </InputBox>
       <Main>
-        <ProductsByCategory />
+        <ProductsByCategory  />
         <ProductsByCategory />
         <ProductsByCategory />
         <ProductsByCategory />
@@ -65,6 +65,8 @@ const Main =styled.div`
 display:grid;
 grid-template-columns:repeat(4,1fr);
 grid-auto-rows:minmax(240,auto);
+grid-gap:10px;
+justify-content:center;
 `;
 
 const Breadcrumbmain=styled.div`
@@ -104,7 +106,7 @@ const List = styled.ul`
 
 
 const InputBox = styled.div`
-  padding-top: 50px;
+  padding: 50px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
