@@ -174,10 +174,9 @@ const BottomImage = styled.div`
   width: 100%;
   grid-template-columns: 2fr 2fr 1fr;
   margin-left: -10px;
-
+  grid-auto-rows: minmax(180px, 200px);
   @media only screen and (max-width: 1150px) and (min-width: 580px) {
     grid-template-columns: 2fr 2fr 2fr;
- 
   }
 
   @media only screen and (max-width: 580px) {
