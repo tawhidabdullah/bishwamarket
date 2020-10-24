@@ -59,12 +59,19 @@ const LogoContainer = styled.div`
   cursor: pointer;
 
   @media screen and (max-width: 991px) {
-    width: 20%;
+    width: 25%;
     height: auto;
 
     & img {
       width: 100%;
       height: 100%;
     }
+  }
+
+  @media screen and (max-width: 578px) {
+    width: 30%;
+    margin-right: unset;
+    margin: 0 auto;
+    /* text-align: center; */
   }
 `;
