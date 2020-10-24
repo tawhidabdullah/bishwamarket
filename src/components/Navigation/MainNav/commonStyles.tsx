@@ -14,12 +14,12 @@ export const DropdownContainerStyles = css`
 `;
 
 export const DropdownItemStyles = css`
-  text-decoration: none;
   list-style: none;
   /* text-align: left; */
   color: #777;
   font-weight: normal;
   padding: 5px 15px;
+  /* text-decoration: none; */
 
   ::after {
     width: 0;

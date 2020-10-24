@@ -14,6 +14,8 @@ import Home from "./pages/Home";
 const Category = lazy(() => import("./pages/Category"));
 const Search = lazy(() => import("./pages/Search"));
 const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const ForgotPassword = lazy(() => import("./pages/forgotPassword"));
 // import Category from "./pages/Category";
 // import Search from "./pages/Search";
 // import { SignIn } from "./pages/Signin";
@@ -29,6 +31,8 @@ const App = () => {
               <Route exact path={"/te"} component={Category} />
               <Route exact path={"/Search"} component={Search} />
               <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/forgot-password" component={ForgotPassword} />
             </Switch>
           </Layout>
           <GlobalStyles />

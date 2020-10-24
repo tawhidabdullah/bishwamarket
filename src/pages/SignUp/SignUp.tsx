@@ -1,35 +1,61 @@
 // @ts-nocheck
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import common components
 import { InputField } from "../../components/common/InputField";
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
 import { Text } from "../../components/elements/Text";
 
-const SignIn = () => {
-  const history = useHistory();
+// should be refactored, not beign DRY
+// constant styles
+const LabelStyles = {
+  label: {
+    "font-weight": "bold",
+    "font-size": "18px",
+    "padding-bottom": 0,
+  },
+};
 
+const SignUp = () => {
   return (
-    <SignInWrapper>
-      <SignInContainer>
-        <Header>Login</Header>
+    <SignUpWrapper>
+      <SignUpContainer>
+        <Header>CREATE ACCOUNT</Header>
 
         <FormContainer>
           <Form>
             <InputField
               type="text"
+              label="First Name"
+              name="firstName"
+              placeholder="First Name"
+              customStyle={LabelStyles}
+            />
+
+            <InputField
+              type="text"
+              label="Last Name"
+              name="lastName"
+              placeholder="Last Name"
+              customStyle={LabelStyles}
+            />
+
+            <InputField
+              type="text"
+              label="Last Name"
+              name="lastName"
+              placeholder="Last Name"
+              customStyle={LabelStyles}
+            />
+
+            <InputField
+              type="text"
               label="Email"
               name="email"
               placeholder="Email"
-              customStyle={{
-                label: {
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-bottom": 0,
-                },
-              }}
+              customStyle={LabelStyles}
             />
 
             <InputField
@@ -37,33 +63,12 @@ const SignIn = () => {
               label="Password"
               name="password"
               placeholder="Enter your password"
-              customStyle={{
-                label: {
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-bottom": 0,
-                },
-              }}
+              customStyle={LabelStyles}
             />
 
-            <ButtonContainer>
-              <DrawerButton
-                wrapperStyle={{ "padding-right": "10px" }}
-                customStyle={{ padding: "8px 0", width: "80%" }}
-              >
-                Login
-              </DrawerButton>
-
-              <Text
-                customStyle={{
-                  "padding-left": "10px",
-                  "white-space": "nowrap",
-                }}
-                clickAction={() => history.push("/forgot-password")}
-              >
-                Forgot your password?
-              </Text>
-            </ButtonContainer>
+            <DrawerButton wrapperStyle={{}} customStyle={{ padding: "8px 0" }}>
+              CREATE ACCOUNT
+            </DrawerButton>
           </Form>
 
           <Text
@@ -72,42 +77,25 @@ const SignIn = () => {
               "font-size": "13px",
             }}
           >
-            Sign up for a free account at our store. Registration is quick and
-            easy. It allows you to be able to order from our shop. To start
-            shopping click register.
-          </Text>
-          <br />
-          <br />
-
-          <Text
-            customStyle={{
-              color: "#ff6000",
-              "font-size": "13px",
-              cursor: "pointer",
-              transition: "0.2s ease-in-out",
-              ":hover": { color: "#777" },
-              "margin-top": "20px",
-            }}
-            clickAction={() => history.push("/signup")}
-          >
-            Create an Account
+            Already have an account?{" "}
+            <Link to="/signin">Click here to login</Link>
           </Text>
         </FormContainer>
-      </SignInContainer>
-    </SignInWrapper>
+      </SignUpContainer>
+    </SignUpWrapper>
   );
 };
 
-export default SignIn;
+export default SignUp;
 
-const SignInWrapper = styled.section`
+const SignUpWrapper = styled.section`
   background-color: #f2f2f2;
   width: 100%;
   height: auto;
   margin-top: 20px;
 `;
 
-const SignInContainer = styled.div`
+const SignUpContainer = styled.div`
   width: 40%;
   margin: 0 auto;
   padding: 30px 10px;
@@ -139,6 +127,16 @@ const Header = styled.h2`
 const FormContainer = styled.div`
   width: 90%;
   margin: 0 auto;
+
+  & span a {
+    text-decoration: none;
+    color: #ff6000;
+    transition: 0.2s ease-in-out;
+
+    :hover {
+      color: #777;
+    }
+  }
 `;
 
 const Form = styled.form`

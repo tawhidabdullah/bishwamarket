@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 import { toggleNavigationDrawer } from "../../../redux/global/global.actions";
 
 // dummy data
-import { MenuItems } from "./dummyData";
+import { MenuItems } from "./NavItems";
 
 const NavDrawer = ({ open, toggleNavigationDrawer }) => {
   const history = useHistory();

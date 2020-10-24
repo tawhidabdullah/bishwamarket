@@ -1,30 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import styles
 import { DropdownContainerStyles, DropdownItemStyles } from "./commonStyles";
 
-const Homedropdown = (props) => {
-  const history = useHistory();
+// all nested components will be refactored
 
+const Homedropdown = (props) => {
   return (
     <>
       <PageDropdownContainer>
         <PageDropdownItem>
           Account <Icon className="fa fa-angle-right" />
           <NestedDropdownContainer>
-            <NestedDropdownItem>Wishlist</NestedDropdownItem>
-            <NestedDropdownItem>Cart</NestedDropdownItem>
-            <NestedDropdownItem>Dashboard</NestedDropdownItem>
-            <NestedDropdownItem onClick={() => history.push("/signin")}>
-              Login
+            <NestedDropdownItem to="/wishlist">Wishlist</NestedDropdownItem>
+            <NestedDropdownItem to="/cart">Cart</NestedDropdownItem>
+            <NestedDropdownItem to="/dashboard">Dashboard</NestedDropdownItem>
+            <NestedDropdownItem to="/signin">Login</NestedDropdownItem>
+            <NestedDropdownItem to="/signup">Register</NestedDropdownItem>
+            <NestedDropdownItem to="/contact">Contact</NestedDropdownItem>
+            <NestedDropdownItem to="/forgot-password">
+              Forgot Password
             </NestedDropdownItem>
-            <NestedDropdownItem>Register</NestedDropdownItem>
-            <NestedDropdownItem>Contact</NestedDropdownItem>
-            <NestedDropdownItem>Forgot Password</NestedDropdownItem>
-            <NestedDropdownItem>Profile</NestedDropdownItem>
-            <NestedDropdownItem>Checkout</NestedDropdownItem>
+            <NestedDropdownItem to="/profile">Profile</NestedDropdownItem>
+            <NestedDropdownItem to="/checkout">Checkout</NestedDropdownItem>
           </NestedDropdownContainer>
         </PageDropdownItem>
 
@@ -37,8 +37,8 @@ const Homedropdown = (props) => {
         <PageDropdownItem>
           Compare <Icon className="fa fa-angle-right" />
           <NestedDropdownContainer customStyle={{ top: "250px" }}>
-            <NestedDropdownItem>Compare</NestedDropdownItem>
-            <NestedDropdownItem>Compare 2</NestedDropdownItem>
+            <NestedDropdownItem to="/compare">Compare</NestedDropdownItem>
+            <NestedDropdownItem to="/compare2">Compare 2</NestedDropdownItem>
           </NestedDropdownContainer>
         </PageDropdownItem>
         <PageDropdownItem>Collection</PageDropdownItem>
@@ -96,9 +96,13 @@ const NestedDropdownContainer = styled.div`
   visibility: hidden !important;
   opacity: 0;
 
+  & a {
+    text-decoration: none;
+  }
+
   ${(props) => props.customStyle}
 `;
 
-const NestedDropdownItem = styled.span`
+const NestedDropdownItem = styled(Link)`
   ${DropdownItemStyles}
 `;

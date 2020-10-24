@@ -6,8 +6,8 @@ const LinkList = ({ header, lists }) => {
     <TopFooterContainer>
       <Header>{header}</Header>
       <ListContainer>
-        {lists.map((list) => (
-          <ListItem>{list}</ListItem>
+        {lists.map((list, idx) => (
+          <ListItem key={idx}>{list}</ListItem>
         ))}
       </ListContainer>
     </TopFooterContainer>
