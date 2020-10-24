@@ -24,13 +24,13 @@ const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
       <Layout customStyles={customStyles}>
         <MainContent customStyles={customStyles}>
           <Slider {...settings}>
-            <ProductsByCategory />
-            <ProductsByCategory />
-            <ProductsByCategory />
-            <ProductsByCategory />
-            <ProductsByCategory />
-            <ProductsByCategory />
-            <ProductsByCategory />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
           </Slider>
         </MainContent>
       </Layout>

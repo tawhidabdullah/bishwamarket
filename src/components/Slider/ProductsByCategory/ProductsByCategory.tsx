@@ -15,7 +15,12 @@ import {
   toggleQuickviewDrawer,
 } from "../../../redux/global/global.actions";
 
-const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
+const ProductsByCategory = ({
+  toggleCartDrawer,
+  toggleQuickviewDrawer,
+
+  customStyles,
+}) => {
   return (
     <ProductBox>
       <ProductImgbox>
@@ -70,10 +75,10 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
           <Price>$ 24.05</Price>
         </DetailRight>
       </ProductDetail>
-      {/* <NewLevel>
+      <NewLevel customStyles={customStyles}>
         <div>new</div>
       </NewLevel>
-      <OnSale>on sale</OnSale> */}
+      <OnSale customStyles={customStyles}>on sale</OnSale>
     </ProductBox>
   );
 };
@@ -118,7 +123,7 @@ const ProductDetail = styled.div`
   justify-content: space-around;
 
    width:100%;
-   background-color:#f2f2f2;
+  
 `;
 
 const ProductBox = styled.div`
@@ -130,7 +135,7 @@ const ProductBox = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #fff;
-  border:1px solid red;
+
 
   &:hover ${ProductIconContainer} {
     transform: translateX(0%);
@@ -175,6 +180,8 @@ const OnSale = styled.div`
   right: 0;
   padding: 0 6px;
   font-size: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
+  visibility: ${(props) =>
+    props.customStyles ? props.customStyles.Levelvisibility : ""};
 `;
 
 const NewLevel = styled.div`
@@ -184,6 +191,8 @@ const NewLevel = styled.div`
   padding: 5px;
   font-weight: 600;
   letter-spacing: 1px;
+  visibility: ${(props) =>
+    props.customStyles ? props.customStyles.Levelvisibility : ""};
 
   &::before {
     width: 0;

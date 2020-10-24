@@ -59,9 +59,14 @@ const ProductByCategory = () => {
       <MainSlider
         responsive={responsive}
         ProductsByCategory={ProductsByCategory}
-        customStyles={{}}
+        customStyles={{
+          productBackgroundColor: "f2f2f2",
+          Levelvisibility: "visible",
+        }}
       />
     </Section>
+
+    //level &&
   );
 };
 export default ProductByCategory;
