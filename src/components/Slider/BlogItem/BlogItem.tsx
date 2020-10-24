@@ -4,7 +4,7 @@ import styled from "styled-components";
 import image1 from "../../../assets/blog/1.jpg"
 const BlogItem = () => {
   return (
-    <Content>
+  
       <BlogContain>
         <BlogImage>
           <img src={image1} alt="blog" className="img-fluid  w-100" />
@@ -25,21 +25,16 @@ const BlogItem = () => {
           <p>25 july 2018</p>
         </Date>
       </BlogContain>
-    </Content>
+    
   );
 };
 
 export default BlogItem;
 
-const Content = styled.div`
-
- 
-  padding:5px;
-`;
 const BlogContain = styled.div`
-
   position: relative;
-  min-width:280px;
+  min-width: 240px;
+  margin: 10px;
 `;
 const BlogImage = styled.div`
   overflow: hidden;
@@ -57,10 +52,10 @@ const BlogDetails = styled.div`
 
   & h4 {
     color: #444;
-    margin-bottom: 13px;
+    margin-bottom: 7px;
     font-size: calc(17px + (18 - 17) * ((100vw - 320px) / (1920 - 320)));
-    letter-spacing: 1px;
-    font-weight: 600;
+
+    font-weight: 400;
     padding: 10px;
   }
 
@@ -68,8 +63,8 @@ const BlogDetails = styled.div`
     color: gray;
     text-transform: capitalize;
     margin-bottom: 5px;
-    letter-spacing: 0.5px;
-    padding: 10px;
+  
+    padding: 10px ;
   }
 
   & a {
@@ -79,7 +74,7 @@ const BlogDetails = styled.div`
     color: #ff6000;
     text-transform: capitalize;
     font-weight: 700;
-    letter-spacing: 0.03em;
+
     line-height: 1;
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
   }
