@@ -1,12 +1,11 @@
-//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 
-const InputField = ({ label, type, placeholder }) => {
+const InputField = ({ customStyle, label, ...otherProps }) => {
   return (
     <InputFieldContainer>
-      <Label>{label}</Label>
-      <Input type={type} placeholder={placeholder} />
+      <Label customStyle={customStyle}>{label}</Label>
+      <Input customStyle={customStyle} {...otherProps} />
     </InputFieldContainer>
   );
 };
@@ -21,10 +20,14 @@ const InputFieldContainer = styled.div`
 const Label = styled.label`
   padding: 10px 0;
   font-size: 15px;
+
+  ${(props) =>
+    props.customStyle && props.customStyle.label
+      ? props.customStyle.label
+      : null}
 `;
 
 const Input = styled.input`
-  border-radius: 20px;
   padding: 10px 5px;
   border: 1px solid #d1dae8;
   outline: none;
@@ -36,4 +39,6 @@ const Input = styled.input`
     font-size: 15px;
     letter-spacing: 1px;
   }
+
+  ${(props) => props.customStyle}
 `;

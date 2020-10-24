@@ -169,7 +169,7 @@ export const MenuItems = [
           { id: "5a1", name: "Wishlist" },
           { id: "5a2", name: "Cart" },
           { id: "5a3", name: "Dashboard" },
-          { id: "5a4", name: "Login" },
+          { id: "5a4", name: "Login", path: "/signin" },
           { id: "5a5", name: "Register" },
           { id: "5a6", name: "Contact" },
           { id: "5a7", name: "Forgot Password" },

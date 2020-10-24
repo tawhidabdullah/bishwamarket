@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const AuthButton = ({ children, customStyle, wrapperStyle }) => {
-  // console.log(customStyle);
   return (
     <AuthButtonContainer wrapperStyle={wrapperStyle}>
       <Button customStyle={customStyle}>{children}</Button>
@@ -35,9 +34,9 @@ const Button = styled.button`
     outline: none;
   }
 
-  ${(props) => props.customStyle}
-
   :hover {
     background-color: #000;
   }
+
+  ${(props) => props.customStyle}
 `;
