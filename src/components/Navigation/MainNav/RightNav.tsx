@@ -170,7 +170,7 @@ const WishText = styled.div`
 
 const CartIcon = styled(IconWrapper)`
   background-color: #ff6000;
-  padding: 15px 20px;
+  padding: 10px 20px;
   margin-left: 20px;
   position: relative;
   cursor: pointer;

@@ -34,3 +34,13 @@ export const toggleCategoryDrawer = () => ({
 export const toggleQuickviewDrawer = () => ({
   type: GlobalTypes.TOGGLE_QUICKVIEW_DRAWER,
 });
+
+// open/close settings drawer
+export const toggleSettingsDrawer = () => ({
+  type: GlobalTypes.TOGGLE_SETTINGS_DRAWER,
+});
+
+// open/close search drawer
+export const toggleSearchDrawer = () => ({
+  type: GlobalTypes.TOGGLE_SEARCH_DRAWER,
+});

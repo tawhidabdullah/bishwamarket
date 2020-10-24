@@ -27,11 +27,17 @@ const SigninDrawer = ({ open, toggleSigninDrawer }) => {
         <hr />
 
         <FormContainer>
-          <InputField label="Email" type="email" placeholder="Email" />
+          <InputField
+            label="Email"
+            type="email"
+            placeholder="Email"
+            customStyle={{ "border-radius": "20px" }}
+          />
           <InputField
             label="Password"
             type="password"
             placeholder="Enter your password"
+            customStyle={{ "border-radius": "20px" }}
           />
           <DrawerButton
             wrapperStyle={{}}

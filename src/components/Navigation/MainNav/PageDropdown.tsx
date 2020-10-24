@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 // import styles
 import { DropdownContainerStyles, DropdownItemStyles } from "./commonStyles";
 
 const Homedropdown = (props) => {
+  const history = useHistory();
+
   return (
     <>
       <PageDropdownContainer>
@@ -14,7 +17,9 @@ const Homedropdown = (props) => {
             <NestedDropdownItem>Wishlist</NestedDropdownItem>
             <NestedDropdownItem>Cart</NestedDropdownItem>
             <NestedDropdownItem>Dashboard</NestedDropdownItem>
-            <NestedDropdownItem>Login</NestedDropdownItem>
+            <NestedDropdownItem onClick={() => history.push("/signin")}>
+              Login
+            </NestedDropdownItem>
             <NestedDropdownItem>Register</NestedDropdownItem>
             <NestedDropdownItem>Contact</NestedDropdownItem>
             <NestedDropdownItem>Forgot Password</NestedDropdownItem>

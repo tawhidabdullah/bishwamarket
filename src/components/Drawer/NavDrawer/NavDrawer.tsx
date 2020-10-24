@@ -2,6 +2,7 @@
 import React, { Fragment, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // import backdrop element
 // import { BackDrop } from "../../elements/Backdrop";
@@ -13,6 +14,8 @@ import { toggleNavigationDrawer } from "../../../redux/global/global.actions";
 import { MenuItems } from "./dummyData";
 
 const NavDrawer = ({ open, toggleNavigationDrawer }) => {
+  const history = useHistory();
+
   const [activeTabs, setActiveTabs] = useState([]);
   // for showing color on active tab
   // const [activeTabColor, setActiveColor] = useState("#444");
@@ -29,6 +32,8 @@ const NavDrawer = ({ open, toggleNavigationDrawer }) => {
       // setIsIncluded(true);
     }
   };
+
+  const gotoPath = (path) => (path ? history.push(path) : null);
 
   return (
     <Fragment>
@@ -65,7 +70,15 @@ const NavDrawer = ({ open, toggleNavigationDrawer }) => {
                       {i.subItems && (
                         <DropdownItemContainer>
                           {i.subItems.map((sub) => (
-                            <DropdownItem key={sub.id}>{sub.name}</DropdownItem>
+                            <DropdownItem
+                              onClick={() => {
+                                gotoPath(sub.path);
+                                toggleNavigationDrawer();
+                              }}
+                              key={sub.id}
+                            >
+                              {sub.name}
+                            </DropdownItem>
                           ))}
                         </DropdownItemContainer>
                       )}

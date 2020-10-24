@@ -56,11 +56,6 @@ const CategoryDrawerContainer = styled.div`
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
   transform: ${(props) => (props.show ? "translateX(0)" : "translateX(-100%)")};
-
-  @media (max-width: 500px) {
-    width: 80%;
-    max-width: 80%;
-  }
 `;
 
 const DrawerHeader = styled.div`

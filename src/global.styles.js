@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
     background-color:#f2f2f2;
+    margin: 0 auto;
   }
 `;
 
