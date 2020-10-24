@@ -15,14 +15,19 @@ import {
   toggleQuickviewDrawer,
 } from "../../../redux/global/global.actions";
 
-const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
+const ProductsByCategory = ({
+  toggleCartDrawer,
+  toggleQuickviewDrawer,
+
+  customStyles,
+}) => {
   return (
     <ProductBox>
       <ProductImgbox>
         <ProductFront>
           <img
             src={fimg1}
-            style={{ height: "360px", width: "280px" }}
+            style={{ height: "300px", width: "235px" }}
             className="img-fluid  "
             alt="product"
           />
@@ -30,7 +35,7 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
         <ProductBack>
           <img
             src={bimg1}
-            style={{ height: "360px", width: "280px" }}
+            style={{ height: "300px", width: "235px" }}
             className="img-fluid "
             alt="product"
           />
@@ -70,10 +75,10 @@ const ProductsByCategory = ({ toggleCartDrawer, toggleQuickviewDrawer }) => {
           <Price>$ 24.05</Price>
         </DetailRight>
       </ProductDetail>
-      <NewLevel>
+      <NewLevel customStyles={customStyles}>
         <div>new</div>
       </NewLevel>
-      <OnSale>on sale</OnSale>
+      <OnSale customStyles={customStyles}>on sale</OnSale>
     </ProductBox>
   );
 };
@@ -96,6 +101,8 @@ const ProductIconContainer = styled.div`
   position: absolute;
   top: 32.5%;
   right: 0;
+  /* bottom:0;
+  right:25%; */
   z-index: 20;
 `;
 
@@ -104,10 +111,19 @@ const ProductBack = styled.div`
   top: 0;
   left: 0;
 
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  -webkit-transform: translateX(-100%);
+
   transform: translateX(-100%);
+`;
+
+
+const ProductDetail = styled.div`
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+
+   width:100%;
+  
 `;
 
 const ProductBox = styled.div`
@@ -115,9 +131,11 @@ const ProductBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px;
+
   position: relative;
   overflow: hidden;
+  background-color: #fff;
+
 
   &:hover ${ProductIconContainer} {
     transform: translateX(0%);
@@ -127,6 +145,10 @@ const ProductBox = styled.div`
   &:hover ${ProductBack} {
     transform: translateX(0%);
   }
+
+  /* &:hover ${ProductDetail} {
+    visibility: hidden;
+  } */
 `;
 
 const ProductIcon = styled.span`
@@ -145,7 +167,7 @@ const ProductImgbox = styled.div`
 const ProductFront = styled.div`
   left: 0;
   top: 0;
-  -webkit-transition: all 0.5s ease;
+ 
   transition: all 0.5s ease;
 `;
 
@@ -158,6 +180,8 @@ const OnSale = styled.div`
   right: 0;
   padding: 0 6px;
   font-size: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
+  visibility: ${(props) =>
+    props.customStyles ? props.customStyles.Levelvisibility : ""};
 `;
 
 const NewLevel = styled.div`
@@ -167,6 +191,8 @@ const NewLevel = styled.div`
   padding: 5px;
   font-weight: 600;
   letter-spacing: 1px;
+  visibility: ${(props) =>
+    props.customStyles ? props.customStyles.Levelvisibility : ""};
 
   &::before {
     width: 0;
@@ -192,11 +218,7 @@ const NewLevel = styled.div`
   }
 `;
 
-const ProductDetail = styled.div`
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-between;
-`;
+
 
 const DetailLeft = styled.div`
   & h6 {
