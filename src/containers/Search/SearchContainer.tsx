@@ -12,47 +12,82 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
        <Main>
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
-
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
          <ProductsByCategory
            customStyles={{
-             productBackgroundColor: "fff",
+             productBackgroundColor: "#fff",
              Levelvisibility: "hidden",
+             ProductDetailVisibility: "hidden",
+             containerDirection: "row",
+             containerright: "10%",
+             containerTransform: "translateY(100%)",
+             containertop: "80%",
            }}
          />
+         
        </Main>
      </Section>
    );

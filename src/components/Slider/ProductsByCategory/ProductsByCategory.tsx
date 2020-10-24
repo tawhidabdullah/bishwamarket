@@ -22,7 +22,7 @@ const ProductsByCategory = ({
   customStyles,
 }) => {
   return (
-    <ProductBox>
+    <ProductBox customStyles={customStyles}>
       <ProductImgbox>
         <ProductFront>
           <img
@@ -41,7 +41,7 @@ const ProductsByCategory = ({
           />
         </ProductBack>
       </ProductImgbox>
-      <ProductIconContainer>
+      <ProductIconContainer customStyles={customStyles}>
         <ProductIcon onClick={() => toggleCartDrawer()}>
           <i className="fa fa-shopping-bag"></i>
         </ProductIcon>
@@ -57,7 +57,7 @@ const ProductsByCategory = ({
           <i className="fa fa-exchange"></i>
         </ProductIcon>
       </ProductIconContainer>
-      <ProductDetail>
+      <ProductDetail customStyles={customStyles}>
         <DetailLeft>
           <Rating>
             <i className="fa fa-star"></i>
@@ -92,17 +92,36 @@ export default connect(null, mapDispatchToProps)(ProductsByCategory);
 
 const ProductIconContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containerDirection
+        ? props.customStyles.containerDirection
+        : "column"
+      : "column"};
 
-  transition: all 0.5s ease;
-  transform: translateX(100%);
   visibility: hidden;
 
   position: absolute;
-  top: 32.5%;
-  right: 0;
-  /* bottom:0;
-  right:25%; */
+  top: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containertop
+        ? props.customStyles.containertop
+        : "32.5%"
+      : "32.5%"};
+  right: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containerright
+        ? props.customStyles.containerright
+        : "0%"
+      : "0%"};
+  transition: all 0.5s ease;
+  transform: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containerTransform
+        ? props.customStyles.containerTransform
+        : "translateX(100%)"
+      : "translateX(100%)"};
+
   z-index: 20;
 `;
 
@@ -122,8 +141,9 @@ const ProductDetail = styled.div`
   display: flex;
   justify-content: space-around;
 
-   width:100%;
-  
+  width: 100%;
+  background-color: ${(props) =>
+    props.customStyles ? props.customStyles.productBackgroundColor? props.customStyles.productBackgroundColor: "#f2f2f2" :"#f2f2f2"};
 `;
 
 const ProductBox = styled.div`
@@ -136,7 +156,6 @@ const ProductBox = styled.div`
   overflow: hidden;
   background-color: #fff;
 
-
   &:hover ${ProductIconContainer} {
     transform: translateX(0%);
     visibility: visible;
@@ -146,9 +165,14 @@ const ProductBox = styled.div`
     transform: translateX(0%);
   }
 
-  /* &:hover ${ProductDetail} {
-    visibility: hidden;
-  } */
+  &:hover ${ProductDetail} {
+    visibility: ${(props) =>
+      props.customStyles
+        ? props.customStyles.ProductDetailVisibility
+          ? "hidden"
+          : "visible"
+        : "visible"};
+  }
 `;
 
 const ProductIcon = styled.span`
