@@ -58,7 +58,7 @@ const MainContent = styled.div`
   margin-left: auto;
   padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};
 
-  grid-template-columns: minmax(140px, auto);
+  grid-template-columns: minmax(60px, auto);
 
   width: 100%;
   @media only screen and (max-width: 560px) {

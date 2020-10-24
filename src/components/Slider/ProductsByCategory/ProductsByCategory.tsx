@@ -27,7 +27,7 @@ const ProductsByCategory = ({
         <ProductFront>
           <img
             src={fimg1}
-            style={{ height: "300px", width: "235px" }}
+         
             className="img-fluid  "
             alt="product"
           />
@@ -35,7 +35,7 @@ const ProductsByCategory = ({
         <ProductBack>
           <img
             src={bimg1}
-            style={{ height: "300px", width: "235px" }}
+           
             className="img-fluid "
             alt="product"
           />
@@ -152,6 +152,17 @@ const ProductBox = styled.div`
   align-items: center;
   flex-direction: column;
 
+  @media only screen and (max-width: 400px) and (min-width: 350px) {
+    width: 150px;
+  }
+
+  @media only screen and (max-width: 350px) and (min-width: 320px) {
+    width: 138px;
+  }
+  @media only screen and (max-width: 500px) and (min-width: 400px) {
+    width: 180px;
+  }
+
   position: relative;
   overflow: hidden;
   background-color: #fff;
@@ -187,6 +198,15 @@ const ProductImgbox = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #fff;
+
+  img {
+    height: 200px;
+    width: 160px;
+    object-fit:fill;
+     @media only screen and (max-width: 400px) {
+      width: 140px;
+    }
+  }
 `;
 const ProductFront = styled.div`
   left: 0;
