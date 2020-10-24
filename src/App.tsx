@@ -23,14 +23,14 @@ const App = () => {
     <BrowserRouter>
       <React.Fragment>
         <Suspense fallback="Loading...">
-          <Layout>
+          {/* <Layout> */}
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/te"} component={Category} />
               <Route exact path={"/Search"} component={Search} />
               <Route exact path="/signin" component={SignIn} />
             </Switch>
-          </Layout>
+          {/* </Layout> */}
           <GlobalStyles />
         </Suspense>
       </React.Fragment>
