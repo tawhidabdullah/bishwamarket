@@ -143,7 +143,16 @@ const ProductDetail = styled.div`
 
   width: 100%;
   background-color: ${(props) =>
-    props.customStyles ? props.customStyles.productBackgroundColor? props.customStyles.productBackgroundColor: "#f2f2f2" :"#f2f2f2"};
+    props.customStyles
+      ? props.customStyles.productBackgroundColor
+        ? props.customStyles.productBackgroundColor
+        : "#f2f2f2"
+      : "#f2f2f2"};
+
+  @media only screen and (max-width: 580px) {
+  flex-direction:column;
+  justify-content:start;
+  }
 `;
 
 const ProductBox = styled.div`
@@ -273,6 +282,9 @@ const DetailLeft = styled.div`
 `;
 const DetailRight = styled.div`
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+  display:flex;
+  justify-content:start;
+
 `;
 const Rating = styled.div`
   & i {
@@ -284,6 +296,7 @@ const Rating = styled.div`
 const CheckPrice = styled.div`
   text-decoration: line-through;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+  margin-right:10px;
 `;
 
 const Price = styled.div`

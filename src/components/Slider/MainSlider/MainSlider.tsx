@@ -47,9 +47,9 @@ const Layout = styled.div`
 const MainContent = styled.div`
   outline: none;
   border: none;
-  max-width:1400px;
+  max-width: 1400px;
   background-color: ${(props) =>
-  props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
+    props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
   padding-right: 15px;
@@ -63,7 +63,9 @@ const MainContent = styled.div`
   width: 100%;
   @media only screen and (max-width: 560px) {
     padding: ${(props) =>
-      props.customStyles ? props.customStyles.padding?"20px" : "":""};
+      props.customStyles ? (props.customStyles.padding ? "20px" : "") : ""};
+    padding-right: 0px;
+    padding-left: 8px;
   }
 
   & .slick-slide {
@@ -74,6 +76,11 @@ const MainContent = styled.div`
     align-items: start;
 
     width: 100%;
+
+    @media only screen and (max-width: 580px) {
+      justify-content: center;
+      align-items:center;
+    }
   }
 
   & div {
