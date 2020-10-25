@@ -17,6 +17,8 @@ const checkButtonStyles = {
   label: { "font-size": "16px", padding: "unset" },
 };
 
+// TODO refactor into smaller component
+
 const CheckoutDetails = () => {
   const [payment, setPayment] = useState(null);
 
