@@ -40,7 +40,7 @@ const BannerContaine = styled.div`
   justify-content: center;
   align-items: center;
   & h2 {
-    font-size: 14px;
+    font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320)));
     text-transform: uppercase;
     color: #fff;
     font-weight: 400;
@@ -48,7 +48,7 @@ const BannerContaine = styled.div`
     margin-bottom: 5px;
   }
   & h1 {
-    font-size: 14px;
+    font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320)));
     font-weight: 700;
     color: #fff;
     text-transform: uppercase;
@@ -57,33 +57,37 @@ const BannerContaine = styled.div`
   }
 
   & a {
-    font-size: 14px;
+    font-size: calc(12px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
     padding: 16px 45px;
     font-weight: 700;
     color: #444 !important;
     background-color: #fff;
     border-radius: 25px;
-    position: relative;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    display: inline-block;
-    line-height: 1;
-    letter-spacing: 0.05em;
+    width: 400px;
+    text-decoration: none;
 
-    @media only screen and (max-width: 900px) and (min-width: 580px) {
-      padding: 10px 10px;
+    line-height: 1;
+
+    @media only screen and (max-width: 900px) and (min-width: 581px) {
+      padding: 8px 25px;
       font-size: 8px;
       width: 120px;
       text-align: center;
     }
-    @media only screen and (max-width: 580px) and (min-width: 320px) {
-      padding: 10px 10px;
+    @media only screen and (max-width: 580px)  {
+      padding: 8px 25px;
       font-size: 8px;
       width: 100px;
       text-align: center;
+    }
+
+    &:hover {
+      background-color: black;
+      color: ghostwhite !important;
     }
   }
 `;
 
 const Button = styled.div`
+
 `;

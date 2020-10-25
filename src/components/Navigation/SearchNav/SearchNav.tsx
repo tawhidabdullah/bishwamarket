@@ -150,6 +150,10 @@ const SearchNavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media only screen and (max-width: 580px)  {
+display:none;
+  }
  
 `;
 

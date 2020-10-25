@@ -43,15 +43,18 @@ const BB = styled.div`
   grid-template-columns: 1fr 4fr;
   font-size: 14px;
   background-color: #fff;
+  padding: 50px 20px;
 
   & span {
-    padding: 10px;
-
-    letter-spacing: 0.05em;
+    padding: 5px;
+    margin: 2px;
+    @media screen and (max-width: 750px) {
+      border: 1px solid #ddd;
+    }
   }
 
   @media only screen and (max-width: 1000px) {
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -64,9 +67,19 @@ const TITLE = styled.div`
   & span {
     color: #ff6000;
     font-weight: 700;
+
+    @media screen and (max-width: 1000px) {
+      &:nth-child(2) {
+        display: none;
+      }
+      &:nth-child(1) {
+        border: none;
+        border-bottom: 2px solid #ff6000;
+      }
+    }
     @media only screen and (max-width: 1000px) {
-   
       border-bottom: 2px solid #ff6000;
+      margin-bottom:10px;
     }
   }
 
@@ -82,8 +95,8 @@ const Item = styled.div`
 
   & span {
     color: #777;
-   
-    font-weight: 700;
+  
+    font-weight: 400;
   }
 
   @media only screen and (max-width: 1000px) {
