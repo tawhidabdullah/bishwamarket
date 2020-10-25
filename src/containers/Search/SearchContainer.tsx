@@ -6,7 +6,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
  const SearchContainer = () => {
    return (
      <Section>
-       <SearchContain />
+       <SearchContain title={"search"}/>
        <SearchField />
 
        <Main>
