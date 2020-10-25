@@ -75,11 +75,11 @@ const RightNav = ({
           <span>0</span>
           <i className="fa fa-shopping-cart"></i>
         </CartIcon>
-
-        <NavToggler onClick={() => toggleNavigationDrawer()}>
-          <i className="fa fa-bars"></i>
-        </NavToggler>
       </IconContainer>
+
+      <NavToggler onClick={() => toggleNavigationDrawer()}>
+        <i className="fa fa-bars"></i>
+      </NavToggler>
     </NavItemContainer>
   );
 };
@@ -147,6 +147,10 @@ const IconContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-left: 25px;
+
+  @media screen and (max-width: 578px) {
+    display: none;
+  }
 `;
 
 const WishBox = styled(IconWrapper)`
