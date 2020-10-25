@@ -113,11 +113,12 @@ const Main = styled.div`
   }
   @media only screen and (max-width: 980px) and (min-width: 630px) {
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
   }
 
   @media only screen and (max-width: 630px) and (min-width: 580px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap:10px;
+    grid-gap: 10px;
   }
   @media only screen and (max-width: 1200px) and (min-width: 980px) {
     grid-template-columns: repeat(4, 1fr);

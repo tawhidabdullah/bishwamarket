@@ -66,6 +66,9 @@ const SliderImage = styled.div`
       width: 450px;
     }
   }
+  & img{
+    object-fit:fill;
+  }
 `;
 
 const SliderBannercontent = styled.div`
