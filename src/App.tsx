@@ -26,7 +26,7 @@ const App = () => {
     <BrowserRouter>
       <React.Fragment>
         <Suspense fallback="Loading...">
-          <Layout>
+          {/* <Layout> */}
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/te"} component={Category} />
@@ -36,7 +36,7 @@ const App = () => {
               <Route exact path="/forgot-password" component={ForgotPassword} />
               <Route exact path="/checkout" component={Checkout} />
             </Switch>
-          </Layout>
+          {/* </Layout> */}
           <GlobalStyles />
         </Suspense>
       </React.Fragment>

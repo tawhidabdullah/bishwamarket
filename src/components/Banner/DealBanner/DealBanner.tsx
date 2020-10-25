@@ -24,11 +24,23 @@ const Section = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
+  min-width:300px;
+
+@media only screen and (max-width: 900px)  {
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+}
+
 `;
 
 const BannerContaine = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   & h2 {
-    font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320)));
+    font-size: 14px;
     text-transform: uppercase;
     color: #fff;
     font-weight: 400;
@@ -36,7 +48,7 @@ const BannerContaine = styled.div`
     margin-bottom: 5px;
   }
   & h1 {
-    font-size: calc(16px + (40 - 16) * ((100vw - 320px) / (1920 - 320)));
+    font-size: 14px;
     font-weight: 700;
     color: #fff;
     text-transform: uppercase;
@@ -57,6 +69,19 @@ const BannerContaine = styled.div`
     display: inline-block;
     line-height: 1;
     letter-spacing: 0.05em;
+
+    @media only screen and (max-width: 900px) and (min-width: 580px) {
+      padding: 10px 10px;
+      font-size: 8px;
+      width: 120px;
+      text-align: center;
+    }
+    @media only screen and (max-width: 580px) and (min-width: 320px) {
+      padding: 10px 10px;
+      font-size: 8px;
+      width: 100px;
+      text-align: center;
+    }
   }
 `;
 

@@ -30,10 +30,9 @@ const CollectionItem = ({ customStyles}) => {
 export default CollectionItem;
 
 const Item = styled.div`
-  background-color: red;
-
-  background-size: cover;
-  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  object-fit:fill;
   display: flex;
 
   align-items: center;
@@ -41,17 +40,16 @@ const Item = styled.div`
   margin: 10px;
   ${(props) => props.customStyles};
 
-
   & h3 {
     color: #ff6000;
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 1;
     margin-bottom: 8px;
   }
   & h4 {
     color: #444;
-    font-size: 30px;
+    font-size: 20px;
     text-transform: uppercase;
     line-height: 1;
   }

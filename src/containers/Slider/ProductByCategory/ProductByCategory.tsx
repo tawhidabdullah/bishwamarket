@@ -60,7 +60,7 @@ const ProductByCategory = () => {
         responsive={responsive}
         ProductsByCategory={ProductsByCategory}
         customStyles={{
-          productBackgroundColor: "f2f2f2",
+         
           Levelvisibility: "visible",
         }}
       />
