@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from "styled-components";
-const SearchContain=()=> {
+const SearchContain=({title})=> {
     return (
       <Breadcrumbmain>
         <Contain>
-          <h2>search</h2>
+          <h2>{title}</h2>
           <List>
             <li>
               <a href="#">home</a>
@@ -13,7 +13,7 @@ const SearchContain=()=> {
               <i className="fa fa-angle-double-right"></i>
             </li>
             <li>
-              <a href="#">search</a>
+              <a href="#">{title}</a>
             </li>
           </List>
         </Contain>
