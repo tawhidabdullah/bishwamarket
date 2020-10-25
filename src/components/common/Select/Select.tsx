@@ -1,19 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-const InputField = ({ customStyle, label, ...otherProps }) => {
-  if (otherProps) delete otherProps.sizes;
+// ANCHOR should be refactored into one input component
+
+const Select = ({ customStyle, label, options, name }) => {
   return (
-    <InputFieldContainer>
+    <SelectContainer>
       <Label customStyle={customStyle}>{label}</Label>
-      <Input customStyle={customStyle} {...otherProps} />
-    </InputFieldContainer>
+      <SelectField name={name}>
+        {options &&
+          options.map((option, idx) => (
+            <Option key={idx} value={option.value}>
+              {option.name}
+            </Option>
+          ))}
+      </SelectField>
+    </SelectContainer>
   );
 };
 
-export default InputField;
+export default Select;
 
-const InputFieldContainer = styled.div`
+const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -28,13 +36,14 @@ const Label = styled.label`
       : null}
 `;
 
-const Input = styled.input`
+const SelectField = styled.select`
   padding: 10px 5px;
   border: 1px solid #d1dae8;
   outline: none;
   text-indent: 10px;
   margin-bottom: 10px;
   letter-spacing: 1px;
+  appearance: none;
 
   ::placeholder {
     font-size: 15px;
@@ -42,4 +51,8 @@ const Input = styled.input`
   }
 
   ${(props) => props.customStyle}
+`;
+
+const Option = styled.option`
+  font-size: 14px;
 `;
