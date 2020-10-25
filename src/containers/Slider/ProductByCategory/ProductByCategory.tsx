@@ -40,8 +40,9 @@ const ProductByCategory = () => {
           arrows: false,
         },
       },
+      
       {
-        breakpoint: 580,
+        breakpoint: 620,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,

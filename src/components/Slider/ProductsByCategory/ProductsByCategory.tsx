@@ -106,8 +106,8 @@ const ProductIconContainer = styled.div`
     props.customStyles
       ? props.customStyles.containertop
         ? props.customStyles.containertop
-        : "32.5%"
-      : "32.5%"};
+        : "22%"
+      : "22%"};
   right: ${(props) =>
     props.customStyles
       ? props.customStyles.containerright
@@ -123,6 +123,10 @@ const ProductIconContainer = styled.div`
       : "translateX(100%)"};
 
   z-index: 20;
+
+  @media only screen and (max-width: 730px) and (min-width: 630px) {
+    top: 12%;
+  }
 `;
 
 const ProductBack = styled.div`
@@ -160,16 +164,23 @@ const ProductBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 10px 0px;
+  @media only screen and (max-width: 630px) and (min-width: 580px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 580px) and (min-width: 500px) {
+    width: 100%;
+  }
 
+  @media only screen and (max-width: 500px) and (min-width: 400px) {
+    width: 100%;
+  }
   @media only screen and (max-width: 400px) and (min-width: 350px) {
-    width: 150px;
+    width: 100%;
   }
 
   @media only screen and (max-width: 350px) and (min-width: 320px) {
-    width: 138px;
-  }
-  @media only screen and (max-width: 500px) and (min-width: 400px) {
-    width: 180px;
+    width: 100%;
   }
 
   position: relative;
@@ -201,6 +212,12 @@ const ProductIcon = styled.span`
   padding: 15px;
   color: #777;
   cursor: pointer;
+  @media only screen and (max-width: 630px) {
+    padding: 10px;
+  }
+  @media only screen and (max-width: 400px) {
+    padding: 6px;
+  }
 `;
 
 const ProductImgbox = styled.div`
@@ -209,11 +226,26 @@ const ProductImgbox = styled.div`
   background-color: #fff;
 
   img {
-    height: 200px;
-    width: 160px;
-    object-fit:fill;
-     @media only screen and (max-width: 400px) {
-      width: 140px;
+    height: 300px;
+    width: 220px;
+    object-fit: fill;
+
+    @media only screen and (max-width: 730px) and (min-width: 600px) {
+      height: 260px;
+      width: 170px;
+    }
+  
+    @media only screen and (max-width: 580px) and (min-width: 401px) {
+      width: 180px;
+      height: 260px;
+    }
+    @media only screen and (max-width: 400px) and (min-width: 350px) {
+      width: 170px;
+      height: 210px;
+    }
+    @media only screen and (max-width: 350px)  {
+      width: 150px;
+      height: 210px;
     }
   }
 `;
@@ -282,9 +314,10 @@ const DetailLeft = styled.div`
 `;
 const DetailRight = styled.div`
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
-  display:flex;
-  justify-content:start;
-
+  @media only screen and (max-width: 580px) {
+    display: flex;
+    justify-content: start;
+  }
 `;
 const Rating = styled.div`
   & i {
@@ -296,7 +329,9 @@ const Rating = styled.div`
 const CheckPrice = styled.div`
   text-decoration: line-through;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
-  margin-right:10px;
+  @media only screen and (max-width: 580px) {
+    margin-right:10px;
+  }
 `;
 
 const Price = styled.div`

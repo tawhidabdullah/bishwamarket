@@ -16,7 +16,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -27,7 +27,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -38,7 +38,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -49,7 +49,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -60,7 +60,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -71,7 +71,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -82,7 +82,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              Levelvisibility: "hidden",
              ProductDetailVisibility: "hidden",
              containerDirection: "row",
-             containerright: "20%",
+             containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
            }}
@@ -103,18 +103,22 @@ const Main = styled.div`
   grid-gap: 10px;
   max-width: 1400px;
   margin: 0 auto;
-  @media only screen and (max-width: 500px) {
-    grid-template-columns: 1fr;
+  justify-items: center;
+  @media only screen and (min-width: 981px) {
+    grid-template-columns: repeat(4, 1fr);
   }
-
-  @media only screen and (max-width: 800px) and (min-width:500px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media only screen and (max-width: 1100px) and (min-width:801px) {
+  @media only screen and (max-width: 980px) and (min-width: 580px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media only screen and (min-width: 1100px) {
-    grid-template-columns: repeat(4, 1fr);
+  /* @media only screen and (max-width: 1100px) and (min-width:801px) {
+    grid-template-columns: repeat(3, 1fr);
+  } */
+
+  @media only screen and (max-width: 580px) {
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `;
 

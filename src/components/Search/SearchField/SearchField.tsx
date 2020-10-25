@@ -30,25 +30,32 @@ const InputBox = styled.div`
 
   & input {
     border-radius: 0 5px 5px 0;
-    padding: 15px 20px;
+    padding: 13px 20px;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
 
-    border: 1px solid blue;
+    border: 1px solid #ced4da;
     outline: none;
+    width: 400px;
   }
 
   & button {
-    padding: 15px 20px;
+    padding: 13px 20px;
     margin-left: -2px;
-    width:fit-content;
+    width: fit-content;
     background-color: #00baf2;
-    outline:none;
-    color:#fff;
-   & i{
-     padding-right:12px;
- }
+    outline: none;
+    color: #fff;
+    & i {
+      padding-right: 12px;
+    }
+
+    &:hover {
+      background-color: black;
+      color: #fff;
+      outline: none;
+    }
   }
 `;
