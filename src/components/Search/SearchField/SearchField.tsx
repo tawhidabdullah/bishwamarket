@@ -39,6 +39,9 @@ const InputBox = styled.div`
     border: 1px solid #ced4da;
     outline: none;
     width: 400px;
+    @media screen and (max-width: 580px) {
+      max-width: 60%;
+    }
   }
 
   & button {
@@ -56,6 +59,10 @@ const InputBox = styled.div`
       background-color: black;
       color: #fff;
       outline: none;
+    }
+
+    @media screen and (max-width: 580px) {
+      padding: 13px 10px;
     }
   }
 `;
