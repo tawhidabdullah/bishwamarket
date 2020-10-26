@@ -31,13 +31,30 @@ const ShippinAddress = () => {
       <FormContainer>
         <Row>
           {ShippinAddressFormProps.map((props) => (
-            <CustoColumn key={props.id} md={props.sizes.md}>
+            <CustoColumn
+              customstyle={{ padding: "0 5px" }}
+              key={props.id}
+              md={props.sizes.md}
+            >
               {props.isSelect && <Select {...props} options={countryList} />}
               {!props.isSelect && <InputField {...props} />}
             </CustoColumn>
           ))}
 
-          <DrawerButton>Save Settings</DrawerButton>
+          <CustoColumn
+            customstyle={{ "padding-right": "5px", "margin-bottom": "50px" }}
+            md={6}
+          >
+            <DrawerButton
+              wrapperStyle={{
+                width: "50%",
+                margin: "unset",
+                "margin-right": "auto",
+              }}
+            >
+              Save Settings
+            </DrawerButton>
+          </CustoColumn>
         </Row>
       </FormContainer>
     </Col>
@@ -54,5 +71,6 @@ const FormContainer = styled.form`
 
 const CustoColumn = styled(Col)`
   padding: unset;
-  padding: 0 5px;
+
+  ${(props) => props.customstyle}
 `;

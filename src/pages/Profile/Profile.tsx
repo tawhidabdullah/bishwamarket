@@ -6,7 +6,6 @@ import { Row, Col } from "react-bootstrap";
 import { PageHeader } from "../../components/common/PageHeader";
 import { PersonalDetails } from "../../containers/PersonalDetails";
 import { ShippingAddress } from "../../containers/ShippingAddress";
-import { DrawerButton } from "../../components/common/Button/DrawerButton";
 
 const Profile = () => {
   return (
