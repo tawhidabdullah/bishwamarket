@@ -25,20 +25,10 @@ const ProductsByCategory = ({
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
         <ProductFront>
-          <img
-            src={fimg1}
-         
-            className="img-fluid  "
-            alt="product"
-          />
+          <img src={fimg1} className="img-fluid  " alt="product" />
         </ProductFront>
         <ProductBack>
-          <img
-            src={bimg1}
-           
-            className="img-fluid "
-            alt="product"
-          />
+          <img src={bimg1} className="img-fluid " alt="product" />
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer customStyles={customStyles}>
@@ -58,7 +48,7 @@ const ProductsByCategory = ({
         </ProductIcon>
       </ProductIconContainer>
       <ProductDetail customStyles={customStyles}>
-        <DetailLeft>
+        <DetailLeft customStyles={customStyles}>
           <Rating>
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
@@ -66,12 +56,12 @@ const ProductsByCategory = ({
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
           </Rating>
-          <a href="">
-            <h6 className="price-title">reader will be distracted.</h6>
-          </a>
+          <PriceTitel>
+            header will be distracted.reallyyyy i want pieee it is all about
+          </PriceTitel>
         </DetailLeft>
         <DetailRight>
-          <CheckPrice>$ 56.21</CheckPrice>
+          <CheckPrice>$ 100056.21</CheckPrice>
           <Price>$ 24.05</Price>
         </DetailRight>
       </ProductDetail>
@@ -164,7 +154,10 @@ const ProductDetail = styled.div`
         : "row"
       : "row"};
 
-  width: 100%;
+  width: 220px;
+
+  
+  flex-wrap: wrap;
   padding-bottom: 10px;
   padding-top: 10px;
   padding-left: 10px;
@@ -185,6 +178,24 @@ const ProductDetail = styled.div`
   @media only screen and (max-width: 580px) {
     flex-direction: column;
     justify-content: start;
+  }
+
+  @media only screen and (max-width: 730px) and (min-width: 600px) {
+    
+    width: 170px;
+  }
+
+  @media only screen and (max-width: 580px) and (min-width: 401px) {
+    width: 180px;
+   
+  }
+  @media only screen and (max-width: 400px) and (min-width: 350px) {
+    width: 170px;
+    
+  }
+  @media only screen and (max-width: 350px) {
+    width: 150px;
+  
   }
 `;
 
@@ -321,17 +332,32 @@ const NewLevel = styled.div`
 
 
 const DetailLeft = styled.div`
-  & h6 {
-    text-transform: capitalize;
-    color: #777;
-    font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+  width: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containertop
+        ? "100%"
+        : "60%"
+      : "60%"};
+  @media only screen and (max-width: 580px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
   }
 `;
 const DetailRight = styled.div`
+  width: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containertop
+        ? "100%"
+        : "40%"
+      : "40%"};
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+
   @media only screen and (max-width: 580px) {
     display: flex;
     justify-content: start;
+    width: 100%;
   }
 `;
 const Rating = styled.div`
@@ -352,4 +378,10 @@ const Price = styled.div`
   color: #ffa800;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
   font-weight: 700;
+`;
+
+const PriceTitel = styled.div`
+  text-transform: capitalize;
+  color: #777;
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
 `;

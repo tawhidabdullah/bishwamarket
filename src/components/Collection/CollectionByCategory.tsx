@@ -68,4 +68,9 @@ const Button = styled.button`
   outline: none !important;
   font-weight: 700;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: black;
+    color:ghostwhite;
+  }
 `;
