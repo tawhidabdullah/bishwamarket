@@ -205,6 +205,7 @@ export const MenuItems = [
       {
         id: "5g",
         name: "Order History",
+        path: "/order-history",
       },
 
       {

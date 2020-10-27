@@ -3,8 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import { Row, Col, Table } from "react-bootstrap";
 
-// import wishlist item
-// import { WishlistItem } from "../../components/WishlistItem";
+// import OrderHistory item
+// import { OrderHistoryItem } from "../../components/OrderHistoryItem";
 
 // import drawer button
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
@@ -14,20 +14,20 @@ import image1 from "../../assets/wishlist/image1.jpg";
 
 //TODO must refactor this ugly piece of shit
 
-const Wishlist = () => {
+const OrderHistory = () => {
   return (
-    <WishlistContainer>
+    <OrderHistoryContainer>
       <InnerContainer>
         <Row>
           <Col sm={12}>
             <CustomTable responsive="xs">
               <thead>
                 <tr>
-                  <TableHeader scope="col">IMAGE</TableHeader>
-                  <TableHeader scope="col">PRODUCT NAME</TableHeader>
+                  <TableHeader scope="col">PRODUCT</TableHeader>
+                  <TableHeader scope="col">DESCRIPTION</TableHeader>
                   <TableHeader scope="col">PRICE</TableHeader>
-                  <TableHeader scope="col">AVAILABILITY</TableHeader>
-                  <TableHeader scope="col">ACTION</TableHeader>
+                  <TableHeader scope="col">DETAILS</TableHeader>
+                  <TableHeader scope="col">STATUS</TableHeader>
                 </tr>
               </thead>
               <tbody>
@@ -37,25 +37,23 @@ const Wishlist = () => {
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <TableText customStyle={{ cursor: "pointer" }}>
-                      Cotton Shirt
-                    </TableText>
+                    <TableData>
+                      <TableText customStyle={{ "font-weight": "bold" }}>
+                        Order No. 123456
+                      </TableText>
+                      <TableText>Cotton Shirt</TableText>
+                    </TableData>
 
                     <MobileRow>
-                      <TableText>In Stock</TableText>
-                      <TableText>$250.15</TableText>
+                      <TableText customStyle={{ color: "#000" }}>
+                        $250.15
+                      </TableText>
+                      <TableData customStyle={{ "flex-direction": "row" }}>
+                        <TableText>Size: L</TableText>
+                        <TableText>Quantity: 1</TableText>
+                      </TableData>
                       <TableText>
-                        <ActionContainer
-                          customStyle={{
-                            "flex-direction": "column",
-                            "margin-top": "-10px",
-                          }}
-                        >
-                          <ActionButton>&#10005;</ActionButton>
-                          <ActionButton>
-                            <i className="fa fa-shopping-cart"></i>
-                          </ActionButton>
-                        </ActionContainer>
+                        <strong>Delivered </strong>({new Date().toDateString()})
                       </TableText>
                     </MobileRow>
                   </TableDataContainer>
@@ -69,16 +67,16 @@ const Wishlist = () => {
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <TableText>In Stock</TableText>
+                    <TableData>
+                      <TableText>Size: L</TableText>
+                      <TableText>Quantity: 1</TableText>
+                    </TableData>
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <ActionContainer>
-                      <ActionButton>&#10005;</ActionButton>
-                      <ActionButton>
-                        <i className="fa fa-shopping-cart"></i>
-                      </ActionButton>
-                    </ActionContainer>
+                    <TableText>
+                      <strong>Delivered </strong>({new Date().toDateString()})
+                    </TableText>
                   </TableDataContainer>
                 </tr>
 
@@ -88,25 +86,23 @@ const Wishlist = () => {
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <TableText customStyle={{ cursor: "pointer" }}>
-                      Cotton Shirt
-                    </TableText>
+                    <TableData>
+                      <TableText customStyle={{ "font-weight": "bold" }}>
+                        Order No. 123456
+                      </TableText>
+                      <TableText>Cotton Shirt</TableText>
+                    </TableData>
 
                     <MobileRow>
-                      <TableText>In Stock</TableText>
-                      <TableText>$250.15</TableText>
+                      <TableText customStyle={{ color: "#000" }}>
+                        $250.15
+                      </TableText>
+                      <TableData customStyle={{ "flex-direction": "row" }}>
+                        <TableText>Size: L</TableText>
+                        <TableText>Quantity: 1</TableText>
+                      </TableData>
                       <TableText>
-                        <ActionContainer
-                          customStyle={{
-                            "flex-direction": "column",
-                            "margin-top": "-10px",
-                          }}
-                        >
-                          <ActionButton>&#10005;</ActionButton>
-                          <ActionButton>
-                            <i className="fa fa-shopping-cart"></i>
-                          </ActionButton>
-                        </ActionContainer>
+                        <strong>Delivered </strong>({new Date().toDateString()})
                       </TableText>
                     </MobileRow>
                   </TableDataContainer>
@@ -120,16 +116,16 @@ const Wishlist = () => {
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <TableText>In Stock</TableText>
+                    <TableData>
+                      <TableText>Size: L</TableText>
+                      <TableText>Quantity: 1</TableText>
+                    </TableData>
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <ActionContainer>
-                      <ActionButton>&#10005;</ActionButton>
-                      <ActionButton>
-                        <i className="fa fa-shopping-cart"></i>
-                      </ActionButton>
-                    </ActionContainer>
+                    <TableText>
+                      <strong>Delivered </strong>({new Date().toDateString()})
+                    </TableText>
                   </TableDataContainer>
                 </tr>
 
@@ -139,50 +135,46 @@ const Wishlist = () => {
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <TableText customStyle={{ cursor: "pointer" }}>
-                      Cotton Shirt
-                    </TableText>
+                    <TableData>
+                      <TableText customStyle={{ "font-weight": "bold" }}>
+                        Order No. 123456
+                      </TableText>
+                      <TableText>Cotton Shirt</TableText>
+                    </TableData>
+
                     <MobileRow>
-                      <TableText>In Stock</TableText>
-                      <TableText>$250.15</TableText>
+                      <TableText customStyle={{ color: "#000" }}>
+                        $250.15
+                      </TableText>
+                      <TableData customStyle={{ "flex-direction": "row" }}>
+                        <TableText>Size: L</TableText>
+                        <TableText>Quantity: 1</TableText>
+                      </TableData>
                       <TableText>
-                        <ActionContainer
-                          customStyle={{
-                            "flex-direction": "column",
-                            "margin-top": "-10px",
-                          }}
-                        >
-                          <ActionButton>&#10005;</ActionButton>
-                          <ActionButton>
-                            <i className="fa fa-shopping-cart"></i>
-                          </ActionButton>
-                        </ActionContainer>
+                        <strong>Delivered </strong>({new Date().toDateString()})
                       </TableText>
                     </MobileRow>
                   </TableDataContainer>
 
                   <TableDataContainer>
                     <TableText
-                      customStyle={{
-                        "font-size": "22px",
-                        color: "#000",
-                      }}
+                      customStyle={{ "font-size": "22px", color: "#000" }}
                     >
                       $250.15
                     </TableText>
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <TableText>In Stock</TableText>
+                    <TableData>
+                      <TableText>Size: L</TableText>
+                      <TableText>Quantity: 1</TableText>
+                    </TableData>
                   </TableDataContainer>
 
                   <TableDataContainer>
-                    <ActionContainer>
-                      <ActionButton>&#10005;</ActionButton>
-                      <ActionButton>
-                        <i className="fa fa-shopping-cart"></i>
-                      </ActionButton>
-                    </ActionContainer>
+                    <TableText>
+                      <strong>Delivered </strong>({new Date().toDateString()})
+                    </TableText>
                   </TableDataContainer>
                 </tr>
               </tbody>
@@ -190,24 +182,22 @@ const Wishlist = () => {
           </Col>
         </Row>
         <ButtonContainer>
-          <DrawerButton wrapperStyle={{ "margin-right": "10px" }}>
-            Continue Shopping
-          </DrawerButton>
-          <DrawerButton wrapperStyle={{ "margin-left": "10px" }}>
-            Checkout
+          <DrawerButton customStyle={{ "font-weight": "bold" }}>
+            Show All Orders
           </DrawerButton>
         </ButtonContainer>
       </InnerContainer>
-    </WishlistContainer>
+    </OrderHistoryContainer>
   );
 };
 
-export default Wishlist;
+export default OrderHistory;
 
 const MobileRow = styled.div`
   display: none;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   justify-content: center;
+  flex-direction: column;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -226,21 +216,16 @@ const ButtonContainer = styled.div`
   padding-top: 35px;
   text-align: right;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 20%;
   margin-left: auto;
 
-  @media screen and (max-width: 991px) {
-    width: 50%;
-
-    & div button {
-      padding: 8px 0;
-    }
+  & div button {
+    padding: 8px 0;
   }
 
   @media screen and (max-width: 768px) {
-    width: 70%;
+    width: 30%;
   }
 
   @media screen and (max-width: 500px) {
@@ -273,25 +258,20 @@ const TableDataContainer = styled.td`
   }
 `;
 
-const ActionContainer = styled.div`
+const TableData = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  cursor: pointer;
 
   ${(props) => props.customStyle}
-`;
-
-const ActionButton = styled.span`
-  padding: 0 5px;
-  cursor: pointer;
-  color: #000;
 `;
 
 const TableText = styled.p`
   color: #777;
   font-weight: 400;
   font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
-  text-transform: capitalize;
   margin-bottom: 0;
 
   ${(props) => props.customStyle}
@@ -329,7 +309,7 @@ const CustomTable = styled(Table)`
   }
 `;
 
-const WishlistContainer = styled.div`
+const OrderHistoryContainer = styled.div`
   background-color: #f9f9f9 !important;
   padding: 50px 0;
 `;

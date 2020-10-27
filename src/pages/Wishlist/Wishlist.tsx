@@ -11,7 +11,7 @@ const WishlistPage = () => {
   return (
     <WishlistContainer>
       <PageHeader>WISHLIST</PageHeader>
-      <Wishlist></Wishlist>
+      <Wishlist />
     </WishlistContainer>
   );
 };

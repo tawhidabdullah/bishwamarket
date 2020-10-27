@@ -33,7 +33,7 @@ const Homedropdown = (props) => {
         <PageDropdownItem>Typography</PageDropdownItem>
         <PageDropdownItem>Review</PageDropdownItem>
         <PageDropdownItem>Order Success</PageDropdownItem>
-        <PageDropdownItem>Order History</PageDropdownItem>
+        <PageDropdownItem to="/order-history">Order History</PageDropdownItem>
         <PageDropdownItem>
           Compare <Icon className="fa fa-angle-right" />
           <NestedDropdownContainer customStyle={{ top: "250px" }}>
@@ -59,9 +59,14 @@ const PageDropdownContainer = styled.div`
   flex-direction: column;
   width: 200px;
   padding: 20px 10px;
+
+  & a {
+    text-decoration: none;
+    color: #777;
+  }
 `;
 
-const PageDropdownItem = styled.span`
+const PageDropdownItem = styled(Link)`
   ${DropdownItemStyles};
 
   :hover {
