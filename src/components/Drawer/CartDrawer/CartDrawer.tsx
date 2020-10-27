@@ -1,6 +1,8 @@
+//@ts-nocheck
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 // import backdrop element
 import { BackDrop } from "../../elements/Backdrop";
@@ -16,6 +18,10 @@ import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 import { toggleCartDrawer } from "../../../redux/global/global.actions";
 
 const CartDrawer = ({ open, toggleCartDrawer }) => {
+  const history = useHistory();
+
+  const gotoPage = (path) => history.push(path);
+
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleCartDrawer()} />
@@ -98,19 +104,27 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
               >
                 View Cart
               </DrawerButton>
-              <DrawerButton
-                wrapperStyle={{
-                  margin: "unset",
-                  width: "unset",
-                }}
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-left": "5px",
-                  padding: "10px",
+
+              <div
+                onClick={() => {
+                  gotoPage("/checkout");
+                  toggleCartDrawer();
                 }}
               >
-                Checkout
-              </DrawerButton>
+                <DrawerButton
+                  wrapperStyle={{
+                    margin: "unset",
+                    width: "unset",
+                  }}
+                  customStyle={{
+                    "font-weight": "bold",
+                    "margin-left": "5px",
+                    padding: "10px",
+                  }}
+                >
+                  Checkout
+                </DrawerButton>
+              </div>
             </ButtonContainer>
           </CTAContainer>
           {/* 

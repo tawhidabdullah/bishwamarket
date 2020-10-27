@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const InputField = ({ customStyle, label, ...otherProps }) => {
-  if (otherProps) delete otherProps.sizes;
+const TextArea = ({ label, placeholder, sizes: { rows }, customStyle }) => {
   return (
-    <InputFieldContainer>
-      {label && <Label customStyle={customStyle}>{label}</Label>}
-      <Input customStyle={customStyle} {...otherProps} />
-    </InputFieldContainer>
+    <TextAreaContainer>
+      <Label customStyle={customStyle}>{label}</Label>
+      <Textarea placeholder={placeholder} rows={rows} />
+    </TextAreaContainer>
   );
 };
 
-export default InputField;
+export default TextArea;
 
-const InputFieldContainer = styled.div`
+const TextAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -28,7 +27,7 @@ const Label = styled.label`
       : null}
 `;
 
-const Input = styled.input`
+const Textarea = styled.textarea`
   padding: 10px 5px;
   border: 1px solid #d1dae8;
   outline: none;

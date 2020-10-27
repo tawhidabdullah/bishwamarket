@@ -71,7 +71,7 @@ const BottomDrawerWrapper = styled.div`
 `;
 
 const BottomDrawerContainer = styled.div`
-  width: 60%;
+  width: 80%;
   height: 100%;
   margin: 0 auto;
   display: flex;
