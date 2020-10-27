@@ -30,6 +30,7 @@ const OrderSuccess = () => {
 
 export default OrderSuccess;
 
+// TODO this style is repeating. must refactor into one unified styles
 const OrderSuccessContainer = styled.div`
   background-color: #f9f9f9 !important;
   padding: 50px 0;
