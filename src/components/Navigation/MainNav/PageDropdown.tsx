@@ -32,7 +32,7 @@ const Homedropdown = (props) => {
         <PageDropdownItem>Search</PageDropdownItem>
         <PageDropdownItem>Typography</PageDropdownItem>
         <PageDropdownItem>Review</PageDropdownItem>
-        <PageDropdownItem>Order Success</PageDropdownItem>
+        <PageDropdownItem to="/order-success">Order Success</PageDropdownItem>
         <PageDropdownItem to="/order-history">Order History</PageDropdownItem>
         <PageDropdownItem>
           Compare <Icon className="fa fa-angle-right" />
