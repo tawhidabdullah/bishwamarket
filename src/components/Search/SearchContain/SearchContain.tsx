@@ -30,6 +30,7 @@ const Breadcrumbmain = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  width:100%;
 `;
 
 const Contain = styled.div`

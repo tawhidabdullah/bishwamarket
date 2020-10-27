@@ -29,15 +29,16 @@ const CollectionContainer = () => {
 export default CollectionContainer;
 const Main = styled.div`
   display: grid;
-
+  max-width: 1200px;
+  margin: 0px auto;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  max-width: 1400px;
-  margin: 0 auto;
-  margin-right:10px;
-  margin-left:10px;
+  padding: 30px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 `;
 
 const Section = styled.div`
+display:gtid;
+justify-items:center;
+align-items:center;
 
 `;

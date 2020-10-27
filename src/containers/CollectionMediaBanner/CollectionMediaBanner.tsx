@@ -4,13 +4,42 @@ import styled from "styled-components";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { Blog } from "../../components/Banner/Blog";
 import { HotdealItem } from "../../components/HotdealItem";
-import {MediaBanner} from "../../components/Slider/MediaBanner"
+import { MediaBanner } from "../../components/Slider/MediaBanner";
 import Slider from "react-slick";
-import img1 from "../../assets/hotDeal/1.jpg"
-import img from "../../assets/6.jpg"
+import img1 from "../../assets/hotDeal/1.jpg";
+import img from "../../assets/6.jpg";
+
+const SlideCustom = (props) => {
+  console.log(props);
+  return (
+    <div>
+      <img src={props.url} />
+      <button onClick={props.onPrev}>Prev</button>
+      <p>{props.title}</p>
+      <button onClick={props.onNext}>Next</button>
+    </div>
+  );
+};
+
 const CollectionMediaBanner = () => {
   const [activeSlide, setactiveSlide] = useState(0);
   const [activeSlide2, setactiveSlide2] = useState(0);
+
+  const [current, setCurrent] = useState(0);
+
+  const onNext = () => {
+    if (current + 1 == slides.length) {
+      setCurrent(0);
+    } else setCurrent((current) => current + 1);
+  };
+
+  const onPrev = () => {
+    if (current - 1 < 0) {
+      let last = slides.length - 1;
+      setCurrent(last);
+    } else setCurrent((current) => current - 1);
+  };
+
   const settings = {
     // dots: false,
     // infinite: true,
@@ -47,41 +76,58 @@ const CollectionMediaBanner = () => {
     ],
   };
 
-   const settings2 = {
-     // dots: false,
-     // infinite: true,
-     speed: 500,
+  const slides = [
+    {
+      id: 1,
+      title: "hey",
+      url: `${img1}`,
+    },
+    {
+      id: 1,
+      title: "hey2",
+      url: `${img}`,
+    },
+    {
+      id: 1,
+      title: "hey3",
+      url: `${img1}`,
+    },
+  ];
+  //  const settings2 = {
+  //    // dots: false,
+  //    // infinite: true,
+  //    speed: 500,
 
-     beforeChange: (current, next) => setactiveSlide(next),
-     afterChange: (current) => setactiveSlide2(current),
-     responsive: [
-       {
-         breakpoint: 1524,
-         settings: {
-           slidesToShow: 1,
-           slidesToScroll: 1,
-           infinite: true,
-           dots: false,
-           arrows: true,
-         },
-       },
-       {
-         breakpoint: 600,
-         settings: {
-           slidesToShow: 2,
-           slidesToScroll: 2,
-           initialSlide: 2,
-         },
-       },
-       {
-         breakpoint: 480,
-         settings: {
-           slidesToShow: 1,
-           slidesToScroll: 1,
-         },
-       },
-     ],
-   };
+  //    beforeChange: (current, next) => setactiveSlide(next),
+  //    afterChange: (current) => setactiveSlide2(current),
+  //    responsive: [
+  //      {
+  //        breakpoint: 1524,
+  //        settings: {
+  //          slidesToShow: 1,
+  //          slidesToScroll: 1,
+  //          infinite: true,
+  //          dots: false,
+  //          arrows: true,
+  //        },
+  //      },
+  //      {
+  //        breakpoint: 600,
+  //        settings: {
+  //          slidesToShow: 2,
+  //          slidesToScroll: 2,
+  //          initialSlide: 2,
+  //        },
+  //      },
+  //      {
+  //        breakpoint: 480,
+  //        settings: {
+  //          slidesToShow: 1,
+  //          slidesToScroll: 1,
+  //        },
+  //      },
+  //    ],
+  //  };
   return (
     <Main>
       {" "}
@@ -102,10 +148,17 @@ const CollectionMediaBanner = () => {
         </Jewellerybanner>
       </MidContent>
       <MainContents>
-        <Slider {...settings2}>
+        {/* <Slider {...settings2}>
           <HotdealItem />
           <HotdealItem />
-        </Slider>
+        </Slider> */}
+        <HotdealItem
+          url={slides[current].url}
+          title={slides[current].title}
+          onNext={onNext}
+          onPrev={onPrev}
+         
+        />
       </MainContents>
     </Main>
   );
@@ -151,9 +204,8 @@ const MainContents = styled.div`
 const Main = styled.div`
   background-color: #fff;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   padding: 30px;
-
 `;
 const MainContent = styled.div`
   outline: none;
@@ -163,18 +215,13 @@ const MainContent = styled.div`
   grid-template-columns: minmax(140px, 200px);
 `;
 
-
 const MidContent = styled.div`
   background-color: red;
   display: grid;
   grid-template-columns: minmax(140px, 100px);
-
-
-
 `;
 
 const Jewellerybanner = styled.div`
-
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -182,17 +229,13 @@ const Jewellerybanner = styled.div`
   height: 100%;
 `;
 
-
-
 const HotDealContainer = styled.div`
   background-color: #f2f2f2;
-
 `;
 
-const HotContain=styled.div`
-display:grid;
-grid-template-columns:1fr 3fr 1fr;
-
+const HotContain = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 `;
 
 const HotdealCenter = styled.div`
@@ -202,8 +245,6 @@ const HotdealCenter = styled.div`
   align-items: start;
   justify-content: start;
   height: 100%;
-
-  
 `;
 
 const HotRating = styled.div`
@@ -211,5 +252,3 @@ const HotRating = styled.div`
   margin: 20px 10px;
   color: #ffa800;
 `;
-
-

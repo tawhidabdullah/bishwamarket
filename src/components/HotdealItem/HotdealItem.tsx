@@ -1,16 +1,19 @@
 import React from 'react'
+import { Button } from 'react-bootstrap';
 import styled from "styled-components"
 import img1 from "../../assets/hotDeal/1.jpg";
-const HotdealItem =()=> {
+const HotdealItem =(props)=> {
     return (
       <HotDealContainer>
         <HotDeal>
           <h5>today’s hot deal</h5>
+          <button onClick={props.onNext}>Next</button>
+          <button onClick={props.onPrev}>Prev</button>
         </HotDeal>
 
         <HotContain>
           <div className="right-slick-img" style={{ width: "100%" }}>
-            <img src={img1} alt="hot-deal" className="img-fluid" />
+            <img src={props.url} alt="hot-deal" className="img-fluid" />
           </div>
           <HotdealCenter>
             <div>

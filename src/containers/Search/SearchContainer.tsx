@@ -1,14 +1,18 @@
-import React from 'react'
+import React,{useEffect,useRef} from 'react'
 import styled from "styled-components"
 import { SearchContain } from "../../components/Search/SearchContain/";
 import { SearchField } from "../../components/Search/SearchField";
 import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
+
+
+
  const SearchContainer = () => {
+
    return (
      <Section>
-       <SearchContain title={"search"}/>
+       <SearchContain title={"search"} />
        <SearchField />
-
+      
        <Main>
          <ProductsByCategory
            customStyles={{
@@ -87,14 +91,17 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containertop: "80%",
            }}
          />
-
        </Main>
      </Section>
    );
  };
 
 
-export default SearchContainer;
+
+
+
+
+
 
 const Main = styled.div`
   display: grid;
@@ -129,3 +136,8 @@ const Main = styled.div`
 `;
 
 const Section = styled.div``;
+
+
+
+
+export default SearchContainer;
