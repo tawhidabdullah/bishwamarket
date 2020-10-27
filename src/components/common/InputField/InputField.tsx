@@ -5,7 +5,7 @@ const InputField = ({ customStyle, label, ...otherProps }) => {
   if (otherProps) delete otherProps.sizes;
   return (
     <InputFieldContainer>
-      <Label customStyle={customStyle}>{label}</Label>
+      {label && <Label customStyle={customStyle}>{label}</Label>}
       <Input customStyle={customStyle} {...otherProps} />
     </InputFieldContainer>
   );
