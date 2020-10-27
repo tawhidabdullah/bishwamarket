@@ -3,112 +3,16 @@ import styled from "styled-components"
 import { SearchContain } from "../../components/Search/SearchContain/";
 import { SearchField } from "../../components/Search/SearchField";
 import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
-import image1 from "../../assets/dropdown.png";
+
 
 
  const SearchContainer = () => {
-const ListRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-  // useEffect(() => {
-  //   if (ListRef && ListRef.current) {
-  //     ListRef.current.focus();
-  //   }
-  // }, []);
-  const handle=(val)=>{
-   
-    var myCollection = Array.from(document.getElementsByClassName("hOgxnO")as HTMLCollectionOf<HTMLElement>);
-
-
-
-  
-    if (myCollection[val].style.display === "none") {
-     myCollection[val].style.display = "block";
-    } else {
-     myCollection[val].style.display = "none";
-    }
-  
-  }
    return (
      <Section>
        <SearchContain title={"search"} />
        <SearchField />
-       <InterSection>
-         <LeftContent>
-           <Tag onClick={(e) => handle(0)}>
-             <h3 className="collapse-block-title mt-0">brand</h3>
-           </Tag>
-           <TagList ref={ListRef}>
-             <div>
-               <input
-                 type="checkbox"
-                 id="vehicle1"
-                 name="vehicle1"
-                 value="Bike"
-               />
-               <label> I have a bike</label>
-             </div>
-             <div>
-               <input
-                 type="checkbox"
-                 id="vehicle2"
-                 name="vehicle2"
-                 value="Car"
-               />
-               <label> I have a car</label>
-             </div>
-
-             <div>
-               <input
-                 type="checkbox"
-                 id="vehicle3"
-                 name="vehicle3"
-                 value="Boat"
-               />
-               <label> I have a boat</label>
-             </div>
-           </TagList>
-
-           <Tag onClick={(e) => handle(1)}>
-             <h3 className="collapse-block-title mt-0">brand</h3>
-           </Tag>
-           <TagList ref={ListRef}>
-             <div>
-               <input
-                 type="checkbox"
-                 id="vehicle1"
-                 name="vehicle1"
-                 value="Bike"
-               />
-               <label> I have a bike</label>
-             </div>
-             <div>
-               <input
-                 type="checkbox"
-                 id="vehicle2"
-                 name="vehicle2"
-                 value="Car"
-               />
-               <label> I have a car</label>
-             </div>
-
-             <div>
-               <input
-                 type="checkbox"
-                 id="vehicle3"
-                 name="vehicle3"
-                 value="Boat"
-               />
-               <label> I have a boat</label>
-             </div>
-           </TagList>
-
-        
-
-
-         </LeftContent>
-         <div>content</div>
-       </InterSection>
-
+      
        <Main>
          <ProductsByCategory
            customStyles={{
@@ -235,26 +139,5 @@ const Section = styled.div``;
 
 
 
-const InterSection = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-`;
-
-const LeftContent = styled.div`
-  background-color: #fff;
-`;
-const TagList = styled.div`
-  /* display: none; */
-`;
-
-const Tag = styled.div`
-  background-image: url(${image1});
-  background-position-x: 80%;
-  background-position-y: 5%;
-  background-size: 10px 10px;
-  background-repeat-x: no-repeat;
-  background-repeat-y: no-repeat;
-  cursor: pointer;
-`;
 
 export default SearchContainer;
