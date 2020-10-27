@@ -29,7 +29,7 @@ const Homedropdown = (props) => {
         </PageDropdownItem>
 
         <PageDropdownItem>About Us</PageDropdownItem>
-        <PageDropdownItem>Search</PageDropdownItem>
+        <PageDropdownItem to="/search">Search</PageDropdownItem>
         <PageDropdownItem>Typography</PageDropdownItem>
         <PageDropdownItem>Review</PageDropdownItem>
         <PageDropdownItem>Order Success</PageDropdownItem>

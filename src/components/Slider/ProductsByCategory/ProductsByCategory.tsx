@@ -156,7 +156,6 @@ const ProductDetail = styled.div`
 
   width: 220px;
 
-  
   flex-wrap: wrap;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -181,21 +180,21 @@ const ProductDetail = styled.div`
   }
 
   @media only screen and (max-width: 730px) and (min-width: 600px) {
-    
-    width: 170px;
+    width: ${(props) =>
+      props.customStyles.productBackgroundColor ? "100%" : "170px"};
   }
 
   @media only screen and (max-width: 580px) and (min-width: 401px) {
-    width: 180px;
-   
+    width: ${(props) =>
+      props.customStyles.productBackgroundColor ? "100%" : "180px"};
   }
   @media only screen and (max-width: 400px) and (min-width: 350px) {
-    width: 170px;
-    
+    width: ${(props) =>
+      props.customStyles.productBackgroundColor ? "100%" : "170px"};
   }
   @media only screen and (max-width: 350px) {
-    width: 150px;
-  
+    width: ${(props) =>
+      props.customStyles.productBackgroundColor ? "100%" : "150px"};
   }
 `;
 

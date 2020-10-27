@@ -202,6 +202,7 @@ const ShopCategory = styled.div`
   width: 250px;
   z-index: 9;
   justify-content: center;
+  cursor: pointer;
 
   & button {
     width: 20px;
@@ -265,6 +266,7 @@ const SearchCategory = styled.div`
     padding: 10px 20px;
     background-color: #fff;
     align-self: center;
+    cursor: pointer;
   }
   & input {
     border-radius: 0;
@@ -337,6 +339,7 @@ const Gift = styled.div`
   align-items: center;
   padding: 12px 10px;
   color: #fff;
+  cursor: pointer;
  
 `;
 const GiftIcon = styled.div`
