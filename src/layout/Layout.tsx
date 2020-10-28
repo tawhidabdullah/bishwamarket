@@ -16,6 +16,8 @@ import { SearchDrawer } from "../components/Drawer/SearchDrawer";
 import { Navigation } from "../containers/Navigation";
 import { Footer } from "../components/Footer";
 
+import ScrollTopArrow  from "../components/ScrollTopArrow";
+
 // import toggle drawer actions
 import {
   toggleCategoryDrawer,
@@ -42,6 +44,7 @@ const Layout = ({ children, globals }) => {
 
   return (
     <>
+    <ScrollTopArrow />
       <SigninDrawer open={openSigninDrawer} />
       <WishListDrawer open={openWishlistDrawer} />
       <CartDrawer open={openCartDrawer} />
@@ -54,6 +57,8 @@ const Layout = ({ children, globals }) => {
       <Navigation />
       {children}
       <Footer />
+
+
     </>
   );
 };

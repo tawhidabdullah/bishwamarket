@@ -37,7 +37,7 @@ const App = () => {
     <BrowserRouter>
       <Fragment>
         <Suspense fallback="Loading...">
-          <Layout>
+          {/* <Layout> */}
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/te"} component={Category} />
@@ -47,7 +47,7 @@ const App = () => {
               <Route exact path="/forgot-password" component={ForgotPassword} />
               <Route exact path="/checkout" component={Checkout} />
              
-              <Route exact path="/ProductListing" component={ProductListing} />
+              <Route exact path="/productListing" component={ProductListing} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/collection" component={Collection} />
               <Route exact path="/wishlist" component={WishlistPage} />
@@ -55,7 +55,7 @@ const App = () => {
               <Route exact path="/order-success" component={OrderSuccess} />
               <Route exact path="/cart" component={Cart} />
             </Switch>
-          </Layout>
+          {/* </Layout> */}
           <GlobalStyles />
         </Suspense>
       </Fragment>
