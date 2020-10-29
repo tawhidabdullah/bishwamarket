@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 // import { BackDrop } from "../../elements/Backdrop";
 
 // import toggle drawer action
-import { toggleNavigationDrawer } from "../../../redux/global/global.actions";
+import { toggleNavigationDrawer } from "../../../state/ducks/globalState/actions";
 
 // dummy data
 import { MenuItems } from "./NavItems";

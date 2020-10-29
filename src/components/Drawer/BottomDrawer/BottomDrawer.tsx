@@ -9,7 +9,7 @@ import {
   toggleWishlistDrawer,
   toggleSettingsDrawer,
   toggleSearchDrawer,
-} from "../../../redux/global/global.actions";
+} from "../../../state/ducks/globalState/actions";
 
 const BottomDrawer = ({
   toggleCartDrawer,

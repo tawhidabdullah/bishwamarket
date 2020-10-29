@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 // import toggle action
-import { toggleSearchDrawer } from "../../../redux/global/global.actions";
+import { toggleSearchDrawer } from "../../../state/ducks/globalState/actions";
 
 const SearchDrawer = ({ open, toggleSearchDrawer }) => {
   return (

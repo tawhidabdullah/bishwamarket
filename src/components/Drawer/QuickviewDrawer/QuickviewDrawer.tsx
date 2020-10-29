@@ -11,7 +11,7 @@ import { Text } from "../../elements/Text";
 import { Color, Size } from "../../elements/RoundButton/RoundButton";
 
 // import toggle drawer action
-import { toggleQuickviewDrawer } from "../../../redux/global/global.actions";
+import { toggleQuickviewDrawer } from "../../../state/ducks/globalState/actions";
 
 // import dummy quick view image
 import quickViewImage from "../../../assets/quickview.jpg";
@@ -153,6 +153,14 @@ const QuickviewDrawerContainer = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1200px) {
+    right: 10%;
+  }
+
+  @media screen and (max-width: 991px) {
+    right: 8%;
+  }
 `;
 
 const ImageContainer = styled.div`

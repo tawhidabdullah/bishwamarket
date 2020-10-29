@@ -27,13 +27,14 @@ function changeMeta(name, attribute, content){
     }catch(err){
         console.log('could not perform meta change, error: ');
         console.log(err.message);
+
         return false;
     }
 }
 // export default changeMeta;
 
 function changeTitle(newTitle){
-    document.title = newTitle || ''
+    document.title = newTitle
 }
 
 export {

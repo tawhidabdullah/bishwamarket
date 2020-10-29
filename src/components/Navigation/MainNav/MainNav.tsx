@@ -12,7 +12,7 @@ import Logo from "../../../assets/logo.png";
 import RightNav from "./RightNav";
 
 // import toggle category action
-import { toggleCategoryDrawer } from "../../../redux/global/global.actions";
+import { toggleCategoryDrawer } from "../../../state/ducks/globalState/actions";
 
 // import style
 import { NavToggler } from "./commonStyles";

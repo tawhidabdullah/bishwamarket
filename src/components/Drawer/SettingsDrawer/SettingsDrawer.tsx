@@ -7,7 +7,7 @@ import { BackDrop } from "../../elements/Backdrop";
 import DrawerHeader from "../DrawerElements/DrawerHeader";
 
 // import toggle drawer action
-import { toggleSettingsDrawer } from "../../../redux/global/global.actions";
+import { toggleSettingsDrawer } from "../../../state/ducks/globalState/actions";
 
 const SettingsDrawer = ({ open, toggleSettingsDrawer }) => {
   return (

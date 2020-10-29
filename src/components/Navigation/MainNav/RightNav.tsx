@@ -8,7 +8,7 @@ import {
   toggleWishlistDrawer,
   toggleCartDrawer,
   toggleNavigationDrawer,
-} from "../../../redux/global/global.actions";
+} from "../../../state/ducks/globalState/actions";
 
 import HomeDropdown from "./HomeDropdown";
 import ShopDropdown from "./ShopDropdown";

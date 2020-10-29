@@ -15,7 +15,7 @@ import DrawerHeader from "../DrawerElements/DrawerHeader";
 import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 
 // import toggle drawer action
-import { toggleCartDrawer } from "../../../redux/global/global.actions";
+import { toggleCartDrawer } from "../../../state/ducks/globalState/actions";
 
 const CartDrawer = ({ open, toggleCartDrawer }) => {
   const history = useHistory();

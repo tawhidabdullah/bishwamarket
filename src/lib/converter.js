@@ -30,10 +30,6 @@ class Converter {
           icon: category.icon
             ? `${config['baseURL']}${category.icon ? category.icon : ''}`
             : null,
-
-          thumbnail: category.thumbnail
-            ? `${config['baseURL']}${category.thumbnail ? category.thumbnail : ''}`
-            : null,
           productCount: category.productCount || 0,
           url: category.url || '',
           bn: category.bn || '',
@@ -684,6 +680,8 @@ class Converter {
    */
   async productList(resData) {
     const data = resData.data || [];
+    const next = resData.page?.next;
+    const total = resData.page?.totalIndex;
     // const isNext = resData.page.next;
 
     let convertedData =
@@ -723,66 +721,11 @@ class Converter {
         };
       });
 
-    // convertedData = {
-    //   data: convertedData,
-    //   page: resData && resData.page && resData.page
-    // };
-
-    return convertedData;
-  }
-
-   /**
-   * @public
-   * @method popular convert api data from API to general format based on config server
-   * @param {Object} data response objectc from wc
-   * @returns {Object}  converted data
-   */
-  async popular(resData) {
-    const data = resData.popularProduct.data || [];
-
-    let convertedData =
-    data.length > 0 &&
-    data.map((product) => {
-        return {
-          ...product,
-          id: product._id || '',
-          name: product.name && product.name,
-          description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
-          }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
-          unit: product.unit,
-          url: product.url,
-          price:
-            product.price && parseInt(product.price['offer'])
-              ? product.price['offer']
-              : product.price['regular'],
-          stock:
-            product.pricing &&
-            product.pricing.length > 0 &&
-            product.pricing[0].stock.available,
-          pricing: product.pricing,
-          date: product.date,
-          venue: product.venue,
-          offerTaka:
-            product.price &&
-            parseInt(product.price['offer']) &&
-            parseInt(product.price['regular']) >
-              parseInt(product.price['offer'])
-              ? parseInt(product.price['regular']) -
-                parseInt(product.price['offer'])
-              : 0,
-        };
-      });
-
-    // convertedData = {
-    //   data: convertedData,
-    //   page: resData && resData.page && resData.page
-    // };
-
-    return convertedData;
+    return {
+      data: convertedData,
+      next,
+      total
+    };
   }
 
 
@@ -1214,11 +1157,6 @@ class Converter {
           ? data.cover.full
           : ''
       }` : null,
-      
-      thumbnail: data.thumbnail
-        ? `${config['baseURL']}${data.thumbnail ? data.thumbnail : ''}`
-        : null,
-
       subCategory:
         data.subCategory.length > 0 &&
         data.subCategory[0] &&
@@ -1232,11 +1170,8 @@ class Converter {
                 cover: subCat.cover
                   ? `${config['baseURL']}${subCat.cover.original}`
                   : '',
-                thumbnail: subCat.thumbnail
-                  ? `${config['baseURL']}${subCat.thumbnail ? subCat.thumbnail : ''}`
-                  : null,
-            };
-          })
+              };
+            })
           : [],
       image:
         (data.image &&
@@ -1499,6 +1434,9 @@ class Converter {
    */
   async getCurrentUserOrders(resData) {
     const data = resData.data || [];
+    const next = resData.page?.next;
+    const total = resData.page?.totalIndex;
+
     // const isNext = resData.page.next;
 
     let convertedData =
@@ -1546,7 +1484,12 @@ class Converter {
     //   isNext,
     // };
 
-    return convertedData;
+    // return convertedData;
+    return {
+      data: convertedData,
+      next,
+      total
+    };
   }
 
   /**
@@ -1679,6 +1622,7 @@ class Converter {
     const item = data.items && data.items[0] || {};
 
     if (item && Object.keys(item).length > 0) {
+      console.log('mahItem',item)
       const image = item.image; 
       const partnersImages = []; 
 
@@ -2005,73 +1949,6 @@ class Converter {
       } else return false;
     } else return false;
   }
-
-  /**
-   * @public
-   * @method new convert api data from API to general format based on config server
-   * @param {Object} data response objectc from alpha
-   * @returns {Object}  converted data
-   */
-  async newArrival(data) {
-    const items = data.items || [];
-
-    if (items.length > 0) {
-      const name = items[0].title || '';
-      const url = items[0].target || '';
-      const id = items[0].text || '';
-      if (name && url && id) {
-        return {
-          name,
-          url,
-          id
-        };
-      } else return false;
-    } else return false;
-  }
-
-  /**
-   * @public
-   * @method flash convert api data from API to general format based on config server
-   * @param {Object} data response objectc from alpha
-   * @returns {Object}  converted data
-   */
-  async flash(data) {
-    const items = data.items || [];
-
-    if (items.length > 0) {
-      const name = items[0].title || '';
-      const url = items[0].target || '';
-      const id = items[0].text || '';
-      if (name && url && id) {
-        return {
-          name,
-          url,
-          id
-        };
-      } else return false;
-    } else return false;
-  }
-
-    /**
-   * @public
-   * @method email convert api data from API to general format based on config server
-   * @param {Object} data response objectc from alpha
-   * @returns {Object}  converted data
-   */
-  async email(data) {
-    const items = data.items || [];
-
-    if (items.length > 0) {
-      const text = items[0].text || [];
-      if (text) {
-        return {
-          text,
-        };
-      } else return false;
-    } else return false;
-  }
-  
-
 
   /**
    * @public
