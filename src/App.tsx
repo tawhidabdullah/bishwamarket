@@ -31,6 +31,7 @@ const WishlistPage = lazy(() => import("./pages/Wishlist"));
 const OrderHistory = lazy(() => import("./pages/OrderHistory"));
 const OrderSuccess = lazy(() => import("./pages/OrderSuccess"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 const App = () => {
   return (
@@ -54,6 +55,7 @@ const App = () => {
               <Route exact path="/order-history" component={OrderHistory} />
               <Route exact path="/order-success" component={OrderSuccess} />
               <Route exact path="/cart" component={Cart} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </Layout>
           <GlobalStyles />
