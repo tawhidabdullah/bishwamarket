@@ -1,7 +1,4 @@
-/* // .App {
-    //     text-align: center;
-    //     height: 5000px;
-    //   } */
+
       
       .scrollTop {
         position: fixed; 
@@ -18,10 +15,7 @@
         left: 436px;
       }
       
-      /* .scrollTop:hover{
-        opacity: 1;
-      } */
-      
+     
       @keyframes fadeIn {
         0% {
           opacity: 0;

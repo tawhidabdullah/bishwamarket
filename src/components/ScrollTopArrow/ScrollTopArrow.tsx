@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {FaArrowCircleUp} from 'react-icons/fa';
 import classes from './ScrollTopArrow.module.css';
 
-// scroll top arrow styling
-// import '../App.css';
 
 
 const ScrollTopArrow = () =>{

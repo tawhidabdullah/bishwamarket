@@ -32,13 +32,15 @@ export default CollectionItem;
 const Item = styled.div`
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  object-fit:fill;
+  object-fit: fill;
   display: flex;
 
   align-items: center;
   padding-left: 10px;
   margin: 10px;
   ${(props) => props.customStyles};
+/* 
+  transition: all 0.5s; */
 
   & h3 {
     color: #ff6000;
@@ -66,5 +68,10 @@ const Item = styled.div`
 
   & .shop a i {
     margin-left: 8px;
+  }
+
+  &:hover {
+    /* transform: scale(1.2);
+    overflow:hidden; */
   }
 `;

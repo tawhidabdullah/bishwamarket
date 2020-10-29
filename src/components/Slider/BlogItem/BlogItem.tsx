@@ -42,6 +42,11 @@ const BlogImage = styled.div`
   width: 100%;
   & img {
     width: 100%;
+    transition: all 0.5s;
+  }
+  &:hover img {
+    transform: scale(1.2);
+    overflow:hidden;
   }
 `;
 const BlogDetails = styled.div`
