@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
 import { Formik } from "formik";
 import { useAlert } from "react-alert";
 
@@ -32,41 +31,15 @@ const inputStyles = {
   },
 };
 
-const SignIn = ({ login }) => {
+const SignIn = () => {
   const history = useHistory();
   const alert = useAlert();
 
   // hooks for signin
-  const [signinState, handleLoginPost] = useHandleFetch({}, "signin");
+  const [signinState, handleSigninPost] = useHandleFetch({}, "signin");
 
-  const handleLoginSubmit = async (values, actions) => {
-    const loginRes = await handleLoginPost({
-      body: {
-        username: values.email,
-        password: values.password,
-      },
-    });
-
-    if (loginRes && loginRes["status"] === "ok") {
-      const { token } = loginRes.data;
-      await localStorage.removeItem("authToken");
-      await localStorage.setItem("authToken", token);
-
-      login();
-      alert.success("Logged in successfully");
-      history.push("/");
-      actions.resetForm({});
-    } else {
-      if (
-        signinState.error["isError"] &&
-        !(Object.keys(signinState.error["error"]).length > 0)
-      ) {
-        actions.resetForm({});
-        alert.error("Something went wrong!");
-      }
-    }
-
-    actions.setSubmitting(false);
+  const handleSigninSubmit = async (values, actions) => {
+    console.log(values);
   };
 
   return (
@@ -79,7 +52,7 @@ const SignIn = ({ login }) => {
             initialValues={{ ...initialSigninValues }}
             validationSchema={signinValidationSchema}
             validateOnBlur={false}
-            onSubmit={(values, actions) => handleLoginSubmit(values, actions)}
+            onSubmit={(values, actions) => handleSigninSubmit(values, actions)}
           >
             {({
               handleChange,
@@ -96,15 +69,15 @@ const SignIn = ({ login }) => {
                   label="Email"
                   name="email"
                   placeholder="Email"
-                  customStyle={inputStyles}
-                  value={values.email}
+                  value={values.username}
                   onChange={(e) => {
                     handleChange(e);
-                    setFieldTouched("email");
+                    setFieldTouched("username");
                   }}
+                  customStyle={inputStyles}
                 />
                 <ErrorText>
-                  {(touched.email && errors.email) ||
+                  {(touched.username && errors.username) ||
                     (!isSubmitting && signinState.error["error"]["username"])}
                 </ErrorText>
 
@@ -114,24 +87,14 @@ const SignIn = ({ login }) => {
                   name="password"
                   placeholder="Enter your password"
                   customStyle={inputStyles}
-                  value={values.password}
-                  onChange={(e) => {
-                    handleChange(e);
-                    setFieldTouched("password");
-                  }}
                 />
-                <ErrorText>
-                  {(touched.password && errors.password) ||
-                    (!isSubmitting && signinState.error["error"]["password"])}
-                </ErrorText>
 
                 <ButtonContainer>
                   <DrawerButton
                     wrapperStyle={{ "padding-right": "10px" }}
                     customStyle={{ padding: "8px 0", width: "80%" }}
-                    onClick={() => handleSubmit()}
                   >
-                    {signinState.isLoading ? "Login..." : "Login"}
+                    Login
                   </DrawerButton>
 
                   <Text
@@ -179,17 +142,14 @@ const SignIn = ({ login }) => {
   );
 };
 
-const mapDispatchToProps = {
-  login: sessionOperations.login,
-};
-
-export default connect(null, mapDispatchToProps)(SignIn);
+export default SignIn;
 
 const ErrorText = styled.p`
   color: rgba(255, 0, 0, 0.759);
-  font-size: 15px;
-  margin-top: -12px;
+  font-size: 12px;
+  margin-top: -25px;
   position: absolute;
+  padding: 0 5px;
 `;
 
 const SignInWrapper = styled.section`
@@ -243,7 +203,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
 
   & div {
     width: 50%;

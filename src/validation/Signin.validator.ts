@@ -1,12 +1,15 @@
 import * as Yup from "yup";
 
 export const initialSigninValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 export const signinValidationSchema = Yup.object().shape({
-  email: Yup.string().label("Email").email().required("Email is required"),
+  username: Yup.string()
+    .label("Username")
+    .required("Username is required")
+    .min(3, "Username must have at least 3 characters"),
 
   password: Yup.string()
     .label("Password")
