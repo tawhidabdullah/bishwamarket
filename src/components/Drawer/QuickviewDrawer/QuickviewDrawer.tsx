@@ -11,7 +11,7 @@ import { Text } from "../../elements/Text";
 import { Color, Size } from "../../elements/RoundButton/RoundButton";
 
 // import toggle drawer action
-import { toggleQuickviewDrawer } from "../../../redux/global/global.actions";
+import { toggleQuickviewDrawer } from "../../../state/ducks/globalState/actions";
 
 // import dummy quick view image
 import quickViewImage from "../../../assets/quickview.jpg";

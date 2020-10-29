@@ -13,7 +13,7 @@ import bimg1 from "../../../assets/slider-tab/a1.jpg";
 import {
   toggleCartDrawer,
   toggleQuickviewDrawer,
-} from "../../../redux/global/global.actions";
+} from "../../../state/ducks/globalState/actions";
 
 const ProductsByCategory = ({
   toggleCartDrawer,
@@ -138,7 +138,6 @@ const ProductBack = styled.div`
   transform: translateX(-100%);
 `;
 
-
 const ProductDetail = styled.div`
   display: flex;
   justify-content: ${(props) =>
@@ -204,9 +203,8 @@ const ProductBox = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 10px 0px;
-  @media only screen and (max-width: 730px)  {
+  @media only screen and (max-width: 730px) {
     width: 100%;
- 
   }
 
   position: relative;
@@ -260,7 +258,7 @@ const ProductImgbox = styled.div`
       height: 260px;
       width: 170px;
     }
-  
+
     @media only screen and (max-width: 580px) and (min-width: 401px) {
       width: 180px;
       height: 260px;
@@ -269,7 +267,7 @@ const ProductImgbox = styled.div`
       width: 170px;
       height: 210px;
     }
-    @media only screen and (max-width: 350px)  {
+    @media only screen and (max-width: 350px) {
       width: 150px;
       height: 210px;
     }
@@ -278,7 +276,7 @@ const ProductImgbox = styled.div`
 const ProductFront = styled.div`
   left: 0;
   top: 0;
- 
+
   transition: all 0.5s ease;
 `;
 
@@ -320,15 +318,13 @@ const NewLevel = styled.div`
     text-transform: uppercase;
 
     transform: rotate(-45deg);
-    
+
     width: fit-content;
     font-size: calc(10px + (14 - 10) * ((100vw - 320px) / (1920 - 320)));
     margin-top: 3px;
     color: #fff;
   }
 `;
-
-
 
 const DetailLeft = styled.div`
   width: ${(props) =>
@@ -369,7 +365,7 @@ const Rating = styled.div`
 const CheckPrice = styled.div`
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
   @media only screen and (max-width: 580px) {
-    margin-right:10px;
+    margin-right: 10px;
   }
 `;
 

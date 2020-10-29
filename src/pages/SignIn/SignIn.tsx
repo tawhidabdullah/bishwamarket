@@ -16,13 +16,31 @@ import {
   signinValidationSchema,
 } from "../../validation/Signin.validator";
 
+// import state
+import { sessionOperations } from "../../state/ducks/session";
+
+// import hooks
+import { useHandleFetch } from "../../hooks";
+
+// input field styles
+const inputStyles = {
+  label: {
+    "font-weight": "bold",
+    "font-size": "18px",
+    "padding-bottom": 0,
+  },
+};
+
 const SignIn = () => {
   const history = useHistory();
   const alert = useAlert();
 
-  useEffect(() => {
-    alert.error("Error");
-  }, []);
+  // hooks for signin
+  const [signinState, handleSigninPost] = useHandleFetch({}, "signin");
+
+  const handleSigninSubmit = async (values, actions) => {
+    console.log(values);
+  };
 
   return (
     <SignInWrapper>
@@ -30,55 +48,68 @@ const SignIn = () => {
         <Header>Login</Header>
 
         <FormContainer>
-          <Form>
-            <InputField
-              type="text"
-              label="Email"
-              name="email"
-              placeholder="Email"
-              customStyle={{
-                label: {
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-bottom": 0,
-                },
-              }}
-            />
+          <Formik
+            initialValues={{ ...initialSigninValues }}
+            validationSchema={signinValidationSchema}
+            validateOnBlur={false}
+            onSubmit={(values, actions) => handleSigninSubmit(values, actions)}
+          >
+            {({
+              handleChange,
+              values,
+              handleSubmit,
+              errors,
+              isSubmitting,
+              touched,
+              setFieldTouched,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <InputField
+                  type="text"
+                  label="Email"
+                  name="email"
+                  placeholder="Email"
+                  value={values.username}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("username");
+                  }}
+                  customStyle={inputStyles}
+                />
+                <ErrorText>
+                  {(touched.username && errors.username) ||
+                    (!isSubmitting && signinState.error["error"]["username"])}
+                </ErrorText>
 
-            <InputField
-              type="password"
-              label="Password"
-              name="password"
-              placeholder="Enter your password"
-              customStyle={{
-                label: {
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-bottom": 0,
-                },
-              }}
-            />
+                <InputField
+                  type="password"
+                  label="Password"
+                  name="password"
+                  placeholder="Enter your password"
+                  customStyle={inputStyles}
+                />
 
-            <ButtonContainer>
-              <DrawerButton
-                wrapperStyle={{ "padding-right": "10px" }}
-                customStyle={{ padding: "8px 0", width: "80%" }}
-              >
-                Login
-              </DrawerButton>
+                <ButtonContainer>
+                  <DrawerButton
+                    wrapperStyle={{ "padding-right": "10px" }}
+                    customStyle={{ padding: "8px 0", width: "80%" }}
+                  >
+                    Login
+                  </DrawerButton>
 
-              <Text
-                customStyle={{
-                  "padding-left": "10px",
-                  "white-space": "nowrap",
-                }}
-                clickAction={() => history.push("/forgot-password")}
-              >
-                Forgot your password?
-              </Text>
-            </ButtonContainer>
-          </Form>
-
+                  <Text
+                    customStyle={{
+                      "padding-left": "10px",
+                      "white-space": "nowrap",
+                    }}
+                    clickAction={() => history.push("/forgot-password")}
+                  >
+                    Forgot your password?
+                  </Text>
+                </ButtonContainer>
+              </Form>
+            )}
+          </Formik>
           <Text
             customStyle={{
               color: "#777",
@@ -112,6 +143,14 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+const ErrorText = styled.p`
+  color: rgba(255, 0, 0, 0.759);
+  font-size: 12px;
+  margin-top: -25px;
+  position: absolute;
+  padding: 0 5px;
+`;
 
 const SignInWrapper = styled.section`
   background-color: #f2f2f2;
