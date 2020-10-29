@@ -124,9 +124,7 @@ const BannerContain = styled.div`
   @media only screen and (min-width: 1750px) and (max-width:2000px) {
     left: -50px;
   }
-  @media only screen and (min-width: 2000px) {
-    left: -100px;
-  }
+  
 `;
 
 const Discount = styled.div`
@@ -186,7 +184,7 @@ const NavigationContainer = styled.div`
   background-color: #f2f2f2;
 
   @media only screen and (min-width: 1450px) {
-    grid-template-columns: 25% 50% 20%;
+    grid-template-columns: 25% 60% auto;
   }
 
   @media only screen and (min-width: 1151px) and (max-width: 1449px) {

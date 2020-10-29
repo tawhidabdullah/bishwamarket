@@ -173,7 +173,7 @@
       "method": "get"
     },
     "productList": {
-      "url": "/api/product?limit=limitNumber",
+      "url": "/api/product",
       "method": "get"
     },
     "offerListCount": {
