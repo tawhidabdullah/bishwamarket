@@ -137,11 +137,14 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(QuickviewDrawer);
 
 const QuickviewDrawerContainer = styled.div`
+  margin: 0 auto;
+
   position: fixed;
-  width: 800px;
-  height: 500px;
-  right: 20%;
+  left: 0;
+  right: 0;
   top: 10%;
+  height: 500px;
+  width: 80%;
   z-index: 2000000;
   background-color: white;
   box-sizing: border-box;
