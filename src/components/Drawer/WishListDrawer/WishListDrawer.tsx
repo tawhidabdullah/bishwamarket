@@ -11,7 +11,7 @@ import { DrawerButton } from "../../common/Button/DrawerButton";
 import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 
 // import toggle drawer action
-import { toggleWishlistDrawer } from "../../../redux/global/global.actions";
+import { toggleWishlistDrawer } from "../../../state/ducks/globalState/actions";
 
 const WishListDrawer = ({ open, toggleWishlistDrawer }) => {
   return (

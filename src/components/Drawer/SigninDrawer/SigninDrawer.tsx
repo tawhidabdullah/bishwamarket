@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { BackDrop } from "../../elements/Backdrop";
 
 // import toggle drawer action
-import { toggleSigninDrawer } from "../../../redux/global/global.actions";
+import { toggleSigninDrawer } from "../../../state/ducks/globalState/actions";
 
 // import form component
 import { InputField } from "../../common/InputField";

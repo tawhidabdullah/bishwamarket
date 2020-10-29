@@ -1,15 +1,28 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { Formik } from "formik";
+import { useAlert } from "react-alert";
 
 // import common components
 import { InputField } from "../../components/common/InputField";
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
 import { Text } from "../../components/elements/Text";
 
+// validation schema
+import {
+  initialSigninValues,
+  signinValidationSchema,
+} from "../../validation/Signin.validator";
+
 const SignIn = () => {
   const history = useHistory();
+  const alert = useAlert();
+
+  useEffect(() => {
+    alert.error("Error");
+  }, []);
 
   return (
     <SignInWrapper>

@@ -150,6 +150,14 @@ const QuickviewDrawerContainer = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1200px) {
+    right: 10%;
+  }
+
+  @media screen and (max-width: 991px) {
+    right: 8%;
+  }
 `;
 
 const ImageContainer = styled.div`

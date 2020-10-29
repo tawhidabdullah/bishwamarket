@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { categoryList } from "./dummyData";
 
 // import toggle drawer action
-import { toggleCategoryDrawer } from "../../../redux/global/global.actions";
+import { toggleCategoryDrawer } from "../../../state/ducks/globalState/actions";
 
 // dummy data
 

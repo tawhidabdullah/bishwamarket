@@ -17,18 +17,29 @@ import { Navigation } from "../containers/Navigation";
 import { Footer } from "../components/Footer";
 
 // import toggle drawer actions
-import {
-  toggleCategoryDrawer,
-  toggleSigninDrawer,
-  toggleWishlistDrawer,
-  toggleCartDrawer,
-  toggleNavigationDrawer,
-  toggleQuickviewDrawer,
-  toggleSettingsDrawer,
-  toggleSearchDrawer,
-} from "../redux/global/global.actions";
+// import {
+//   toggleCategoryDrawer,
+//   toggleSigninDrawer,
+//   toggleWishlistDrawer,
+//   toggleCartDrawer,
+//   toggleNavigationDrawer,
+//   toggleQuickviewDrawer,
+//   toggleSettingsDrawer,
+//   toggleSearchDrawer,
+// } from "../redux/global/global.actions";
 
-const Layout = ({ children, globals }) => {
+// import {
+//   toggleCategoryDrawer,
+//   toggleSigninDrawer,
+//   toggleWishlistDrawer,
+//   toggleCartDrawer,
+//   toggleNavigationDrawer,
+//   toggleQuickviewDrawer,
+//   toggleSettingsDrawer,
+//   toggleSearchDrawer,
+// } from "../state/ducks/globalState/actions";
+
+const Layout = ({ children, globalState }) => {
   const {
     openSigninDrawer,
     openWishlistDrawer,
@@ -38,7 +49,7 @@ const Layout = ({ children, globals }) => {
     openQuickviewDrawer,
     openSettingsDrawer,
     openSearchDrawer,
-  } = globals;
+  } = globalState;
 
   return (
     <>
@@ -59,18 +70,18 @@ const Layout = ({ children, globals }) => {
 };
 
 const mapStateToProps = (state) => ({
-  globals: state.globals,
+  globalState: state.globalState,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleSigninDrawer: () => dispatch(toggleSigninDrawer()),
-  toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
-  toggleCartDrawer: () => dispatch(toggleCartDrawer()),
-  toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
-  toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
-  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
-  toggleSettingsDrawer: () => dispatch(toggleSettingsDrawer()),
-  toggleSearchDrawer: () => dispatch(toggleSearchDrawer()),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   toggleSigninDrawer: () => dispatch(toggleSigninDrawer()),
+//   toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
+//   toggleCartDrawer: () => dispatch(toggleCartDrawer()),
+//   toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
+//   toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
+//   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+//   toggleSettingsDrawer: () => dispatch(toggleSettingsDrawer()),
+//   toggleSearchDrawer: () => dispatch(toggleSearchDrawer()),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps)(Layout);
