@@ -210,15 +210,12 @@ const ProductBox = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 10px 0px;
-  @media only screen and (max-width: 730px)  {
-    width: 100%;
- 
-  }
 
   position: relative;
   overflow: hidden;
   background-color: #fff;
-
+  width: 100%;
+ 
   &:hover ${ProductIconContainer} {
     transform: translateX(0%);
     visibility: visible;

@@ -351,7 +351,7 @@ const Jewellerybanner = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   padding: 35px;
-  
+  height:100%;
  display:grid;
  align-items:center;
 `;
