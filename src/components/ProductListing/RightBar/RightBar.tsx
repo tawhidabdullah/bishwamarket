@@ -187,6 +187,9 @@ const Dropdowncategory = styled.div`
     &:nth-child(2) {
       border-top: 1px solid black;
     }
+    &:nth-child(1) {
+      border-right: 0px solid black;
+    }
   }
 `;
 

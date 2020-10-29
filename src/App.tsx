@@ -37,7 +37,7 @@ const App = () => {
     <BrowserRouter>
       <Fragment>
         <Suspense fallback="Loading...">
-          {/* <Layout> */}
+          <Layout>
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path={"/te"} component={Category} />
@@ -55,7 +55,7 @@ const App = () => {
               <Route exact path="/order-success" component={OrderSuccess} />
               <Route exact path="/cart" component={Cart} />
             </Switch>
-          {/* </Layout> */}
+          </Layout>
           <GlobalStyles />
         </Suspense>
       </Fragment>

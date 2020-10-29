@@ -104,7 +104,7 @@ const CollectionMediaBanner = () => {
 
     responsive: [
       {
-        breakpoint: 1524,
+        breakpoint: 3524,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1,
@@ -135,102 +135,108 @@ const CollectionMediaBanner = () => {
   };
 
   return (
-    <Main>
-      {" "}
-      <MainContent>
-        <Slider {...settings}>
-          <MediaBanner />
-          <MediaBanner />
-          <MediaBanner />
+    <Section>
+      <Main>
+        {" "}
+        <MainContent>
+          <Slider {...settings}>
+            <MediaBanner />
+            <MediaBanner />
+            <MediaBanner />
 
-          <MediaBanner />
-          <MediaBanner />
-        </Slider>
-      </MainContent>
-      <MidContent>
-        <Jewellerybanner style={{ backgroundImage: `url(${img})` }}>
-          <a>save 30% off</a>
-          <h6>Jewellery</h6>
-        </Jewellerybanner>
-      </MidContent>
-      <MainContents>
-        <LeftContens>
-          <Slider
-            asNavFor={nav2}
-            ref={(slider) => (slider1 = slider)}
-            arrows={true}
-          >
-            <div>
-              <HotdealItem />
-            </div>
-            <div>
-              <HotdealItem />
-            </div>
-            <div>
-              <HotdealItem />
-            </div>
-            <div>
-              <HotdealItem />
-            </div>
-            <div>
-              <HotdealItem />
-            </div>
-            <div>
-              <HotdealItem />
-            </div>
+            <MediaBanner />
+            <MediaBanner />
           </Slider>
-        </LeftContens>
+        </MainContent>
+        <MidContent>
+          <Jewellerybanner style={{ backgroundImage: `url(${img})` }}>
+            <Text>
+              <h2>save 30% off</h2>
+              <h3>Jewellery</h3>
+            </Text>
+          </Jewellerybanner>
+        </MidContent>
+        <MainContents>
+          <LeftContens>
+            <Slider
+              asNavFor={nav2}
+              ref={(slider) => (slider1 = slider)}
+              arrows={true}
+            >
+              <div>
+                <HotdealItem />
+              </div>
+              <div>
+                <HotdealItem />
+              </div>
+              <div>
+                <HotdealItem />
+              </div>
+              <div>
+                <HotdealItem />
+              </div>
+              <div>
+                <HotdealItem />
+              </div>
+              <div>
+                <HotdealItem />
+              </div>
+            </Slider>
+          </LeftContens>
 
-        <Rightslide>
-          <Slider
-            asNavFor={nav1}
-            ref={(slider) => (slider2 = slider)}
-           {...settings2}
-          >
-            <div>
-              <img
-                src={slides[0].url}
-                style={{ height: "50px", width: "50px" }}
-              />
-            </div>
-            <div>
-              <img
-                src={slides[0].url}
-                style={{ height: "50px", width: "50px" }}
-              />
-            </div>
-            <div>
-              <img
-                src={slides[0].url}
-                style={{ height: "50px", width: "50px" }}
-              />
-            </div>
-            <div>
-              <img
-                src={slides[0].url}
-                style={{ height: "50px", width: "50px" }}
-              />
-            </div>
-            <div>
-              <img
-                src={slides[0].url}
-                style={{ height: "50px", width: "50px" }}
-              />
-            </div>
-            <div>
-              <img
-                src={slides[0].url}
-                style={{ height: "50px", width: "50px" }}
-              />
-            </div>
-          </Slider>
-        </Rightslide>
-      </MainContents>
-    </Main>
+          <Rightslide>
+            <Slider
+              asNavFor={nav1}
+              ref={(slider) => (slider2 = slider)}
+              {...settings2}
+            >
+              <div>
+                <img
+                  src={slides[0].url}
+                  style={{ height: "50px", width: "50px" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={slides[0].url}
+                  style={{ height: "50px", width: "50px" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={slides[0].url}
+                  style={{ height: "50px", width: "50px" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={slides[0].url}
+                  style={{ height: "50px", width: "50px" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={slides[0].url}
+                  style={{ height: "50px", width: "50px" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={slides[0].url}
+                  style={{ height: "50px", width: "50px" }}
+                />
+              </div>
+            </Slider>
+          </Rightslide>
+        </MainContents>
+      </Main>
+    </Section>
   );
 };;
 export default CollectionMediaBanner;
-
+const Section=styled.div`
+background-color:#fff;
+`;
 const MainContents = styled.div`
   outline: none;
   background-color: #f2f2f2;
@@ -310,12 +316,18 @@ const Main = styled.div`
   display: grid;
   justify-content: center;
   padding: 30px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 300px 1fr auto;
+  max-width:1400px;
+  margin:0 auto;
   @media only screen and (max-width: 1000px) and (min-width: 580px) {
     grid-template-columns: 1fr 1fr;
   }
-  @media only screen and (max-width: 580px)  {
-    grid-template-columns: 1fr ;
+  @media only screen and (max-width: 580px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media only screen and (min-width: 1300px) {
+    grid-template-columns: 1fr 300px 1fr;
   }
 `;
 const MainContent = styled.div`
@@ -327,19 +339,26 @@ const MainContent = styled.div`
 `;
 
 const MidContent = styled.div`
-  background-color: red;
+
   display: grid;
   grid-template-columns: minmax(140px, 1fr);
+  text-align:center;
+  align-items:center;
 `;
 
 const Jewellerybanner = styled.div`
-  background-size: cover;
+  background-size: cover ;
   background-repeat: no-repeat;
   background-position: center;
   padding: 35px;
-  height: 100%;
+  
+ display:grid;
+ align-items:center;
 `;
 
+const Text= styled.div`
+
+`;
 const HotDealContainer = styled.div`
   background-color: #f2f2f2;
 `;

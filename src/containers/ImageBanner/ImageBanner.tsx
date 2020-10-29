@@ -47,30 +47,7 @@ const  ImageBanner=()=> {
         <Content></Content>
 
         <SliderBanner>
-          {/*  <SliderImage>
-            <ul className="layout2-slide-1">
-              <li
-                id="img-1"
-                // style={{ transform: "translateX(1.9%) translateY(0.02%)" }}
-              >
-                <img src={slider1} className="img-fluid" alt="slider" />
-              </li>
-            </ul>
-          </SliderImage>
-          <SliderBannercontent>
-            <div>
-              <h4>the best</h4>
-              <h1>loffer shoes</h1>
-              <h2>minimum 30% off</h2>
-              <a className="btn btn-rounded">Shop Now</a>
-            </div>
-          </SliderBannercontent>  */}
-
-          {/* <CollectionItem
-            customStyles={{
-              height: "400px",
-            }}
-          ></CollectionItem> */}
+        
           <MainSlider
             responsive={responsive}
             ProductsByCategory={ThemeSlider}
@@ -177,6 +154,7 @@ const BottomImage = styled.div`
   grid-auto-rows: minmax(180px, auto);
   @media only screen and (max-width: 1150px) and (min-width: 580px) {
     grid-template-columns: 2fr 2fr 2fr;
+    margin-left: 0px;
   }
 
   @media only screen and (max-width: 580px) {

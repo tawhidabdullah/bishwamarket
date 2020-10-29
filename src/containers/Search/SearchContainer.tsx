@@ -12,7 +12,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
      <Section>
        <SearchContain title={"search"} />
        <SearchField />
-      
+
        <Main>
          <ProductsByCategory
            customStyles={{
@@ -23,6 +23,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
          <ProductsByCategory
@@ -34,6 +35,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
          <ProductsByCategory
@@ -45,6 +47,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
          <ProductsByCategory
@@ -56,6 +59,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
          <ProductsByCategory
@@ -67,6 +71,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
          <ProductsByCategory
@@ -78,6 +83,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
          <ProductsByCategory
@@ -89,6 +95,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
              containerright: "10%",
              containerTransform: "translateY(100%)",
              containertop: "80%",
+             page: "search",
            }}
          />
        </Main>
@@ -106,7 +113,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
 const Main = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: minmax(240, auto);
+  /* grid-auto-rows: minmax(240px, auto); */
 
   max-width: 1400px;
   margin: 0 auto;
@@ -123,7 +130,7 @@ const Main = styled.div`
     grid-gap: 10px;
   }
 
-  @media only screen and (max-width: 630px) and (min-width: 580px) {
+  @media only screen and (max-width: 630px) and (min-width: 500px) {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
   }

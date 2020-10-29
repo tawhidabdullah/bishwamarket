@@ -32,18 +32,24 @@ const ProductsByCategory = ({
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer customStyles={customStyles}>
-        <ProductIcon onClick={() => toggleCartDrawer()}>
+        <ProductIcon
+          onClick={() => toggleCartDrawer()}
+          customStyles={customStyles}
+        >
           <i className="fa fa-shopping-bag"></i>
         </ProductIcon>
-        <ProductIcon>
+        <ProductIcon customStyles={customStyles}>
           <i className="fa fa-heart-o"></i>
         </ProductIcon>
 
-        <ProductIcon onClick={() => toggleQuickviewDrawer()}>
+        <ProductIcon
+          onClick={() => toggleQuickviewDrawer()}
+          customStyles={customStyles}
+        >
           <i className="fa fa-search"></i>
         </ProductIcon>
 
-        <ProductIcon>
+        <ProductIcon customStyles={customStyles}>
           <i className="fa fa-exchange"></i>
         </ProductIcon>
       </ProductIconContainer>
@@ -238,11 +244,25 @@ const ProductIcon = styled.span`
   padding: 15px;
   color: #777;
   cursor: pointer;
-  @media only screen and (max-width: 630px) {
+  @media only screen and (max-width: 630px) and (min-width: 500px) {
     padding: 10px;
   }
+
+  @media only screen and (max-width: 500px) and (min-width: 400px) {
+    padding: ${(props) =>
+      props.customStyles
+        ? props.customStyles.page
+          ? "15px"
+          : "10px"
+        : "10px"};
+  }
   @media only screen and (max-width: 400px) {
-    padding: 6px;
+    padding: ${(props) =>
+      props.customStyles
+        ? props.customStyles.page
+          ? "15px"
+          : "6px"
+        : "6px"};
   }
 `;
 
