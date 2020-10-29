@@ -6,7 +6,7 @@ import { DropdownItemStyles, DropdownContainerStyles } from "./commonStyles";
 const ShopDropdown = () => {
   return (
     <ShopDropdownContainer>
-      <ShopDropdownItem>Left Sidebar</ShopDropdownItem>
+      <ShopDropdownItem >Left Sidebar</ShopDropdownItem>
       <ShopDropdownItem>Right Sidebar</ShopDropdownItem>
       <ShopDropdownItem>No Sidebar</ShopDropdownItem>
       <ShopDropdownItem>Sidebar popup</ShopDropdownItem>

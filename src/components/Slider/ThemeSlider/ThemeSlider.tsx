@@ -68,6 +68,8 @@ const SliderImage = styled.div`
   }
   & img{
     object-fit:fill;
+    height:100%;
+    width:100%;
   }
 `;
 

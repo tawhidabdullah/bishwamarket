@@ -2,18 +2,18 @@ import React from 'react'
 import { Button } from 'react-bootstrap';
 import styled from "styled-components"
 import img1 from "../../assets/hotDeal/1.jpg";
-const HotdealItem =(props)=> {
+const HotdealItem =()=> {
+
     return (
       <HotDealContainer>
         <HotDeal>
           <h5>today’s hot deal</h5>
-          <button onClick={props.onNext}>Next</button>
-          <button onClick={props.onPrev}>Prev</button>
+       
         </HotDeal>
 
         <HotContain>
-          <div className="right-slick-img" style={{ width: "100%" }}>
-            <img src={props.url} alt="hot-deal" className="img-fluid" />
+          <div className="right-slick-img" >
+            <img src={img1} />
           </div>
           <HotdealCenter>
             <div>
@@ -59,7 +59,7 @@ const HotdealItem =(props)=> {
               </PriceBox>
             </div>
           </HotdealCenter>
-          {/* <h5>today’s hot deal</h5> */}
+         
         </HotContain>
       </HotDealContainer>
     );
@@ -69,6 +69,11 @@ export default HotdealItem;
 
 const HotDealContainer = styled.div`
   background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  @media only screen and (max-width: 580px) {
+   width:90%;
+  }
 `;
 
 const HotDeal = styled.div`
@@ -79,19 +84,31 @@ const HotDeal = styled.div`
     text-transform: uppercase;
     color: #444;
   }
+  @media only screen and (max-width: 580px) {
+    text-align: center;
+  }
 `;
 const HotContain = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
+  @media only screen and (max-width: 580px) {
+    grid-template-columns: 1fr ;
+    justify-items:center;
+    align-items:center;
+  }
 `;
 
 const HotdealCenter = styled.div`
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+
   align-items: start;
   justify-content: start;
   height: 100%;
+  @media only screen and (max-width: 580px) {
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+  }
 `;
 
 const HotRating = styled.div`
@@ -154,4 +171,17 @@ const Text = styled.div`
   text-transform: capitalize;
   letter-spacing: 0.05em;
   margin: 20px 10px;
+`;
+
+
+const HotsideImage=styled.div`
+display:flex;
+flex-direction:column;
+overflow:auto;
+
+& p{
+  width:100%;
+  background-color:red;
+}
+
 `;

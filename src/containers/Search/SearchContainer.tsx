@@ -12,86 +12,94 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
      <Section>
        <SearchContain title={"search"} />
        <SearchField />
-      
-       <Main>
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-         <ProductsByCategory
-           customStyles={{
-             productBackgroundColor: "#fff",
-             Levelvisibility: "hidden",
-             ProductDetailVisibility: "hidden",
-             containerDirection: "row",
-             containerright: "10%",
-             containerTransform: "translateY(100%)",
-             containertop: "80%",
-           }}
-         />
-       </Main>
+       <SearchProduct>
+         <Main>
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+           <ProductsByCategory
+             customStyles={{
+               productBackgroundColor: "#fff",
+               Levelvisibility: "hidden",
+               ProductDetailVisibility: "hidden",
+               containerDirection: "row",
+               containerright: "10%",
+               containerTransform: "translateY(100%)",
+               containertop: "80%",
+               page: "search",
+             }}
+           />
+         </Main>
+       </SearchProduct>
      </Section>
    );
  };
@@ -101,36 +109,40 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
 
 
 
-
+const SearchProduct = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+`;
 
 const Main = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: minmax(240, auto);
+  /* grid-auto-rows: minmax(240px, auto); */
 
-  max-width: 1400px;
-  margin: 0 auto;
   justify-items: center;
 
   margin-left: 10px;
   margin-right: 20px;
-
+  grid-gap: 10px;
   @media only screen and (max-width: 580px) {
     grid-template-columns: 1fr;
+    grid-gap: 0px;
   }
   @media only screen and (max-width: 980px) and (min-width: 630px) {
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
   }
 
-  @media only screen and (max-width: 630px) and (min-width: 580px) {
+  @media only screen and (max-width: 630px) and (min-width: 500px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
   }
   @media only screen and (max-width: 1200px) and (min-width: 980px) {
     grid-template-columns: repeat(4, 1fr);
   }
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (max-width: 1500px) and (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media only screen and (min-width: 1500px) {
     grid-template-columns: repeat(5, 1fr);
   }
 `;

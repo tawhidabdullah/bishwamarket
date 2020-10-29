@@ -6,6 +6,7 @@ import { MainSlider } from "../../components/Slider/MainSlider";
 import { Blog } from "../../components/Banner/Blog";
 import CollectionItem from "../../components/CollectionItem/CollectionItem"
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
+import offerImg from "../../assets/offerBanner/offer-banner.png"
 const  ImageBanner=()=> {
   const responsive = {
     responsive: [
@@ -47,41 +48,25 @@ const  ImageBanner=()=> {
         <Content></Content>
 
         <SliderBanner>
-          {/*  <SliderImage>
-            <ul className="layout2-slide-1">
-              <li
-                id="img-1"
-                // style={{ transform: "translateX(1.9%) translateY(0.02%)" }}
-              >
-                <img src={slider1} className="img-fluid" alt="slider" />
-              </li>
-            </ul>
-          </SliderImage>
-          <SliderBannercontent>
-            <div>
-              <h4>the best</h4>
-              <h1>loffer shoes</h1>
-              <h2>minimum 30% off</h2>
-              <a className="btn btn-rounded">Shop Now</a>
-            </div>
-          </SliderBannercontent>  */}
-
-          {/* <CollectionItem
-            customStyles={{
-              height: "400px",
-            }}
-          ></CollectionItem> */}
           <MainSlider
             responsive={responsive}
             ProductsByCategory={ThemeSlider}
             customStyles={{
               width: "100%",
-          
             }}
           />
         </SliderBanner>
         <RightSlider>
-  <p>hjkkkkkhsdsddd</p>
+          <OfferBannerImg>
+            <img src={offerImg} alt="offer-banner" className="img-fluid  " />
+          </OfferBannerImg>
+          <BannerContain>
+            <h5>Special Offer for you</h5>
+            <Discount>
+              <h1>50%</h1>
+              <sup>off</sup>
+            </Discount>
+          </BannerContain>
         </RightSlider>
 
         <BottomImage>
@@ -97,6 +82,73 @@ const  ImageBanner=()=> {
 
 export default ImageBanner;
 
+
+const OfferBannerImg=styled.div`
+   height: 100%;
+    background-color: #ff6000;
+   
+    display: flex;
+   
+    align-items: center;
+
+    & img{
+      height: 100%;
+     width:100%;
+     object-fit:fill;
+    }
+
+`;
+
+const BannerContain = styled.div`
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  & h5 {
+    font-size: 18px;
+    color: #fff;
+    font-family: Raleway, sans-serif;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    margin-top: 25px;
+  }
+  @media only screen and (min-width: 1750px) and (max-width:2000px) {
+    left: -50px;
+  }
+  @media only screen and (min-width: 2000px) {
+    left: -100px;
+  }
+`;
+
+const Discount = styled.div`
+  display: flex;
+  & h1 {
+    color: #fff;
+    line-height: 1;
+    font-style: italic;
+    font-weight: 700;
+    margin-bottom: 0;
+    font-size: calc(30px + (72 - 30) * ((100vw - 320px) / (1920 - 320)));
+  }
+
+  & sup {
+    font-size: 25px;
+    color: #fff;
+    line-height: 1;
+    font-style: italic;
+    font-weight: 700;
+    top: 10px;
+  }
+`;
 const Content = styled.div`
   display: grid;
   grid-row: 1/ 3;
@@ -118,6 +170,10 @@ const Content = styled.div`
 
 const RightSlider = styled.div`
   display: none;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+
   @media only screen and (min-width: 1450px) {
     display: flex;
   }
@@ -177,6 +233,7 @@ const BottomImage = styled.div`
   grid-auto-rows: minmax(180px, auto);
   @media only screen and (max-width: 1150px) and (min-width: 580px) {
     grid-template-columns: 2fr 2fr 2fr;
+    margin-left: 0px;
   }
 
   @media only screen and (max-width: 580px) {
