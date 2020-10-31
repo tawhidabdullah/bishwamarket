@@ -2,23 +2,39 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Formik } from "formik";
+import { useAlert } from "react-alert";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // import common components
 import { InputField } from "../../components/common/InputField";
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
 import { Text } from "../../components/elements/Text";
+import { useHandleFetch } from "../../hooks";
 
-// should be refactored, not beign DRY
+// TODO should be refactored, not being DRY
 // constant styles
 const LabelStyles = {
   label: {
     "font-weight": "bold",
-    "font-size": "18px",
+    "font-size": "18px", 
     "padding-bottom": 0,
   },
 };
 
 const SignUp = () => {
+
+  const history = useHistory();
+  const alert = useAlert();
+
+  // signup hooks
+  const [signupState, handleSignupState] = useHandleFetch({}, 'signup')
+
+  const handleSignupSubmit = async (values, actions) => {
+    
+  }
+
   return (
     <SignUpWrapper>
       <SignUpContainer>
