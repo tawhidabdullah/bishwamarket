@@ -29,7 +29,7 @@ const ProductsByCategory = ({
  const productsState = useQueryFetch("productList");
 
 
-  console.log(productsState);
+  // console.log(productsState);
 
   return (
     <ProductBox customStyles={customStyles}>
@@ -219,12 +219,6 @@ const ProductBox = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 10px 0px;
-<<<<<<< HEAD
-  @media only screen and (max-width: 730px) {
-    width: 100%;
-  }
-=======
->>>>>>> d6a78248f505873a0d55daec130726a556dc396a
 
   position: relative;
   overflow: hidden;
