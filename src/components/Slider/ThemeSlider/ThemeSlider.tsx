@@ -1,25 +1,34 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import slider1 from "../../../assets/1.1.png";
 import styled from "styled-components"
-const ThemeSlider = () => {
+
+import { useQueryFetch } from "../../../hooks";
+const ThemeSlider = ({item}) => {
+
+    
   return (
-    <SliderBanner>
-      <SliderImage>
-        <ul className="layout2-slide-1">
-          <li id="img-1">
-            <img src={slider1} className="img-fluid" alt="slider" />
-          </li>
-        </ul>
-      </SliderImage>
-      <SliderBannercontent>
-        <Content>
-          <h4>the best</h4>
-          <h1>loffer shoes</h1>
-          <h2>minimum 30% off</h2>
-          <a className="btn btn-rounded">Shop Now</a>
-        </Content>
-      </SliderBannercontent>
-    </SliderBanner>
+   
+          <SliderBanner>
+            <SliderImage>
+              <ul className="layout2-slide-1">
+                <li id="img-1">
+                  <img src={slider1} className="img-fluid" alt="slider" />
+                </li>
+              </ul>
+            </SliderImage>
+            <SliderBannercontent>
+              <Content>
+                <h4>the best</h4>
+                <h1>loffer shoes</h1>
+                <h2>minimum 30% off</h2>
+                <a className="btn btn-rounded">Shop Now</a>
+              </Content>
+            </SliderBannercontent>
+          </SliderBanner>
+
+
+          
+     
   );
 };
 
@@ -29,7 +38,7 @@ const SliderBanner = styled.div`
   position: relative;
   overflow: hidden;
 
-  background-color: #eddbd1;
+ 
   margin-top: 10px;
 
   width: 100%;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import slider1 from "../../assets/1.1.png";
 import image from "../../assets/banner/1.jpg";
@@ -7,7 +7,29 @@ import { Blog } from "../../components/Banner/Blog";
 import CollectionItem from "../../components/CollectionItem/CollectionItem"
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
 import offerImg from "../../assets/offerBanner/offer-banner.png"
+
+import { useQueryFetch } from "../../hooks";
 const  ImageBanner=()=> {
+
+
+
+
+
+    const bannerState = useQueryFetch("banner");
+    const [status, setStatus] = useState(true);
+    const [data, setdata] = useState([]);
+
+    useEffect(() => {
+      if (bannerState.isLoading === false) {
+        console.log("pppp");
+        setdata(bannerState.data);
+        console.log(bannerState.data[0]);
+        setStatus(false);
+      }
+    }, [bannerState.isLoading]);
+
+
+
   const responsive = {
     responsive: [
       {
@@ -48,13 +70,20 @@ const  ImageBanner=()=> {
         <Content></Content>
 
         <SliderBanner>
-          <MainSlider
-            responsive={responsive}
-            ProductsByCategory={ThemeSlider}
-            customStyles={{
-              width: "100%",
-            }}
-          />
+          {status ? (
+            <div className="loaderSection">
+              <div className="createLoader"></div>
+            </div>
+          ) : (
+            <MainSlider
+              responsive={responsive}
+              ProductsByCategory={ThemeSlider}
+              data={data}
+              customStyles={{
+                width: "100%",
+              }}
+            />
+          )}
         </SliderBanner>
         <RightSlider>
           <OfferBannerImg>

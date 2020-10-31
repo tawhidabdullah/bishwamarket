@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 
-
+console.log(props.data);
  const [activeSlide, setactiveSlide] = useState(0);
    const [activeSlide2, setactiveSlide2] = useState(0);
    const settings = {
@@ -23,14 +23,19 @@ const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
     return (
       <Layout customStyles={customStyles}>
         <MainContent customStyles={customStyles}>
+          
           <Slider {...settings}>
+             <ProductsByCategory customStyles={customStyles} />
             <ProductsByCategory customStyles={customStyles} />
             <ProductsByCategory customStyles={customStyles} />
             <ProductsByCategory customStyles={customStyles} />
             <ProductsByCategory customStyles={customStyles} />
             <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} /> 
+
+          {/* {props.data.map((item) => {
+              
+            })}  */}
           </Slider>
         </MainContent>
       </Layout>
