@@ -10,7 +10,7 @@ const DashboardSideBar = ({ sidebarList }) => {
             sidebarList &&
             sidebarList[0] &&
             sidebarList.map((item, idx) => (
-              <SidebarListItem>
+              <SidebarListItem key={idx}>
                 <span>
                   <i className="fa fa-angle-right" /> {item}
                 </span>
