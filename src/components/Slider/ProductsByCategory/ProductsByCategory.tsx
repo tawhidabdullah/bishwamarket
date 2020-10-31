@@ -15,12 +15,22 @@ import {
   toggleQuickviewDrawer,
 } from "../../../state/ducks/globalState/actions";
 
+
+import { useQueryFetch } from '../../../hooks';
+
+
+
 const ProductsByCategory = ({
   toggleCartDrawer,
   toggleQuickviewDrawer,
 
   customStyles,
 }) => {
+ const productsState = useQueryFetch("productList");
+
+
+  console.log(productsState);
+
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SearchContain } from "../../components/Search/SearchContain";
 import { CollectionByCategory } from "../../components/Collection";
 const CollectionContainer = () => {
+
   return (
     <Section>
       <SearchContain title={"Collection"} />
