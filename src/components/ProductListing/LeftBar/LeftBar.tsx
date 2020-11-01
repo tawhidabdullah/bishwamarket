@@ -27,7 +27,6 @@ const LeftBar=()=> {
         <div className="content">
           <ContentList>
             <label>
-        
               <input
                 type="checkbox"
                 id="vehicle1"
@@ -40,7 +39,6 @@ const LeftBar=()=> {
 
           <ContentList>
             <label>
-            
               <input
                 type="checkbox"
                 id="vehicle2"
@@ -90,8 +88,48 @@ const LeftBar=()=> {
           </Colors>
         </div>
 
-      
+        <Tag onClick={(e) => handle(2)}>
+          <h6>
+            <strong>Price</strong>
+          </h6>
+        </Tag>
+        <div className="content">
+          <ContentList>
+            <label>
+              <input
+                type="checkbox"
+                id="vehicle1"
+                name="vehicle1"
+                value="Bike"
+              />
+              $10-$100
+            </label>
+          </ContentList>
 
+          <ContentList>
+            <label>
+              <input
+                type="checkbox"
+                id="vehicle2"
+                name="vehicle2"
+                value="Car"
+              />
+              $100-$200
+            </label>
+          </ContentList>
+
+          <ContentList>
+            <label>
+              <input
+                type="checkbox"
+                id="vehicle3"
+                name="vehicle3"
+                value="Boat"
+              />
+              $200-$300
+            </label>
+          </ContentList>
+        </div>
       </LeftContent>
     );
 
