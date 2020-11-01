@@ -73,30 +73,32 @@ const App = () => {
                   </Route>
 
                   <Route exact path={"/Search"}>
-                    <Search  />
+                    <Search />
                   </Route>
-                  <Route exact path="/productListing">
-                
-                    <ProductListing product={products} />
+                  <Route exact path="/product">
+                    <ProductListing products={products} />
                   </Route>
-                
+
+                  <Route exact path={"/te"} component={Category} />
+
+                  <Route exact path="/signin" component={SignIn} />
+                  <Route exact path="/signup" component={SignUp} />
+                  <Route
+                    exact
+                    path="/forgot-password"
+                    component={ForgotPassword}
+                  />
+                  <Route exact path="/checkout" component={Checkout} />
+
+                  <Route exact path="/profile" component={Profile} />
+                  <Route exact path="/collection" component={Collection} />
+                  <Route exact path="/wishlist" component={WishlistPage} />
+                  <Route exact path="/order-history" component={OrderHistory} />
+                  <Route exact path="/order-success" component={OrderSuccess} />
+                  <Route exact path="/cart" component={Cart} />
+                  <Route exact path="/dashboard" component={Dashboard} />
                 </>
               )}
-
-              <Route exact path={"/te"} component={Category} />
-
-              <Route exact path="/signin" component={SignIn} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/forgot-password" component={ForgotPassword} />
-              <Route exact path="/checkout" component={Checkout} />
-
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/collection" component={Collection} />
-              <Route exact path="/wishlist" component={WishlistPage} />
-              <Route exact path="/order-history" component={OrderHistory} />
-              <Route exact path="/order-success" component={OrderSuccess} />
-              <Route exact path="/cart" component={Cart} />
-              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </Layout>
           <GlobalStyles />

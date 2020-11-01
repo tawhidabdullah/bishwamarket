@@ -1,123 +1,96 @@
-import React from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import image1 from "../../../assets/dropdown.png"
-import { ProductsByCategory } from '../../Slider/ProductsByCategory';
-const RightBar=()=> {
-    return (
-      <RightContainer>
-        <Titel>
-          <h5>Showing Products Results</h5>
-          <TitelBottom>
-            <Dropdowncategory>
-              <select>
-                <option>50 Products Per Page</option>
-                <option>20 Products Per Page</option>
-                <option>10 Products Per Page</option>
-              </select>
-            </Dropdowncategory>
-            
-            <Dropdowncategory>
-              <select>
-                <option>50 Products Per Page</option>
-                <option>20 Products Per Page</option>
-                <option>10 Products Per Page</option>
-              </select>
-            </Dropdowncategory>
-          </TitelBottom>
-        </Titel>
-        <Products>
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-          <ProductsByCategory
-            customStyles={{
-              productBackgroundColor: "#fff",
-              Levelvisibility: "hidden",
-              ProductDetailVisibility: "hidden",
-              containerDirection: "row",
-              containerright: "10%",
-              containerTransform: "translateY(100%)",
-              containertop: "80%",
-            }}
-          />
-        </Products>
-      </RightContainer>
-    );
-}
+import image1 from "../../../assets/dropdown.png";
+import { ProductsByCategory } from "../../Slider/ProductsByCategory";
 
+// import button element
+import { DrawerButton } from "../../common/Button/DrawerButton";
+
+// import filter drawer
+import { FilterDrawer } from "../../Drawer/FilterDrawer";
+
+const productCardStyles = {
+  productBackgroundColor: "#fff",
+  Levelvisibility: "hidden",
+  ProductDetailVisibility: "hidden",
+  containerDirection: "row",
+  containerright: "10%",
+  containerTransform: "translateY(100%)",
+  containertop: "80%",
+};
+
+const RightBar = ({ products }) => {
+  console.log(products,"RightBar");
+  const [isFilterDrawer, setIsFilterDrawer] = useState(false);
+  const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
+
+  return (
+    <RightContainer>
+      <ButtonWrapper onClick={() => toggleFilterDrawer()}>
+        <DrawerButton
+          customStyle={{ padding: "8px 0", "font-weight": "bold" }}
+          wrapperStyle={{ width: "15%", margin: "unset" }}
+        >
+          <span>
+            <i className="fa fa-filter"></i>
+          </span>{" "}
+          Filter
+        </DrawerButton>
+      </ButtonWrapper>
+      <FilterDrawer
+        open={isFilterDrawer}
+        toggleFilterDrawer={toggleFilterDrawer}
+      />
+      <Title>
+        <h5>Showing Products Results</h5>
+        <TitleBottom>
+          <Dropdowncategory>
+            <select>
+              <option>50 Products Per Page</option>
+              <option>20 Products Per Page</option>
+              <option>10 Products Per Page</option>
+            </select>
+          </Dropdowncategory>
+
+          <Dropdowncategory>
+            <select>
+              <option>Sorting Products</option>
+              <option>20 Products Per Page</option>
+              <option>10 Products Per Page</option>
+            </select>
+          </Dropdowncategory>
+        </TitleBottom>
+      </Title>
+      <Products>
+        {/* <ProductsByCategory customStyles={productCardStyles} />
+        <ProductsByCategory customStyles={productCardStyles} />
+        <ProductsByCategory customStyles={productCardStyles} />
+        <ProductsByCategory customStyles={productCardStyles} />
+        <ProductsByCategory customStyles={productCardStyles} />
+        <ProductsByCategory customStyles={productCardStyles} />
+        <ProductsByCategory customStyles={productCardStyles} /> */}
+        {products.map((item=>{
+          return <ProductsByCategory item={item} customStyles={productCardStyles} />;
+        }))}
+      </Products>
+    </RightContainer>
+  );
+};
 
 export default RightBar;
 
-const RightContainer=styled.div`
+const ButtonWrapper = styled.div`
+  display: none;
 
-
+  @media screen and (max-width: 991px) {
+    display: block;
+  }
 `;
 
-const Titel = styled.div`
+const RightContainer = styled.div``;
+
+const Title = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -132,7 +105,7 @@ const Titel = styled.div`
     color: #333;
   }
 `;
-const TitelBottom = styled.div`
+const TitleBottom = styled.div`
   border: 1px solid #ddd;
 
   display: flex;
@@ -142,7 +115,6 @@ const TitelBottom = styled.div`
     flex-direction: column;
   }
 `;
-
 
 const Dropdowncategory = styled.div`
   padding-right: 30px;
@@ -191,8 +163,6 @@ const Dropdowncategory = styled.div`
     }
   }
 `;
-
-
 
 const Products = styled.div`
   display: grid;
