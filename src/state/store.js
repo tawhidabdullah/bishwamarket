@@ -15,7 +15,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
 const persistConfig = {
   key: "shop",
   storage: storage,
-  whitelist: ["lingual", "cart"], // session removed from array
+  whitelist: ["lingual", "cart", "session"], // session removed from array
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);

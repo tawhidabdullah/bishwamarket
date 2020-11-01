@@ -1,21 +1,19 @@
 export const numberWithCommas = (x) => {
   if (x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  }
-  else return x;
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } else return x;
 };
 
 export const urlToString = (url) => {
   return url
-    .split('/')
-    .join('')
-    .split(':')
-    .join('')
-    .split('.')
+    .split("/")
+    .join("")
+    .split(":")
+    .join("")
+    .split(".")
     .join()
-    .split(',')
-    .join('');
+    .split(",")
+    .join("");
 };
 
 export const isValuesEmpty = (values) => {
@@ -37,7 +35,6 @@ export const isObjectEmpty = (value = {}) => {
   return !(Object.keys(value).length > 0);
 };
 
-
 export const checkIfItemExistsInCache = (key: string, cache: any) => {
   if (cache[key]) {
     return true;
@@ -47,27 +44,30 @@ export const checkIfItemExistsInCache = (key: string, cache: any) => {
 
 export const getDeliveryChargeTotal = (delivery, totalPrice) => {
   try {
-    if(!delivery) return ;
-    if(delivery && !(Object.keys(delivery).length > 0)) return;
-  
+    if (!delivery) return;
+    if (delivery && !(Object.keys(delivery).length > 0)) return;
+
     let deliveryAmount = delivery && Object.keys(delivery.charge);
     deliveryAmount.sort((a: any, b: any) => a - b);
-    
+
     let deliveryCharge;
-  
+
     // get the delivery charge according to totalPrice
-  
+
     if (totalPrice < deliveryAmount && deliveryAmount[0]) {
-      return 'Minium order amount is ' + deliveryCharge && deliveryCharge[0];
-    } else if (totalPrice >= deliveryAmount && deliveryAmount[deliveryAmount.length - 1]) {
+      return "Minium order amount is " + deliveryCharge && deliveryCharge[0];
+    } else if (
+      totalPrice >= deliveryAmount &&
+      deliveryAmount[deliveryAmount.length - 1]
+    ) {
       // higher than all amount
       deliveryCharge = delivery.charge[deliveryAmount.length - 1];
     } else {
       // iterate through all items
-  
+
       for (let index in deliveryAmount) {
         // check if price is between the current amount and the next
-  
+
         if (
           totalPrice >= deliveryAmount[index] &&
           totalPrice < deliveryAmount[+index + 1]
@@ -78,66 +78,54 @@ export const getDeliveryChargeTotal = (delivery, totalPrice) => {
         }
       }
     }
-  
+
     return deliveryCharge;
-  }
-  catch(err){
-    
-  }
+  } catch (err) {}
 };
 
 export const deleteCity = async () => {
-  await localStorage.removeItem('city');
-}
-
+  await localStorage.removeItem("city");
+};
 
 export const saveCity = async (city) => {
   if (city) {
-    const preCity = await localStorage.getItem('city');
+    const preCity = await localStorage.getItem("city");
     if (preCity) {
       await deleteCity();
-      await localStorage.setItem('city', city);
+      await localStorage.setItem("city", city);
+    } else {
+      await localStorage.setItem("city", city);
     }
-    else {
-      await localStorage.setItem('city', city);
-    }
-
   }
-}
-
+};
 
 export const getCity = async () => {
-  const city = await localStorage.getItem('city');
+  const city = await localStorage.getItem("city");
   if (!city) {
     return false;
   }
   return city;
-}
-
+};
 
 export const deleteCustomerData = async () => {
-  await localStorage.removeItem('customerData');
-}
-
+  await localStorage.removeItem("customerData");
+};
 
 export const saveCustomerData = async (customerData) => {
   if (customerData) {
-    const preCustomerData = await localStorage.getItem('customerData');
+    const preCustomerData = await localStorage.getItem("customerData");
     // @ts-ignore
     if (!JSON.parse(preCustomerData)) {
-      await localStorage.setItem('customerData', JSON.stringify(customerData));
-    }
-    else {
+      await localStorage.setItem("customerData", JSON.stringify(customerData));
+    } else {
       await deleteCustomerData();
-      await localStorage.setItem('customerData', JSON.stringify(customerData));
+      await localStorage.setItem("customerData", JSON.stringify(customerData));
     }
-
   }
-}
-
+};
 
 export const getCustomerData = async () => {
-  const customerData = await localStorage.getItem('customerData');
+  const customerData = await localStorage.getItem("customerData");
   // @ts-ignore
   if (!JSON.parse(customerData)) {
     return false;
@@ -145,10 +133,9 @@ export const getCustomerData = async () => {
   // @ts-ignore
 
   return JSON.parse(customerData);
-}
+};
 
-
-// normalized image array 
+// normalized image array
 
 export const getImagesInCollumn = (imgs) => {
   if (!imgs[0]) return false;
@@ -160,40 +147,40 @@ export const getImagesInCollumn = (imgs) => {
   imgs.forEach((item, index) => {
     if (localIndex < 3) {
       if (columns[columnNumber]) {
-        columns[columnNumber] = [...columns[columnNumber], item]
-      }
-      else columns[columnNumber] = [item];
+        columns[columnNumber] = [...columns[columnNumber], item];
+      } else columns[columnNumber] = [item];
 
       localIndex = localIndex + 1;
       columnNumber = columnNumber + 1;
-
-    }
-    else {
+    } else {
       localIndex = 0;
       columnNumber = 0;
     }
   });
 
   return columns;
-}
+};
 
-
-export const checkIfItemExistsInCartItemById: (cartItems: any[] | [], givenCartItem: object) => boolean = (
+export const checkIfItemExistsInCartItemById: (
   cartItems: any[] | [],
   givenCartItem: object
-) => {
+) => boolean = (cartItems: any[] | [], givenCartItem: object) => {
   if (!(cartItems.length > 0)) return false;
 
-  const index = cartItems.findIndex(cartItem => cartItem.product === givenCartItem['product'] && cartItem.variation === givenCartItem['variation']);
+  const index = cartItems.findIndex(
+    (cartItem) =>
+      cartItem.product === givenCartItem["product"] &&
+      cartItem.variation === givenCartItem["variation"]
+  );
 
   if (index !== -1) return true;
   return false;
 };
 
-export const checkIfTheWishListExistsInArrayById: (array: any[] | [], id: number | string) => boolean = (
+export const checkIfTheWishListExistsInArrayById: (
   array: any[] | [],
   id: number | string
-) => {
+) => boolean = (array: any[] | [], id: number | string) => {
   if (!(array.length > 0)) return false;
 
   const item = array.find((item) => item === id);
@@ -206,48 +193,69 @@ export const getCartKeyFromCartItems = (cartItems, productId: string) => {
   if (!cartItem) {
     return false;
   }
-  const cartKey = cartItem['product']['cartKey'];
+  const cartKey = cartItem["product"]["cartKey"];
   return cartKey;
 };
 
 export const authHeader = () => {
-  const authToken = localStorage.getItem('authToken');
+  const authToken = localStorage.getItem("authToken");
 
-  if(authToken) {
+  if (authToken) {
     return {
-      Authorization: authToken
-    }
+      Authorization: authToken,
+    };
   }
 
-  return {}
-}
+  return {};
+};
 
-const numbers =  {
-  '0': '০',
-   '1': '১',
-   '২': '২',
-   '3': '৩',
-   '4': '৪',
-   '5': '৫',
-   '6': '৬',
-   '7': '৭',
-   '8': '৮',
-   '9': '৯',
- }
- export const replaceNumbers = (input: any) =>  {
-   if(!input){
-    // return 0; 
-    return ;
-   }
-   var output = [];
-   for (var i = 0; i < input.length; ++i) {
-     if (numbers.hasOwnProperty(input[i])) {
-       // @ts-ignore
-       output.push(numbers[input[i]]);
-     } else {
-       // @ts-ignore
-       output.push(input[i]);
-     }
-   }
-   return output.join('');
- }
+const numbers = {
+  "0": "০",
+  "1": "১",
+  "২": "২",
+  "3": "৩",
+  "4": "৪",
+  "5": "৫",
+  "6": "৬",
+  "7": "৭",
+  "8": "৮",
+  "9": "৯",
+};
+
+export const replaceNumbers = (input: any) => {
+  if (!input) {
+    // return 0;
+    return;
+  }
+  var output = [];
+  for (var i = 0; i < input.length; ++i) {
+    if (numbers.hasOwnProperty(input[i])) {
+      // @ts-ignore
+      output.push(numbers[input[i]]);
+    } else {
+      // @ts-ignore
+      output.push(input[i]);
+    }
+  }
+  return output.join("");
+};
+
+// parse jwt
+// export const parseJWT = (token) => {
+//   let b64DecodeUnicode = (str) =>
+//     decodeURIComponent(
+//       Array.prototype.map
+//         .call(
+//           atob(str),
+//           (c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+//         )
+//         .join("")
+//     );
+
+//   let parseJwt = (token) =>
+//     JSON.parse(
+//       b64DecodeUnicode(token.split(".")[1].replace("-", "+").replace("_", "/"))
+//     );
+
+//   return parseJWT;
+// };

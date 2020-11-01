@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { useAlert } from "react-alert";
+import { connect } from "react-redux";
 
 // import common components
 import { InputField } from "../../components/common/InputField";
@@ -16,7 +17,7 @@ import {
   signinValidationSchema,
 } from "../../validation/Signin.validator";
 
-// import state
+// import session operations
 import { sessionOperations } from "../../state/ducks/session";
 
 // import hooks
@@ -31,24 +32,42 @@ const inputStyles = {
   },
 };
 
-const SignIn = () => {
+const SignIn = ({ login }) => {
   const history = useHistory();
   const alert = useAlert();
 
   // hooks for signin
-  const [signinState, handleSigninPost] = useHandleFetch({}, "signin");
+  const [signinState, handleLoginPost] = useHandleFetch({}, "signin");
 
-  const handleSigninSubmit = async (values, actions) => {
-    const loginRes = await handleSigninPost({
-      body: values,
+  const handleLoginSubmit = async (values, actions) => {
+    const loginRes = await handleLoginPost({
+      body: {
+        username: values.email,
+        password: values.password,
+      },
     });
-    console.log("loginRes", loginRes);
 
     if (loginRes && loginRes["status"] === "ok") {
-      console.log("loginRes", loginRes);
-    }
-  };
+      const { token } = loginRes.data;
+      await localStorage.removeItem("authToken");
+      await localStorage.setItem("authToken", token);
 
+      login();
+      alert.success("Logged in successfully");
+      history.push("/");
+    } else {
+      alert.error("Something went wrong!");
+      // if (
+      //   signinState.error["isError"] &&
+      //   !(Object.keys(signinState.error["error"]).length > 0)
+      // ) {
+      //   actions.resetForm({});
+      //   alert.error("Something went wrong!");
+      // }
+    }
+    actions.resetForm({});
+    actions.setSubmitting(false);
+  };
   return (
     <SignInWrapper>
       <SignInContainer>
@@ -59,7 +78,7 @@ const SignIn = () => {
             initialValues={{ ...initialSigninValues }}
             validationSchema={signinValidationSchema}
             validateOnBlur={false}
-            onSubmit={(values, actions) => handleSigninSubmit(values, actions)}
+            onSubmit={(values, actions) => handleLoginSubmit(values, actions)}
           >
             {({
               handleChange,
@@ -159,7 +178,11 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = {
+  login: sessionOperations.login,
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);
 
 const ErrorText = styled.p`
   color: rgba(255, 0, 0, 0.759);
