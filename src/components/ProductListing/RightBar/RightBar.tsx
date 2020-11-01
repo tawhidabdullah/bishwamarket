@@ -92,7 +92,7 @@ const Title = styled.div`
   justify-content: center;
 
   & h5 {
-    border: 1px solid black;
+    border: 1px solid #ddd;
     margin-bottom: 0px;
     border-bottom: 0px;
     padding: 20px;
@@ -114,7 +114,7 @@ const TitleBottom = styled.div`
 
 const Dropdowncategory = styled.div`
   padding-right: 30px;
-  border-right: 1px solid black;
+  border-right: 1px solid #ddd;
 
   &:nth-child(2) {
     border-right: 0px solid black;
@@ -152,7 +152,7 @@ const Dropdowncategory = styled.div`
 
   @media only screen and (max-width: 580px) {
     &:nth-child(2) {
-      border-top: 1px solid black;
+      border-top: 1px solid #ddd;
     }
     &:nth-child(1) {
       border-right: 0px solid black;

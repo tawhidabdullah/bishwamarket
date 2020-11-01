@@ -15,10 +15,16 @@ const  ImageBanner=()=> {
 
 
 
-    const bannerState = useQueryFetch("banner");
+
+
+
     const [status, setStatus] = useState(true);
     const [data, setdata] = useState([]);
 
+
+
+      const bannerState = useQueryFetch("banner");
+  
     useEffect(() => {
       if (bannerState.isLoading === false) {
         console.log("pppp");
@@ -81,6 +87,7 @@ const  ImageBanner=()=> {
               data={data}
               customStyles={{
                 width: "100%",
+                padding:"0px",
               }}
             />
           )}
