@@ -26,18 +26,41 @@ const LeftBar=()=> {
         </Tag>
         <div className="content">
           <ContentList>
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-            <label> bike</label>
+            <label>
+        
+              <input
+                type="checkbox"
+                id="vehicle1"
+                name="vehicle1"
+                value="Bike"
+              />
+              bike
+            </label>
           </ContentList>
 
           <ContentList>
-            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" />
-            <label> car</label>
+            <label>
+            
+              <input
+                type="checkbox"
+                id="vehicle2"
+                name="vehicle2"
+                value="Car"
+              />
+              car
+            </label>
           </ContentList>
 
           <ContentList>
-            <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
-            <label> car33</label>
+            <label>
+              <input
+                type="checkbox"
+                id="vehicle3"
+                name="vehicle3"
+                value="Boat"
+              />
+              car33
+            </label>
           </ContentList>
         </div>
 
@@ -49,10 +72,7 @@ const LeftBar=()=> {
 
         <div className="content">
           <Colors>
-            <Color>
-            
-   
-            </Color>
+            <Color></Color>
             <Color></Color>
             <Color></Color>
             <Color></Color>
@@ -69,6 +89,9 @@ const LeftBar=()=> {
             <Color></Color>
           </Colors>
         </div>
+
+      
+
       </LeftContent>
     );
 
