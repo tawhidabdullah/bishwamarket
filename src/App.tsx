@@ -48,7 +48,7 @@ const App = () => {
               <Route exact path="/forgot-password" component={ForgotPassword} />
               <Route exact path="/checkout" component={Checkout} />
              
-              <Route exact path="/productListing" component={ProductListing} />
+              <Route exact path="/product" component={ProductListing} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/collection" component={Collection} />
               <Route exact path="/wishlist" component={WishlistPage} />
