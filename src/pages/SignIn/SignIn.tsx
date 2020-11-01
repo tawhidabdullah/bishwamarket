@@ -28,7 +28,7 @@ const inputStyles = {
     "font-weight": "bold",
     "font-size": "18px",
     "padding-bottom": 0,
-  }, 
+  },
 };
 
 const SignIn = () => {
@@ -39,7 +39,14 @@ const SignIn = () => {
   const [signinState, handleSigninPost] = useHandleFetch({}, "signin");
 
   const handleSigninSubmit = async (values, actions) => {
-    console.log(values);
+    const loginRes = await handleSigninPost({
+      body: values,
+    });
+    console.log("loginRes", loginRes);
+
+    if (loginRes && loginRes["status"] === "ok") {
+      console.log("loginRes", loginRes);
+    }
   };
 
   return (
@@ -69,15 +76,15 @@ const SignIn = () => {
                   label="Email"
                   name="email"
                   placeholder="Email"
-                  value={values.username}
+                  value={values.email}
                   onChange={(e) => {
                     handleChange(e);
-                    setFieldTouched("username");
+                    setFieldTouched("email");
                   }}
                   customStyle={inputStyles}
                 />
                 <ErrorText>
-                  {(touched.username && errors.username) ||
+                  {(touched.email && errors.email) ||
                     (!isSubmitting && signinState.error["error"]["username"])}
                 </ErrorText>
 
@@ -87,14 +94,24 @@ const SignIn = () => {
                   name="password"
                   placeholder="Enter your password"
                   customStyle={inputStyles}
+                  value={values.password}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("password");
+                  }}
                 />
+
+                <ErrorText>
+                  {(touched.password && errors.password) ||
+                    (!isSubmitting && signinState.error["error"]["password"])}
+                </ErrorText>
 
                 <ButtonContainer>
                   <DrawerButton
                     wrapperStyle={{ "padding-right": "10px" }}
                     customStyle={{ padding: "8px 0", width: "80%" }}
                   >
-                    Login
+                    {isSubmitting ? "Login..." : "Login"}
                   </DrawerButton>
 
                   <Text
@@ -146,10 +163,9 @@ export default SignIn;
 
 const ErrorText = styled.p`
   color: rgba(255, 0, 0, 0.759);
-  font-size: 12px;
-  margin-top: -25px;
+  font-size: 15px;
+  margin-top: -12px;
   position: absolute;
-  padding: 0 5px;
 `;
 
 const SignInWrapper = styled.section`
@@ -203,6 +219,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
 
   & div {
     width: 50%;

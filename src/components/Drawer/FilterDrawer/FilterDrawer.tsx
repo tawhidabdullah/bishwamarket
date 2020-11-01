@@ -2,7 +2,7 @@
 import React, { Fragment, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 // dummy data
 import { FilterItems } from "./FilterItems";
@@ -12,7 +12,6 @@ import { Checkbox } from "../../common/Checkbox";
 
 // import round button element
 import { Color } from "../../elements/RoundButton/RoundButton";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 // checkbox styles
 const checkboxStyles = {
@@ -23,23 +22,24 @@ const checkboxStyles = {
   },
 };
 
+const dropDownContainerStyles = {
+  display: "flex",
+  "flex-direction": "row",
+  "flex-wrap": "wrap",
+  "& span": { margin: "5px" },
+};
+
 const FilterDrawer = ({ open, toggleFilterDrawer }) => {
-  const history = useHistory();
+  // const history = useHistory();
 
   const [activeTabs, setActiveTabs] = useState([]);
-  // for showing color on active tab
-  // const [activeTabColor, setActiveColor] = useState("#444");
-
-  // const [isIncluded, setIsIncluded] = useState(false);
 
   const setTabs = (id) => {
     if (activeTabs.includes(id)) {
       let newTabs = activeTabs.filter((tabId) => tabId !== id);
       setActiveTabs(newTabs);
-      // setIsIncluded(false);
     } else {
       setActiveTabs((tabs) => [...tabs, id]);
-      // setIsIncluded(true);
     }
   };
 
@@ -72,22 +72,24 @@ const FilterDrawer = ({ open, toggleFilterDrawer }) => {
                 <>
                   {item.name === "COLORS" ? (
                     <DropdownItemContainer
-                      customStyle={{
-                        display: "flex",
-                        "flex-direction": "row",
-                        "flex-wrap": "wrap",
-                        "& span": { margin: "5px" },
-                      }}
+                      customStyle={dropDownContainerStyles}
                     >
                       {item.items.map((i) => (
-                        <Color customStyle={{ "background-color": i.name }} />
+                        <Color
+                          key={i.id}
+                          customStyle={{ "background-color": i.name }}
+                        />
                       ))}
                     </DropdownItemContainer>
                   ) : (
                     <DropdownItemContainer>
                       {item.items.map((i) => (
                         // <DropdownItem>{i.name}</DropdownItem>
-                        <Checkbox label={i.name} customStyle={checkboxStyles} />
+                        <Checkbox
+                          key={i.id}
+                          label={i.name}
+                          customStyle={checkboxStyles}
+                        />
                       ))}
                     </DropdownItemContainer>
                   )}
