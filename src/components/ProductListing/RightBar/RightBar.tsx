@@ -63,13 +63,8 @@ const RightBar = ({ products }) => {
         </TitleBottom>
       </Title>
       <Products>
-        {/* <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} /> */}
+      
+   
         {products.map((item=>{
           return <ProductsByCategory item={item} customStyles={productCardStyles} />;
         }))}

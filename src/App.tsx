@@ -73,13 +73,12 @@ const App = () => {
                   </Route>
 
                   <Route exact path={"/Search"}>
-                    <Search />
+                    <Search products={products} />
                   </Route>
                   <Route exact path="/product">
                     <ProductListing products={products} />
                   </Route>
 
-                  <Route exact path={"/te"} component={Category} />
 
                   <Route exact path="/signin" component={SignIn} />
                   <Route exact path="/signup" component={SignUp} />

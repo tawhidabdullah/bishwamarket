@@ -6,98 +6,32 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
 
 
 
- const SearchContainer = () => {
-
+ const SearchContainer = ({ products }) => {
+   const productCardStyles = {
+     productBackgroundColor: "#fff",
+     Levelvisibility: "hidden",
+     ProductDetailVisibility: "hidden",
+     containerDirection: "row",
+     containerright: "10%",
+     containerTransform: "translateY(100%)",
+     containertop: "80%",
+     page: "search",
+   };
    return (
      <Section>
        <SearchContain title={"search"} />
        <SearchField />
        <SearchProduct>
          <Main>
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
-           <ProductsByCategory
-             customStyles={{
-               productBackgroundColor: "#fff",
-               Levelvisibility: "hidden",
-               ProductDetailVisibility: "hidden",
-               containerDirection: "row",
-               containerright: "10%",
-               containerTransform: "translateY(100%)",
-               containertop: "80%",
-               page: "search",
-             }}
-           />
+           
+           {products.map((item) => {
+             return (
+               <ProductsByCategory
+                 customStyles={productCardStyles}
+                 item={item}
+               />
+             );
+           })}
          </Main>
        </SearchProduct>
      </Section>
