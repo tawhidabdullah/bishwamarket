@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 
-console.log(props.data);
+console.log(props.data,"mainslider");
  const [activeSlide, setactiveSlide] = useState(0);
    const [activeSlide2, setactiveSlide2] = useState(0);
    const settings = {
@@ -16,32 +16,23 @@ console.log(props.data);
      infinite: true,
      speed: 500,
 
-     beforeChange: (current, next) => setactiveSlide(next),
-     afterChange: (current) => setactiveSlide2(current),
      responsive: responsive.responsive,
    };
     return (
       <Layout customStyles={customStyles}>
         <MainContent customStyles={customStyles}>
-          { props.data && props.data.length>0?  props.data.map((item) => {
+          <Slider {...settings}>
+          
+            {props.data && props.data.length > 0
+              ? props.data.map((item) => {
                   return (
                     <ProductsByCategory
                       item={item}
                       customStyles={customStyles}
                     />
-                  ); 
-
-            }) : " "}
-          <Slider {...settings}>
-             {/* <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />  */}
-
-        
+                  );
+                })
+              : " "}
           </Slider>
         </MainContent>
       </Layout>

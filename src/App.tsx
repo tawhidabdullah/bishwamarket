@@ -1,4 +1,5 @@
-import React, { lazy, Suspense, Fragment } from "react";
+    //@ts-nocheck
+import React, { lazy, Suspense, Fragment,useEffect,useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // import layout
@@ -12,7 +13,13 @@ import "slick-carousel/slick/slick-theme.css";
 // import home page on initial rendering
 import Home from "./pages/Home";
 
+
+import { useQueryFetch } from "./hooks";
+
+
 // lazy load other components
+
+
 const Category = lazy(() => import("./pages/Category"));
 const Search = lazy(() => import("./pages/Search"));
 const SignIn = lazy(() => import("./pages/SignIn"));
@@ -33,22 +40,56 @@ const OrderSuccess = lazy(() => import("./pages/OrderSuccess"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 
+// //productList
+
 const App = () => {
+   const productsState = useQueryFetch("productList");
+  const [status,setstatus]=useState(true)
+ const[products,setProducts]=useState([])
+
+   useEffect(() => {
+     if (productsState.isSuccess && productsState.data ) {
+       setProducts(productsState.data.data);
+         setstatus(false);
+      
+     }
+   }, [productsState.isSuccess]);
+    console.log(productsState, "productsState");
+
+ 
   return (
     <BrowserRouter>
       <Fragment>
         <Suspense fallback="Loading...">
           <Layout>
             <Switch>
-              <Route exact path={"/"} component={Home} />
+              {status ? (
+                <> </>
+              ) : (
+                //@ts-ignore
+                <>
+                  <Route exact path={"/"}>
+                    <Home products={products} />
+                  </Route>
+
+                  <Route exact path={"/Search"}>
+                    <Search  />
+                  </Route>
+                  <Route exact path="/productListing">
+                
+                    <ProductListing product={products} />
+                  </Route>
+                
+                </>
+              )}
+
               <Route exact path={"/te"} component={Category} />
-              <Route exact path={"/Search"} component={Search} />
+
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/forgot-password" component={ForgotPassword} />
               <Route exact path="/checkout" component={Checkout} />
-             
-              <Route exact path="/productListing" component={ProductListing} />
+
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/collection" component={Collection} />
               <Route exact path="/wishlist" component={WishlistPage} />

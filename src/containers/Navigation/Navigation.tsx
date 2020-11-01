@@ -42,21 +42,11 @@ useEffect(() => {
   }
 }, [categoryListState.isSuccess]);
 
-  // useEffect(() => {
-  //   categoryDetailState.refetch();
-  // }, [topCategoryUrl, subCategoryUrl]);
 
-  console.log(categoryListState, "categoryListState");
 
-  // useEffect(() => {
-  //   if (
-  //     categoryDetailState.isSuccess &&
-  //     categoryDetailState.data &&
-  //     Object.keys(categoryDetailState.data).length > 0
-  //   ) {
-  //     setCategoryDetailData(categoryDetailState.data);
-  //   }
-  // }, [categoryDetailState.isSuccess, categoryDetailState.data]);
+  console.log(categoryListState, "productsState productsState");
+
+ 
 
   return (
     <NavigationContainer>

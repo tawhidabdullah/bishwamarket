@@ -7,76 +7,77 @@ import { ProductsByCategory } from "../../../components/Slider/ProductsByCategor
 import {MainSlider} from "../../../components/Slider/MainSlider"
 import {Blog} from "../../../components/Banner/Blog"
 
-const SpecilaProductSlider=()=> {
+const SpecilaProductSlider = ({ products }) => {
 
-    const responsive = {
-      responsive: [
-        {
-          breakpoint: 3224,
-          settings: {
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false,
-            arrows: false,
-          },
+  console.log(products, "SpecilaProductSlider");
+  const responsive = {
+    responsive: [
+      {
+        breakpoint: 3224,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
+      },
 
-        {
-          breakpoint: 1154,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false,
-            arrows: false,
-          },
+      {
+        breakpoint: 1154,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
-        {
-          breakpoint: 970,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 2,
-            initialSlide: 2,
-            infinite: true,
-            dots: false,
-            arrows: false,
-          },
+      },
+      {
+        breakpoint: 970,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
+      },
 
-        {
-          breakpoint: 620,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false,
-            arrows: false,
-          },
+      {
+        breakpoint: 620,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false,
         },
-      ],
-    };
-   return (
-     <Section>
-       <Blog
-         title="special Products"
-         customStyles={{
-           height: "100px",
-           backgroundColor: "#fff",
-         }}
-       />
+      },
+    ],
+  };
+  return (
+    <Section>
+      <Blog
+        title="special Products"
+        customStyles={{
+          height: "100px",
+          backgroundColor: "#fff",
+        }}
+      />
 
-       <MainSlider
-         responsive={responsive}
-         ProductsByCategory={ProductsByCategory}
-         customStyles={{
- 
-           Levelvisibility: "visible",
-         }}
-       />
-     </Section>
-   );
-}
+      <MainSlider
+        responsive={responsive}
+        ProductsByCategory={ProductsByCategory}
+        data={products}
+        customStyles={{
+          Levelvisibility: "visible",
+        }}
+      />
+    </Section>
+  );
+};
 export default SpecilaProductSlider;
 
 

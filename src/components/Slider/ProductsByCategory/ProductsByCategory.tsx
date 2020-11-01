@@ -16,7 +16,6 @@ import {
 } from "../../../state/ducks/globalState/actions";
 
 
-import { useQueryFetch } from '../../../hooks';
 
 
 
@@ -25,20 +24,18 @@ const ProductsByCategory = ({
   toggleQuickviewDrawer,
 
   customStyles,
+  item
 }) => {
- const productsState = useQueryFetch("productList");
 
-
-  // console.log(productsState);
-
+  console.log(item, "itemitem");
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
         <ProductFront>
-          <img src={fimg1} className="img-fluid  " alt="product" />
+          <img src={item.cover} className="img-fluid  " alt="product" />
         </ProductFront>
         <ProductBack>
-          <img src={bimg1} className="img-fluid " alt="product" />
+          <img src={item.cover} className="img-fluid " alt="product" />
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer customStyles={customStyles}>
@@ -77,8 +74,14 @@ const ProductsByCategory = ({
           </PriceTitel>
         </DetailLeft>
         <DetailRight>
-          <CheckPrice>$ 100056.21</CheckPrice>
-          <Price>$ 24.05</Price>
+          <CheckPrice>
+            {" "}
+          $ {item.regularPrice}
+          </CheckPrice>
+          <Price>
+            
+            ${item.price}
+          </Price>
         </DetailRight>
       </ProductDetail>
       <NewLevel customStyles={customStyles}>
