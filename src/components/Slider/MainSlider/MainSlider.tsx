@@ -23,19 +23,25 @@ console.log(props.data);
     return (
       <Layout customStyles={customStyles}>
         <MainContent customStyles={customStyles}>
-          
-          <Slider {...settings}>
-             <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} />
-            <ProductsByCategory customStyles={customStyles} /> 
+          { props.data && props.data.length>0?  props.data.map((item) => {
+                  return (
+                    <ProductsByCategory
+                      item={item}
+                      customStyles={customStyles}
+                    />
+                  ); 
 
-          {/* {props.data.map((item) => {
-              
-            })}  */}
+            }) : " "}
+          <Slider {...settings}>
+             {/* <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />
+            <ProductsByCategory customStyles={customStyles} />  */}
+
+        
           </Slider>
         </MainContent>
       </Layout>
@@ -57,8 +63,8 @@ const MainContent = styled.div`
     props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
-  padding-right: 15px;
-  padding-left: 15px;
+   padding-right: 15px;
+  padding-left: 15px; 
   margin-right: auto;
   margin-left: auto;
   padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};

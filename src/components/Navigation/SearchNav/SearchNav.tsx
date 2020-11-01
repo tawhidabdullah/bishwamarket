@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import image1 from "../../../assets/dropdown.png"
+//@ts-nocheck
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import image1 from "../../../assets/dropdown.png";
 import image2 from "../../../assets/1.png";
 import { IconButton, SelectCategory } from "../../../elemens";
-
 
 import nav1 from "../../../assets/nav/01.png";
 import nav2 from "../../../assets/nav/02.png";
@@ -20,7 +20,39 @@ const SearchNav = ({
   toggleCategory,
   toggleGiftBox,
   setToggleGiftBox,
+  categoryListData,
 }) => {
+  const [subcategory, setSubCategory] = useState([]);
+  const [minlength, setminlength]=useState(8);
+
+  const handleSub = (value) => {
+    if (
+      categoryListData[value] &&
+      categoryListData[value].hasOwnProperty("subCategory")
+    ) {
+      setSubCategory(categoryListData[value].subCategory);
+    } else {
+      setSubCategory([]);
+    }
+    console.log(categoryListData[value].subCategory);
+  };
+  useEffect(() => {
+    if (categoryListData && categoryListData.length > 0) {
+      setSubCategory(categoryListData[0].subCategory);
+      console.log(
+        categoryListData[0].subCategory,
+        "categoryListData[0].subCategory"
+      );
+    }
+  }, [categoryListData.length]);
+
+
+  const updateLength=()=>{
+    if (subcategory.length<minlength) 
+        setminlength(minlength + 8);
+    else
+      setminlength(subcategory.length);
+  }
   return (
     <SearchNavContainer>
       <NavCategory>
@@ -37,47 +69,20 @@ const SearchNav = ({
           <Contents>
             <CategoryItem>
               <ul className="nav-cat title-font">
-                <li>
-                  {" "}
-                  <img src={nav1} alt="catergory-product" /> <a>western ware</a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav2} alt="catergory-product" />{" "}
-                  <a>TV, Appliances</a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav3} alt="catergory-product" />{" "}
-                  <a>Pets Products</a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav4} alt="catergory-product" />{" "}
-                  <a>Car, Motorbike</a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav5} alt="catergory-product" />{" "}
-                  <a>Industrial Products</a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav6} alt="catergory-product" />{" "}
-                  <a>Beauty, Health Products</a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav7} alt="catergory-product" />{" "}
-                  <a>Grocery Products </a>
-                </li>
-                <li>
-                  {" "}
-                  <img src={nav8} alt="catergory-product" /> <a>Sports</a>
-                </li>
+                {subcategory.slice(0,minlength).map((subitem, it) => {
+                  return (
+                    <li key={it}>
+                      <img
+                        src={subitem.thumbnail || subitem.cover}
+                        alt="catergory-product"
+                      />
+                      <a>{subitem.name || plabon}</a>
+                    </li>
+                  );
+                })}
 
-                <li>
-                  <a className="mor-slide-click">
+                <li onClick={updateLength}>
+                  <a className="mor-slide-click" >
                     more category <i className="fa fa-angle-down pro-down"></i>
                     <i
                       className="fa fa-angle-up pro-up"
@@ -98,7 +103,19 @@ const SearchNav = ({
         </span>
         <input type="text" placeholder="Search a Product"></input>
         <Dropdowncategory>
-          <SelectCategory />
+          <select
+          
+            onChange={(e) =>
+              categoryListData[e.target.value] &&
+              categoryListData[e.target.value].hasOwnProperty("subCategory")
+                ? setSubCategory(categoryListData[e.target.value].subCategory)
+                : setSubCategory([])
+            }
+          >
+            {categoryListData.map((item, i) => {
+              return <option value={i}>{item.name}</option>;
+            })}
+          </select>
         </Dropdowncategory>
       </SearchCategory>
       <Rightcontent>
@@ -109,7 +126,6 @@ const SearchNav = ({
           </span>
         </Call>
 
-       
         <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
         >
@@ -151,12 +167,10 @@ const SearchNavContainer = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  @media only screen and (max-width: 580px)  {
-display:none;
+  @media only screen and (max-width: 580px) {
+    display: none;
   }
- 
 `;
-
 
 const Contents = styled.div`
   position: absolute;
@@ -220,7 +234,6 @@ const ShopCategory = styled.div`
     align-items: center;
     outline: none;
   }
-
 `;
 
 const CategoryItem = styled.div`
@@ -236,8 +249,6 @@ const CategoryItem = styled.div`
     height: 46.5px;
     transition: all 0.5s ease;
   }
-
-
 
   & li {
     list-style-type: none;
@@ -274,7 +285,7 @@ const SearchCategory = styled.div`
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     outline: none;
-   
+
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -320,9 +331,9 @@ const Dropdowncategory = styled.div`
   }
 `;
 
-const Rightcontent=styled.div`
-display:flex;
-position:relative;
+const Rightcontent = styled.div`
+  display: flex;
+  position: relative;
 `;
 const Call = styled.div`
   padding: 20px 0;
@@ -340,11 +351,10 @@ const Gift = styled.div`
   padding: 12px 10px;
   color: #fff;
   cursor: pointer;
- 
 `;
 const GiftIcon = styled.div`
   padding: 12px 10px;
-  @media only screen and (max-width: 980px) and (min-width:750px) {
+  @media only screen and (max-width: 980px) and (min-width: 750px) {
     display: none;
   }
 `;
@@ -381,7 +391,7 @@ const Content = styled.div`
   top: 80px;
   left: 0px;
   width: 250px;
-  height:200px;
+  height: 200px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -423,4 +433,3 @@ const GiftItem = styled.div`
     font-size: 16px;
   }
 `;
-

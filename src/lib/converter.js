@@ -14,41 +14,39 @@ class Converter {
       data.length > 0 &&
       data.map((category) => {
         return {
-          id: category._id || '',
+          id: category._id || "",
           name: category.name && category.name,
           description: category.description && category.description,
-          cover: `${config['baseURL']}${
+          cover: `${config["baseURL"]}${
             category.cover && category.cover.thumbnail
               ? category.cover.thumbnail
-              : ''
+              : ""
           }`,
-          fullCover: `${config['baseURL']}${
-            category.cover && category.cover.full
-              ? category.cover.full
-              : ''
+          fullCover: `${config["baseURL"]}${
+            category.cover && category.cover.full ? category.cover.full : ""
           }`,
           icon: category.icon
-            ? `${config['baseURL']}${category.icon ? category.icon : ''}`
+            ? `${config["baseURL"]}${category.icon ? category.icon : ""}`
             : null,
           productCount: category.productCount || 0,
-          url: category.url || '',
-          bn: category.bn || '',
+          url: category.url || "",
+          bn: category.bn || "",
           metaTitle: category.metaTitle,
           metaTags: category.metaTags,
           metaDescription: category.metaDescription,
           ...(category.subCategory &&
             category.subCategory.length > 0 &&
             category.subCategory[0] &&
-            category.subCategory[0]['name'] && {
+            category.subCategory[0]["name"] && {
               subCategory: category.subCategory.map((subCat) => {
                 return {
                   ...subCat,
-                  id: subCat._id || '',
+                  id: subCat._id || "",
                   name: subCat.name && subCat.name,
                   description: subCat.description && subCat.description,
                   cover: subCat.cover
-                    ? `${config['baseURL']}${subCat.cover.medium}`
-                    : '',
+                    ? `${config["baseURL"]}${subCat.cover.medium}`
+                    : "",
                 };
               }),
             }),
@@ -72,14 +70,14 @@ class Converter {
       data.map((category) => {
         return {
           ...category,
-          id: category._id || '',
-          key: category._id || '',
+          id: category._id || "",
+          key: category._id || "",
           name: category.name && category.name,
           description: category.description && category.description,
           cover: category.cover
-            ? `${config['baseURL']}${category.cover.thumbnail}`
+            ? `${config["baseURL"]}${category.cover.thumbnail}`
             : null,
-          icon: category.icon ? `${config['baseURL']}${category.icon}` : null,
+          icon: category.icon ? `${config["baseURL"]}${category.icon}` : null,
         };
       });
 
@@ -100,14 +98,14 @@ class Converter {
       data.length > 0 &&
       data.map((post) => {
         return {
-          id: post._id || '',
+          id: post._id || "",
           name: post.name && post.name,
           body: post.body && post.body,
           preparationTime: post.preparationTime && post.preparationTime,
           servingSize: post.servingSize && post.servingSize,
           cookingTime: post.cookingTime && post.cookingTime,
-          cover: `${config['baseURL']}${
-            (post.cover && post.cover['thumbnail']) || ''
+          cover: `${config["baseURL"]}${
+            (post.cover && post.cover["thumbnail"]) || ""
           }`,
           url: post.url,
           category: post.category,
@@ -138,14 +136,14 @@ class Converter {
       data.map((post) => {
         return {
           ...post,
-          id: post._id || '',
+          id: post._id || "",
           name: post.name && post.name,
           body: post.body && post.body,
           preparationTime: post.preparationTime && post.preparationTime,
           servingSize: post.servingSize && post.servingSize,
           cookingTime: post.cookingTime && post.cookingTime,
-          cover: `${config['baseURL']}${
-            (post.cover && post.cover['thumbnail']) || ''
+          cover: `${config["baseURL"]}${
+            (post.cover && post.cover["thumbnail"]) || ""
           }`,
           url: post.url,
           category: post.category,
@@ -176,7 +174,7 @@ class Converter {
       data.map((post) => {
         return {
           ...post,
-          id: post._id || '',
+          id: post._id || "",
         };
       });
 
@@ -201,7 +199,6 @@ class Converter {
     if (data && Object.keys(data).length > 0) {
       return {
         ...data,
-        
       };
     } else return {};
   }
@@ -219,14 +216,14 @@ class Converter {
     if (Object.keys(data).length > 0) {
       return {
         ...data,
-        id: data._id || '',
+        id: data._id || "",
         name: data.name && data.name,
         body: data.body && data.body,
         preparationTime: data.preparationTime && data.preparationTime,
         servingSize: data.servingSize && data.servingSize,
         cookingTime: data.cookingTime && data.cookingTime,
-        cover: `${config['baseURL']}${
-          (data.cover && data.cover['medium']) || ''
+        cover: `${config["baseURL"]}${
+          (data.cover && data.cover["medium"]) || ""
         }`,
         url: data.url,
         products: data.requiredProducts,
@@ -256,14 +253,14 @@ class Converter {
 
     if (Object.keys(data).length > 0) {
       return {
-        id: data._id || '',
-        key: data._id || '',
+        id: data._id || "",
+        key: data._id || "",
         name: data.name && data.name,
         description: data.description && data.description,
         cover: data.cover
-          ? `${config['baseURL']}${data.cover.thumbnail}`
+          ? `${config["baseURL"]}${data.cover.thumbnail}`
           : null,
-        icon: data.icon ? `${config['baseURL']}${data.icon}` : null,
+        icon: data.icon ? `${config["baseURL"]}${data.icon}` : null,
       };
     }
   }
@@ -284,20 +281,20 @@ class Converter {
       data.map((product) => {
         return {
           ...product,
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           url: product.url,
           unit: product.unit,
           price:
-            product.price && parseInt(product.price['offer'])
-              ? product.price['offer']
-              : product.price['regular'],
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
           stock:
             product.pricing &&
             product.pricing.length > 0 &&
@@ -307,7 +304,7 @@ class Converter {
           pricing: product.pricing || [],
           date: product.date,
           venue: product.venue,
-          bn: product.bn || '',
+          bn: product.bn || "",
           metaTitle: product.metaTitle,
           metaTags: product.metaTags,
           metaDescription: product.metaDescription,
@@ -317,9 +314,8 @@ class Converter {
     return {
       data: convertedData,
       next,
-      total
+      total,
     };
-
   }
 
   /**
@@ -336,20 +332,20 @@ class Converter {
       data.length > 0 &&
       data.map((product) => {
         return {
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           url: product.url,
           unit: product.unit,
           price:
-            product.price && parseInt(product.price['offer'])
-              ? product.price['offer']
-              : product.price['regular'],
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
           stock:
             product.pricing &&
             product.pricing.length > 0 &&
@@ -383,8 +379,8 @@ class Converter {
       cartItems.map((cartItem) => {
         return {
           ...cartItem,
-          cover: `${config['baseURL']}${
-            (cartItem.cover && cartItem.cover['thumbnail']) || ''
+          cover: `${config["baseURL"]}${
+            (cartItem.cover && cartItem.cover["thumbnail"]) || ""
           }`,
         };
       });
@@ -403,22 +399,22 @@ class Converter {
 
     if (resData.length > 0 && resData.length < 2) {
       data = {
-        type: 'single',
+        type: "single",
         data: {
           ...resData[0],
-          cover: `${config['baseURL']}${
-            (resData[0].cover && resData[0].cover['thumbnail']) || ''
+          cover: `${config["baseURL"]}${
+            (resData[0].cover && resData[0].cover["thumbnail"]) || ""
           }`,
         },
       };
     } else if (resData.length > 0 && resData.length > 1) {
       data = {
-        type: 'multiple',
+        type: "multiple",
         data: resData.map((item) => {
           return {
             ...item,
-            cover: `${config['baseURL']}${
-              (item.cover && item.cover['thumbnail']) || ''
+            cover: `${config["baseURL"]}${
+              (item.cover && item.cover["thumbnail"]) || ""
             }`,
           };
         }),
@@ -452,9 +448,9 @@ class Converter {
    */
   async updateCartItem(resData) {
     let convertedData = false;
-    if (resData['updated']) {
+    if (resData["updated"]) {
       convertedData = {
-        quantity: resData.updated['quantity'],
+        quantity: resData.updated["quantity"],
       };
     }
     return convertedData;
@@ -467,9 +463,9 @@ class Converter {
    * @returns {Object}  converted data
    */
   async clearCart(data) {
-    if (data && data['msg']) {
+    if (data && data["msg"]) {
       return {
-        status: 'ok',
+        status: "ok",
       };
     }
     return data;
@@ -494,9 +490,9 @@ class Converter {
    * @returns {Object}  converted data
    */
   async addWishlist(resData) {
-    if (resData && resData['msg'] === 'wishlist updated') {
+    if (resData && resData["msg"] === "wishlist updated") {
       return {
-        status: 'ok',
+        status: "ok",
       };
     }
 
@@ -510,9 +506,9 @@ class Converter {
    * @returns {Object}  converted data
    */
   async removeFromWishlist(resData) {
-    if (resData && resData['msg'] === 'wishlist updated') {
+    if (resData && resData["msg"] === "wishlist updated") {
       return {
-        status: 'ok',
+        status: "ok",
       };
     }
 
@@ -526,9 +522,9 @@ class Converter {
    * @returns {Object}  converted data
    */
   async removeAllWishlist(resData) {
-    if (resData && resData['msg'] === 'wishlist updated') {
+    if (resData && resData["msg"] === "wishlist updated") {
       return {
-        status: 'ok',
+        status: "ok",
       };
     }
 
@@ -549,19 +545,19 @@ class Converter {
       data.length > 0 &&
       data.map((product) => {
         return {
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['thumbnail']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["thumbnail"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           price:
-            parseInt(product.price['offer']) >
-            parseInt(product.price['regular'])
-              ? product.price['offer']
-              : product.price['regular'],
+            parseInt(product.price["offer"]) >
+            parseInt(product.price["regular"])
+              ? product.price["offer"]
+              : product.price["regular"],
           url: product.url,
           unit: product.unit,
         };
@@ -587,19 +583,19 @@ class Converter {
       data.length > 0 &&
       data.map((product) => {
         return {
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           price:
-            parseInt(product.price['offer']) >
-            parseInt(product.price['regular'])
-              ? product.price['offer']
-              : product.price['regular'],
+            parseInt(product.price["offer"]) >
+            parseInt(product.price["regular"])
+              ? product.price["offer"]
+              : product.price["regular"],
           url: product.url,
           unit: product.unit,
           stock:
@@ -632,20 +628,20 @@ class Converter {
       data.map((product) => {
         return {
           ...product,
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           unit: product.unit,
           url: product.url,
           price:
-            product.price && parseInt(product.price['offer'])
-              ? product.price['offer']
-              : product.price['regular'],
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
           stock:
             product.pricing &&
             product.pricing.length > 0 &&
@@ -655,11 +651,11 @@ class Converter {
           venue: product.venue,
           offerTaka:
             product.price &&
-            parseInt(product.price['offer']) &&
-            parseInt(product.price['regular']) >
-              parseInt(product.price['offer'])
-              ? parseInt(product.price['regular']) -
-                parseInt(product.price['offer'])
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
               : 0,
         };
       });
@@ -685,24 +681,24 @@ class Converter {
     // const isNext = resData.page.next;
 
     let convertedData =
-    data.length > 0 &&
-    data.map((product) => {
+      data.length > 0 &&
+      data.map((product) => {
         return {
           ...product,
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           unit: product.unit,
           url: product.url,
           price:
-            product.price && parseInt(product.price['offer'])
-              ? product.price['offer']
-              : product.price['regular'],
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
           stock:
             product.pricing &&
             product.pricing.length > 0 &&
@@ -712,11 +708,11 @@ class Converter {
           venue: product.venue,
           offerTaka:
             product.price &&
-            parseInt(product.price['offer']) &&
-            parseInt(product.price['regular']) >
-              parseInt(product.price['offer'])
-              ? parseInt(product.price['regular']) -
-                parseInt(product.price['offer'])
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
               : 0,
         };
       });
@@ -724,40 +720,36 @@ class Converter {
     return {
       data: convertedData,
       next,
-      total
+      total,
     };
   }
 
-
-    /**
+  /**
    * @public
    * @method offerListCount convert api data from API to general format based on config server
    * @param {Object} data response objectc from wc
    * @returns {Object}  converted data
    */
   async offerListCount(resData) {
-    const data = resData.data || []
-    
-    let count = 0; 
-    if(data.length > 0){
-      data.forEach(product => {
-        if( product.price &&
-            parseInt(product.price['offer']) &&
-            parseInt(product.price['regular']) >
-              parseInt(product.price['offer'])
-            ? parseInt(product.price['regular']) -
-              parseInt(product.price['offer'])
-            : 0){
-              count++; 
-            }
-      })
+    const data = resData.data || [];
+
+    let count = 0;
+    if (data.length > 0) {
+      data.forEach((product) => {
+        if (
+          product.price &&
+          parseInt(product.price["offer"]) &&
+          parseInt(product.price["regular"]) > parseInt(product.price["offer"])
+            ? parseInt(product.price["regular"]) -
+              parseInt(product.price["offer"])
+            : 0
+        ) {
+          count++;
+        }
+      });
     }
-    return count 
+    return count;
   }
-
-
-
-  
 
   /**
    * @public
@@ -774,20 +766,20 @@ class Converter {
       data.map((product) => {
         return {
           ...product,
-          id: product._id || '',
+          id: product._id || "",
           name: product.name && product.name,
           description: product.description && product.description,
-          cover: `${config['baseURL']}${
-            (product.cover && product.cover['medium']) || ''
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
           }`,
-          regularPrice: product.price && product.price['regular'],
-          offerPrice: product.price && product.price['offer'],
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
           unit: product.unit,
           url: product.url,
           price:
-            product.price && parseInt(product.price['offer'])
-              ? product.price['offer']
-              : product.price['regular'],
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
           stock:
             product.pricing &&
             product.pricing.length > 0 &&
@@ -797,11 +789,11 @@ class Converter {
           venue: product.venue,
           offerTaka:
             product.price &&
-            parseInt(product.price['offer']) &&
-            parseInt(product.price['regular']) >
-              parseInt(product.price['offer'])
-              ? parseInt(product.price['regular']) -
-                parseInt(product.price['offer'])
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
               : 0,
         };
       });
@@ -827,7 +819,7 @@ class Converter {
       data.length > 0 &&
       data.map((tag) => {
         return {
-          id: tag._id || '',
+          id: tag._id || "",
           name: tag.name && tag.name,
           description: tag.description && tag.description,
         };
@@ -849,11 +841,11 @@ class Converter {
       data.length > 0 &&
       data.map((brand) => {
         return {
-          id: brand._id || '',
+          id: brand._id || "",
           name: brand.name && brand.name,
           description: brand.description && brand.description,
-          cover: `${config['baseURL']}${
-            brand.cover && brand.cover.original ? brand.cover.original : ''
+          cover: `${config["baseURL"]}${
+            brand.cover && brand.cover.original ? brand.cover.original : ""
           }`,
         };
       });
@@ -874,7 +866,7 @@ class Converter {
       data.length > 0 &&
       data.map((country) => {
         return {
-          id: country._id || '',
+          id: country._id || "",
           name: country.name && country.name,
         };
       });
@@ -907,7 +899,7 @@ class Converter {
       data.length > 0 &&
       data.map((city) => {
         return {
-          id: city._id || '',
+          id: city._id || "",
           name: city.name && city.name,
         };
       });
@@ -935,30 +927,30 @@ class Converter {
     const convertedData =
       (Object.keys(data).length > 0 && {
         ...data,
-        id: data._id || data.id || '',
-        name: data.name || '',
-        description: data.description.replace(/<[^>]+>/g, '') || '',
-        regularPrice: data.price && data.price['regular'],
-        offerPrice: data.price && data.price['offer'],
+        id: data._id || data.id || "",
+        name: data.name || "",
+        description: data.description.replace(/<[^>]+>/g, "") || "",
+        regularPrice: data.price && data.price["regular"],
+        offerPrice: data.price && data.price["offer"],
         url: data.url,
-        cover: `${config['baseURL']}${
-          data.cover && data.cover.medium ? data.cover.medium : ''
+        cover: `${config["baseURL"]}${
+          data.cover && data.cover.medium ? data.cover.medium : ""
         }`,
         availableStock: data.availableStock,
         minimumStock: data.minimumStock,
-        bn: data.bn || '',
+        bn: data.bn || "",
         metaTitle: data.metaTitle,
         metaTags: data.metaTags,
         metaDescription: data.metaDescription,
         unit: data.unit,
-        date: data.date || '',
-        time: data.time || '',
-        venue: data.venue || '',
-        pricing: data.pricing || '',
+        date: data.date || "",
+        time: data.time || "",
+        venue: data.venue || "",
+        pricing: data.pricing || "",
         price:
-          data.price && parseInt(data.price['offer'])
-            ? data.price['offer']
-            : data.price['regular'],
+          data.price && parseInt(data.price["offer"])
+            ? data.price["offer"]
+            : data.price["regular"],
         category:
           (data.category &&
             data.category.length > 0 &&
@@ -991,14 +983,14 @@ class Converter {
             })) ||
           data.tags,
 
-          image:
+        image:
           (data.image &&
             data.image.length > 0 &&
             data.image.map((img) => {
-            return {
-              small: `${config.baseURL}${img.thumbnail}`,
-              large: `${config.baseURL}${img.full}`
-            }
+              return {
+                small: `${config.baseURL}${img.thumbnail}`,
+                large: `${config.baseURL}${img.full}`,
+              };
             })) ||
           [],
       }) ||
@@ -1017,29 +1009,29 @@ class Converter {
     const convertedData =
       (Object.keys(data).length > 0 && {
         ...data,
-        id: data._id || data.id || '',
-        name: data.name || '',
-        description: data.description.replace(/<[^>]+>/g, '') || '',
-        regularPrice: data.price && data.price['regular'],
-        offerPrice: data.price && data.price['offer'],
-        bn: data.bn || '',
+        id: data._id || data.id || "",
+        name: data.name || "",
+        description: data.description.replace(/<[^>]+>/g, "") || "",
+        regularPrice: data.price && data.price["regular"],
+        offerPrice: data.price && data.price["offer"],
+        bn: data.bn || "",
         metaTitle: data.metaTitle,
         metaTags: data.metaTags,
         metaDescription: data.metaDescription,
         price:
-          data.price && parseInt(data.price['offer'])
-            ? data.price['offer']
-            : data.price['regular'],
+          data.price && parseInt(data.price["offer"])
+            ? data.price["offer"]
+            : data.price["regular"],
         url: data.url,
-        cover: `${config['baseURL']}${
-          data.cover && data.cover.original ? data.cover.original : ''
+        cover: `${config["baseURL"]}${
+          data.cover && data.cover.original ? data.cover.original : ""
         }`,
         availableStock: data.availableStock,
         minimumStock: data.minimumStock,
         unit: data.unit,
-        date: data.date || '',
-        venue: data.venue || '',
-        pricing: data.pricing || '',
+        date: data.date || "",
+        venue: data.venue || "",
+        pricing: data.pricing || "",
         category:
           (data.category &&
             data.category.length > 0 &&
@@ -1075,10 +1067,10 @@ class Converter {
           (data.image &&
             data.image.length > 0 &&
             data.image.map((img) => {
-            return {
-              small: `${config.baseURL}${img.thumbnail}`,
-              large: `${config.baseURL}${img.full}`
-            }
+              return {
+                small: `${config.baseURL}${img.thumbnail}`,
+                large: `${config.baseURL}${img.full}`,
+              };
             })) ||
           [],
       }) ||
@@ -1095,33 +1087,33 @@ class Converter {
    */
   async categoryDetail(data) {
     const convertedData = {
-      id: data.id || data._id || '',
+      id: data.id || data._id || "",
       name: data.name && data.name,
       description: data.description && data.description,
       productCount: data.count || data.productCount,
-      bn: data.bn || '',
+      bn: data.bn || "",
       metaTitle: data.metaTitle,
       metaTags: data.metaTags,
       metaDescription: data.metaDescription,
-      icon: data.icon || '',
-      cover: data.cover ? `${config['baseURL']}${
-        data.cover && data.cover.full
-          ? data.cover.full
-          : ''
-      }` : null,
+      icon: data.icon || "",
+      cover: data.cover
+        ? `${config["baseURL"]}${
+            data.cover && data.cover.full ? data.cover.full : ""
+          }`
+        : null,
       subCategory:
         data.subCategory.length > 0 &&
         data.subCategory[0] &&
-        data.subCategory[0]['name']
+        data.subCategory[0]["name"]
           ? data.subCategory.map((subCat) => {
               return {
                 ...subCat,
-                id: subCat._id || '',
+                id: subCat._id || "",
                 name: subCat.name && subCat.name,
                 description: subCat.description && subCat.description,
                 cover: subCat.cover
-                  ? `${config['baseURL']}${subCat.cover.original}`
-                  : '',
+                  ? `${config["baseURL"]}${subCat.cover.original}`
+                  : "",
               };
             })
           : [],
@@ -1143,33 +1135,43 @@ class Converter {
    */
   async categoryDetailByURL(data) {
     const convertedData = {
-      id: data.id || data._id || '',
+      id: data.id || data._id || "",
       name: data.name && data.name,
       description: data.description && data.description,
       productCount: data.count || data.productCount,
-      bn: data.bn || '',
+      bn: data.bn || "",
       metaTitle: data.metaTitle,
       metaTags: data.metaTags,
       metaDescription: data.metaDescription,
-      icon: data.icon || '',
-      cover: data.cover ? `${config['baseURL']}${
-        data.cover && data.cover.full
-          ? data.cover.full
-          : ''
-      }` : null,
+      icon: data.icon || "",
+      cover: data.cover
+        ? `${config["baseURL"]}${
+            data.cover && data.cover.full ? data.cover.full : ""
+          }`
+        : null,
+
+      thumbnail: data.thumbnail
+        ? `${config["baseURL"]}${data.thumbnail ? data.thumbnail : ""}`
+        : null,
+
       subCategory:
         data.subCategory.length > 0 &&
         data.subCategory[0] &&
-        data.subCategory[0]['name']
+        data.subCategory[0]["name"]
           ? data.subCategory.map((subCat) => {
               return {
                 ...subCat,
-                id: subCat._id || '',
+                id: subCat._id || "",
                 name: subCat.name && subCat.name,
                 description: subCat.description && subCat.description,
                 cover: subCat.cover
-                  ? `${config['baseURL']}${subCat.cover.original}`
-                  : '',
+                  ? `${config["baseURL"]}${subCat.cover.original}`
+                  : "",
+                thumbnail: subCat.thumbnail
+                  ? `${config["baseURL"]}${
+                      subCat.thumbnail ? subCat.thumbnail : ""
+                    }`
+                  : null,
               };
             })
           : [],
@@ -1191,10 +1193,10 @@ class Converter {
    */
   async brandDetail(data) {
     const convertedData = {
-      id: data.id || data._id || '',
+      id: data.id || data._id || "",
       name: data.name && data.name,
       description: data.description && data.description,
-      cover: `${config['baseURL']}${data.cover ? data.cover.medium : ''}`,
+      cover: `${config["baseURL"]}${data.cover ? data.cover.medium : ""}`,
       image:
         (data.image &&
           data.image.length > 0 &&
@@ -1229,9 +1231,9 @@ class Converter {
    */
 
   async recoverPassword(data) {
-    if (data['message']) {
+    if (data["message"]) {
       return {
-        status: 'sent',
+        status: "sent",
         data: data,
       };
     }
@@ -1245,9 +1247,9 @@ class Converter {
    */
 
   async validateToken(data) {
-    if (data['success']) {
+    if (data["success"]) {
       return {
-        status: 'ok',
+        status: "ok",
         data: data,
       };
     }
@@ -1261,9 +1263,9 @@ class Converter {
    */
 
   async resetPassword(data) {
-    if (data['success']) {
+    if (data["success"]) {
       return {
-        status: 'ok',
+        status: "ok",
         data: data,
       };
     }
@@ -1276,10 +1278,10 @@ class Converter {
    * @returns {Object}  converted data
    */
   async signup(data) {
-    if (data['inserted']) {
+    if (data["inserted"]) {
       return {
-        status: 'ok',
-        ...data['inserted'][0],
+        status: "ok",
+        ...data["inserted"][0],
       };
     }
 
@@ -1293,9 +1295,9 @@ class Converter {
    * @returns {Object}  converted data
    */
   async signin(data) {
-    if (data['success']) {
+    if (data["success"]) {
       return {
-        status: 'ok',
+        status: "ok",
         data: data,
       };
     }
@@ -1348,7 +1350,7 @@ class Converter {
     // let generalFormat = dataMap[config['server']]['updateCurrentCustomerData']; //get genereal format from dataMap
 
     const convertedData = {
-      status: 'ok',
+      status: "ok",
       data: data,
     };
 
@@ -1362,9 +1364,9 @@ class Converter {
    * @returns {Object}  converted data
    */
   async changePassword(data) {
-    if (data['success']) {
+    if (data["success"]) {
       return {
-        status: 'ok',
+        status: "ok",
       };
     }
 
@@ -1378,22 +1380,22 @@ class Converter {
    * @returns {Object}  converted data
    */
   async checkout(data) {
-    if (data['inserted'] && !data['token']) {
+    if (data["inserted"] && !data["token"]) {
       return {
-        statusRes: 'ok',
-        ...data['inserted'][0],
-        paymentUrl: data['inserted'][0].payment
-          ? data['inserted'][0].payment.payment_url
-          : '',
+        statusRes: "ok",
+        ...data["inserted"][0],
+        paymentUrl: data["inserted"][0].payment
+          ? data["inserted"][0].payment.payment_url
+          : "",
       };
-    } else if (data['inserted'] && data['token']) {
+    } else if (data["inserted"] && data["token"]) {
       return {
-        statusRes: 'ok',
-        token: data['token'],
-        ...data['inserted'][0],
-        paymentUrl: data['inserted'][0].payment
-          ? data['inserted'][0].payment.payment_url
-          : '',
+        statusRes: "ok",
+        token: data["token"],
+        ...data["inserted"][0],
+        paymentUrl: data["inserted"][0].payment
+          ? data["inserted"][0].payment.payment_url
+          : "",
       };
     }
 
@@ -1446,35 +1448,35 @@ class Converter {
             id: item.id || item._id,
             billingAddress: item.billingAddress,
             name:
-              item.shippingAddress && item.shippingAddress['firstName']
-                ? `${item.shippingAddress['firstName']} ${item.shippingAddress['lastName']}`
+              item.shippingAddress && item.shippingAddress["firstName"]
+                ? `${item.shippingAddress["firstName"]} ${item.shippingAddress["lastName"]}`
                 : null,
             phone:
-              item.shippingAddress && item.shippingAddress['phone']
-                ? item.shippingAddress['phone']
+              item.shippingAddress && item.shippingAddress["phone"]
+                ? item.shippingAddress["phone"]
                 : null,
             email:
-              item.shippingAddress && item.shippingAddress['email']
-                ? item.shippingAddress['email']
+              item.shippingAddress && item.shippingAddress["email"]
+                ? item.shippingAddress["email"]
                 : null,
             address1:
-              item.shippingAddress && item.shippingAddress['address1']
-                ? item.shippingAddress['address1']
+              item.shippingAddress && item.shippingAddress["address1"]
+                ? item.shippingAddress["address1"]
                 : null,
             status:
-              typeof item.status === 'string'
+              typeof item.status === "string"
                 ? item.status
                 : item.status && Object.keys(item.status).length > 0
-                ? item.status['name']
-                : 'pending',
+                ? item.status["name"]
+                : "pending",
             totalPrice: item.totalPrice,
             products: item.products,
             date_created: item.added,
             deliveryRegion: item.deliveryRegion,
-            paymentMethod: item['payment']['paymentMethod'],
-            paymentStatus: item['payment']['status'],
-            payment: item['payment'],
-            shortCode: item['shortCode'],
+            paymentMethod: item["payment"]["paymentMethod"],
+            paymentStatus: item["payment"]["status"],
+            payment: item["payment"],
+            shortCode: item["shortCode"],
           };
         })) ||
       [];
@@ -1488,7 +1490,7 @@ class Converter {
     return {
       data: convertedData,
       next,
-      total
+      total,
     };
   }
 
@@ -1510,8 +1512,8 @@ class Converter {
               ...item,
               id: item._id,
               date: item.date,
-              cover: `${config['baseURL']}${
-                item.cover ? item.cover.original : ''
+              cover: `${config["baseURL"]}${
+                item.cover ? item.cover.original : ""
               }`,
             };
           }),
@@ -1528,7 +1530,7 @@ class Converter {
    */
   async currentUserOrders(data) {
     //map props
-    let generalFormat = dataMap[config['server']]['currentUserOrders']; //get genereal format from dataMap
+    let generalFormat = dataMap[config["server"]]["currentUserOrders"]; //get genereal format from dataMap
 
     const convertedData =
       (data.length > 0 &&
@@ -1562,8 +1564,8 @@ class Converter {
 
     const items = paymentItems.map((item) => {
       return {
-        name: item.name || '',
-        number: item.text || '',
+        name: item.name || "",
+        number: item.text || "",
       };
     });
     return items;
@@ -1600,7 +1602,7 @@ class Converter {
             src:
               featuredItem.image &&
               featuredItem.image[0] &&
-              `${config['baseURL']}${featuredItem.image[0].original}`,
+              `${config["baseURL"]}${featuredItem.image[0].original}`,
           });
         }
       });
@@ -1609,9 +1611,6 @@ class Converter {
     } else return false;
   }
 
-
-
-  
   /**
    * @public
    * @method partners convert api data from API to general format based on config server
@@ -1619,29 +1618,23 @@ class Converter {
    * @returns {Object}  converted data
    */
   async partners(data) {
-    const item = data.items && data.items[0] || {};
+    const item = (data.items && data.items[0]) || {};
 
     if (item && Object.keys(item).length > 0) {
-      console.log('mahItem',item)
-      const image = item.image; 
-      const partnersImages = []; 
+      console.log("mahItem", item);
+      const image = item.image;
+      const partnersImages = [];
 
-      if(image && image.length > 0) {
+      if (image && image.length > 0) {
         image.forEach((imageItem) => {
           if (imageItem) {
-            partnersImages.push( `${config['baseURL']}${imageItem.thumbnail}`);
+            partnersImages.push(`${config["baseURL"]}${imageItem.thumbnail}`);
           }
         });
       }
       return partnersImages;
     } else return [];
   }
-
-
-
-
-  
-
 
   /**
    * @public
@@ -1663,7 +1656,7 @@ class Converter {
             src:
               featuredItem.image &&
               featuredItem.image[0] &&
-              `${config['baseURL']}${featuredItem.image[0].original}`,
+              `${config["baseURL"]}${featuredItem.image[0].original}`,
           });
         }
       });
@@ -1692,7 +1685,7 @@ class Converter {
             src:
               featuredItem.image &&
               featuredItem.image[0] &&
-              `${config['baseURL']}${featuredItem.image[0].original}`,
+              `${config["baseURL"]}${featuredItem.image[0].original}`,
           });
         }
       });
@@ -1721,7 +1714,7 @@ class Converter {
             src:
               featuredItem.image &&
               featuredItem.image[0] &&
-              `${config['baseURL']}${featuredItem.image[0].original}`,
+              `${config["baseURL"]}${featuredItem.image[0].original}`,
           });
         }
       });
@@ -1749,7 +1742,7 @@ class Converter {
             src:
               featuredItem.image &&
               featuredItem.image[0] &&
-              `${config['baseURL']}${featuredItem.image[0].medium}`,
+              `${config["baseURL"]}${featuredItem.image[0].medium}`,
           });
         }
       });
@@ -1809,7 +1802,7 @@ class Converter {
       const img = items[0].image || [];
       if (img.length > 0) {
         return {
-          src: `${config['baseURL']}${img[0].original || ''}`,
+          src: `${config["baseURL"]}${img[0].original || ""}`,
           target: data.target,
         };
       } else return false;
@@ -1850,7 +1843,6 @@ class Converter {
     return items;
   }
 
-
   /**
    * @public
    * @method slider convert api data from API to general format based on config server
@@ -1866,7 +1858,7 @@ class Converter {
     const images = sliderItems.map((item) => {
       return {
         target: item.target,
-        src: `${config['baseURL']}${item.image[0]['medium']}`,
+        src: `${config["baseURL"]}${item.image[0]["medium"]}`,
       };
     });
     return images;
@@ -1887,7 +1879,7 @@ class Converter {
     const images = sliderRightItems.map((item) => {
       return {
         target: item.target,
-        src: `${config['baseURL']}${item.image[0]['medium']}`,
+        src: `${config["baseURL"]}${item.image[0]["medium"]}`,
       };
     });
     return images;
@@ -1971,7 +1963,7 @@ class Converter {
     return items;
   }
 
-    /**
+  /**
    * @public
    * @method footerLinks convert api data from API to general format based on config server
    * @param {Object} data response objectc from wc
@@ -1994,13 +1986,6 @@ class Converter {
     return items;
   }
 
-
-
-  
-
-  
-
-
   /**
    * @public
    * @method AddContactForm convert api data from API to general format based on config server
@@ -2008,11 +1993,8 @@ class Converter {
    * @returns {Object}  converted data
    */
   async AddContactForm(data) {
-   return data; 
+    return data;
   }
-
-
-
 
   /**
    * @public
@@ -2035,7 +2017,6 @@ class Converter {
     return items;
   }
 
-
   /**
    * @public
    * @method promotionBanner convert api data from API to general format based on config server
@@ -2051,7 +2032,7 @@ class Converter {
     const items = accountItems.map((item) => {
       return {
         target: item.target,
-        src: `${config['baseURL']}${item.image[0] && item.image[0]['medium']}`,
+        src: `${config["baseURL"]}${item.image[0] && item.image[0]["medium"]}`,
         name: item.title || item.text,
       };
     });
@@ -2064,7 +2045,7 @@ class Converter {
    * @param {Object} data response objectc from wc
    * @returns {Object}  converted data
    */
-  async 'About Us'(data) {
+  async "About Us"(data) {
     const aboutUsItems = data.items;
     if (!aboutUsItems.length > 0) {
       return aboutUsItems;
