@@ -1,49 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-// import Slider from "react-slick";
 
-// import dummy image
-// import img from "../../../assets/banner/1.jpg";
-import fimg1 from "../../../assets/slider-tab/1.jpg";
-
-import bimg1 from "../../../assets/slider-tab/a1.jpg";
-
-// import toggle cart action
-import {
-  toggleCartDrawer,
-  toggleQuickviewDrawer,
-} from "../../../state/ducks/globalState/actions";
-
-
-import { useQueryFetch } from '../../../hooks';
-
-
+// import add to cart actions
+import { cartOperations } from "../../../state/ducks/cart";
+import { globalOperations } from "../../../state/ducks/globalState";
 
 const ProductsByCategory = ({
   toggleCartDrawer,
   toggleQuickviewDrawer,
-
+  addToCart,
   customStyles,
+  item,
 }) => {
- const productsState = useQueryFetch("productList");
-
-
-  // console.log(productsState);
-
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
         <ProductFront>
-          <img src={fimg1} className="img-fluid  " alt="product" />
+          <img src={item.cover} className="img-fluid  " alt="product" />
         </ProductFront>
         <ProductBack>
-          <img src={bimg1} className="img-fluid " alt="product" />
+          <img src={item.cover} className="img-fluid " alt="product" />
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer customStyles={customStyles}>
         <ProductIcon
-          onClick={() => toggleCartDrawer()}
+          onClick={() => {
+            toggleCartDrawer();
+            addToCart(item);
+          }}
           customStyles={customStyles}
         >
           <i className="fa fa-shopping-bag"></i>
@@ -77,8 +62,8 @@ const ProductsByCategory = ({
           </PriceTitel>
         </DetailLeft>
         <DetailRight>
-          <CheckPrice>$ 100056.21</CheckPrice>
-          <Price>$ 24.05</Price>
+          <CheckPrice> $ {item.regularPrice}</CheckPrice>
+          <Price>${item.price}</Price>
         </DetailRight>
       </ProductDetail>
       <NewLevel customStyles={customStyles}>
@@ -89,10 +74,11 @@ const ProductsByCategory = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCartDrawer: () => dispatch(toggleCartDrawer()),
-  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
-});
+const mapDispatchToProps = {
+  toggleCartDrawer: globalOperations.toggleCartDrawer,
+  toggleQuickviewDrawer: globalOperations.toggleQuickviewDrawer,
+  addToCart: cartOperations.addToCart,
+};
 
 export default connect(null, mapDispatchToProps)(ProductsByCategory);
 
@@ -224,7 +210,7 @@ const ProductBox = styled.div`
   overflow: hidden;
   background-color: #fff;
   width: 100%;
- 
+
   &:hover ${ProductIconContainer} {
     transform: translateX(0%);
     visibility: visible;
@@ -264,11 +250,7 @@ const ProductIcon = styled.span`
   }
   @media only screen and (max-width: 400px) {
     padding: ${(props) =>
-      props.customStyles
-        ? props.customStyles.page
-          ? "15px"
-          : "6px"
-        : "6px"};
+      props.customStyles ? (props.customStyles.page ? "15px" : "6px") : "6px"};
   }
 `;
 

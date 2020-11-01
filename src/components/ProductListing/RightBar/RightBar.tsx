@@ -20,7 +20,7 @@ const productCardStyles = {
   containertop: "80%",
 };
 
-const RightBar = () => {
+const RightBar = ({ products }) => {
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
 
@@ -54,7 +54,7 @@ const RightBar = () => {
 
           <Dropdowncategory>
             <select>
-              <option>50 Products Per Page</option>
+              <option>Sorting Products</option>
               <option>20 Products Per Page</option>
               <option>10 Products Per Page</option>
             </select>
@@ -62,13 +62,11 @@ const RightBar = () => {
         </TitleBottom>
       </Title>
       <Products>
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
-        <ProductsByCategory customStyles={productCardStyles} />
+        {products.map((item) => {
+          return (
+            <ProductsByCategory item={item} customStyles={productCardStyles} />
+          );
+        })}
       </Products>
     </RightContainer>
   );
@@ -102,7 +100,7 @@ const Title = styled.div`
   }
 `;
 const TitleBottom = styled.div`
-  border: 1px solid black;
+  border: 1px solid #ddd;
 
   display: flex;
   justify-content: space-around;

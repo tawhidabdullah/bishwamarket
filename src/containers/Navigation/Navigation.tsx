@@ -33,30 +33,14 @@ const Navigation = ({}) => {
   const params = useParams();
   const location = useLocation();
 
-   const categoryListState = useQueryFetch("categoryList");
-   const [categoryListData, setCategoryListData] = useState([]);
+  const categoryListState = useQueryFetch("categoryList");
+  const [categoryListData, setCategoryListData] = useState([]);
 
-useEffect(() => {
-  if (categoryListState.isSuccess && categoryListState.data) {
-    setCategoryListData(categoryListState.data);
-  }
-}, [categoryListState.isSuccess]);
-
-  // useEffect(() => {
-  //   categoryDetailState.refetch();
-  // }, [topCategoryUrl, subCategoryUrl]);
-
-  console.log(categoryListState, "categoryListState");
-
-  // useEffect(() => {
-  //   if (
-  //     categoryDetailState.isSuccess &&
-  //     categoryDetailState.data &&
-  //     Object.keys(categoryDetailState.data).length > 0
-  //   ) {
-  //     setCategoryDetailData(categoryDetailState.data);
-  //   }
-  // }, [categoryDetailState.isSuccess, categoryDetailState.data]);
+  useEffect(() => {
+    if (categoryListState.isSuccess && categoryListState.data) {
+      setCategoryListData(categoryListState.data);
+    }
+  }, [categoryListState.isSuccess]);
 
   return (
     <NavigationContainer>

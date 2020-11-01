@@ -36,6 +36,8 @@ const SearchNav = ({
     }
     console.log(categoryListData[value].subCategory);
   };
+
+  
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);

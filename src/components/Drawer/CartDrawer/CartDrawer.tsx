@@ -17,6 +17,19 @@ import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 // import toggle drawer action
 import { toggleCartDrawer } from "../../../state/ducks/globalState/actions";
 
+const buttonStyles = {
+  wrapperStyle: {
+    margin: "unset",
+    width: "unset",
+  },
+
+  customStyle: {
+    "font-weight": "bold",
+    "margin-right": "5px",
+    padding: "10px",
+  },
+};
+
 const CartDrawer = ({ open, toggleCartDrawer }) => {
   const history = useHistory();
 
@@ -91,19 +104,19 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
             </SubTotalContainer>
 
             <ButtonContainer>
-              <DrawerButton
-                wrapperStyle={{
-                  margin: "unset",
-                  width: "unset",
-                }}
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-right": "5px",
-                  padding: "10px",
+              <div
+                onClick={() => {
+                  gotoPage("/cart");
+                  toggleCartDrawer();
                 }}
               >
-                View Cart
-              </DrawerButton>
+                <DrawerButton
+                  wrapperStyle={buttonStyles.wrapperStyle}
+                  customStyle={buttonStyles.customStyle}
+                >
+                  View Cart
+                </DrawerButton>
+              </div>
 
               <div
                 onClick={() => {
@@ -112,15 +125,8 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
                 }}
               >
                 <DrawerButton
-                  wrapperStyle={{
-                    margin: "unset",
-                    width: "unset",
-                  }}
-                  customStyle={{
-                    "font-weight": "bold",
-                    "margin-left": "5px",
-                    padding: "10px",
-                  }}
+                  wrapperStyle={buttonStyles.wrapperStyle}
+                  customStyle={buttonStyles.customStyle}
                 >
                   Checkout
                 </DrawerButton>
@@ -147,8 +153,7 @@ const CartDrawerContainer = styled.div`
   font-family: PT Sans, sans-serif;
   position: fixed;
   width: 100%;
-  /* max-width: 70%; */
-  height: 208px;
+
   overflow-x: hidden;
   overflow-y: scroll;
   /*  right: 0; */
@@ -174,6 +179,38 @@ const CartDrawerContainer = styled.div`
     width: 100%;
   }
 `;
+
+// const CartDrawerContainer = styled.div`
+//   font-family: PT Sans, sans-serif;
+//   position: fixed;
+//   width: 100%;
+//   /* max-width: 70%; */
+//   height: 208px;
+//   overflow-x: hidden;
+//   overflow-y: scroll;
+//   /*  right: 0; */
+//   /* top: 70%; */
+//   bottom: 0;
+//   z-index: 2000000;
+//   background-color: white;
+//   box-sizing: border-box;
+//   transition: transform 0.6s ease-out;
+//   transform: ${(props) => (props.show ? "translateY(0)" : "translateY(100%)")};
+
+//   @media screen and (max-width: 1199px) {
+//     height: 100%;
+//     left: 0;
+//     bottom: unset;
+//     width: 22rem;
+//     transition: transform 0.3s ease-out;
+//     transform: ${(props) =>
+//       props.show ? "translateX(0)" : "translateX(-100%)"};
+//   }
+
+//   @media screen and (max-width: 500px) {
+//     width: 100%;
+//   }
+// `;
 
 const ImageContainer = styled.div`
   width: 80%;

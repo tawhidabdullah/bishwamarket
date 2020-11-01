@@ -16,30 +16,7 @@ import { SearchDrawer } from "../components/Drawer/SearchDrawer";
 import { Navigation } from "../containers/Navigation";
 import { Footer } from "../components/Footer";
 
-import ScrollTopArrow  from "../components/ScrollTopArrow";
-
-// import toggle drawer actions
-// import {
-//   toggleCategoryDrawer,
-//   toggleSigninDrawer,
-//   toggleWishlistDrawer,
-//   toggleCartDrawer,
-//   toggleNavigationDrawer,
-//   toggleQuickviewDrawer,
-//   toggleSettingsDrawer,
-//   toggleSearchDrawer,
-// } from "../redux/global/global.actions";
-
-// import {
-//   toggleCategoryDrawer,
-//   toggleSigninDrawer,
-//   toggleWishlistDrawer,
-//   toggleCartDrawer,
-//   toggleNavigationDrawer,
-//   toggleQuickviewDrawer,
-//   toggleSettingsDrawer,
-//   toggleSearchDrawer,
-// } from "../state/ducks/globalState/actions";
+import ScrollTopArrow from "../components/ScrollTopArrow";
 
 const Layout = ({ children, globalState }) => {
   const {
@@ -55,7 +32,7 @@ const Layout = ({ children, globalState }) => {
 
   return (
     <>
-    <ScrollTopArrow />
+      <ScrollTopArrow />
       <SigninDrawer open={openSigninDrawer} />
       <WishListDrawer open={openWishlistDrawer} />
       <CartDrawer open={openCartDrawer} />
@@ -68,8 +45,6 @@ const Layout = ({ children, globalState }) => {
       <Navigation />
       {children}
       <Footer />
-
-
     </>
   );
 };
@@ -77,16 +52,5 @@ const Layout = ({ children, globalState }) => {
 const mapStateToProps = (state) => ({
   globalState: state.globalState,
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   toggleSigninDrawer: () => dispatch(toggleSigninDrawer()),
-//   toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
-//   toggleCartDrawer: () => dispatch(toggleCartDrawer()),
-//   toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
-//   toggleCategoryDrawer: () => dispatch(toggleCategoryDrawer()),
-//   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
-//   toggleSettingsDrawer: () => dispatch(toggleSettingsDrawer()),
-//   toggleSearchDrawer: () => dispatch(toggleSearchDrawer()),
-// });
 
 export default connect(mapStateToProps)(Layout);

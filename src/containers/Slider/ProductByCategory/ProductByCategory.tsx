@@ -5,7 +5,7 @@ import { ProductsByCategory } from "../../../components/Slider/ProductsByCategor
 import { MainSlider } from "../../../components/Slider/MainSlider";
 import { Blog } from "../../../components/Banner/Blog";
 import {Productcontain} from "../../../components/Navigation/ProductConatain"
-const ProductByCategory = () => {
+const ProductByCategory = ({products}) => {
   const responsive = {
     responsive: [
       {
@@ -40,7 +40,7 @@ const ProductByCategory = () => {
           arrows: false,
         },
       },
-      
+
       {
         breakpoint: 620,
         settings: {
@@ -60,8 +60,8 @@ const ProductByCategory = () => {
       <MainSlider
         responsive={responsive}
         ProductsByCategory={ProductsByCategory}
+        data={products}
         customStyles={{
-         
           Levelvisibility: "visible",
         }}
       />

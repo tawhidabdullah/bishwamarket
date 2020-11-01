@@ -1,19 +1,21 @@
+    //@ts-nocheck
 import React from 'react'
 import styled from "styled-components"
 import { LeftBar } from "../../components/ProductListing/LeftBar";
 import { RightBar } from "../../components/ProductListing/RightBar";
 import { SearchContain } from "../../components/Search/SearchContain/";
-const  ProductListContainer=()=> {
-    return (
-      <Main>
-        <SearchContain title={"CATEGORY"} />
-        <Section>
-          <LeftBar />
-          <RightBar />
-        </Section>
-      </Main>
-    );
-}
+const ProductListContainer = ({ products }) => {
+  return (
+    <Main>
+      <SearchContain title={"CATEGORY"} />
+      <Section>
+        <LeftBar />
+    
+        <RightBar products={products} />
+      </Section>
+    </Main>
+  );
+};
 
 export default ProductListContainer;
 
