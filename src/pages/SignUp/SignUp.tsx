@@ -1,39 +1,73 @@
 // @ts-nocheck
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { useAlert } from "react-alert";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { connect } from "react-redux";
 
 // import common components
 import { InputField } from "../../components/common/InputField";
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
 import { Text } from "../../components/elements/Text";
+
+// validation schema
+import {
+  initialSignupValues,
+  signupValidationSchema,
+} from "../../validation/Signup.validator";
+
+// import state
+// import { sessionOperations } from "../../state/ducks/session";
+
+// import hooks
 import { useHandleFetch } from "../../hooks";
 
-// TODO should be refactored, not being DRY
+// should be refactored, not beign DRY
 // constant styles
 const LabelStyles = {
   label: {
     "font-weight": "bold",
-    "font-size": "18px", 
+    "font-size": "18px",
     "padding-bottom": 0,
   },
 };
 
 const SignUp = () => {
-
   const history = useHistory();
   const alert = useAlert();
 
-  // signup hooks
-  const [signupState, handleSignupState] = useHandleFetch({}, 'signup')
+  // hooks for sign up
+  const [signupState, handleSignupPost] = useHandleFetch({}, "signup");
 
-  const handleSignupSubmit = async (values, actions) => {
-    
-  }
+  const handleSignup = async (values, actions) => {
+    // to bypass server side validation(temporarily)
+    values.country = "Bangladesh";
+    values.city = "Dhaka";
+    values.gender = "male";
+    values.phone = "123456789";
+    values.address1 = "Dhaka, Bangladesh";
+
+    const signupRes = await handleSignupPost({
+      body: values,
+    });
+
+    if (signupRes && signupRes["status"] === "ok") {
+      history.push("/signin");
+      alert.success("Registration successfull");
+    } else {
+      console.log(signupState);
+      if (
+        signupState.error["isError"] &&
+        !(Object.keys(signupState.error["error"]).length > 0)
+      ) {
+        actions.resetForm({});
+        alert.error("Something went wrong");
+      }
+    }
+
+    actions.setSubmitting(false);
+  };
 
   return (
     <SignUpWrapper>
@@ -41,51 +75,107 @@ const SignUp = () => {
         <Header>CREATE ACCOUNT</Header>
 
         <FormContainer>
-          <Form>
-            <InputField
-              type="text"
-              label="First Name"
-              name="firstName"
-              placeholder="First Name"
-              customStyle={LabelStyles}
-            />
+          <Formik
+            initialValues={{ ...initialSignupValues }}
+            onSubmit={(values, actions) => handleSignup(values, actions)}
+            validationSchema={signupValidationSchema}
+            validateOnBlur={false}
+          >
+            {({
+              handleChange,
+              values,
+              handleSubmit,
+              errors,
+              isSubmitting,
+              touched,
+              setFieldTouched,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <InputField
+                  type="text"
+                  label="First Name"
+                  name="firstName"
+                  placeholder="First Name"
+                  customStyle={LabelStyles}
+                  value={values.firstName}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("firstName");
+                  }}
+                />
 
-            <InputField
-              type="text"
-              label="Last Name"
-              name="lastName"
-              placeholder="Last Name"
-              customStyle={LabelStyles}
-            />
+                <ErrorText>
+                  {(touched.firstName && errors.firstName) ||
+                    (!isSubmitting && signupState.error["error"]["firstName"])}
+                </ErrorText>
 
-            <InputField
-              type="text"
-              label="Last Name"
-              name="lastName"
-              placeholder="Last Name"
-              customStyle={LabelStyles}
-            />
+                <InputField
+                  type="text"
+                  label="Last Name"
+                  name="lastName"
+                  placeholder="Last Name"
+                  customStyle={LabelStyles}
+                  value={values.lastName}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("lastName");
+                  }}
+                />
 
-            <InputField
-              type="text"
-              label="Email"
-              name="email"
-              placeholder="Email"
-              customStyle={LabelStyles}
-            />
+                <ErrorText>
+                  {(touched.lastName && errors.lastName) ||
+                    (!isSubmitting && signupState.error["error"]["lastName"])}
+                </ErrorText>
 
-            <InputField
-              type="password"
-              label="Password"
-              name="password"
-              placeholder="Enter your password"
-              customStyle={LabelStyles}
-            />
+                <InputField
+                  type="text"
+                  label="Email"
+                  name="email"
+                  placeholder="Email"
+                  customStyle={LabelStyles}
+                  value={values.email}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("email");
+                  }}
+                />
+                <ErrorText>
+                  {(touched.email && errors.email) ||
+                    (!isSubmitting && signupState.error["error"]["username"])}
+                </ErrorText>
 
-            <DrawerButton wrapperStyle={{}} customStyle={{ padding: "8px 0" }}>
-              CREATE ACCOUNT
-            </DrawerButton>
-          </Form>
+                <InputField
+                  type="password"
+                  label="Password"
+                  name="password"
+                  placeholder="Enter your password"
+                  customStyle={LabelStyles}
+                  value={values.password}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("password");
+                  }}
+                />
+                <ErrorText>
+                  {(touched.password && errors.password) ||
+                    (!isSubmitting && signupState.error["error"]["password"])}
+                </ErrorText>
+
+                <DrawerButton
+                  wrapperStyle={{ "margin-top": "20px" }}
+                  customStyle={{ padding: "8px 0" }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                  }}
+                >
+                  {signupState.isLoading
+                    ? "CREATING ACCOUNT..."
+                    : "CREATE ACCOUNT"}
+                </DrawerButton>
+              </Form>
+            )}
+          </Formik>
 
           <Text
             customStyle={{
@@ -103,6 +193,13 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+const ErrorText = styled.p`
+  color: rgba(255, 0, 0, 0.759);
+  font-size: 15px;
+  margin-top: -12px;
+  position: absolute;
+`;
 
 const SignUpWrapper = styled.section`
   background-color: #f2f2f2;

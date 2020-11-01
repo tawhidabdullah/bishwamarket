@@ -1,7 +1,7 @@
 //@ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal } from "react-bootstrap";
 
 // import elements
 import { Header } from "../../components/elements/Header";
@@ -13,7 +13,28 @@ import AccountInfo from "./AccountInfo";
 // import styles
 import { headerStyles, textStyles } from "./Dashboard.styles";
 
+// import modals
+import { ContactModal } from "../../components/Modal/ContactModal";
+import { ChangePasswordModal } from "../../components/Modal/ChangePasswordModal";
+import { AddressModal } from "../../components/Modal/AddressModal";
+
 const DashboardContent = () => {
+  // TODO should all these state be repeated?
+  // contact update modal state and handlers
+  const [isContactModal, setIsContactModal] = useState(false);
+  const openContactModal = () => setIsContactModal(true);
+  const closeContactModal = () => setIsContactModal(false);
+
+  // Password update modal state and handlers
+  const [isPasswordModal, setIsPasswordModal] = useState(false);
+  const openPasswordModal = () => setIsPasswordModal(true);
+  const closePasswordModal = () => setIsPasswordModal(false);
+
+  // address update modal state and handlers
+  const [isAddressModal, setIsAddressModal] = useState(false);
+  const openAddressModal = () => setIsAddressModal(true);
+  const closeAddressModal = () => setIsAddressModal(false);
+
   return (
     <DashboardContentWrapper>
       <InnerContainer>
@@ -38,6 +59,15 @@ const DashboardContent = () => {
                   "MARK-JECNO@gmail.com",
                   "+8801234-458-987",
                 ]}
+                showModal={isContactModal}
+                openModal={openContactModal}
+                modal={
+                  <ContactModal
+                    show={isContactModal}
+                    onHide={closeContactModal}
+                    size="md"
+                  />
+                }
               />
 
               <Text
@@ -48,9 +78,15 @@ const DashboardContent = () => {
                   color: "#00baf2",
                   "letter-spacing": "unset",
                 }}
+                clickAction={openPasswordModal}
               >
                 Change Password
               </Text>
+              <ChangePasswordModal
+                show={isPasswordModal}
+                onHide={closePasswordModal}
+                size="md"
+              />
             </Col>
 
             <Col sm={6}>
@@ -64,6 +100,15 @@ const DashboardContent = () => {
                   " Address: Nikunjo-2, Khilkhet, Dhaka",
                   "Phone: 123-456-789",
                 ]}
+                showModal={isAddressModal}
+                openModal={openAddressModal}
+                modal={
+                  <AddressModal
+                    show={isAddressModal}
+                    onHide={closeAddressModal}
+                    size="md"
+                  />
+                }
               />
             </Col>
           </Row>

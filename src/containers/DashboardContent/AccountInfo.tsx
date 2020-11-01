@@ -1,7 +1,6 @@
 //@ts-nocheck
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import { Modal } from "react-bootstrap";
 
 // import elements
 import { Header } from "../../components/elements/Header";
@@ -14,22 +13,22 @@ import {
   ModalActionStyle,
 } from "./Dashboard.styles";
 
-const AccountInfo = ({ title, infoList }) => {
+const AccountInfo = ({ title, infoList, modal, showModal, openModal }) => {
   return (
     <Fragment>
       <TitleContainer>
         <Header customStyle={accountTittleInfo} content={title} />
-        <Text customStyle={ModalActionStyle}>Edit</Text>
+        <Text customStyle={ModalActionStyle} clickAction={() => openModal()}>
+          Edit
+        </Text>
+        {showModal && modal}
       </TitleContainer>
 
       <AccountInfoBox>
         {infoList.map((info, idx) => (
-          <>
-            <Text key={idx} customStyle={textStyles}>
-              {info}
-            </Text>{" "}
-            <br />
-          </>
+          <Fragment key={idx}>
+            <Text customStyle={textStyles}>{info}</Text> <br />
+          </Fragment>
         ))}
       </AccountInfoBox>
     </Fragment>

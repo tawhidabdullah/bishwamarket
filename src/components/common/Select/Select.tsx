@@ -7,7 +7,7 @@ const Select = ({ customStyle, label, options, name }) => {
   return (
     <SelectContainer>
       <Label customStyle={customStyle}>{label}</Label>
-      <SelectField name={name}>
+      <SelectField customStyle={customStyle} name={name}>
         {options &&
           options.map((option, idx) => (
             <Option key={idx} value={option.value}>
@@ -43,7 +43,7 @@ const SelectField = styled.select`
   text-indent: 10px;
   margin-bottom: 10px;
   letter-spacing: 1px;
-  appearance: none;
+  background: #fff;
 
   ::placeholder {
     font-size: 15px;

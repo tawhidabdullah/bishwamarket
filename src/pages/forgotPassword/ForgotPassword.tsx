@@ -1,6 +1,15 @@
 // @ts-nocheck
 import React from "react";
 import styled from "styled-components";
+import { Formik } from "formik";
+import { connect } from "react-redux";
+import { useAlert } from "react-alert";
+
+// import state
+import { sessionOperations } from "../../state/ducks/session";
+
+// import hooks
+import { useHandleFetch } from "../../hooks";
 
 // import common components
 import { InputField } from "../../components/common/InputField";
@@ -8,6 +17,15 @@ import { DrawerButton } from "../../components/common/Button/DrawerButton";
 import { Text } from "../../components/elements/Text";
 
 const ForgotPassword = () => {
+  const [recoverPass, handleRecoverPass] = useHandleFetch(
+    {},
+    "recoverPassword"
+  );
+  const [validateTokenState, handleValidateToken] = useHandleFetch(
+    {},
+    "validateToken"
+  );
+
   return (
     <ForgotPasswordWrapper>
       <ForgotPasswordContainer>
