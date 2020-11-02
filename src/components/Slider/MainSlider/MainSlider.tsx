@@ -1,44 +1,39 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
-import img from "../../../assets/banner/1.jpg";
-import fimg1 from "../../../assets/slider-tab/1.jpg";
-import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
 
-const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
+const MainSlider = ({
+  responsive,
+  ProductsByCategory,
+  customStyles,
+  ...props
+}) => {
+  const [activeSlide, setactiveSlide] = useState(0);
+  const [activeSlide2, setactiveSlide2] = useState(0);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
 
-console.log(props.data,"mainslider");
- const [activeSlide, setactiveSlide] = useState(0);
-   const [activeSlide2, setactiveSlide2] = useState(0);
-   const settings = {
-     dots: false,
-     infinite: true,
-     speed: 500,
-
-     responsive: responsive.responsive,
-   };
-    return (
-      <Layout customStyles={customStyles}>
-        <MainContent customStyles={customStyles}>
-          <Slider {...settings}>
-          
-            {props.data && props.data.length > 0
-              ? props.data.map((item) => {
-                  return (
-                    <ProductsByCategory
-                      item={item}
-                      customStyles={customStyles}
-                    />
-                  );
-                })
-              : " "}
-          </Slider>
-        </MainContent>
-      </Layout>
-    );
-}
-
+    responsive: responsive.responsive,
+  };
+  return (
+    <Layout customStyles={customStyles}>
+      <MainContent customStyles={customStyles}>
+        <Slider {...settings}>
+          {props.data && props.data.length > 0
+            ? props.data.map((item) => {
+                return (
+                  <ProductsByCategory item={item} customStyles={customStyles} />
+                );
+              })
+            : " "}
+        </Slider>
+      </MainContent>
+    </Layout>
+  );
+};
 
 export default MainSlider;
 const Layout = styled.div`
@@ -54,8 +49,8 @@ const MainContent = styled.div`
     props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
-   padding-right: 15px;
-  padding-left: 15px; 
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
   padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};
@@ -81,7 +76,7 @@ const MainContent = styled.div`
 
     @media only screen and (max-width: 580px) {
       justify-content: center;
-      align-items:center;
+      align-items: center;
     }
   }
 

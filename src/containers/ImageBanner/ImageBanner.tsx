@@ -1,40 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import slider1 from "../../assets/1.1.png";
-import image from "../../assets/banner/1.jpg";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { Blog } from "../../components/Banner/Blog";
-import CollectionItem from "../../components/CollectionItem/CollectionItem"
+import CollectionItem from "../../components/CollectionItem/CollectionItem";
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
-import offerImg from "../../assets/offerBanner/offer-banner.png"
+import offerImg from "../../assets/offerBanner/offer-banner.png";
 
 import { useQueryFetch } from "../../hooks";
-const  ImageBanner=()=> {
+const ImageBanner = () => {
+  const [status, setStatus] = useState(true);
+  const [data, setdata] = useState([]);
 
+  const bannerState = useQueryFetch("banner");
 
+  useEffect(() => {
+    if (bannerState.isLoading === false) {
+      setdata(bannerState.data);
 
-
-
-
-
-
-    const [status, setStatus] = useState(true);
-    const [data, setdata] = useState([]);
-
-
-
-      const bannerState = useQueryFetch("banner");
-  
-    useEffect(() => {
-      if (bannerState.isLoading === false) {
-        console.log("pppp");
-        setdata(bannerState.data);
-        console.log(bannerState.data[0]);
-        setStatus(false);
-      }
-    }, [bannerState.isLoading]);
-
-
+      setStatus(false);
+    }
+  }, [bannerState.isLoading]);
 
   const responsive = {
     responsive: [
@@ -71,68 +56,65 @@ const  ImageBanner=()=> {
       },
     ],
   };
-    return (
-      <NavigationContainer>
-        <Content></Content>
+  return (
+    <NavigationContainer>
+      <Content></Content>
 
-        <SliderBanner>
-          {status ? (
-            <div className="loaderSection">
-              <div className="createLoader"></div>
-            </div>
-          ) : (
-            <MainSlider
-              responsive={responsive}
-              ProductsByCategory={ThemeSlider}
-              data={data}
-              customStyles={{
-                width: "100%",
-                padding:"0px",
-              }}
-            />
-          )}
-        </SliderBanner>
-        <RightSlider>
-          <OfferBannerImg>
-            <img src={offerImg} alt="offer-banner" className="img-fluid  " />
-          </OfferBannerImg>
-          <BannerContain>
-            <h5>Special Offer for you</h5>
-            <Discount>
-              <h1>50%</h1>
-              <sup>off</sup>
-            </Discount>
-          </BannerContain>
-        </RightSlider>
+      <SliderBanner>
+        {status ? (
+          <div className="loaderSection">
+            <div className="createLoader"></div>
+          </div>
+        ) : (
+          <MainSlider
+            responsive={responsive}
+            ProductsByCategory={ThemeSlider}
+            data={data}
+            customStyles={{
+              width: "100%",
+              padding: "0px",
+            }}
+          />
+        )}
+      </SliderBanner>
+      <RightSlider>
+        <OfferBannerImg>
+          <img src={offerImg} alt="offer-banner" className="img-fluid  " />
+        </OfferBannerImg>
+        <BannerContain>
+          <h5>Special Offer for you</h5>
+          <Discount>
+            <h1>50%</h1>
+            <sup>off</sup>
+          </Discount>
+        </BannerContain>
+      </RightSlider>
 
-        <BottomImage>
-          <CollectionItem customStyles={{}}></CollectionItem>
+      <BottomImage>
+        <CollectionItem customStyles={{}}></CollectionItem>
 
-          <CollectionItem customStyles={{}}></CollectionItem>
-          <CollectionItem customStyles={{}}></CollectionItem>
-        </BottomImage>
-      </NavigationContainer>
-    );
-}
-
+        <CollectionItem customStyles={{}}></CollectionItem>
+        <CollectionItem customStyles={{}}></CollectionItem>
+      </BottomImage>
+    </NavigationContainer>
+  );
+};
 
 export default ImageBanner;
 
+const OfferBannerImg = styled.div`
+  height: 100%;
+  background-color: #ff6000;
 
-const OfferBannerImg=styled.div`
-   height: 100%;
-    background-color: #ff6000;
-   
-    display: flex;
-   
-    align-items: center;
+  display: flex;
 
-    & img{
-      height: 100%;
-     width:100%;
-     object-fit:fill;
-    }
+  align-items: center;
 
+  & img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
 `;
 
 const BannerContain = styled.div`
@@ -157,10 +139,9 @@ const BannerContain = styled.div`
     font-weight: 400;
     margin-top: 25px;
   }
-  @media only screen and (min-width: 1750px) and (max-width:2000px) {
+  @media only screen and (min-width: 1750px) and (max-width: 2000px) {
     left: -50px;
   }
-  
 `;
 
 const Discount = styled.div`
@@ -189,7 +170,6 @@ const Content = styled.div`
 
   @media only screen and (max-width: 1150px) {
     display: none;
-   
   }
 
   // transition: height 2s;
@@ -200,7 +180,6 @@ const Content = styled.div`
   //   height: 300px;
   // }
 `;
-
 
 const RightSlider = styled.div`
   display: none;
@@ -232,32 +211,24 @@ const NavigationContainer = styled.div`
 `;
 
 const SliderBanner = styled.div`
- 
   background-color: #eddbd1;
-  margin-top:10px;
-
+  margin-top: 10px;
 `;
 const SliderImage = styled.div`
   height: 455px;
-  
-
-
 `;
 const SliderBannercontent = styled.div`
   position: absolute;
   top: 0;
-  right:0;
+  right: 0;
   width: 100%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  
+
   padding: 0 100px;
 `;
-
-
-
 
 const BottomImage = styled.div`
   display: grid;
@@ -286,16 +257,13 @@ const BottomImage = styled.div`
 `;
 
 const Item = styled.div`
-
- 
-  
   background-size: cover;
   background-position: center center;
   display: flex;
- 
+
   align-items: center;
-  padding-left:10px;
-  
+  padding-left: 10px;
+
   & h3 {
     color: #ff6000;
     text-transform: uppercase;
@@ -324,6 +292,3 @@ const Item = styled.div`
     margin-left: 8px;
   }
 `;
-
-
-

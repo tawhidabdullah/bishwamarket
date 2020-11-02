@@ -49,7 +49,6 @@ const App = () => {
       setstatus(false);
     }
   }, [productsState.isSuccess]);
-  console.log(productsState, "productsState");
 
   return (
     <BrowserRouter>

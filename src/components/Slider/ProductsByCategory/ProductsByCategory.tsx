@@ -1,18 +1,101 @@
-import React from "react";
+//@ts-nocheck
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { useAlert } from "react-alert";
 
-// import add to cart actions
+// import  redux operations
 import { cartOperations } from "../../../state/ducks/cart";
 import { globalOperations } from "../../../state/ducks/globalState";
+// import { wishListOperations } from "../../../state/ducks/wishList";
+
+// caching utilities
+// import { checkIfItemExistsInCartItemById } from "../../../utils";
+
+// hooks for fetching cart info
+import { useHandleFetch } from "../../../hooks";
 
 const ProductsByCategory = ({
-  toggleCartDrawer,
   toggleQuickviewDrawer,
   addToCart,
+  removeFromCart,
   customStyles,
   item,
+  session,
+  // addToWishlist,
 }) => {
+  const alert = useAlert();
+  // destructuring properties of product
+  const { _id, name, cover, url, pricing, price, inStock } = item;
+
+  // state for selecting product variation
+  // const [selectedVariation, setSelectedVariation] = useState({});
+  const [selectedVariationId, setSelectedVariationId] = useState("");
+
+  // this hook send POST request to server to add item to cart
+  const [addToCartState, handleAddtoCartFetch] = useHandleFetch(
+    [],
+    "addtoCart"
+  );
+
+  // this hook send POST request to server to add item to wishlist
+  const [addWishlistState, handleAddWishlistFetch] = useHandleFetch(
+    [],
+    "addWishlist"
+  );
+
+  // const handleSelectVariation = (value) => setSelectedVariationId(value.value);
+
+  // add to cart handler
+  const handleAddToCart = async () => {
+    if (!inStock) {
+      alert.error("Out of stock");
+      return;
+    }
+    const cartItem = {
+      product: _id,
+      variation: selectedVariationId
+        ? selectedVariationId
+        : pricing && pricing[0] && pricing[0]._id,
+      name,
+      quantity: 1,
+      cover,
+      price,
+      url,
+    };
+
+    addToCart && addToCart(cartItem);
+    alert.success("Product added to the cart");
+
+    if (session.isAuthenticated) {
+      const addToCartRes = await handleAddtoCartFetch({
+        body: {
+          items: [cartItem],
+        },
+      });
+
+      if (addToCartRes && Object.keys(addToCartRes).length === 0) {
+        removeFromCart(cartItem);
+        alert.error("Something went wrong!");
+      }
+    }
+    // if (checkIfItemExistsInCartItemById(cartItems, productToAdd)) {
+
+    // }
+  };
+
+  const handleAddItemToWishlist = async (productId) => {
+    if (session.isAuthenticated) {
+      const res = await handleAddWishlistFetch({
+        body: {},
+      });
+      console.log("wishlist res", res);
+      alert.success("Item added to wishlist");
+    } else {
+      alert.error("Please login to add item to wishlist");
+    }
+  };
+
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
@@ -25,19 +108,22 @@ const ProductsByCategory = ({
       </ProductImgbox>
       <ProductIconContainer customStyles={customStyles}>
         <ProductIcon
-          onClick={() => {
-            toggleCartDrawer();
-            addToCart(item);
-          }}
+          title="Add Item to Cart"
+          onClick={() => handleAddToCart()}
           customStyles={customStyles}
         >
           <i className="fa fa-shopping-bag"></i>
         </ProductIcon>
-        <ProductIcon customStyles={customStyles}>
+        <ProductIcon
+          title="Add Item to wishlist"
+          onClick={() => handleAddItemToWishlist(_id)}
+          customStyles={customStyles}
+        >
           <i className="fa fa-heart-o"></i>
         </ProductIcon>
 
         <ProductIcon
+          title="See details"
           onClick={() => toggleQuickviewDrawer()}
           customStyles={customStyles}
         >
@@ -50,16 +136,7 @@ const ProductsByCategory = ({
       </ProductIconContainer>
       <ProductDetail customStyles={customStyles}>
         <DetailLeft customStyles={customStyles}>
-          <Rating>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-          </Rating>
-          <PriceTitel>
-            header will be distracted.reallyyyy i want pieee it is all about
-          </PriceTitel>
+          <PriceTitle>{name}</PriceTitle>
         </DetailLeft>
         <DetailRight>
           <CheckPrice> $ {item.regularPrice}</CheckPrice>
@@ -74,13 +151,21 @@ const ProductsByCategory = ({
   );
 };
 
+const mapStateToProps = (state) => ({
+  cartItems: state.cart,
+  wishList: state.wishList,
+  session: state.session,
+});
+
 const mapDispatchToProps = {
   toggleCartDrawer: globalOperations.toggleCartDrawer,
   toggleQuickviewDrawer: globalOperations.toggleQuickviewDrawer,
   addToCart: cartOperations.addToCart,
+  removeFromCart: cartOperations.removeFromCart,
+  // addToWishlist: wishListOperations.addToWishList,
 };
 
-export default connect(null, mapDispatchToProps)(ProductsByCategory);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsByCategory);
 
 const ProductIconContainer = styled.div`
   display: flex;
@@ -385,7 +470,7 @@ const Price = styled.div`
   font-weight: 700;
 `;
 
-const PriceTitel = styled.div`
+const PriceTitle = styled.div`
   text-transform: capitalize;
   color: #777;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));

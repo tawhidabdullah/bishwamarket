@@ -23,7 +23,7 @@ const SearchNav = ({
   categoryListData,
 }) => {
   const [subcategory, setSubCategory] = useState([]);
-  const [minlength, setminlength]=useState(8);
+  const [minlength, setminlength] = useState(8);
 
   const handleSub = (value) => {
     if (
@@ -37,24 +37,16 @@ const SearchNav = ({
     console.log(categoryListData[value].subCategory);
   };
 
-  
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);
-      console.log(
-        categoryListData[0].subCategory,
-        "categoryListData[0].subCategory"
-      );
     }
   }, [categoryListData.length]);
 
-
-  const updateLength=()=>{
-    if (subcategory.length<minlength) 
-        setminlength(minlength + 8);
-    else
-      setminlength(subcategory.length);
-  }
+  const updateLength = () => {
+    if (subcategory.length < minlength) setminlength(minlength + 8);
+    else setminlength(subcategory.length);
+  };
   return (
     <SearchNavContainer>
       <NavCategory>
@@ -71,7 +63,7 @@ const SearchNav = ({
           <Contents>
             <CategoryItem>
               <ul className="nav-cat title-font">
-                {subcategory.slice(0,minlength).map((subitem, it) => {
+                {subcategory.slice(0, minlength).map((subitem, it) => {
                   return (
                     <li key={it}>
                       <img
@@ -84,7 +76,7 @@ const SearchNav = ({
                 })}
 
                 <li onClick={updateLength}>
-                  <a className="mor-slide-click" >
+                  <a className="mor-slide-click">
                     more category <i className="fa fa-angle-down pro-down"></i>
                     <i
                       className="fa fa-angle-up pro-up"
@@ -106,7 +98,6 @@ const SearchNav = ({
         <input type="text" placeholder="Search a Product"></input>
         <Dropdowncategory>
           <select
-          
             onChange={(e) =>
               categoryListData[e.target.value] &&
               categoryListData[e.target.value].hasOwnProperty("subCategory")

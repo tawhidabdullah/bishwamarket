@@ -11,6 +11,7 @@ import { QuickViewDrawer } from "../components/Drawer/QuickviewDrawer";
 import { BottomDrawer } from "../components/Drawer/BottomDrawer";
 import { SettingsDrawer } from "../components/Drawer/SettingsDrawer";
 import { SearchDrawer } from "../components/Drawer/SearchDrawer";
+import { CartIcon } from "../components/common/CartIcon";
 
 // import fixed components
 import { Navigation } from "../containers/Navigation";
@@ -43,6 +44,7 @@ const Layout = ({ children, globalState }) => {
       <SearchDrawer open={openSearchDrawer} />
       <BottomDrawer />
       <Navigation />
+      <CartIcon />
       {children}
       <Footer />
     </>

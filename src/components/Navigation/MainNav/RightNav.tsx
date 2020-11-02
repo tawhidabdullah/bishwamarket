@@ -3,12 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 // import global actions
-import {
-  toggleSigninDrawer,
-  toggleWishlistDrawer,
-  toggleCartDrawer,
-  toggleNavigationDrawer,
-} from "../../../state/ducks/globalState/actions";
+import { globalOperations } from "../../../state/ducks/globalState";
 
 import HomeDropdown from "./HomeDropdown";
 import ShopDropdown from "./ShopDropdown";
@@ -32,27 +27,27 @@ const RightNav = ({
       <ToggleContainer>
         <NavItems>
           <NavItem>
-            HOME <i className="fa fa-angle-down"></i>
+            HOME <i className="fa fa-angle-down" />
             <HomeDropdown />
           </NavItem>
           <NavItem>
-            SHOP <i className="fa fa-angle-down"></i>
+            SHOP <i className="fa fa-angle-down" />
             <ShopDropdown />
           </NavItem>
           <NavItem>
-            PRODUCTS <i className="fa fa-angle-down"></i>
+            PRODUCTS <i className="fa fa-angle-down" />
             <ProductDropdown />
           </NavItem>
           <NavItem>
-            FEATURE <i className="fa fa-angle-down"></i>
+            FEATURE <i className="fa fa-angle-down" />
             <FeatureDropdown />
           </NavItem>
           <NavItem>
-            PAGES <i className="fa fa-angle-down"></i>
+            PAGES <i className="fa fa-angle-down" />
             <PageDropdown />
           </NavItem>
           <NavItem>
-            BLOG <i className="fa fa-angle-down"></i>
+            BLOG <i className="fa fa-angle-down" />
             <BlogDropdown />
           </NavItem>
         </NavItems>
@@ -71,10 +66,10 @@ const RightNav = ({
             <span>WISHLIST</span>
           </WishText>
         </WishBox>
-        <CartIcon onClick={() => toggleCartDrawer()}>
+        {/* <CartIcon onClick={() => toggleCartDrawer()}>
           <span>0</span>
           <i className="fa fa-shopping-cart"></i>
-        </CartIcon>
+        </CartIcon> */}
       </IconContainer>
 
       <NavToggler onClick={() => toggleNavigationDrawer()}>
@@ -84,12 +79,12 @@ const RightNav = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleSigninDrawer: () => dispatch(toggleSigninDrawer()),
-  toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
-  toggleCartDrawer: () => dispatch(toggleCartDrawer()),
-  toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
-});
+const mapDispatchToProps = {
+  toggleSigninDrawer: globalOperations.toggleSigninDrawer,
+  toggleWishlistDrawer: globalOperations.toggleWishlistDrawer,
+  toggleCartDrawer: globalOperations.toggleCartDrawer,
+  toggleNavigationDrawer: globalOperations.toggleNavigationDrawer,
+};
 
 export default connect(null, mapDispatchToProps)(RightNav);
 
@@ -172,19 +167,19 @@ const WishText = styled.div`
   }
 `;
 
-const CartIcon = styled(IconWrapper)`
-  background-color: #ff6000;
-  padding: 10px 20px;
-  margin-left: 20px;
-  position: relative;
-  cursor: pointer;
-  color: white;
-  font-size: 24px;
+// const CartIcon = styled(IconWrapper)`
+//   background-color: #ff6000;
+//   padding: 10px 20px;
+//   margin-left: 20px;
+//   position: relative;
+//   cursor: pointer;
+//   color: white;
+//   font-size: 24px;
 
-  & span {
-    right: 14%;
-    position: absolute;
-    top: 2%;
-    font-size: 20px;
-  }
-`;
+//   & span {
+//     right: 14%;
+//     position: absolute;
+//     top: 2%;
+//     font-size: 20px;
+//   }
+// `;

@@ -18,8 +18,7 @@ import { Service } from "../../components/Navigation/ServiceNav";
 import { DiscountBanner } from "../../components/Banner/DiscountBanner";
 import { Collection } from "../../components/Banner/CollectionBanner";
 
-const Home = ({products}) => {
-  console.log(products, "home");
+const Home = ({ products }) => {
   return (
     <>
       <ImageBanner />
@@ -29,9 +28,10 @@ const Home = ({products}) => {
       <DiscountBanner />
       <Collection />
 
-      <ProductByCategory 
-      //ts-ignore
-      products={products} />
+      <ProductByCategory
+        //ts-ignore
+        products={products}
+      />
 
       <CategorySlider />
       <MediaBannerSlider />

@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
@@ -11,9 +11,32 @@ import { DrawerButton } from "../../common/Button/DrawerButton";
 import wishListImage from "../../../assets/wishListDrawerImage.jpg";
 
 // import toggle drawer action
-import { toggleWishlistDrawer } from "../../../state/ducks/globalState/actions";
+import { globalOperations } from "../../../state/ducks/globalState";
 
-const WishListDrawer = ({ open, toggleWishlistDrawer }) => {
+// import wishlist ops
+import { wishListOperations } from "../../../state/ducks/wishList";
+
+// import hooks for fetching wishlist data
+import { useHandleFetch } from "../../../hooks";
+
+const WishListDrawer = ({
+  open,
+  toggleWishlistDrawer,
+  addWishlist,
+  wishList,
+}) => {
+  // this hook send GET request to get wishlist
+  const [getWishlistState, handleWishlist] = useHandleFetch({}, "getWishlist");
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      const getWishlistRes = await handleWishlist();
+      console.log(getWishlistRes);
+    };
+
+    fetchWishlist();
+  }, []);
+
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleWishlistDrawer()} />
@@ -92,11 +115,16 @@ const WishListDrawer = ({ open, toggleWishlistDrawer }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleWishlistDrawer: () => dispatch(toggleWishlistDrawer()),
+const mapStateToProps = (state) => ({
+  wishList: state.wishList,
 });
 
-export default connect(null, mapDispatchToProps)(WishListDrawer);
+const mapDispatchToProps = {
+  toggleWishlistDrawer: globalOperations.toggleWishlistDrawer,
+  addWishlist: wishListOperations.addWishlist,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WishListDrawer);
 
 const WishListDrawerContainer = styled.div`
   position: fixed;

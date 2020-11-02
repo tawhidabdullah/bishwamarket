@@ -1,15 +1,11 @@
 import React from "react";
 
-
-
 import styled from "styled-components";
 import { ProductsByCategory } from "../../../components/Slider/ProductsByCategory";
-import {MainSlider} from "../../../components/Slider/MainSlider"
-import {Blog} from "../../../components/Banner/Blog"
+import { MainSlider } from "../../../components/Slider/MainSlider";
+import { Blog } from "../../../components/Banner/Blog";
 
 const SpecilaProductSlider = ({ products }) => {
-
-  console.log(products, "SpecilaProductSlider");
   const responsive = {
     responsive: [
       {
@@ -80,11 +76,4 @@ const SpecilaProductSlider = ({ products }) => {
 };
 export default SpecilaProductSlider;
 
-
-
-
-const Section = styled.div`
- 
-`;
-
-
+const Section = styled.div``;
