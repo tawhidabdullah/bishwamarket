@@ -1,5 +1,5 @@
-import config from '../config.json';
-import dataMap from '../dataMap.json';
+import config from "../config.json";
+import dataMap from "../dataMap.json";
 
 class Converter {
   /**
@@ -2066,41 +2066,41 @@ export default Converter;
 const x = {
   inserted: [
     {
-      _id: '5f22c27b9da63005e00ed81c',
-      added: '2020-07-30T12:52:11.568Z',
+      _id: "5f22c27b9da63005e00ed81c",
+      added: "2020-07-30T12:52:11.568Z",
       products: [
         {
-          _id: '5f1d72f7df25a51cda9a86af',
-          variation: '5f1d72f7df25a51cda9a86ac',
+          _id: "5f1d72f7df25a51cda9a86af",
+          variation: "5f1d72f7df25a51cda9a86ac",
           unitPrice: 66,
           price: 66,
           quantity: 1,
         },
       ],
       billingAddress: {
-        firstName: 'Tawhid',
-        lastName: 'Abdullah',
-        country: 'Algeria',
-        city: '5e8218a9a0be4401500e4d62',
-        address1: 'Dhaka,mohammadpur-1207',
-        address2: '',
-        phone: 'test',
-        email: 'lost@gmail.com',
+        firstName: "Tawhid",
+        lastName: "Abdullah",
+        country: "Algeria",
+        city: "5e8218a9a0be4401500e4d62",
+        address1: "Dhaka,mohammadpur-1207",
+        address2: "",
+        phone: "test",
+        email: "lost@gmail.com",
       },
       payment: {
-        paymentMethod: 'orangeMoney',
-        status: 'pending',
+        paymentMethod: "orangeMoney",
+        status: "pending",
         pay_token:
-          'v1b4d4rc7epz1ibmkadtuxtnzxigb5gudzh7d3sh5wa92eflvtp4lvdtltwtbiyp',
+          "v1b4d4rc7epz1ibmkadtuxtnzxigb5gudzh7d3sh5wa92eflvtp4lvdtltwtbiyp",
         payment_url:
-          'https://webpayment-ow-sb.orange-money.com/sx/mpayment/abstract/v1b4d4rc7epz1ibmkadtuxtnzxigb5gudzh7d3sh5wa92eflvtp4lvdtltwtbiyp',
+          "https://webpayment-ow-sb.orange-money.com/sx/mpayment/abstract/v1b4d4rc7epz1ibmkadtuxtnzxigb5gudzh7d3sh5wa92eflvtp4lvdtltwtbiyp",
       },
-      status: 'Pending',
+      status: "Pending",
       totalPrice: 66,
-      customer: '5f128439de21e8749d270dd0',
+      customer: "5f128439de21e8749d270dd0",
       qrCode: {
-        web: 'qrCode/web/5f22c27b9da63005e00ed81c-webQr.png',
-        app: 'qrCode/app/5f22c27b9da63005e00ed81c-appQr.png',
+        web: "qrCode/web/5f22c27b9da63005e00ed81c-webQr.png",
+        app: "qrCode/app/5f22c27b9da63005e00ed81c-appQr.png",
       },
     },
   ],

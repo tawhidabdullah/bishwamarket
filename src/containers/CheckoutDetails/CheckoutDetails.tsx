@@ -1,11 +1,14 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Col } from "react-bootstrap";
+import { connect } from "react-redux";
 
 // import common elements
 import { Checkbox } from "../../components/common/Checkbox";
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
+
+// reducer ops
+import { cartSelectors } from "../../state/ducks/cart";
 
 // constant  styles
 // radio buttons
@@ -19,102 +22,96 @@ const checkButtonStyles = {
 
 // TODO refactor into smaller component
 
-const CheckoutDetails = () => {
+const CheckoutDetails = ({ cartItems, totalPrice }) => {
   const [payment, setPayment] = useState(null);
 
   const handleSetPayment = (opts) => setPayment(opts);
   return (
-    <Col lg={6} sm={12} xs={12}>
-      <CheckoutDetailsContainer>
-        <OrderBox>
-          <TitleBox>
-            <div>
-              Product <span>Total</span>
-            </div>
-          </TitleBox>
-          <QuantityList>
-            <QuantityListItem>
-              Pink Slim Shirt X 1<span>$25.10</span>
-            </QuantityListItem>
+    <CheckoutDetailsContainer>
+      <OrderBox>
+        <TitleBox>
+          <div>
+            Product <span>Total</span>
+          </div>
+        </TitleBox>
+        <QuantityList>
+          {cartItems &&
+            cartItems.length > 0 &&
+            cartItems.map((item) => (
+              <QuantityListItem>
+                {item.name} X {item.quantity}
+                <span>${item.quantity * item.price}</span>
+              </QuantityListItem>
+            ))}
+        </QuantityList>
 
-            <QuantityListItem>
-              Slim Fit Jeans X 1<span>$255.10</span>
-            </QuantityListItem>
-          </QuantityList>
+        <SubTotalList>
+          <SubTotalListItem>
+            SubTotal <SubTotal>${totalPrice}</SubTotal>
+          </SubTotalListItem>
 
-          <SubTotalList>
-            <SubTotalListItem>
-              SubTotal <SubTotal>$280.20</SubTotal>
-            </SubTotalListItem>
+          <SubTotalListItem>
+            Shipping <SubTotal>${0}</SubTotal>
+          </SubTotalListItem>
+        </SubTotalList>
 
-            <SubTotalListItem>
-              Shipping
-              <ShippingOptions>
-                <Checkbox
-                  label="Free Shipping"
-                  customStyle={checkButtonStyles}
-                />
+        <TotalPriceList>
+          <TotalPriceItem>
+            Total <SubTotal>${totalPrice}</SubTotal>
+          </TotalPriceItem>
+        </TotalPriceList>
+      </OrderBox>
 
-                <Checkbox
-                  label="Local Pickup"
-                  customStyle={checkButtonStyles}
-                />
-              </ShippingOptions>
-            </SubTotalListItem>
-          </SubTotalList>
+      <PaymentBox>
+        <PaymentOptionsContainer>
+          {/* <PaymentOptionItem>
+            <Checkbox
+              label="Check Payments"
+              customStyle={radioButtonStyles}
+              type="radio"
+              id="checkPayment"
+              handleChange={handleSetPayment}
+              checked={payment === "checkPayment"}
+            />
+          </PaymentOptionItem> */}
 
-          <TotalPriceList>
-            <TotalPriceItem>
-              Total <SubTotal>$300.00</SubTotal>
-            </TotalPriceItem>
-          </TotalPriceList>
-        </OrderBox>
+          <PaymentOptionItem>
+            <Checkbox
+              label="Cash on Delivery"
+              customStyle={radioButtonStyles}
+              type="radio"
+              id="cod"
+              handleChange={handleSetPayment}
+              checked={true}
+              // checked={payment === "cod"}
+            />
+          </PaymentOptionItem>
 
-        <PaymentBox>
-          <PaymentOptionsContainer>
-            <PaymentOptionItem>
-              <Checkbox
-                label="Check Payments"
-                customStyle={radioButtonStyles}
-                type="radio"
-                id="checkPayment"
-                handleChange={handleSetPayment}
-                checked={payment === "checkPayment"}
-              />
-            </PaymentOptionItem>
-
-            <PaymentOptionItem>
-              <Checkbox
-                label="Cash on Delivery"
-                customStyle={radioButtonStyles}
-                type="radio"
-                id="cod"
-                handleChange={handleSetPayment}
-                checked={payment === "cod"}
-              />
-            </PaymentOptionItem>
-
-            <PaymentOptionItem>
-              <Checkbox
-                label="Paypal"
-                customStyle={radioButtonStyles}
-                type="radio"
-                id="paypal"
-                handleChange={handleSetPayment}
-                checked={payment === "paypal"}
-              />
-            </PaymentOptionItem>
-          </PaymentOptionsContainer>
-          <DrawerButton wrapperStyle={{ width: "40%", "marging-left": "auto" }}>
-            Place Order
-          </DrawerButton>
-        </PaymentBox>
-      </CheckoutDetailsContainer>
-    </Col>
+          {/* <PaymentOptionItem>
+            <Checkbox
+              label="Paypal"
+              customStyle={radioButtonStyles}
+              type="radio"
+              id="paypal"
+              handleChange={handleSetPayment}
+              checked={payment === "paypal"}
+            />
+          </PaymentOptionItem> */}
+        </PaymentOptionsContainer>
+        <DrawerButton wrapperStyle={{ width: "40%", "marging-left": "auto" }}>
+          Place Order
+        </DrawerButton>
+      </PaymentBox>
+    </CheckoutDetailsContainer>
   );
 };
 
-export default CheckoutDetails;
+const mapStateToProps = (state) => ({
+  cartItems: state.cart,
+  totalPrice: cartSelectors.getTotalPriceOfCartItems(state.cart),
+});
+
+export default connect(mapStateToProps)(CheckoutDetails);
 
 const ListContainerStyles = css`
   position: relative;

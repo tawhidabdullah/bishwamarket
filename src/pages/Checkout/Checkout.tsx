@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Row } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 // import containers
 import { CheckoutForm } from "../../containers/CheckoutForm";
@@ -12,8 +12,13 @@ const Checkout = () => {
       <Header>Billing Details</Header>
       <Row>
         {/* <CheckoutContainer> */}
-        <CheckoutForm customStyle={{}} />
-        <CheckoutDetails />
+        <Col lg={6} sm={12} xs={12}>
+          <CheckoutForm customStyle={{}} />
+        </Col>
+
+        <Col lg={6} sm={12} xs={12}>
+          <CheckoutDetails />
+        </Col>
         {/* </CheckoutContainer> */}
       </Row>
     </CheckoutWrapper>

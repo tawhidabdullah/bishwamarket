@@ -22,12 +22,14 @@ const Checkbox = ({
         <Input
           customStyle={customStyle}
           type={type ? type : "checkbox"}
-          onChange={
-            type && type === "radio"
-              ? () => handleChange(otherProps.id)
-              : () => {}
-          }
-          checked={checked}
+          onChange={handleChange}
+
+          // onChange={
+          //   type && type === "radio"
+          //     ? () => handleChange(otherProps.id)
+          //     : () => {}
+          // }
+          // checked={checked}
         />
         {label}
       </Label>

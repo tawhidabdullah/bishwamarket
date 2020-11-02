@@ -31,7 +31,7 @@ const WishListDrawer = ({
   useEffect(() => {
     const fetchWishlist = async () => {
       const getWishlistRes = await handleWishlist();
-      console.log(getWishlistRes);
+      // console.log(getWishlistRes);
     };
 
     fetchWishlist();
