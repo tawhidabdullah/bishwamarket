@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
 
@@ -7,19 +7,20 @@ import { CheckoutForm } from "../../containers/CheckoutForm";
 import { CheckoutDetails } from "../../containers/CheckoutDetails";
 
 const Checkout = () => {
+  const [shippingCost, setShippingCost] = useState(0);
+  const getShippingCost = (cost) => setShippingCost(cost);
+
   return (
     <CheckoutWrapper>
       <Header>Billing Details</Header>
       <Row>
-        {/* <CheckoutContainer> */}
         <Col lg={6} sm={12} xs={12}>
-          <CheckoutForm customStyle={{}} />
+          <CheckoutForm getShippingCost={getShippingCost} customStyle={{}} />
         </Col>
 
         <Col lg={6} sm={12} xs={12}>
-          <CheckoutDetails />
+          <CheckoutDetails shippingCost={shippingCost} />
         </Col>
-        {/* </CheckoutContainer> */}
       </Row>
     </CheckoutWrapper>
   );
@@ -34,12 +35,6 @@ const CheckoutWrapper = styled.section`
   padding: 30px;
   margin: 0 auto;
 `;
-
-// const CheckoutContainer = styled.section`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// `;
 
 const Header = styled.h2`
   text-align: left;

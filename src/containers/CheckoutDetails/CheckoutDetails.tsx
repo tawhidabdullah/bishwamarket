@@ -22,10 +22,11 @@ const checkButtonStyles = {
 
 // TODO refactor into smaller component
 
-const CheckoutDetails = ({ cartItems, totalPrice }) => {
+const CheckoutDetails = ({ cartItems, totalPrice, shippingCost }) => {
   const [payment, setPayment] = useState(null);
 
   const handleSetPayment = (opts) => setPayment(opts);
+
   return (
     <CheckoutDetailsContainer>
       <OrderBox>
@@ -37,8 +38,8 @@ const CheckoutDetails = ({ cartItems, totalPrice }) => {
         <QuantityList>
           {cartItems &&
             cartItems.length > 0 &&
-            cartItems.map((item) => (
-              <QuantityListItem>
+            cartItems.map((item, idx) => (
+              <QuantityListItem key={idx}>
                 {item.name} X {item.quantity}
                 <span>${item.quantity * item.price}</span>
               </QuantityListItem>
@@ -51,13 +52,20 @@ const CheckoutDetails = ({ cartItems, totalPrice }) => {
           </SubTotalListItem>
 
           <SubTotalListItem>
-            Shipping <SubTotal>${0}</SubTotal>
+            Shipping <SubTotal>${shippingCost}</SubTotal>
+          </SubTotalListItem>
+
+          <SubTotalListItem>
+            Payment <SubTotal>${shippingCost}</SubTotal>
           </SubTotalListItem>
         </SubTotalList>
 
         <TotalPriceList>
           <TotalPriceItem>
-            Total <SubTotal>${totalPrice}</SubTotal>
+            Total{" "}
+            <SubTotal>
+              ${parseInt(totalPrice) + parseInt(shippingCost)}
+            </SubTotal>
           </TotalPriceItem>
         </TotalPriceList>
       </OrderBox>
@@ -83,6 +91,7 @@ const CheckoutDetails = ({ cartItems, totalPrice }) => {
               id="cod"
               handleChange={handleSetPayment}
               checked={true}
+              value="cod"
               // checked={payment === "cod"}
             />
           </PaymentOptionItem>
@@ -98,9 +107,6 @@ const CheckoutDetails = ({ cartItems, totalPrice }) => {
             />
           </PaymentOptionItem> */}
         </PaymentOptionsContainer>
-        <DrawerButton wrapperStyle={{ width: "40%", "marging-left": "auto" }}>
-          Place Order
-        </DrawerButton>
       </PaymentBox>
     </CheckoutDetailsContainer>
   );

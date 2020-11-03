@@ -4,7 +4,9 @@ import styled from "styled-components";
 const AuthButton = ({ children, customStyle, wrapperStyle }) => {
   return (
     <AuthButtonContainer wrapperStyle={wrapperStyle}>
-      <Button customStyle={customStyle}>{children}</Button>
+      <Button type="button" customStyle={customStyle}>
+        {children}
+      </Button>
     </AuthButtonContainer>
   );
 };

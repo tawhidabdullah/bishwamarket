@@ -204,6 +204,10 @@
       "url": "/api/geo/:country/city",
       "method": "get"
     },
+    "deliveryCityList": {
+      "url": "/api/delivery",
+      "method": "get"
+    },
     "getDeliveryCharge": {
       "url": "/api/delivery/city/:cityName",
       "method": "get"

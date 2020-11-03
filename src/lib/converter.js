@@ -888,6 +888,27 @@ class Converter {
 
   /**
    * @public
+   * @method deliveryCityList convert api data from API to general format based on config server
+   * @param {Object} data response objectc from alpha
+   * @returns {Object}  converted data
+   */
+  async deliveryCityList(data) {
+    let cityList = [];
+
+    if (data) {
+      data.map((c) => {
+        c.city.map((name) => cityList.push(name));
+      });
+    }
+
+    return [...new Set(cityList)];
+
+    // console.log(cityList);
+    // return [...new Set(cityList)];
+  }
+
+  /**
+   * @public
    * @method cityList convert api data from API to general format based on config server
    * @param {Object} data response objectc from alpha
    * @returns {Object}  converted data

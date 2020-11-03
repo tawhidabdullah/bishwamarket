@@ -3,15 +3,21 @@ import styled from "styled-components";
 
 // ANCHOR should be refactored into one input component
 
-const Select = ({ customStyle, label, options, name }) => {
+const Select = ({ customStyle, label, options, name, handleChange }) => {
   return (
     <SelectContainer>
       <Label customStyle={customStyle}>{label}</Label>
-      <SelectField customStyle={customStyle} name={name}>
+      <SelectField
+        customStyle={customStyle}
+        name={name}
+        onChange={handleChange}
+      >
+        {/* <Option hidden>{label}</Option> */}
         {options &&
+          options.length > 0 &&
           options.map((option, idx) => (
-            <Option key={idx} value={option.value}>
-              {option.name}
+            <Option key={idx} value={option._id ? option._id : option}>
+              {option.name ? option.name : option}
             </Option>
           ))}
       </SelectField>
