@@ -6,7 +6,7 @@ const initialState = [];
 const cartReducer = createReducer(initialState)({
   [types.ADD_CATEGORIES]: (state, action) => {
     const { categories } = action.payload;
-
+       console.log(categories,"pittttt");
     if (categories) {
       return categories;
     }

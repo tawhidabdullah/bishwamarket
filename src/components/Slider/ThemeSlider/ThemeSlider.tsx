@@ -1,31 +1,22 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import slider1 from "../../../assets/1.1.png";
-import styled from "styled-components"
+import styled from "styled-components";
 
 import { useQueryFetch } from "../../../hooks";
-const ThemeSlider = ({item}) => {
+const ThemeSlider = ({ item }) => {
+  const bannerState = useQueryFetch("banner");
+  console.log(bannerState);
 
-    const bannerState = useQueryFetch("banner");
-     console.log(bannerState);
+  useEffect(() => {
+    console.log("pppp");
+  }, [bannerState.isError]);
 
-     useEffect(() => {
-       console.log("pppp");
-     }, [bannerState.isError]);
-  
   return (
-    
-
-  
-        
-             
-                    <SliderBanner>
-            <SliderImage>
-              
-                  <img src={item.src} className="img-fluid" alt="slider" />
-               
-             
-            </SliderImage>
-            {/* <SliderBannercontent>
+    <SliderBanner>
+      <SliderImage>
+        <img src={item.src} className="img-fluid" alt="slider" />
+      </SliderImage>
+      {/* <SliderBannercontent>
               <Content>
                 <h4>the best</h4>
                 <h1>loffer shoes</h1>
@@ -33,11 +24,7 @@ const ThemeSlider = ({item}) => {
                 <a className="btn btn-rounded">Shop Now</a>
               </Content>
             </SliderBannercontent> */}
-             </SliderBanner>
-            
-       
-     
-     
+    </SliderBanner>
   );
 };
 
@@ -49,9 +36,8 @@ const SliderBanner = styled.div`
 
   background-color: #eddbd1;
 
-
   width: 100%;
-  height: 355px;
+  height: 100%px;
 `;
 
 // const Content = styled.div`
@@ -60,8 +46,8 @@ const SliderBanner = styled.div`
 //   left: 0%;
 // `;
 const SliderImage = styled.div`
-  height: 355px;
-/* 
+  height: 100%px;
+  /* 
   & ul {
     padding-left: 0;
     margin-bottom: 0;

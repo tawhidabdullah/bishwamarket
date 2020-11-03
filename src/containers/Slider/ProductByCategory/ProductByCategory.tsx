@@ -1,11 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { ProductsByCategory } from "../../../components/Slider/ProductsByCategory";
 import { MainSlider } from "../../../components/Slider/MainSlider";
 import { Blog } from "../../../components/Banner/Blog";
-import {Productcontain} from "../../../components/Navigation/ProductConatain"
-const ProductByCategory = ({products}) => {
+import { Productcontain } from "../../../components/Navigation/ProductConatain";
+
+import { useSelector } from "react-redux";
+// import hooks
+import { useQueryFetch, useHandleFetch } from '../../../hooks';
+
+const ProductByCategory = () => {
+  let category = useSelector((state) => state.category);
+
+  const [selectedCateoryId, setSelectedCategoryId] = useState("");
+
+  const [categoryProductsData, setCategoryProductsData] = useState([]);
+  const [products, setproducts] = useState([]);
+
+  useEffect(() => {
+    if (category.length > 0) {
+      setSelectedCategoryId(category[0].id);
+    }
+  }, []);
+
+const [categoryProductsState, handleCategoryProductsFetch] = useHandleFetch(
+  [],
+  "categoryProducts"
+);
+
+  useEffect(() => {
+    const setCategoryProducts = async () => {
+      
+      const newProductsRes = await handleCategoryProductsFetch({
+        urlOptions: {
+          placeHolders: {
+            id: selectedCateoryId,
+          },
+          params: {
+            isRecursive: true,
+          },
+        },
+      });
+
+
+      console.log(newProductsRes, "newProductsRes");
+    };
+
+    if (selectedCateoryId) {
+      setCategoryProducts();
+    }
+  }, [selectedCateoryId]);
+
+
+
+  useEffect(() => {
+    if (
+    
+      categoryProductsState.done===true
+    
+    ) {
+      setCategoryProductsData(categoryProductsState.data);
+ console.log(categoryProductsState.data, "categoryProductsState");
+ setproducts(categoryProductsState.data.data);
+    }
+  }, [categoryProductsState.done]);
+
+
+
+
   const responsive = {
     responsive: [
       {
@@ -53,9 +116,18 @@ const ProductByCategory = ({products}) => {
       },
     ],
   };
+
+  const handleCategoryId = (id) => {
+    setSelectedCategoryId(id);
+  };
+
   return (
     <Section>
-      <Productcontain />
+      <BB>
+        {category.map((item) => (
+          <Span onClick={() => handleCategoryId(item.id)}>{item.name}</Span>
+        ))}
+      </BB>
 
       <MainSlider
         responsive={responsive}
@@ -73,3 +145,36 @@ const ProductByCategory = ({products}) => {
 export default ProductByCategory;
 
 const Section = styled.div``;
+
+const BB = styled.div`
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+  background-color: #fff;
+
+  padding-bottom: 41px;
+  padding-top: 41px;
+`;
+
+const Span = styled.div`
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-right: 10px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  color: #444;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+  border: 1px solid red;
+
+  & :hover {
+    color: red;
+  }
+
+  padding-bottom: 10px;
+  padding-top: 10px;
+`;

@@ -1,24 +1,16 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
+  //@ts-nocheck
 import React from "react";
 
 import styled from "styled-components";
 import { MainSlider } from "../../../components/Slider/MainSlider";
 import { DealBanner } from "../../../components/Banner/DealBanner";
 import { CategoryItem } from "../../../components/Slider/CategoryItem";
-
+import {useSelector} from "react-redux"
 const CategorySlider = () => {
+      let category = useSelector((state) => state.category);
+      console.log(category, "categorycategory");
   const responsive = {
     responsive: [
       {
@@ -75,6 +67,9 @@ const CategorySlider = () => {
       //   },
       // },
     ],
+
+
+
   };
   return (
     <Section>
@@ -83,6 +78,7 @@ const CategorySlider = () => {
       <MainSlider
         responsive={responsive}
         ProductsByCategory={CategoryItem}
+        data={category}
         customStyles={{
           backgroundColor: "#ffa800",
 

@@ -1,3 +1,4 @@
+//@ts-ignore
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import slider1 from "../../assets/1.1.png";
@@ -9,30 +10,42 @@ import { ThemeSlider } from "../../components/Slider/ThemeSlider";
 import offerImg from "../../assets/offerBanner/offer-banner.png"
 
 import { useQueryFetch } from "../../hooks";
+
+
+
 const  ImageBanner=()=> {
 
+ const featuredOffer = useQueryFetch("featuredOffer");
 
 
+  const [bannerStatus, setBannerStatus] = useState(true);
 
+ 
 
+useEffect(() => {
+  if (featuredOffer.isSuccess && featuredOffer.data) {
+   
 
-
+    setBannerStatus(false);
+     console.log(featuredOffer.data, "featuredOffer");
+  }
+}, [featuredOffer.isSuccess]);
 
     const [status, setStatus] = useState(true);
     const [data, setdata] = useState([]);
 
 
 
-      const bannerState = useQueryFetch("banner");
+     const bannerState = useQueryFetch("banner");
   
     useEffect(() => {
-      if (bannerState.isLoading === false) {
-        console.log("pppp");
+      if (bannerState.isSuccess && bannerState.data) {
+       
         setdata(bannerState.data);
-        console.log(bannerState.data[0]);
+        
         setStatus(false);
       }
-    }, [bannerState.isLoading]);
+    }, [bannerState.isSuccess]);
 
 
 
@@ -87,12 +100,12 @@ const  ImageBanner=()=> {
               data={data}
               customStyles={{
                 width: "100%",
-                padding:"0px",
+                padding: "0px",
               }}
             />
           )}
         </SliderBanner>
-        <RightSlider>
+        {/* <RightSlider>
           <OfferBannerImg>
             <img src={offerImg} alt="offer-banner" className="img-fluid  " />
           </OfferBannerImg>
@@ -103,14 +116,17 @@ const  ImageBanner=()=> {
               <sup>off</sup>
             </Discount>
           </BannerContain>
-        </RightSlider>
+        </RightSlider> */}
+        {bannerStatus ? (
+          <> </>
+        ) : (
+          <BottomImage>
+            {featuredOffer.data.map((item) => {
+              return <CollectionItem customStyles={{}} item={item} />;
+            })}
 
-        <BottomImage>
-          <CollectionItem customStyles={{}}></CollectionItem>
-
-          <CollectionItem customStyles={{}}></CollectionItem>
-          <CollectionItem customStyles={{}}></CollectionItem>
-        </BottomImage>
+          </BottomImage>
+        )}
       </NavigationContainer>
     );
 }
@@ -219,13 +235,13 @@ const NavigationContainer = styled.div`
   justify-content: center;
   background-color: #f2f2f2;
 
-  @media only screen and (min-width: 1450px) {
+  /* @media only screen and (min-width: 1450px) {
     grid-template-columns: 25% 60% auto;
-  }
+  } */
 
-  @media only screen and (min-width: 1151px) and (max-width: 1449px) {
+  /* @media only screen and (min-width: 1151px) and (max-width: 1449px) {
     grid-template-columns: 25% 75%;
-  }
+  } */
   @media only screen and (max-width: 1150px) {
     grid-template-columns: 1fr;
   }
@@ -238,7 +254,7 @@ const SliderBanner = styled.div`
 
 `;
 const SliderImage = styled.div`
-  height: 455px;
+
   
 
 
@@ -249,8 +265,7 @@ const SliderBannercontent = styled.div`
   right:0;
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+
   display: flex;
   
   padding: 0 100px;
@@ -275,14 +290,14 @@ const BottomImage = styled.div`
     margin-left: 0px;
   }
 
-  @media only screen and (min-width: 1450px) {
+  @media only screen and (min-width: 1150px) {
     grid-column: 2/ 10;
     grid-template-columns: 2fr 2fr 2fr;
   }
-  @media only screen and (min-width: 1151px) and (max-width: 1449px) {
+  /* @media only screen and (min-width: 1151px) and (max-width: 1449px) {
     grid-column: 2/ 9;
     grid-template-columns: 2fr 2fr 2fr;
-  }
+  } */
 `;
 
 const Item = styled.div`

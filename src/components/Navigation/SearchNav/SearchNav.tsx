@@ -15,15 +15,20 @@ import nav7 from "../../../assets/nav/07.png";
 
 import nav8 from "../../../assets/nav/08.png";
 import nav9 from "../../../assets/nav/09.png";
+import { connect } from "react-redux";
+import { categoryOperations } from "../../../state/ducks/category";
+
+
 const SearchNav = ({
   setToggleCategory,
   toggleCategory,
   toggleGiftBox,
   setToggleGiftBox,
   categoryListData,
+  addCategory,
 }) => {
   const [subcategory, setSubCategory] = useState([]);
-  const [minlength, setminlength]=useState(8);
+  const [minlength, setminlength] = useState(8);
 
   const handleSub = (value) => {
     if (
@@ -37,7 +42,9 @@ const SearchNav = ({
     console.log(categoryListData[value].subCategory);
   };
 
-  
+
+
+
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);
@@ -45,16 +52,14 @@ const SearchNav = ({
         categoryListData[0].subCategory,
         "categoryListData[0].subCategory"
       );
+        addCategory(categoryListData);
     }
   }, [categoryListData.length]);
 
-
-  const updateLength=()=>{
-    if (subcategory.length<minlength) 
-        setminlength(minlength + 8);
-    else
-      setminlength(subcategory.length);
-  }
+  const updateLength = () => {
+    if (subcategory.length < minlength) setminlength(minlength + 8);
+    else setminlength(subcategory.length);
+  };
   return (
     <SearchNavContainer>
       <NavCategory>
@@ -71,20 +76,18 @@ const SearchNav = ({
           <Contents>
             <CategoryItem>
               <ul className="nav-cat title-font">
-                {subcategory.slice(0,minlength).map((subitem, it) => {
+                {subcategory.slice(0, minlength).map((subitem, it) => {
                   return (
                     <li key={it}>
-                      <img
-                        src={subitem.thumbnail || subitem.cover}
-                        alt="catergory-product"
-                      />
+                      <img src={subitem.thumbnail || subitem.cover || nav1} />
+
                       <a>{subitem.name || plabon}</a>
                     </li>
                   );
                 })}
 
                 <li onClick={updateLength}>
-                  <a className="mor-slide-click" >
+                  <a className="mor-slide-click">
                     more category <i className="fa fa-angle-down pro-down"></i>
                     <i
                       className="fa fa-angle-up pro-up"
@@ -106,7 +109,6 @@ const SearchNav = ({
         <input type="text" placeholder="Search a Product"></input>
         <Dropdowncategory>
           <select
-          
             onChange={(e) =>
               categoryListData[e.target.value] &&
               categoryListData[e.target.value].hasOwnProperty("subCategory")
@@ -160,7 +162,11 @@ const SearchNav = ({
   );
 };
 
-export default SearchNav;
+
+const mapDispatchToProps = {
+  addCategory: categoryOperations.addCategory,
+};
+export default   connect(null, mapDispatchToProps)(SearchNav);
 
 const SearchNavContainer = styled.div`
   height: 70px;
@@ -215,7 +221,7 @@ const ShopCategory = styled.div`
   display: flex;
   align-items: center;
 
-  width: 250px;
+  width: 100%;
   z-index: 9;
   justify-content: center;
   cursor: pointer;

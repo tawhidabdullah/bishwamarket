@@ -6,7 +6,7 @@ import CollectionItem from "../../CollectionItem/CollectionItem"
 const Collection=()=> {
     return (
       <Section>
-        <CollectionItem
+        {/* <CollectionItem
           customStyles={{
           
           }}
@@ -20,7 +20,7 @@ const Collection=()=> {
           customStyles={{
             
           }}
-        ></CollectionItem>
+        ></CollectionItem> */}
       </Section>
     );
 }

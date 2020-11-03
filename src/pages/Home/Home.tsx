@@ -29,9 +29,7 @@ const Home = ({products}) => {
       <DiscountBanner />
       <Collection />
 
-      <ProductByCategory 
-      //ts-ignore
-      products={products} />
+      <ProductByCategory />
 
       <CategorySlider />
       <MediaBannerSlider />

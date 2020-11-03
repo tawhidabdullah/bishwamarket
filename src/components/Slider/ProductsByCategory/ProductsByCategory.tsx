@@ -62,20 +62,20 @@ const ProductsByCategory = ({
       </ProductIconContainer>
       <ProductDetail customStyles={customStyles}>
         <DetailLeft customStyles={customStyles}>
-          <Rating>
+          {/* <Rating>
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
-          </Rating>
+          </Rating> */}
           <PriceTitel>
-            header will be distracted.reallyyyy i want pieee it is all about
+{item.name}
           </PriceTitel>
         </DetailLeft>
         <DetailRight>
           <CheckPrice>
-            {" "}
+          
           $ {item.regularPrice}
           </CheckPrice>
           <Price>

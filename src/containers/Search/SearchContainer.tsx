@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import styled from "styled-components"
 import { SearchContain } from "../../components/Search/SearchContain/";
 import { SearchField } from "../../components/Search/SearchField";
@@ -17,14 +17,40 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
      containertop: "80%",
      page: "search",
    };
+
+   const [key,setkey]=useState("");
+   const [searchproduct, setproduct] = useState(products);
+   const handle=(e)=>{
+    
+  
+   
+    const result = products.filter((item) =>
+      item.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    console.log(result.length, "pp");
+    console.log(products.length, "ppp");
+    setproduct(result);
+    
+   }
    return (
      <Section>
        <SearchContain title={"search"} />
-       <SearchField />
+
+       <InputBox>
+         <input
+           type="text"
+           aria-label="Amount (to the nearest dollar)"
+           placeholder="Search Products......"
+           onChange={(e) => handle(e)}
+         />
+
+         <button className="btn btn-normal">
+           <i className="fa fa-search"></i>Search
+         </button>
+       </InputBox>
        <SearchProduct>
          <Main>
-           
-           {products.map((item) => {
+           {searchproduct.map((item) => {
              return (
                <ProductsByCategory
                  customStyles={productCardStyles}
@@ -83,7 +109,52 @@ const Main = styled.div`
 
 const Section = styled.div``;
 
+const InputBox = styled.div`
+  padding: 50px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  & input {
+    border-radius: 0 5px 5px 0;
+    padding: 13px 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+
+    border: 1px solid #ced4da;
+    outline: none;
+    width: 400px;
+    @media screen and (max-width: 580px) {
+      max-width: 60%;
+    }
+  }
+
+  & button {
+    padding: 13px 20px;
+    margin-left: -2px;
+    width: fit-content;
+    background-color: #00baf2;
+    outline: none;
+    color: #fff;
+    & i {
+      padding-right: 12px;
+    }
+
+    &:hover {
+      background-color: black;
+      color: #fff;
+      outline: none;
+    }
+
+    @media screen and (max-width: 580px) {
+      padding: 13px 10px;
+    }
+  }
+`;
 
 
 export default SearchContainer;
+
+

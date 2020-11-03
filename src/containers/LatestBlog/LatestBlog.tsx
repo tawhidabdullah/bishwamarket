@@ -1,11 +1,27 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Blog } from "../../components/Banner/Blog"
 import { MainSlider } from "../../components/Slider/MainSlider";
 import styled from "styled-components";
 
 import {BlogItem} from "../../components/Slider/BlogItem"
-
+import { useQueryFetch, useHandleFetch } from "../../hooks";
 const LatestBlog=()=> {
+
+
+
+  //postList;
+
+    const postList = useQueryFetch("postList");
+    // const [categoryListData, setCategoryListData] = useState([]);
+
+    // useEffect(() => {
+    //   if (categoryListState.isSuccess && categoryListState.data) {
+    //     setCategoryListData(categoryListState.data);
+    //   }
+    // }, [categoryListState.isSuccess]);
+
+    console.log(postList, "postList ");
+
     const responsive = {
       responsive: [
         {

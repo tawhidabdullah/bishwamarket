@@ -2,13 +2,12 @@ import React from 'react'
 import styled from "styled-components";
 import image1 from "../../assets/banner/1.jpg";
 import image from "../../assets/collection/3.jpg";
-const CollectionItem = ({ customStyles}) => {
+const CollectionItem = ({ item,customStyles,...props}) => {
   return (
     <Item
-      style={{ backgroundImage: `url(${image})` }}
-      customStyles={customStyles}
+ 
     >
-      <div className="collection-banner-main p-left">
+      {/* <div className="collection-banner-main p-left">
         <div className="collection-banner-contain">
           <div>
             <h3>vivo</h3>
@@ -21,7 +20,8 @@ const CollectionItem = ({ customStyles}) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+<img src={item.src} />
     </Item>
   );
 };
@@ -30,7 +30,15 @@ const CollectionItem = ({ customStyles}) => {
 export default CollectionItem;
 
 const Item = styled.div`
-  background-size: 100% 100%;
+
+
+&img{
+  height:100%;
+  width:100%;
+  object-fit:fill;
+}
+
+  /* background-size: 100% 100%;
   background-repeat: no-repeat;
   object-fit: fill;
   display: flex;
@@ -38,11 +46,11 @@ const Item = styled.div`
   align-items: center;
   padding-left: 10px;
   margin: 10px;
-  ${(props) => props.customStyles};
+  ${(props) => props.customStyles}; */
 /* 
   transition: all 0.5s; */
 
-  & h3 {
+  /* & h3 {
     color: #ff6000;
     text-transform: uppercase;
     font-size: 20px;
@@ -73,5 +81,5 @@ const Item = styled.div`
   &:hover {
     /* transform: scale(1.2);
     overflow:hidden; */
-  }
+  } */
 `;

@@ -1,32 +1,32 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useQueryFetch, useHandleFetch } from "../../../hooks";
 const BrandNav = () => {
+
+  const brandList = useQueryFetch("brandList");
+  const [brandStatus, setStatus] = useState(true);
+console.log(brandList, "brandList");
+  useEffect(() => {
+    if (brandList.isSuccess && brandList.data) {
+      setStatus(false);
+      console.log(brandList.data, "brandList");
+    }
+  }, [brandList.isSuccess]);
+
+
+  //brandList
   return (
     <BB>
       <TITLE>
         <span>TOP BRAND</span>
         <span>:</span>
       </TITLE>
-      <Item>
-        <span>AERIE</span>
-        <span>BACI LINGIER</span>
-        <span>GERBE</span>
-        <span>JOLIDON</span>
-        <span>OYSHO</span>
-
-        <span>ULTIMO</span>
-        <span>VASSARETE</span>
-        <span>WONDERBRA</span>
-
-        <span>GERBE</span>
-        <span>JOLIDON</span>
-        <span>OYSHO</span>
-
-        <span>ULTIMO</span>
-        <span>VASSARETE</span>
-        <span>WONDERBRA</span>
-      </Item>
+      <Item>{brandStatus?<> </>:(
+brandList.data.map(item=>{
+  return (<span>name</span>)
+})
+      )}</Item>
     </BB>
   );
 };

@@ -44,7 +44,7 @@ useEffect(() => {
 
 
 
-  console.log(categoryListState, "productsState productsState");
+
 
  
 
