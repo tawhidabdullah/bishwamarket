@@ -19,6 +19,7 @@ import {
 
 // import session operations
 import { sessionOperations } from "../../state/ducks/session";
+import { cartOperations } from "../../state/ducks/cart";
 
 // import hooks
 import { useHandleFetch } from "../../hooks";
@@ -32,14 +33,19 @@ const inputStyles = {
   },
 };
 
-const SignIn = ({ login }) => {
+const SignIn = ({ login, cartItems, addProductsToCart }) => {
   const history = useHistory();
   const alert = useAlert();
 
   // hooks for signin
   const [signinState, handleLoginPost] = useHandleFetch({}, "signin");
+  // hooks for add item to cart
+  const [addToCartState, handleAddToCart] = useHandleFetch({}, "addToCart");
+  // hooks for get cart items
+  const [getCartState, handleGetCart] = useHandleFetch({}, "getCart");
 
   const handleLoginSubmit = async (values, actions) => {
+    console.log("handleLogin values", values);
     const loginRes = await handleLoginPost({
       body: {
         username: values.email,
@@ -50,20 +56,27 @@ const SignIn = ({ login }) => {
     if (loginRes && loginRes["status"] === "ok") {
       const { token } = loginRes.data;
       await localStorage.removeItem("authToken");
-      await localStorage.setItem("authToken", token);
+      localStorage.setItem("authToken", token);
+
+      if (cartItems.length > 0) {
+        const items = cartItems.map((cartItem) => {
+          return {
+            product: cartItem.product,
+            quantity: cartItem.quantity,
+            variation: cartItem.variation,
+          };
+        });
+
+        await handleAddToCart({ body: items });
+        const getCartRes = await handleGetCart({});
+        console.log("getCartRes", getCartRes);
+      }
 
       login();
       alert.success("Logged in successfully");
       history.push("/");
     } else {
       alert.error("Something went wrong!");
-      // if (
-      //   signinState.error["isError"] &&
-      //   !(Object.keys(signinState.error["error"]).length > 0)
-      // ) {
-      //   actions.resetForm({});
-      //   alert.error("Something went wrong!");
-      // }
     }
     actions.resetForm({});
     actions.setSubmitting(false);
@@ -126,13 +139,14 @@ const SignIn = ({ login }) => {
                 </ErrorText>
 
                 <ButtonContainer>
-                  <DrawerButton
-                    wrapperStyle={{ "padding-right": "10px" }}
-                    customStyle={{ padding: "8px 0", width: "80%" }}
-                  >
-                    {isSubmitting ? "Login..." : "Login"}
-                  </DrawerButton>
-
+                  <div onClick={handleSubmit}>
+                    <DrawerButton
+                      wrapperStyle={{ "padding-right": "10px" }}
+                      customStyle={{ padding: "8px 0", width: "80%" }}
+                    >
+                      {isSubmitting ? "Login..." : "Login"}
+                    </DrawerButton>
+                  </div>
                   <Text
                     customStyle={{
                       "padding-left": "10px",
@@ -178,11 +192,16 @@ const SignIn = ({ login }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  cartItems: state.cart,
+});
+
 const mapDispatchToProps = {
   login: sessionOperations.login,
+  addToCart: cartOperations.addProductsToCart,
 };
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 
 const ErrorText = styled.p`
   color: rgba(255, 0, 0, 0.759);

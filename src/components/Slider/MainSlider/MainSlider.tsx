@@ -23,9 +23,13 @@ const MainSlider = ({
       <MainContent customStyles={customStyles}>
         <Slider {...settings}>
           {props.data && props.data.length > 0
-            ? props.data.map((item) => {
+            ? props.data.map((item, idx) => {
                 return (
-                  <ProductsByCategory item={item} customStyles={customStyles} />
+                  <ProductsByCategory
+                    key={idx}
+                    item={item}
+                    customStyles={customStyles}
+                  />
                 );
               })
             : " "}
