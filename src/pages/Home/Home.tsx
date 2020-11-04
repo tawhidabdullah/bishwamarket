@@ -18,27 +18,25 @@ import { Service } from "../../components/Navigation/ServiceNav";
 import { DiscountBanner } from "../../components/Banner/DiscountBanner";
 import { Collection } from "../../components/Banner/CollectionBanner";
 
-const Home = ({ products }) => {
+const Home = () => {
+ 
   return (
     <>
       <ImageBanner />
       <BrandNav />
       <Service />
-      <CollectionMediaBanner />
+      {/* <CollectionMediaBanner /> */}
       <DiscountBanner />
       <Collection />
 
-      <ProductByCategory
-        //ts-ignore
-        products={products}
-      />
+      <ProductByCategory />
 
       <CategorySlider />
-      <MediaBannerSlider />
-      <LatestBlog />
+      {/* <MediaBannerSlider />
+      <LatestBlog /> */}
 
       <ContentSlider />
-      <SpecilaProductSlider products={products} />
+      <SpecilaProductSlider  />
       <ContactBanner />
       <CompanyBanner />
     </>

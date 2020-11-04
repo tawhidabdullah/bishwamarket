@@ -5,17 +5,7 @@ const SearchContain=({title})=> {
       <Breadcrumbmain>
         <Contain>
           <h2>{title}</h2>
-          <List>
-            <li>
-              <a href="#">home</a>
-            </li>
-            <li>
-              <i className="fa fa-angle-double-right"></i>
-            </li>
-            <li>
-              <a href="#">{title}</a>
-            </li>
-          </List>
+         
         </Contain>
       </Breadcrumbmain>
     );

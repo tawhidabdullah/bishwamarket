@@ -117,7 +117,7 @@
       "method": "get"
     },
     "categoryProducts": {
-      "url": "/api/category/:id/product?sort=sortValue&sortOrder=sortOrderValue&recursive=isRecursive&limit=limitNumber&page=pageNumber",
+      "url": "/api/category/:id/product?recursive=isRecursive",
       "method": "get"
     },
     "categoryProductsByUrl": {

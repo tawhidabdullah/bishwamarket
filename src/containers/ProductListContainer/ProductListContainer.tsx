@@ -1,17 +1,57 @@
     //@ts-nocheck
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import styled from "styled-components"
 import { LeftBar } from "../../components/ProductListing/LeftBar";
 import { RightBar } from "../../components/ProductListing/RightBar";
 import { SearchContain } from "../../components/Search/SearchContain/";
-const ProductListContainer = ({ products }) => {
+
+import { useParams, useLocation } from "react-router-dom";
+
+// import hooks
+import { useQueryFetch, useHandleFetch } from '../../hooks';
+import queryString from "query-string";
+const ProductListContainer = () => {
+
+   const [productSearchState, handleProductSearchFetch] = useHandleFetch(
+     [],
+     "productSearch"
+   );
+
+  const location = useLocation();
+ const [searchproduct, setproduct] = useState([]);
+  let queryValue = queryString.parse(location.search).query;
+  console.log(queryValue, "queryValue");
+
+  useEffect(() => {
+    const setSearchCategoryProducts = async () => {
+      const newProductsRes = await handleProductSearchFetch({
+        urlOptions: {
+          params: {
+            queryValue,
+          },
+        },
+      });
+    };
+    setSearchCategoryProducts();
+  }, [queryValue]);
+
+
+  console.log(productSearchState, "productSearchStateproductSearchState");
+  useEffect(() => {
+    if (productSearchState.data) setproduct(productSearchState.data);
+    else {
+      setproduct([]);
+    }
+
+
+  }, [productSearchState.isLoading]);
   return (
     <Main>
       <SearchContain title={"CATEGORY"} />
       <Section>
         <LeftBar />
-    
-        <RightBar products={products} />
+
+        <RightBar products={searchproduct} />
       </Section>
     </Main>
   );

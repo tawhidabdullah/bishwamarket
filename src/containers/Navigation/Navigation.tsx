@@ -23,7 +23,7 @@ const Navigation = ({}) => {
   const [toggleCurrency, setToggleCurrency] = useState(false);
 
   // state for toggling category dropdown
-  const [toggleCategory, setToggleCategory] = useState(false);
+  const [toggleCategory, setToggleCategory] = useState(true);
 
   // state for toggling GiftBox dropdown
   const [toggleGiftBox, setToggleGiftBox] = useState(false);
@@ -33,14 +33,20 @@ const Navigation = ({}) => {
   const params = useParams();
   const location = useLocation();
 
-  const categoryListState = useQueryFetch("categoryList");
-  const [categoryListData, setCategoryListData] = useState([]);
+   const categoryListState = useQueryFetch("categoryList");
+   const [categoryListData, setCategoryListData] = useState([]);
 
-  useEffect(() => {
-    if (categoryListState.isSuccess && categoryListState.data) {
-      setCategoryListData(categoryListState.data);
-    }
-  }, [categoryListState.isSuccess]);
+useEffect(() => {
+  if (categoryListState.isSuccess && categoryListState.data) {
+    setCategoryListData(categoryListState.data);
+  }
+}, [categoryListState.isSuccess]);
+
+
+
+
+
+ 
 
   return (
     <NavigationContainer>

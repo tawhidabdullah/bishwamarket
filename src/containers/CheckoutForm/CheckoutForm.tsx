@@ -27,6 +27,7 @@ const CheckoutForm = ({
   clearCart,
   customStyle,
   getShippingCost,
+  getDeliveryInfo,
   session,
   cartItems,
 }) => {
@@ -38,7 +39,7 @@ const CheckoutForm = ({
   // state for setting cityList
   const [cityList, setCityList] = useState([]);
   // state for default/selected city
-  const [selectedCity, setSelectedCity] = useState("Dhaka");
+  const [selectedCity, setSelectedCity] = useState(null);
   // state for default/selected area
   const [selectedArea, setSelectedArea] = useState({});
 
@@ -101,7 +102,6 @@ const CheckoutForm = ({
       });
 
       setDeliveryArea(res);
-      setSelectedArea({ _id: res[0]._id, name: res[0].name });
     };
 
     fetchDeliveryArea();
@@ -109,17 +109,18 @@ const CheckoutForm = ({
 
   const handleCityListChange = (e) => {
     setSelectedCity(e.target.value);
+    setDeliveryArea({});
+    getShippingCost(0);
   };
 
   const handleDeliveryAreaChange = (e) => {
     const _id = e.target.value;
-    const index = e.nativeEvent.target.selectedIndex;
-    const name = e.nativeEvent.target[index].text;
-
-    setSelectedArea({ _id, name });
     let selectedRegion = deliveryArea.filter((a) => a._id === _id)[0];
+
     let charge = Object.values(selectedRegion.charge)[0];
+    setSelectedArea({ _id: selectedRegion._id, name: selectedRegion.name });
     getShippingCost(charge);
+    getDeliveryInfo(selectedRegion);
   };
 
   useEffect(() => {
@@ -175,7 +176,9 @@ const CheckoutForm = ({
       createAccount: !session.isAuthenticated ? true : false,
     };
 
-    await handleCreateOrderFetch({ body: orderData });
+    const orderRes = await handleCreateOrderFetch({ body: orderData });
+    console.log("orderRes", orderRes);
+
     clearCart();
     alert.success("Order placed successfully");
   };

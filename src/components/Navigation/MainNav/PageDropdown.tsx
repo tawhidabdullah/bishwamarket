@@ -11,7 +11,7 @@ const Homedropdown = (props) => {
   return (
     <>
       <PageDropdownContainer>
-        <PageDropdownItem>
+        <PageDropdownItem to="/#">
           Account <Icon className="fa fa-angle-right" />
           <NestedDropdownContainer>
             <NestedDropdownItem to="/wishlist">Wishlist</NestedDropdownItem>
@@ -41,7 +41,7 @@ const Homedropdown = (props) => {
             <NestedDropdownItem to="/compare2">Compare 2</NestedDropdownItem>
           </NestedDropdownContainer>
         </PageDropdownItem>
-        <PageDropdownItem to="/productListing">Collection</PageDropdownItem>
+        <PageDropdownItem to="/collection">Collection</PageDropdownItem>
         <PageDropdownItem>Lookbook</PageDropdownItem>
         <PageDropdownItem>404</PageDropdownItem>
         <PageDropdownItem>Coming Soon</PageDropdownItem>

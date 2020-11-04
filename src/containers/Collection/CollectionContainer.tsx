@@ -2,25 +2,20 @@ import React from 'react'
 import styled from "styled-components";
 import { SearchContain } from "../../components/Search/SearchContain";
 import { CollectionByCategory } from "../../components/Collection";
-const CollectionContainer = () => {
 
+
+import { useSelector } from "react-redux";
+const CollectionContainer = () => {
+ let category = useSelector((state) => state.category);
+ console.log(category, "categorycategory");
   return (
     <Section>
       <SearchContain title={"Collection"} />
       <Main>
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
-        <CollectionByCategory />
+        {category.map(item=>{
+          return <CollectionByCategory item={item}/>;
+        })}
 
-        <CollectionByCategory />
       </Main>
     </Section>
   );

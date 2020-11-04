@@ -96,6 +96,7 @@ const ProductsByCategory = ({
     }
   };
 
+ 
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
@@ -123,8 +124,7 @@ const ProductsByCategory = ({
         </ProductIcon>
 
         <ProductIcon
-          title="See details"
-          onClick={() => toggleQuickviewDrawer()}
+          onClick={() => toggleQuickviewDrawer(item)}
           customStyles={customStyles}
         >
           <i className="fa fa-search"></i>
@@ -136,11 +136,26 @@ const ProductsByCategory = ({
       </ProductIconContainer>
       <ProductDetail customStyles={customStyles}>
         <DetailLeft customStyles={customStyles}>
-          <PriceTitle>{name}</PriceTitle>
+          {/* <Rating>
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
+          </Rating> */}
+          {/* <PriceTitel>
+{item.name || "PP"}
+          </PriceTitel> */}
         </DetailLeft>
         <DetailRight>
-          <CheckPrice> $ {item.regularPrice}</CheckPrice>
-          <Price>${item.price}</Price>
+          <CheckPrice>
+          
+          $ {item.regularPrice}
+          </CheckPrice>
+          <Price>
+            
+            ${item.price}
+          </Price>
         </DetailRight>
       </ProductDetail>
       <NewLevel customStyles={customStyles}>

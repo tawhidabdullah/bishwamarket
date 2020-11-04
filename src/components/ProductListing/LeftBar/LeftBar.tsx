@@ -17,6 +17,8 @@ const LeftBar=()=> {
         myCollection[val].style.display = "none";
       }
     };
+
+    
     return (
       <LeftContent>
         <Tag onClick={(e) => handle(0)}>
