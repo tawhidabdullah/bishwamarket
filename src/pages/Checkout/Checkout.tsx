@@ -10,16 +10,25 @@ const Checkout = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const getShippingCost = (cost) => setShippingCost(cost);
 
+  const [deliveryInfo, setDeliveryInfo] = useState(null);
+
   return (
     <CheckoutWrapper>
       <Header>Billing Details</Header>
       <Row>
         <Col lg={6} sm={12} xs={12}>
-          <CheckoutForm getShippingCost={getShippingCost} customStyle={{}} />
+          <CheckoutForm
+            getDeliveryInfo={setDeliveryInfo}
+            getShippingCost={getShippingCost}
+            customStyle={{}}
+          />
         </Col>
 
         <Col lg={6} sm={12} xs={12}>
-          <CheckoutDetails shippingCost={shippingCost} />
+          <CheckoutDetails
+            deliveryInfo={deliveryInfo}
+            shippingCost={shippingCost}
+          />
         </Col>
       </Row>
     </CheckoutWrapper>

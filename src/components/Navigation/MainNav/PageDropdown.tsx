@@ -11,7 +11,7 @@ const Homedropdown = (props) => {
   return (
     <>
       <PageDropdownContainer>
-        <PageDropdownItem>
+        <PageDropdownItem to="/#">
           Account <Icon className="fa fa-angle-right" />
           <NestedDropdownContainer>
             <NestedDropdownItem to="/wishlist">Wishlist</NestedDropdownItem>

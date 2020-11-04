@@ -12,7 +12,7 @@ const Select = ({ customStyle, label, options, name, handleChange }) => {
         name={name}
         onChange={handleChange}
       >
-        {/* <Option hidden>{label}</Option> */}
+        <Option hidden>{label}</Option>
         {options &&
           options.length > 0 &&
           options.map((option, idx) => (
