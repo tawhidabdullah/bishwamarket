@@ -1,8 +1,6 @@
 //@ts-ignore
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import slider1 from "../../assets/1.1.png";
-import image from "../../assets/banner/1.jpg";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { Blog } from "../../components/Banner/Blog";
 import CollectionItem from "../../components/CollectionItem/CollectionItem";

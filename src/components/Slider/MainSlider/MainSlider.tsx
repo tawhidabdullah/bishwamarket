@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
-import img from "../../../assets/banner/1.jpg";
-import fimg1 from "../../../assets/slider-tab/1.jpg";
-import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
 
@@ -38,6 +35,7 @@ const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
     );
 }
 
+   
 
 export default MainSlider;
 const Layout = styled.div`

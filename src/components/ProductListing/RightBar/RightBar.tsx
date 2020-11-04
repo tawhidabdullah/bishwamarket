@@ -21,7 +21,6 @@ const productCardStyles = {
 };
 
 const RightBar = ({ products }) => {
-  console.log(products,"RightBar");
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
 
@@ -63,11 +62,11 @@ const RightBar = ({ products }) => {
         </TitleBottom>
       </Title>
       <Products>
-      
-   
-        {products.map((item=>{
-          return <ProductsByCategory item={item} customStyles={productCardStyles} />;
-        }))}
+        {products.map((item) => {
+          return (
+            <ProductsByCategory item={item} customStyles={productCardStyles} />
+          );
+        })}
       </Products>
     </RightContainer>
   );

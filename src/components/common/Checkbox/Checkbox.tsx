@@ -10,6 +10,7 @@ const Checkbox = ({
   handleChange,
   checked,
   type,
+  value,
   ...otherProps
 }) => {
   if (otherProps) delete otherProps.sizes;
@@ -22,12 +23,14 @@ const Checkbox = ({
         <Input
           customStyle={customStyle}
           type={type ? type : "checkbox"}
-          onChange={
-            type && type === "radio"
-              ? () => handleChange(otherProps.id)
-              : () => {}
-          }
-          checked={checked}
+          onChange={() => handleChange(value)}
+
+          // onChange={
+          //   type && type === "radio"
+          //     ? () => handleChange(otherProps.id)
+          //     : () => {}
+          // }
+          // checked={checked}
         />
         {label}
       </Label>

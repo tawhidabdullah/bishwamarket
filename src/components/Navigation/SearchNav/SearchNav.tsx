@@ -142,7 +142,11 @@ const SearchNav = ({
             }
           >
             {categoryListData.map((item, i) => {
-              return <option value={i}>{item.name}</option>;
+              return (
+                <option key={i} value={i}>
+                  {item.name}
+                </option>
+              );
             })}
           </select>
         </Dropdowncategory>

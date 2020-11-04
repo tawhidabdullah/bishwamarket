@@ -72,6 +72,7 @@ const AddressModal = ({ show, onHide, size }) => {
             label="Country"
             options={countryList}
             name="country"
+            handleChange={() => {}}
           />
 
           <InputField

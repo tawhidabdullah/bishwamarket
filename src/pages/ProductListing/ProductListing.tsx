@@ -1,5 +1,4 @@
-  
-import React from 'react'
+import React from "react";
 import { ProductListContainer } from "../../containers/ProductListContainer";
 const ProductListing=()=> {
    
@@ -7,6 +6,5 @@ const ProductListing=()=> {
       <ProductListContainer  />
     );
 }
-
 
 export default ProductListing;

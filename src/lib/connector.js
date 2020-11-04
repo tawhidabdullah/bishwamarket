@@ -1,10 +1,10 @@
-import config from '../config.json';
-import apiMap from '../apiMap.json';
-import Converter from './converter.js';
+import config from "../config.json";
+import apiMap from "../apiMap.json";
+import Converter from "./converter.js";
 
 // import utils
-import { manipulateURL } from './utils';
-import {authHeader} from '../utils'
+import { manipulateURL } from "./utils";
+import { authHeader } from "../utils";
 
 let converter = new Converter();
 
@@ -24,7 +24,7 @@ class Connector {
    * @returns {Object}  converted data
    */
 
-  async request(item, format = 'json', options = {}) {
+  async request(item, format = "json", options = {}) {
     let api = apiMap[config.server][item]; //api url & method
 
     // configuring options for fetch request
@@ -32,16 +32,16 @@ class Connector {
     this.options = {
       ...this.options,
       method: api.method,
-      credentials: 'include',
-      
+      credentials: "include",
+
       headers: new Headers({
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...authHeader(),
         ...(options.headers && {
           ...options.headers,
         }),
       }),
-      body: api.method !== 'get' ? JSON.stringify(options.body) : null,
+      body: api.method !== "get" ? JSON.stringify(options.body) : null,
     };
 
     //*replace variable parts in url with actual data if params exists |or| just return the url
@@ -49,7 +49,7 @@ class Connector {
     const url = manipulateURL(api.url, options.urlOptions);
 
     // change the formate to text if the server is wooCommerce
-    if (config['server'] === 'wooCommerce') {
+    if (config["server"] === "wooCommerce") {
       // format = 'text';
     }
 
@@ -58,7 +58,7 @@ class Connector {
 
       if (res.status >= 200 && res.status < 300) {
         let formattedData = await res[format](); //await res.json(), res.text()
-        if (formattedData.status === 'error') {
+        if (formattedData.status === "error") {
           throw formattedData.error;
         }
 
@@ -70,7 +70,6 @@ class Connector {
         throw error;
       }
     } catch (err) {
-
       throw err;
       //TODO: breakdown errors
     }

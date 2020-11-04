@@ -1,5 +1,5 @@
-    //@ts-nocheck
-import React, { lazy, Suspense, Fragment,useEffect,useState } from "react";
+//@ts-nocheck
+import React, { lazy, Suspense, Fragment, useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // import layout
@@ -16,9 +16,7 @@ import Home from "./pages/Home";
 
 
 
-
 // lazy load other components
-
 
 const Category = lazy(() => import("./pages/Category"));
 const Search = lazy(() => import("./pages/Search"));
@@ -26,7 +24,6 @@ const SignIn = lazy(() => import("./pages/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const ForgotPassword = lazy(() => import("./pages/forgotPassword"));
 const Checkout = lazy(() => import("./pages/Checkout"));
-
 
 const ProductListing = lazy(() => import("./pages/ProductListing"));
 // import Category from "./pages/Category";
@@ -45,7 +42,6 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const App = () => {
    
 
- 
   return (
     <BrowserRouter>
       <Fragment>
@@ -63,7 +59,6 @@ const App = () => {
                   <Route exact path="/product">
                     <ProductListing  />
                   </Route>
-
 
                   <Route exact path="/signin" component={SignIn} />
                   <Route exact path="/signup" component={SignUp} />
