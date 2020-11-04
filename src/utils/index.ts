@@ -259,3 +259,11 @@ export const replaceNumbers = (input: any) => {
 
 //   return parseJWT;
 // };
+
+
+
+export function isEmpty(value) {
+  value = `${value}`
+  const emptyValues = ['undefined','null','true','false','','[]','{}']; 
+  return emptyValues.includes(value)
+}

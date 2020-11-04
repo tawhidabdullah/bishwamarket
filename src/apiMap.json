@@ -96,6 +96,10 @@
       "url": "/api/component/Links",
       "method": "get"
     },
+    "myAccountComponentLinks": {
+      "url": "/api/component/myAccountComponentLinks",
+      "method": "get"
+    },
     "Account": {
       "url": "/api/component/Account",
       "method": "get"

@@ -1,26 +1,55 @@
 import React from "react";
 import styled from "styled-components";
 
+
+// import component fetcher component
+import ComponentFetcher from "../../ComponentFetcher";
+
+
+
 const Contact = ({ header }) => {
   return (
     <ContactContainer>
       <Header>{header}</Header>
       <ListContainer>
-        <ContactItem>
-          <i className="fa fa-map-marker"></i> Big Deal Store Demo Store
-          India-3654123
-        </ContactItem>
-        <ContactItem>
-          <i className="fa fa-phone"></i> Call Us: 123-456-7898
-        </ContactItem>
 
-        <ContactItem>
-          <i className="fa fa-envelope"></i> Email Us: Support@Bigdeal.Com
-        </ContactItem>
+          <ComponentFetcher type='text' apiMapKey='address'>
+                {(addressText) => {
+                  return (
+                    <ContactItem>
+                      <i className="fa fa-map-marker"></i> &nbsp;
+                      {addressText}
+                    </ContactItem>
+                  )
+                }}
+          </ComponentFetcher>
 
-        <ContactItem>
+          <ComponentFetcher type='text' apiMapKey='phone'>
+            {(phoneText) => {
+              return (
+                <ContactItem>
+                  <i className="fa fa-phone"></i> &nbsp;
+                  {phoneText}
+                </ContactItem>
+              )
+            }}
+          </ComponentFetcher>
+
+
+          <ComponentFetcher type='text' apiMapKey='email'>
+                {(emailText) => {
+                  return (
+                    <ContactItem>
+                      <i className="fa fa-envelope"></i> &nbsp;
+                      Email Us: {emailText}
+                    </ContactItem>
+                  )
+                }}
+          </ComponentFetcher>
+
+        {/* <ContactItem>
           <i className="fa fa-fax"></i> Fax 123456
-        </ContactItem>
+        </ContactItem> */}
       </ListContainer>
     </ContactContainer>
   );
