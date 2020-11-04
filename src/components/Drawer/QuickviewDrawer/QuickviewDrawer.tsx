@@ -26,17 +26,17 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
       <QuickviewDrawerContainer show={open}>
         <ImageContainer>
           <img src={quickViewImage} alt="quick product preview" />
+          <Text clickAction={() => toggleQuickviewDrawer()}>
+            <Text1>&#10005;</Text1>
+          </Text>
         </ImageContainer>
 
         <DetailsContainer>
           <DrawerHeader>
             <Text>Woman T-shirt</Text>
-            {/* <Text
-              customStyle={{ cursor: "pointer" }}
-              clickAction={() => toggleQuickviewDrawer()}
-            >
-              &#10005;
-            </Text> */}
+            <Text clickAction={() => toggleQuickviewDrawer()}>
+              <Text2>&#10005;</Text2>
+            </Text>
           </DrawerHeader>
           <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
             $32.00
@@ -89,21 +89,21 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
             Quantity
           </Text>
           <SizeContainer>
-          <QuantityBox>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <QuantityAction>
-                  <i className="fa fa-angle-left"></i>
-                </QuantityAction>
-              </InputGroup.Prepend>
-              <FormControl />
-              <InputGroup.Append>
-                <QuantityAction>
-                  <i className="fa fa-angle-right"></i>
-                </QuantityAction>
-              </InputGroup.Append>
-            </InputGroup>
-          </QuantityBox>
+            <QuantityBox>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <QuantityAction>
+                    <i className="fa fa-angle-left"></i>
+                  </QuantityAction>
+                </InputGroup.Prepend>
+                <FormControl />
+                <InputGroup.Append>
+                  <QuantityAction>
+                    <i className="fa fa-angle-right"></i>
+                  </QuantityAction>
+                </InputGroup.Append>
+              </InputGroup>
+            </QuantityBox>
           </SizeContainer>
           <SizeContainer>
             <ButtonContainer>
@@ -138,16 +138,28 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(QuickviewDrawer);
-
+const Text1 = styled.div`
+  cursor: pointer;
+  @media only screen and (min-width: 590px) {
+   display:none;
+  }
+`;
+const Text2 = styled.div`
+  cursor: pointer;
+  @media only screen and (max-width: 590px) {
+    display: none;
+  }
+`;
 const QuickviewDrawerContainer = styled.div`
-  margin: 0 auto;
+
 
   position: fixed;
   left: 0;
   right: 0;
-  top: 10%;
+  top: 0%;
   height: 500px;
-  width: 60%;
+  width: 70%;
+    margin: 50px auto;
   z-index: 2000000;
   background-color: white;
   box-sizing: border-box;
@@ -173,7 +185,8 @@ const QuickviewDrawerContainer = styled.div`
 const ImageContainer = styled.div`
   width: 45%;
   height: 100%;
-
+  display: flex;
+  justify-content: space-between;
   & img {
     width: 100%;
     height: 100%;
@@ -181,6 +194,11 @@ const ImageContainer = styled.div`
   @media screen and (max-width: 590px) {
     height: 50%;
     width: 100%;
+
+    & img {
+      width: 80%;
+      height: 100%;
+    }
   }
 `;
 
@@ -191,7 +209,7 @@ const DetailsContainer = styled.div`
   text-align: left;
   width: 50%;
   overflow-y: auto;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
   padding-top:40px;
   @media screen and (max-width: 590px) {
     width: 100%;
@@ -221,7 +239,11 @@ const ButtonContainer = styled.div`
 `;
 
 const DrawerHeader = styled.div`
-  
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: 590px) {
+    justify-content: center;;
+  }
 `;
 
 const ColorContainer = styled.div`

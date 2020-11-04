@@ -18,25 +18,25 @@ import { Service } from "../../components/Navigation/ServiceNav";
 import { DiscountBanner } from "../../components/Banner/DiscountBanner";
 import { Collection } from "../../components/Banner/CollectionBanner";
 
-const Home = ({products}) => {
-  console.log(products, "home");
+const Home = () => {
+ 
   return (
     <>
       <ImageBanner />
       <BrandNav />
       <Service />
-      <CollectionMediaBanner />
+      {/* <CollectionMediaBanner /> */}
       <DiscountBanner />
       <Collection />
 
       <ProductByCategory />
 
       <CategorySlider />
-      <MediaBannerSlider />
-      <LatestBlog />
+      {/* <MediaBannerSlider />
+      <LatestBlog /> */}
 
       <ContentSlider />
-      <SpecilaProductSlider products={products} />
+      <SpecilaProductSlider  />
       <ContactBanner />
       <CompanyBanner />
     </>

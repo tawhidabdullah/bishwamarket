@@ -1,13 +1,10 @@
   
 import React from 'react'
 import { ProductListContainer } from "../../containers/ProductListContainer";
-const ProductListing=({products})=> {
-    console.log(products, "ProductListingProductListing");
+const ProductListing=()=> {
+   
     return (
-      <ProductListContainer
-        //@ts-ignore
-        products={products}
-      />
+      <ProductListContainer  />
     );
 }
 

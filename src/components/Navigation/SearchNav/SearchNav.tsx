@@ -17,7 +17,7 @@ import nav8 from "../../../assets/nav/08.png";
 import nav9 from "../../../assets/nav/09.png";
 import { connect } from "react-redux";
 import { categoryOperations } from "../../../state/ducks/category";
-
+import { useHistory } from "react-router-dom";
 
 const SearchNav = ({
   setToggleCategory,
@@ -29,7 +29,7 @@ const SearchNav = ({
 }) => {
   const [subcategory, setSubCategory] = useState([]);
   const [minlength, setminlength] = useState(8);
-
+  const history = useHistory();
   const handleSub = (value) => {
     if (
       categoryListData[value] &&
@@ -42,8 +42,22 @@ const SearchNav = ({
     console.log(categoryListData[value].subCategory);
   };
 
+  //search
+  const [searchValue, setSearchValue] = useState("");
 
+  const onSearchBarChange = (e) => {
+    e.preventDefault();
 
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearch = () => {
+    history.push({
+      pathname: "/product",
+      search: `?search=${""}&query=${searchValue || ""}`,
+    });
+  };
+  //search
 
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
@@ -52,7 +66,7 @@ const SearchNav = ({
         categoryListData[0].subCategory,
         "categoryListData[0].subCategory"
       );
-        addCategory(categoryListData);
+      addCategory(categoryListData);
     }
   }, [categoryListData.length]);
 
@@ -106,7 +120,18 @@ const SearchNav = ({
         <span>
           <i className="fa fa-search"></i>
         </span>
-        <input type="text" placeholder="Search a Product"></input>
+        <input
+          type="text"
+          placeholder="Search a Product"
+          value={searchValue}
+          onChange={onSearchBarChange}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch();
+            }
+          }}
+        ></input>
         <Dropdowncategory>
           <select
             onChange={(e) =>
@@ -130,7 +155,7 @@ const SearchNav = ({
           </span>
         </Call>
 
-        <Gift
+        {/* <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
         >
           <GiftIcon>
@@ -156,17 +181,16 @@ const SearchNav = ({
           </Giftcontent>
         ) : (
           ""
-        )}
+        )} */}
       </Rightcontent>
     </SearchNavContainer>
   );
 };
 
-
 const mapDispatchToProps = {
   addCategory: categoryOperations.addCategory,
 };
-export default   connect(null, mapDispatchToProps)(SearchNav);
+export default connect(null, mapDispatchToProps)(SearchNav);
 
 const SearchNavContainer = styled.div`
   height: 70px;
@@ -350,49 +374,49 @@ const Call = styled.div`
     display: none;
   }
 `;
-const Gift = styled.div`
-  background-color: orange;
-  margin-left: 40px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 12px 10px;
-  color: #fff;
-  cursor: pointer;
-`;
-const GiftIcon = styled.div`
-  padding: 12px 10px;
-  @media only screen and (max-width: 980px) and (min-width: 750px) {
-    display: none;
-  }
-`;
+// const Gift = styled.div`
+//   background-color: orange;
+//   margin-left: 40px;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   padding: 12px 10px;
+//   color: #fff;
+//   cursor: pointer;
+// `;
+// const GiftIcon = styled.div`
+//   padding: 12px 10px;
+//   @media only screen and (max-width: 980px) and (min-width: 750px) {
+//     display: none;
+//   }
+// `;
 
-const GiftOffer = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-transform: uppercase;
-  justify-content: center;
-  align-items: center;
-  @media only screen and (max-width: 750px) {
-    display: none;
-  }
-`;
+// const GiftOffer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   text-transform: uppercase;
+//   justify-content: center;
+//   align-items: center;
+//   @media only screen and (max-width: 750px) {
+//     display: none;
+//   }
+// `;
 
-const Giftcontent = styled.div`
-  position: absolute;
-  top: 70px;
-  right: 110px;
-  height: fit-content;
-  width: 250px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid #f1f1f1;
+// const Giftcontent = styled.div`
+//   position: absolute;
+//   top: 70px;
+//   right: 110px;
+//   height: fit-content;
+//   width: 250px;
+//   background-color: #fff;
+//   display: flex;
+//   flex-direction: column;
+//   border: 2px solid #f1f1f1;
 
-  border-radius: 0;
-  padding: 20px 10px 20px 20px;
-  z-index: 10;
-`;
+//   border-radius: 0;
+//   padding: 20px 10px 20px 20px;
+//   z-index: 10;
+// `;
 
 const Content = styled.div`
   position: absolute;
@@ -416,28 +440,28 @@ const Content = styled.div`
     height: 300px;
   }
 `;
-const GiftItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid #f1f5f8;
+// const GiftItem = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: start;
+//   align-items: center;
+//   margin-top: 12px;
+//   padding-top: 12px;
+//   border-top: 1px solid #f1f5f8;
 
-  & img {
-    height: 45px;
-    width: 45px;
-    background-color: #ffefe6;
-    padding: 7px;
-    border-radius: 100%;
-    margin-right: 12px !important;
-  }
+//   & img {
+//     height: 45px;
+//     width: 45px;
+//     background-color: #ffefe6;
+//     padding: 7px;
+//     border-radius: 100%;
+//     margin-right: 12px !important;
+//   }
 
-  & h5 {
-    padding-bottom: 2px;
-    font-weight: 700;
-    margin-bottom: 0;
-    font-size: 16px;
-  }
-`;
+//   & h5 {
+//     padding-bottom: 2px;
+//     font-weight: 700;
+//     margin-bottom: 0;
+//     font-size: 16px;
+//   }
+// `;

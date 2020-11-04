@@ -1,19 +1,17 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useQueryFetch, useHandleFetch } from "../../../hooks";
 const BrandNav = () => {
-
   const brandList = useQueryFetch("brandList");
   const [brandStatus, setStatus] = useState(true);
-console.log(brandList, "brandList");
+  console.log(brandList, "brandList");
   useEffect(() => {
     if (brandList.isSuccess && brandList.data) {
       setStatus(false);
       console.log(brandList.data, "brandList");
     }
   }, [brandList.isSuccess]);
-
 
   //brandList
   return (
@@ -22,19 +20,22 @@ console.log(brandList, "brandList");
         <span>TOP BRAND</span>
         <span>:</span>
       </TITLE>
-      <Item>{brandStatus?<> </>:(
-brandList.data.map(item=>{
-  return (<span>name</span>)
-})
-      )}</Item>
+      <Item>
+        {brandStatus ? (
+          <> </>
+        ) : (
+          brandList.data.map((item) => {
+            return <span>{item.name} </span>;
+          })
+           
+          
+        )}
+      </Item>
     </BB>
   );
 };
 
-
-
 export default BrandNav;
-
 
 const BB = styled.div`
   display: grid !important;
@@ -43,7 +44,7 @@ const BB = styled.div`
   grid-template-columns: 1fr 4fr;
   font-size: 14px;
   background-color: #fff;
-  padding: 50px 20px;
+  padding: 30px 20px;
 
   & span {
     padding: 5px;
@@ -79,7 +80,7 @@ const TITLE = styled.div`
     }
     @media only screen and (max-width: 1000px) {
       border-bottom: 2px solid #ff6000;
-      margin-bottom:10px;
+      margin-bottom: 10px;
     }
   }
 
@@ -95,7 +96,7 @@ const Item = styled.div`
 
   & span {
     color: #777;
-  
+
     font-weight: 400;
   }
 

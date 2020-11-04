@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Home from "./pages/Home";
 
 
-import { useQueryFetch } from "./hooks";
+
 
 
 // lazy load other components
@@ -43,18 +43,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 // //productList
 
 const App = () => {
-   const productsState = useQueryFetch("productList");
-  const [status,setstatus]=useState(true)
- const[products,setProducts]=useState([])
-
-   useEffect(() => {
-     if (productsState.isSuccess && productsState.data ) {
-       setProducts(productsState.data.data);
-         setstatus(false);
-      
-     }
-   }, [productsState.isSuccess]);
-    console.log(productsState, "productsState");
+   
 
  
   return (
@@ -63,20 +52,16 @@ const App = () => {
         <Suspense fallback="Loading...">
           <Layout>
             <Switch>
-              {status ? (
-                <> </>
-              ) : (
-                //@ts-ignore
-                <>
+              
                   <Route exact path={"/"}>
-                    <Home products={products} />
+                    <Home  />
                   </Route>
 
                   <Route exact path={"/Search"}>
-                    <Search products={products} />
+                    <Search />
                   </Route>
                   <Route exact path="/product">
-                    <ProductListing products={products} />
+                    <ProductListing  />
                   </Route>
 
 
@@ -96,8 +81,7 @@ const App = () => {
                   <Route exact path="/order-success" component={OrderSuccess} />
                   <Route exact path="/cart" component={Cart} />
                   <Route exact path="/dashboard" component={Dashboard} />
-                </>
-              )}
+              
             </Switch>
           </Layout>
           <GlobalStyles />

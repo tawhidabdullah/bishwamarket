@@ -1,12 +1,52 @@
-import React from 'react'
-import styled from "styled-components"
-const SearchField = () => {
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+import { useParams, useLocation } from "react-router-dom";
+
+// import hooks
+import { useQueryFetch, useHandleFetch } from "../../../hooks";
+const SearchField = ({ setproduct }) => {
+  const [queryValue, setqueryValue] = useState("");
+  const [productSearchState, handleProductSearchFetch] = useHandleFetch(
+    [],
+    "productSearch"
+  );
+
+  useEffect(() => {
+    const setSearchCategoryProducts = async () => {
+      const newProductsRes = await handleProductSearchFetch({
+        urlOptions: {
+          params: {
+            queryValue,
+          },
+        },
+      });
+    };
+    setSearchCategoryProducts();
+  }, [queryValue]);
+
+  const handle = (e) => {
+    setqueryValue(e.target.value);
+  };
+  
+
+
+  useEffect(() => {
+   if (productSearchState.data) setproduct(productSearchState.data);
+   else{
+     setproduct([]);
+   }
+
+   
+  }, [productSearchState.isLoading]);
+
   return (
     <InputBox>
       <input
         type="text"
         aria-label="Amount (to the nearest dollar)"
         placeholder="Search Products......"
+        onChange={(e) => handle(e)}
       />
 
       <button className="btn btn-normal">
@@ -16,11 +56,9 @@ const SearchField = () => {
   );
 };
 
-
 export default SearchField;
 
 //input box
-
 
 const InputBox = styled.div`
   padding: 50px 0px;

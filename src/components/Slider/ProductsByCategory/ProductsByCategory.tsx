@@ -27,7 +27,7 @@ const ProductsByCategory = ({
   item
 }) => {
 
-  console.log(item, "itemitem");
+ 
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
@@ -50,7 +50,7 @@ const ProductsByCategory = ({
         </ProductIcon>
 
         <ProductIcon
-          onClick={() => toggleQuickviewDrawer()}
+          onClick={() => toggleQuickviewDrawer(item)}
           customStyles={customStyles}
         >
           <i className="fa fa-search"></i>

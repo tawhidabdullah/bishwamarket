@@ -30,9 +30,10 @@ const CollectionItem = ({ item,customStyles,...props}) => {
 export default CollectionItem;
 
 const Item = styled.div`
+width:100%;
 
 
-&img{
+& img{
   height:100%;
   width:100%;
   object-fit:fill;
