@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import styled from "styled-components"
 import { SearchContain } from "../../components/Search/SearchContain/";
 import { SearchField } from "../../components/Search/SearchField";
@@ -6,7 +6,7 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
 
 
 
- const SearchContainer = ({ products }) => {
+ const SearchContainer = () => {
    const productCardStyles = {
      productBackgroundColor: "#fff",
      Levelvisibility: "hidden",
@@ -17,14 +17,18 @@ import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
      containertop: "80%",
      page: "search",
    };
+
+   const [key,setkey]=useState("");
+   const [searchproduct, setproduct] = useState([]);
+ 
    return (
      <Section>
        <SearchContain title={"search"} />
-       <SearchField />
+       <SearchField setproduct={setproduct} />
+      
        <SearchProduct>
          <Main>
-           
-           {products.map((item) => {
+           {searchproduct.map((item) => {
              return (
                <ProductsByCategory
                  customStyles={productCardStyles}
@@ -87,3 +91,5 @@ const Section = styled.div``;
 
 
 export default SearchContainer;
+
+

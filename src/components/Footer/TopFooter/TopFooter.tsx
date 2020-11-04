@@ -7,6 +7,10 @@ import { LinkList } from "../LinkLists";
 // import address component
 import { Contact } from "../Contact";
 
+// import hooks
+import ComponentFetcher from "../../ComponentFetcher";
+
+
 // dummy data
 const contactList = [
   "About Us",
@@ -31,8 +35,17 @@ const TopFooter = () => {
       <TopFooterContainer>
         <LinkListWrapper>
           <LinkListContainer>
-            <LinkList header="My Account" lists={contactList} />
-            <LinkList header="Quick Link" lists={quickLink} />
+          
+          <ComponentFetcher type='linkList' apiMapKey='myAccountComponentLinks'>
+            {(linkList) => <LinkList header="My Account" lists={linkList} />}
+          </ComponentFetcher>
+
+          <ComponentFetcher type='linkList' apiMapKey='Links'>
+            {(linkList) => <LinkList header="Quick Link" lists={linkList} />}
+          </ComponentFetcher>
+
+           
+            
           </LinkListContainer>
         </LinkListWrapper>
 

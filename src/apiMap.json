@@ -96,6 +96,10 @@
       "url": "/api/component/Links",
       "method": "get"
     },
+    "myAccountComponentLinks": {
+      "url": "/api/component/myAccountComponentLinks",
+      "method": "get"
+    },
     "Account": {
       "url": "/api/component/Account",
       "method": "get"
@@ -113,7 +117,7 @@
       "method": "get"
     },
     "categoryProducts": {
-      "url": "/api/category/:id/product?sort=sortValue&sortOrder=sortOrderValue&recursive=isRecursive&limit=limitNumber&page=pageNumber",
+      "url": "/api/category/:id/product?recursive=isRecursive",
       "method": "get"
     },
     "categoryProductsByUrl": {

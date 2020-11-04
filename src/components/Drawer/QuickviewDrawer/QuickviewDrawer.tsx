@@ -26,28 +26,28 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
       <QuickviewDrawerContainer show={open}>
         <ImageContainer>
           <img src={quickViewImage} alt="quick product preview" />
+          <Text clickAction={() => toggleQuickviewDrawer()}>
+            <Text1>&#10005;</Text1>
+          </Text>
         </ImageContainer>
 
         <DetailsContainer>
           <DrawerHeader>
             <Text>Woman T-shirt</Text>
-            <Text
-              customStyle={{ cursor: "pointer" }}
-              clickAction={() => toggleQuickviewDrawer()}
-            >
-              &#10005;
+            <Text clickAction={() => toggleQuickviewDrawer()}>
+              <Text2>&#10005;</Text2>
             </Text>
           </DrawerHeader>
           <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
             $32.00
           </Text>
-
           <ColorContainer>
-            <Color customStyle={{ "background-color": "#f1e7e6" }} />
-            <Color customStyle={{ "background-color": "#d0edff" }} />
-            <Color customStyle={{ "background-color": "#bfbfbf" }} />
+            <ParentSize>
+              <Color customStyle={{ "background-color": "#f1e7e6" }} />
+              <Color customStyle={{ "background-color": "#d0edff" }} />
+              <Color customStyle={{ "background-color": "#bfbfbf" }} />
+            </ParentSize>
           </ColorContainer>
-
           <ProductDetailTextContainer>
             <Text
               customStyle={{
@@ -70,12 +70,13 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
               accusantium doloremque laudantium
             </Text>
           </ProductDetailTextContainer>
-
           <SizeContainer>
-            <Size>S</Size>
-            <Size>M</Size>
-            <Size>L</Size>
-            <Size>XL</Size>
+            <ParentSize>
+              <Size>S</Size>
+              <Size>M</Size>
+              <Size>L</Size>
+              <Size>XL</Size>
+            </ParentSize>
           </SizeContainer>
           <Text
             customStyle={{
@@ -87,43 +88,45 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
           >
             Quantity
           </Text>
-
-          <QuantityBox>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <QuantityAction>
-                  <i className="fa fa-angle-left"></i>
-                </QuantityAction>
-              </InputGroup.Prepend>
-              <FormControl />
-              <InputGroup.Append>
-                <QuantityAction>
-                  <i className="fa fa-angle-right"></i>
-                </QuantityAction>
-              </InputGroup.Append>
-            </InputGroup>
-          </QuantityBox>
-
-          <ButtonContainer>
-            <DrawerButton
-              customStyle={{
-                "font-weight": "bold",
-                "margin-right": "7px",
-                padding: "7px",
-              }}
-            >
-              Add To Cart
-            </DrawerButton>
-            <DrawerButton
-              customStyle={{
-                "font-weight": "bold",
-                "margin-left": "7px",
-                padding: "7px",
-              }}
-            >
-              View Details
-            </DrawerButton>
-          </ButtonContainer>
+          <SizeContainer>
+            <QuantityBox>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <QuantityAction>
+                    <i className="fa fa-angle-left"></i>
+                  </QuantityAction>
+                </InputGroup.Prepend>
+                <FormControl />
+                <InputGroup.Append>
+                  <QuantityAction>
+                    <i className="fa fa-angle-right"></i>
+                  </QuantityAction>
+                </InputGroup.Append>
+              </InputGroup>
+            </QuantityBox>
+          </SizeContainer>
+          <SizeContainer>
+            <ButtonContainer>
+              <DrawerButton
+                customStyle={{
+                  "font-weight": "bold",
+                  "margin-right": "7px",
+                  padding: "7px",
+                }}
+              >
+                Add To Cart
+              </DrawerButton>
+              <DrawerButton
+                customStyle={{
+                  "font-weight": "bold",
+                  "margin-left": "7px",
+                  padding: "7px",
+                }}
+              >
+                View Details
+              </DrawerButton>
+            </ButtonContainer>
+          </SizeContainer>
         </DetailsContainer>
       </QuickviewDrawerContainer>
     </Fragment>
@@ -135,16 +138,28 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(QuickviewDrawer);
-
+const Text1 = styled.div`
+  cursor: pointer;
+  @media only screen and (min-width: 590px) {
+   display:none;
+  }
+`;
+const Text2 = styled.div`
+  cursor: pointer;
+  @media only screen and (max-width: 590px) {
+    display: none;
+  }
+`;
 const QuickviewDrawerContainer = styled.div`
-  margin: 0 auto;
+
 
   position: fixed;
   left: 0;
   right: 0;
-  top: 10%;
+  top: 0%;
   height: 500px;
-  width: 80%;
+  width: 70%;
+    margin: 50px auto;
   z-index: 2000000;
   background-color: white;
   box-sizing: border-box;
@@ -161,14 +176,29 @@ const QuickviewDrawerContainer = styled.div`
   @media screen and (max-width: 991px) {
     right: 8%;
   }
+  @media screen and (max-width: 590px) {
+    justify-content: center;
+    flex-direction:column;
+  }
 `;
 
 const ImageContainer = styled.div`
   width: 45%;
   height: 100%;
+  display: flex;
+  justify-content: space-between;
   & img {
     width: 100%;
     height: 100%;
+  }
+  @media screen and (max-width: 590px) {
+    height: 50%;
+    width: 100%;
+
+    & img {
+      width: 80%;
+      height: 100%;
+    }
   }
 `;
 
@@ -178,37 +208,61 @@ const DetailsContainer = styled.div`
   justify-content: flex-start;
   text-align: left;
   width: 50%;
+  overflow-y: auto;
+  padding-bottom: 40px;
+  padding-top:40px;
+  @media screen and (max-width: 590px) {
+    width: 100%;
+    text-align: center;
+   
+  }
 `;
 
 const QuantityBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content:center;
   margin-top: 10px;
-  width: 10vw;
+  width:200px;
 `;
 
 const QuantityAction = styled(InputGroup.Text)`
   background-color: white;
   cursor: pointer;
+  width:50px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 20vw;
+  width: fit-content;
 `;
 
 const DrawerHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  @media screen and (max-width: 590px) {
+    justify-content: center;;
+  }
 `;
 
 const ColorContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 10vw;
+  justify-content: start;
+
   margin-bottom: 10px;
+  @media screen and (max-width: 590px) {
+    justify-content: center;
+  }
+`;
+
+const ParentSize = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & Size{
+    margin-right:5px;
+  }
 `;
 
 const ProductDetailTextContainer = styled.div`
@@ -221,7 +275,10 @@ const ProductDetailTextContainer = styled.div`
 
 const SizeContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 15vw;
+  justify-content: start;
+
   padding: 15px 0 8px 0;
+  @media screen and (max-width: 590px) {
+    justify-content: center;
+  }
 `;

@@ -184,6 +184,7 @@ const CheckoutForm = ({
         product: item.product,
         quantity: item.quantity,
         variation: item.variation,
+        cover: item.cover,
       };
     });
 

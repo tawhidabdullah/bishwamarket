@@ -1963,6 +1963,27 @@ class Converter {
     } else return false;
   }
 
+
+   /**
+   * @public
+   * @method email convert api data from API to general format based on config server
+   * @param {Object} data response objectc from alpha
+   * @returns {Object}  converted data
+   */
+  async email(data) {
+    const items = data.items || [];
+
+    if (items.length > 0) {
+      const text = items[0].text || [];
+      if (text) {
+        return {
+          text,
+        };
+      } else return false;
+    } else return false;
+  }
+
+
   /**
    * @public
    * @method Links convert api data from API to general format based on config server
@@ -1978,11 +1999,38 @@ class Converter {
     const items = servicesItems.map((item) => {
       return {
         target: item.target,
-        name: item.name || item.text,
+        name: item.title || item.text,
       };
     });
     return items;
   }
+
+
+ /**
+   * @public
+   * @method myAccountComponentLinks convert api data from API to general format based on config server
+   * @param {Object} data response objectc from wc
+   * @returns {Object}  converted data
+   */
+  async myAccountComponentLinks(data) {
+    const linkList = data.items;
+    if (!linkList.length > 0) {
+      return linkList;
+    }
+
+    const items = linkList.map((item) => {
+      return {
+        target: item.target,
+        name: item.title || item.text,
+      };
+    });
+
+
+    return items;
+  }
+
+
+  
 
   /**
    * @public

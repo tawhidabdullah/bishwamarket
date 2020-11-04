@@ -1,17 +1,19 @@
-import React from "react";
+//@ts-ignore
+import React,{useRef} from "react";
 import styled from "styled-components"
-import img from "../../../assets/slider-tab/1.jpg"
-const CategoryItem = () => {
+import img1 from "../../../assets/slider-tab/1.jpg"
+
+
+const CategoryItem = ({item}) => {
+
+ 
+
   return (
     <CategoryContain>
-     
-        <ImgWrapper>
-          <img src={img} alt="category" className="img-fluid" />
-        </ImgWrapper>
-        <Button>
-          flower
-        </Button>
-    
+      <ImgWrapper>
+        <img src={item.fullCover}></img>
+      </ImgWrapper>
+      <Button>{item.name}</Button>
     </CategoryContain>
   );
 };
