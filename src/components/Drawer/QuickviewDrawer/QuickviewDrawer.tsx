@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import React, {useEffect, Fragment, useState } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { InputGroup, FormControl } from "react-bootstrap";
@@ -25,7 +25,7 @@ import { globalOperations } from "../../../state/ducks/globalState";
 // import cart store
 import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
 
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 const QuickviewDrawer = ({
   open,
   toggleQuickviewDrawer,
@@ -56,41 +56,13 @@ const QuickviewDrawer = ({
   //   }
 
   // };
-const handleCart=()=>{
-  /// addToCart(Item[0]);
-   console.log("YYYYYYY")
-}
+  const handleCart = () => {
+    /// addToCart(Item[0]);
+    console.log("YYYYYYY");
+  };
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleQuickviewDrawer()} />
-<<<<<<< HEAD
-      <QuickviewDrawerContainer show={open}>
-        <ImageContainer>
-          <img src={quickViewImage} alt="quick product preview" />
-          <Text clickAction={() => toggleQuickviewDrawer()}>
-            <Text1>&#10005;</Text1>
-          </Text>
-        </ImageContainer>
-
-        <DetailsContainer>
-          <DrawerHeader>
-            <Text>Woman T-shirt</Text>
-            <Text clickAction={() => toggleQuickviewDrawer()}>
-              <Text2>&#10005;</Text2>
-            </Text>
-          </DrawerHeader>
-          <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
-            $32.00
-          </Text>
-          <ColorContainer>
-            <ParentSize>
-              <Color customStyle={{ "background-color": "#f1e7e6" }} />
-              <Color customStyle={{ "background-color": "#d0edff" }} />
-              <Color customStyle={{ "background-color": "#bfbfbf" }} />
-            </ParentSize>
-          </ColorContainer>
-          <ProductDetailTextContainer>
-=======
 
       {Item.length > 0 ? (
         <QuickviewDrawerContainer show={open}>
@@ -147,7 +119,6 @@ const handleCart=()=>{
                 <Size>XL</Size>
               </ParentSize>
             </SizeContainer>
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
             <Text
               customStyle={{
                 "font-weight": "bold",
@@ -158,78 +129,6 @@ const handleCart=()=>{
             >
               Quantity
             </Text>
-<<<<<<< HEAD
-            <Text
-              customStyle={{
-                "font-size": "14px",
-                padding: "5px 0",
-                "line-height": "1.5em",
-              }}
-            >
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium
-            </Text>
-          </ProductDetailTextContainer>
-          <SizeContainer>
-            <ParentSize>
-              <Size>S</Size>
-              <Size>M</Size>
-              <Size>L</Size>
-              <Size>XL</Size>
-            </ParentSize>
-          </SizeContainer>
-          <Text
-            customStyle={{
-              "font-weight": "bold",
-              "font-size": "16px",
-              padding: "0",
-              color: "#333",
-            }}
-          >
-            Quantity
-          </Text>
-          <SizeContainer>
-            <QuantityBox>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <QuantityAction>
-                    <i className="fa fa-angle-left"></i>
-                  </QuantityAction>
-                </InputGroup.Prepend>
-                <FormControl />
-                <InputGroup.Append>
-                  <QuantityAction>
-                    <i className="fa fa-angle-right"></i>
-                  </QuantityAction>
-                </InputGroup.Append>
-              </InputGroup>
-            </QuantityBox>
-          </SizeContainer>
-          <SizeContainer>
-            <ButtonContainer>
-              <DrawerButton
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-right": "7px",
-                  padding: "7px",
-                }}
-              >
-                Add To Cart
-              </DrawerButton>
-              <DrawerButton
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-left": "7px",
-                  padding: "7px",
-                }}
-              >
-                View Details
-              </DrawerButton>
-            </ButtonContainer>
-          </SizeContainer>
-        </DetailsContainer>
-      </QuickviewDrawerContainer>
-=======
             <SizeContainer>
               <QuantityBox>
                 <InputGroup>
@@ -252,7 +151,7 @@ const handleCart=()=>{
               </QuantityBox>
             </SizeContainer>
             <SizeContainer>
-              <ButtonContainer >
+              <ButtonContainer>
                 {/* <DrawerButton
                   customStyle={{
                     "font-weight": "bold",
@@ -278,7 +177,6 @@ const handleCart=()=>{
       ) : (
         <>Loading </>
       )}
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
     </Fragment>
   );
 };
@@ -286,14 +184,14 @@ const handleCart=()=>{
 const mapDispatchToProps = (dispatch) => ({
   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
   changeQuantity: cartOperations.changeQuantity,
-  addToCart:cartOperations.addToCart,
+  addToCart: cartOperations.addToCart,
 });
 
 export default connect(null, mapDispatchToProps)(QuickviewDrawer);
 const Text1 = styled.div`
   cursor: pointer;
   @media only screen and (min-width: 590px) {
-   display:none;
+    display: none;
   }
 `;
 const Text2 = styled.div`
@@ -303,15 +201,13 @@ const Text2 = styled.div`
   }
 `;
 const QuickviewDrawerContainer = styled.div`
-
-
   position: fixed;
   left: 0;
   right: 0;
   top: 0%;
   height: 500px;
   width: 70%;
-    margin: 50px auto;
+  margin: 50px auto;
   z-index: 2000000;
   background-color: white;
   box-sizing: border-box;
@@ -330,7 +226,7 @@ const QuickviewDrawerContainer = styled.div`
   }
   @media screen and (max-width: 590px) {
     justify-content: center;
-    flex-direction:column;
+    flex-direction: column;
   }
 `;
 
@@ -362,26 +258,25 @@ const DetailsContainer = styled.div`
   width: 50%;
   overflow-y: auto;
   padding-bottom: 40px;
-  padding-top:40px;
+  padding-top: 40px;
   @media screen and (max-width: 590px) {
     width: 100%;
     text-align: center;
-   
   }
 `;
 
 const QuantityBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   margin-top: 10px;
-  width:200px;
+  width: 200px;
 `;
 
 const QuantityAction = styled(InputGroup.Text)`
   background-color: white;
   cursor: pointer;
-  width:50px;
+  width: 50px;
 `;
 
 const ButtonContainer = styled.div`
@@ -394,7 +289,7 @@ const DrawerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   @media screen and (max-width: 590px) {
-    justify-content: center;;
+    justify-content: center;
   }
 `;
 
@@ -412,8 +307,8 @@ const ParentSize = styled.div`
   display: flex;
   justify-content: center;
 
-  & Size{
-    margin-right:5px;
+  & Size {
+    margin-right: 5px;
   }
 `;
 

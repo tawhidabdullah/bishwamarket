@@ -3,9 +3,19 @@ import Slider from "react-slick";
 
 import styled from "styled-components";
 
-const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
+const MainSlider = ({
+  responsive,
+  ProductsByCategory,
+  customStyles,
+  ...props
+}) => {
+  const [activeSlide, setactiveSlide] = useState(0);
+  const [activeSlide2, setactiveSlide2] = useState(0);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
 
-<<<<<<< HEAD
     responsive: responsive.responsive,
   };
   return (
@@ -13,54 +23,17 @@ const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
       <MainContent customStyles={customStyles}>
         <Slider {...settings}>
           {props.data && props.data.length > 0
-            ? props.data.map((item, idx) => {
+            ? props.data.map((item) => {
                 return (
-                  <ProductsByCategory
-                    key={idx}
-                    item={item}
-                    customStyles={customStyles}
-                  />
+                  <ProductsByCategory item={item} customStyles={customStyles} />
                 );
               })
-            : " "}
+            : ""}
         </Slider>
       </MainContent>
     </Layout>
   );
 };
-=======
- const [activeSlide, setactiveSlide] = useState(0);
-   const [activeSlide2, setactiveSlide2] = useState(0);
-   const settings = {
-     dots: false,
-     infinite: true,
-     speed: 500,
-
-     responsive: responsive.responsive,
-   };
-    return (
-      <Layout customStyles={customStyles}>
-        <MainContent customStyles={customStyles}>
-          <Slider {...settings}>
-            {props.data && props.data.length > 0
-              ? props.data.map((item) => {
-                  return (
-                    <ProductsByCategory
-                      item={item}
-                      customStyles={customStyles}
-                    />
-                  );
-                })
-              : ""}
-         
-          </Slider>
-        </MainContent>
-      </Layout>
-    );
-}
-
-   
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
 
 export default MainSlider;
 const Layout = styled.div`

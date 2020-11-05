@@ -44,7 +44,7 @@ const ProductListContainer = () => {
     <Main>
       <SearchContain title={"CATEGORY"} />
       <Section>
-        <LeftBar />
+        {/* <LeftBar /> */}
 
         <RightBar products={searchproduct} />
       </Section>

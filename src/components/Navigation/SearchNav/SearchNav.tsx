@@ -62,10 +62,7 @@ const SearchNav = ({
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);
-<<<<<<< HEAD
-=======
-    
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
+
       addCategory(categoryListData);
     }
   }, [categoryListData.length]);
