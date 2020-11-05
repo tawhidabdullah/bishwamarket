@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Row, Col, Table } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 // import OrderHistory item
 // import { OrderHistoryItem } from "../../components/OrderHistoryItem";
@@ -12,12 +13,11 @@ import { DrawerButton } from "../../components/common/Button/DrawerButton";
 // hooks for fetching order history
 import { useHandleFetch } from "../../hooks";
 
-// import dummy images
-import image1 from "../../assets/wishlist/image1.jpg";
-
 //TODO must refactor this ugly piece of shit
 
 const OrderHistory = () => {
+  const history = useHistory();
+
   // this hook gets current user order history
   const [orderHistoryState, handleOrderHistoryFetch] = useHandleFetch(
     {},
@@ -27,8 +27,7 @@ const OrderHistory = () => {
   useEffect(() => {
     const fetchOrderHistory = async () => {
       const orderHistoryRes = await handleOrderHistoryFetch({});
-      console.log("order history state", orderHistoryState);
-      console.log("order history response", orderHistoryRes);
+      console.log("orderHistoryRes", orderHistoryRes);
     };
 
     fetchOrderHistory();
@@ -42,115 +41,68 @@ const OrderHistory = () => {
             <CustomTable responsive="xs">
               <thead>
                 <tr>
-                  <TableHeader scope="col">PRODUCT</TableHeader>
+                  <TableHeader scope="col">Order CODE</TableHeader>
                   <TableHeader scope="col">DESCRIPTION</TableHeader>
                   <TableHeader scope="col">PRICE</TableHeader>
-                  <TableHeader scope="col">DETAILS</TableHeader>
                   <TableHeader scope="col">STATUS</TableHeader>
                 </tr>
               </thead>
               <tbody>
-                {/* {orderHistoryState && orderHistoryState.done && orderHistoryState.data.map(order => (
+                {orderHistoryState.done &&
+                  orderHistoryState.data &&
+                  orderHistoryState.data["data"].length > 0 &&
+                  orderHistoryState.data["data"].map((order) => (
+                    <tr>
+                      <TableDataContainer
+                        onClick={() =>
+                          history.push(`/order-success/${order.id}`)
+                        }
+                      >
+                        <strong style={{ cursor: "pointer" }}>
+                          {order.shortCode}
+                        </strong>
+                      </TableDataContainer>
 
-                ))} */}
+                      <TableDataContainer
+                        onClick={() =>
+                          history.push(`/order-success/${order.id}`)
+                        }
+                      >
+                        <TableData>
+                          <TableText customStyle={{ "font-weight": "bold" }}>
+                            Ordered:{" "}
+                            {new Date(order.date_created).toDateString()})
+                          </TableText>
+                          <TableText>Orderer by: {order.name}</TableText>
+                        </TableData>
 
-                <tr>
-                  <TableDataContainer>
-                    <img src={image1} alt="" />
-                  </TableDataContainer>
+                        <MobileRow>
+                          <TableText customStyle={{ color: "#000" }}>
+                            Total Price: ${order.totalPrice}
+                          </TableText>
 
-                  <TableDataContainer>
-                    <TableData>
-                      <TableText customStyle={{ "font-weight": "bold" }}>
-                        Order No. 123456
-                      </TableText>
-                      <TableText>Cotton Shirt</TableText>
-                    </TableData>
+                          <TableText>
+                            <strong>{order.status} </strong>(
+                            {new Date(order.date_created).toDateString()})
+                          </TableText>
+                        </MobileRow>
+                      </TableDataContainer>
 
-                    <MobileRow>
-                      <TableText customStyle={{ color: "#000" }}>
-                        $250.15
-                      </TableText>
-                      <TableData customStyle={{ "flex-direction": "row" }}>
-                        <TableText>Size: L</TableText>
-                        <TableText>Quantity: 1</TableText>
-                      </TableData>
-                      <TableText>
-                        <strong>Delivered </strong>({new Date().toDateString()})
-                      </TableText>
-                    </MobileRow>
-                  </TableDataContainer>
+                      <TableDataContainer>
+                        <TableText
+                          customStyle={{ "font-size": "22px", color: "#000" }}
+                        >
+                          ${order.totalPrice}
+                        </TableText>
+                      </TableDataContainer>
 
-                  <TableDataContainer>
-                    <TableText
-                      customStyle={{ "font-size": "22px", color: "#000" }}
-                    >
-                      $250.15
-                    </TableText>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableData>
-                      <TableText>Size: L</TableText>
-                      <TableText>Quantity: 1</TableText>
-                    </TableData>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableText>
-                      <strong>Delivered </strong>({new Date().toDateString()})
-                    </TableText>
-                  </TableDataContainer>
-                </tr>
-
-                <tr>
-                  <TableDataContainer>
-                    <img src={image1} alt="" />
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableData>
-                      <TableText customStyle={{ "font-weight": "bold" }}>
-                        Order No. 123456
-                      </TableText>
-                      <TableText>Cotton Shirt</TableText>
-                    </TableData>
-
-                    <MobileRow>
-                      <TableText customStyle={{ color: "#000" }}>
-                        $250.15
-                      </TableText>
-                      <TableData customStyle={{ "flex-direction": "row" }}>
-                        <TableText>Size: L</TableText>
-                        <TableText>Quantity: 1</TableText>
-                      </TableData>
-                      <TableText>
-                        <strong>Delivered </strong>({new Date().toDateString()})
-                      </TableText>
-                    </MobileRow>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableText
-                      customStyle={{ "font-size": "22px", color: "#000" }}
-                    >
-                      $250.15
-                    </TableText>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableData>
-                      <TableText>Size: L</TableText>
-                      <TableText>Quantity: 1</TableText>
-                    </TableData>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableText>
-                      <strong>Delivered </strong>({new Date().toDateString()})
-                    </TableText>
-                  </TableDataContainer>
-                </tr>
+                      <TableDataContainer>
+                        <TableText>
+                          <strong>{order.status} </strong>
+                        </TableText>
+                      </TableDataContainer>
+                    </tr>
+                  ))}
               </tbody>
             </CustomTable>
           </Col>

@@ -270,6 +270,11 @@
       "url": "/customer/api/order?sort=sortItem&sortOrder=sortOrderValue",
       "method": "get"
     },
+
+    "getSingleOrderHistory": {
+      "url": "/customer/api/order/:orderId?sort=sortItem&sortOrder=sortOrderValue",
+      "method": "get"
+    },
     "changePassword": {
       "url": "/customer/api/profile/changePassword",
       "method": "post"

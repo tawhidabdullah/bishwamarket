@@ -774,6 +774,10 @@ class Converter {
     };
   }
 
+  async getSingleOrderHistory(data) {
+    return data;
+  }
+
   /**
    * @public
    * @method offerListCount convert api data from API to general format based on config server

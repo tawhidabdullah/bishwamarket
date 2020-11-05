@@ -9,22 +9,22 @@ import { OrderedProductDetails } from "../../components/OrderedProductDetails";
 // import order price component
 import { OrderPrice } from "../../components/OrderPrice";
 
-const OrderDetails = () => {
+const headerStyles = {
+  "font-size": "calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)))",
+  "line-height": 1,
+};
+
+const OrderDetails = ({ products, totalPrice, deliveryCharge }) => {
+  console.log("form oroder details", products);
   return (
     <OrderDetailsContainer>
-      <Header
-        customStyle={{
-          "font-size":
-            "calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)))",
-          "line-height": 1,
-        }}
-        content="Your Order Details"
-      />
+      <Header customStyle={headerStyles} content="Your Order Details" />
 
-      <OrderedProductDetails />
-      <OrderedProductDetails />
+      {products &&
+        products.length > 0 &&
+        products.map((product) => <OrderedProductDetails product={product} />)}
 
-      <OrderPrice />
+      <OrderPrice totalPrice={totalPrice} deliveryCharge={deliveryCharge} />
     </OrderDetailsContainer>
   );
 };

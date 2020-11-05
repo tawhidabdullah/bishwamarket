@@ -5,78 +5,46 @@ import { Row, Col } from "react-bootstrap";
 // import header element
 import { Header } from "../elements/Header";
 
-// import dummy image
-import orderImage from "../../assets/wishlist/image1.jpg";
+// url config
+import config from "../../config.json";
 
-const OrderedProductDetails = () => {
+const headerStyles = {
+  "font-size": "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
+  "margin-bottom": "5px",
+};
+
+const textStyles = {
+  "font-size": "16px",
+  "margin-bottom": "0",
+  "font-weight": "500",
+  "text-transform": "none",
+  color: "rgb(119, 119, 119)",
+};
+
+const OrderedProductDetails = ({ product }) => {
   return (
     <CustomRow>
       <Col xs={3}>
-        <Image src={orderImage} alt="order details" />
+        <Image
+          src={`${config.baseURL}/${product.cover.thumbnail}`}
+          alt="order details"
+        />
       </Col>
       <CustomColumn xs={3}>
-        <Header
-          customStyle={{
-            "font-size":
-              "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
-            "margin-bottom": "5px",
-          }}
-          content="Product name"
-        />
+        <Header customStyle={headerStyles} content="Product name" />
 
-        <Header
-          customStyle={{
-            "font-size": "16px",
-            "margin-bottom": "0",
-            "font-weight": "500",
-            "text-transform": "none",
-            color: "rgb(119, 119, 119)",
-          }}
-          content="Cotton Shirt"
-        />
+        <Header customStyle={textStyles} content={product.name} />
       </CustomColumn>
 
       <CustomColumn xs={3}>
-        <Header
-          customStyle={{
-            "font-size":
-              "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
-            "margin-bottom": "5px",
-          }}
-          content="Quantity"
-        />
+        <Header customStyle={headerStyles} content="Quantity" />
 
-        <Header
-          customStyle={{
-            "font-size": "16px",
-            "margin-bottom": "0",
-            "font-weight": "500",
-            "text-transform": "none",
-            color: "rgb(119, 119, 119)",
-          }}
-          content="1"
-        />
+        <Header customStyle={textStyles} content={product.unitPrice} />
       </CustomColumn>
       <CustomColumn xs={3}>
-        <Header
-          customStyle={{
-            "font-size":
-              "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
-            "margin-bottom": "5px",
-          }}
-          content="Price"
-        />
+        <Header customStyle={headerStyles} content="Price" />
 
-        <Header
-          customStyle={{
-            "font-size": "16px",
-            "margin-bottom": "0",
-            "font-weight": "500",
-            "text-transform": "none",
-            color: "rgb(119, 119, 119)",
-          }}
-          content="$250.15"
-        />
+        <Header customStyle={textStyles} content={product.unitPrice} />
       </CustomColumn>
     </CustomRow>
   );
