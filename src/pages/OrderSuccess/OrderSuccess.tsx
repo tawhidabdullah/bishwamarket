@@ -1,13 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import { Col, Row } from "react-bootstrap";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 // import component
 import { OrderSuccessMessage } from "../../components/OrderSuccessMessage";
 import { OrderDetails } from "../../containers/OrderDetails";
 import { OrderInfo } from "../../containers/OrderInfo";
 
-const OrderSuccess = () => {
+const OrderSuccess = ({isAuthenticated}) => {
+
+  const history = useHistory();
+  const alert = useAlert();
+  
+  useEffect(() => {
+    if(!isAuthenticated) {
+      alert.error("Unauthorized access");
+      history.push('/');
+    }
+  }, [isAuthenticated])
+
   return (
     <section>
       <OrderSuccessMessage />
@@ -28,7 +42,11 @@ const OrderSuccess = () => {
   );
 };
 
-export default OrderSuccess;
+const mapStateToProps = state => ({
+  isAuthenticated: state.session.isAuthenticated,
+})
+
+export default connect(mapStateToProps)(OrderSuccess);
 
 // TODO this style is repeating. must refactor into one unified styles
 const OrderSuccessContainer = styled.div`

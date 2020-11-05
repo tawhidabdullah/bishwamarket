@@ -725,7 +725,6 @@ class Converter {
   }
 
   async filterProduct(resData) {
-    console.log("from converter", resData);
     const data = resData.data || [];
     const next = resData.page?.next;
     const total = resData.page?.totalIndex;

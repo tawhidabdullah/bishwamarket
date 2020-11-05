@@ -1,13 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
+import {connect} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {useAlert} from 'react-alert';
 
 // import component
 import { PageHeader } from "../../components/common/PageHeader";
 import { PersonalDetails } from "../../containers/PersonalDetails";
 import { ShippingAddress } from "../../containers/ShippingAddress";
 
-const Profile = () => {
+const Profile = ({isAuthenticated}) => {
+
+  const history = useHistory();
+  const alert = useAlert();
+  
+  useEffect(() => {
+    if(!isAuthenticated) {
+      alert.error("Unauthorized access");
+      history.push('/');
+    }
+  }, [isAuthenticated])
+
   return (
     <ProfileContainer>
       <PageHeader>Profile</PageHeader>
@@ -23,7 +37,11 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state => ({
+  isAuthenticated: state.session.isAuthenticated
+})
+
+export default connect(mapStateToProps)(Profile);
 
 const ProfileContainer = styled.section`
   width: 100%;
