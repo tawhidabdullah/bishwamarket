@@ -27,12 +27,14 @@ const OrderHistory = () => {
   useEffect(() => {
     const fetchOrderHistory = async () => {
       const orderHistoryRes = await handleOrderHistoryFetch({});
-      console.log("order history state", orderHistoryState);
+
       console.log("order history response", orderHistoryRes);
     };
 
     fetchOrderHistory();
   }, []);
+
+   console.log("order history state", orderHistoryState);
 
   return (
     <OrderHistoryContainer>

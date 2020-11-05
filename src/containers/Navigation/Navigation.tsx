@@ -23,7 +23,7 @@ const Navigation = ({}) => {
   const [toggleCurrency, setToggleCurrency] = useState(false);
 
   // state for toggling category dropdown
-  const [toggleCategory, setToggleCategory] = useState(true);
+  const [toggleCategory, setToggleCategory] = useState(false);
 
   // state for toggling GiftBox dropdown
   const [toggleGiftBox, setToggleGiftBox] = useState(false);

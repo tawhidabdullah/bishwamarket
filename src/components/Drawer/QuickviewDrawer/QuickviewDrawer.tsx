@@ -36,6 +36,8 @@ const QuickviewDrawer = ({
   changeQuantity,
   addToCart,
 }) => {
+
+
   const Item = useSelector((state) => state.Item);
   const [quantity, setQuantity] = useState(1);
 
@@ -48,20 +50,7 @@ const QuickviewDrawer = ({
 
   
 
-  // const handleChangeQuantity = async (value) => {
-  //   if (value === "minus") {
-  //     if (quantity === 1) return;
-  //      let quant = quantity - 1;
-  //     setQuantity(quant);
-
-  //   } else {
-  //     let quant = quantity + 1;
-  //      setQuantity(quant);
-
-  //   }
-
-  // };
-const handleAddToCart = async () => {
+const handleAddToCart = () => {
   if (!Item[0].inStock) {
     alert.error("Out of stock");
     return;
@@ -81,8 +70,8 @@ const handleAddToCart = async () => {
   };
   console.log(cartItem,"plabon");
 
-  console.log(addToCart);
-  //  addToCart && addToCart(cartItem);
+  console.log({ addToCart });
+  addToCart && addToCart(cartItem);
 
 
   // if (session.isAuthenticated) {
@@ -99,34 +88,6 @@ const handleAddToCart = async () => {
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleQuickviewDrawer()} />
-<<<<<<< HEAD
-      <QuickviewDrawerContainer show={open}>
-        <ImageContainer>
-          <img src={quickViewImage} alt="quick product preview" />
-          <Text clickAction={() => toggleQuickviewDrawer()}>
-            <Text1>&#10005;</Text1>
-          </Text>
-        </ImageContainer>
-
-        <DetailsContainer>
-          <DrawerHeader>
-            <Text>Woman T-shirt</Text>
-            <Text clickAction={() => toggleQuickviewDrawer()}>
-              <Text2>&#10005;</Text2>
-            </Text>
-          </DrawerHeader>
-          <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
-            $32.00
-          </Text>
-          <ColorContainer>
-            <ParentSize>
-              <Color customStyle={{ "background-color": "#f1e7e6" }} />
-              <Color customStyle={{ "background-color": "#d0edff" }} />
-              <Color customStyle={{ "background-color": "#bfbfbf" }} />
-            </ParentSize>
-          </ColorContainer>
-          <ProductDetailTextContainer>
-=======
 
       {Item.length > 0 ? (
         <QuickviewDrawerContainer show={open}>
@@ -183,7 +144,6 @@ const handleAddToCart = async () => {
                 <Size>XL</Size>
               </ParentSize>
             </SizeContainer>
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
             <Text
               customStyle={{
                 "font-weight": "bold",
@@ -194,78 +154,6 @@ const handleAddToCart = async () => {
             >
               Quantity
             </Text>
-<<<<<<< HEAD
-            <Text
-              customStyle={{
-                "font-size": "14px",
-                padding: "5px 0",
-                "line-height": "1.5em",
-              }}
-            >
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium
-            </Text>
-          </ProductDetailTextContainer>
-          <SizeContainer>
-            <ParentSize>
-              <Size>S</Size>
-              <Size>M</Size>
-              <Size>L</Size>
-              <Size>XL</Size>
-            </ParentSize>
-          </SizeContainer>
-          <Text
-            customStyle={{
-              "font-weight": "bold",
-              "font-size": "16px",
-              padding: "0",
-              color: "#333",
-            }}
-          >
-            Quantity
-          </Text>
-          <SizeContainer>
-            <QuantityBox>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <QuantityAction>
-                    <i className="fa fa-angle-left"></i>
-                  </QuantityAction>
-                </InputGroup.Prepend>
-                <FormControl />
-                <InputGroup.Append>
-                  <QuantityAction>
-                    <i className="fa fa-angle-right"></i>
-                  </QuantityAction>
-                </InputGroup.Append>
-              </InputGroup>
-            </QuantityBox>
-          </SizeContainer>
-          <SizeContainer>
-            <ButtonContainer>
-              <DrawerButton
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-right": "7px",
-                  padding: "7px",
-                }}
-              >
-                Add To Cart
-              </DrawerButton>
-              <DrawerButton
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-left": "7px",
-                  padding: "7px",
-                }}
-              >
-                View Details
-              </DrawerButton>
-            </ButtonContainer>
-          </SizeContainer>
-        </DetailsContainer>
-      </QuickviewDrawerContainer>
-=======
             <SizeContainer>
               <QuantityBox>
                 <InputGroup>
@@ -290,13 +178,17 @@ const handleAddToCart = async () => {
             <SizeContainer>
               <ButtonContainer>
                 <DrawerButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddToCart()
+                  }}
                   customStyle={{
                     "font-weight": "bold",
                     "margin-right": "7px",
                     padding: "7px",
                   }}
                 >
-                  <p onClick={() => handleAddToCart()}> Add To Cart</p>
+                  <p> Add To Cart</p>
                 </DrawerButton>
                 {/* <DrawerButton
                   customStyle={{
@@ -314,7 +206,6 @@ const handleAddToCart = async () => {
       ) : (
         <>Loading </>
       )}
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
     </Fragment>
   );
 };

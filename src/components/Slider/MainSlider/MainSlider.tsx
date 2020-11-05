@@ -5,32 +5,7 @@ import styled from "styled-components";
 
 const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 
-<<<<<<< HEAD
-    responsive: responsive.responsive,
-  };
-  return (
-    <Layout customStyles={customStyles}>
-      <MainContent customStyles={customStyles}>
-        <Slider {...settings}>
-          {props.data && props.data.length > 0
-            ? props.data.map((item, idx) => {
-                return (
-                  <ProductsByCategory
-                    key={idx}
-                    item={item}
-                    customStyles={customStyles}
-                  />
-                );
-              })
-            : " "}
-        </Slider>
-      </MainContent>
-    </Layout>
-  );
-};
-=======
- const [activeSlide, setactiveSlide] = useState(0);
-   const [activeSlide2, setactiveSlide2] = useState(0);
+
    const settings = {
      dots: false,
      infinite: true,
@@ -60,7 +35,6 @@ const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 }
 
    
->>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
 
 export default MainSlider;
 const Layout = styled.div`
