@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import React, { Fragment } from "react";
+import React, {useEffect, Fragment, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { InputGroup, FormControl } from "react-bootstrap";
@@ -19,10 +19,51 @@ import quickViewImage from "../../../assets/quickview.jpg";
 // import drawer button
 import { DrawerButton } from "../../common/Button/DrawerButton";
 
-const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
+// toggle cart action
+import { globalOperations } from "../../../state/ducks/globalState";
+
+// import cart store
+import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
+
+import {useSelector} from "react-redux"
+const QuickviewDrawer = ({
+  open,
+  toggleQuickviewDrawer,
+  cartItems,
+  changeQuantity,
+  addToCart,
+}) => {
+  const Item = useSelector((state) => state.Item);
+  const [quantity, setQuantity] = useState(1);
+
+  // useEffect(() => {
+  //   if (Item.length > 0) {
+  //     Item[0].quantity = 1;
+  //     console.log(Item[0], "boss");
+  //   }
+  // }, [Item.length]);
+
+  // const handleChangeQuantity = async (value) => {
+  //   if (value === "minus") {
+  //     if (quantity === 1) return;
+  //      let quant = quantity - 1;
+  //     setQuantity(quant);
+
+  //   } else {
+  //     let quant = quantity + 1;
+  //      setQuantity(quant);
+
+  //   }
+
+  // };
+const handleCart=()=>{
+  /// addToCart(Item[0]);
+   console.log("YYYYYYY")
+}
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleQuickviewDrawer()} />
+<<<<<<< HEAD
       <QuickviewDrawerContainer show={open}>
         <ImageContainer>
           <img src={quickViewImage} alt="quick product preview" />
@@ -49,16 +90,75 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
             </ParentSize>
           </ColorContainer>
           <ProductDetailTextContainer>
+=======
+
+      {Item.length > 0 ? (
+        <QuickviewDrawerContainer show={open}>
+          <ImageContainer>
+            <img src={Item[0].cover} alt="quick product preview" />
+            <Text clickAction={() => toggleQuickviewDrawer()}>
+              <Text1>&#10005;</Text1>
+            </Text>
+          </ImageContainer>
+          <DetailsContainer>
+            <DrawerHeader>
+              <Text>{Item[0].name}</Text>
+              <Text clickAction={() => toggleQuickviewDrawer()}>
+                <Text2>&#10005;</Text2>
+              </Text>
+            </DrawerHeader>
+            <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
+              {Item[0].price || ""}
+            </Text>
+
+            {/* <ColorContainer>
+              <ParentSize>
+                <Color customStyle={{ "background-color": "#f1e7e6" }} />
+                <Color customStyle={{ "background-color": "#d0edff" }} />
+                <Color customStyle={{ "background-color": "#bfbfbf" }} />
+              </ParentSize>
+            </ColorContainer> */}
+            <ProductDetailTextContainer>
+              <Text
+                customStyle={{
+                  "font-size": "16px",
+                  "font-weight": "700",
+                  color: "#333",
+                  padding: "5px 0",
+                }}
+              >
+                Product Details
+              </Text>
+              <Text
+                customStyle={{
+                  "font-size": "14px",
+                  padding: "5px 0",
+                  "line-height": "1.5em",
+                }}
+              >
+                {Item[0].description || ""}
+              </Text>
+            </ProductDetailTextContainer>
+            <SizeContainer>
+              <ParentSize>
+                <Size>S</Size>
+                <Size>M</Size>
+                <Size>L</Size>
+                <Size>XL</Size>
+              </ParentSize>
+            </SizeContainer>
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
             <Text
               customStyle={{
+                "font-weight": "bold",
                 "font-size": "16px",
-                "font-weight": "700",
+                padding: "0",
                 color: "#333",
-                padding: "5px 0",
               }}
             >
-              Product Details
+              Quantity
             </Text>
+<<<<<<< HEAD
             <Text
               customStyle={{
                 "font-size": "14px",
@@ -129,12 +229,64 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
           </SizeContainer>
         </DetailsContainer>
       </QuickviewDrawerContainer>
+=======
+            <SizeContainer>
+              <QuantityBox>
+                <InputGroup>
+                  {/* <InputGroup.Prepend> */}
+                  {/* <QuantityAction
+                      onClick={() => handleChangeQuantity("plus")}
+                    >
+                      <i className="fa fa-angle-left"></i>
+                    </QuantityAction>
+                  </InputGroup.Prepend>
+                  <div style={{ padding: "10px" }}>{quantity}</div>
+                  <InputGroup.Append>
+                    <QuantityAction
+                      onClick={() => handleChangeQuantity("minus")}
+                    >
+                      <i className="fa fa-angle-right"></i>
+                    </QuantityAction> */}
+                  {/* </InputGroup.Append> */}
+                </InputGroup>
+              </QuantityBox>
+            </SizeContainer>
+            <SizeContainer>
+              <ButtonContainer >
+                {/* <DrawerButton
+                  customStyle={{
+                    "font-weight": "bold",
+                    "margin-right": "7px",
+                    padding: "7px",
+                  }}
+                >
+                  Add To Cart
+                </DrawerButton> */}
+                {/* <DrawerButton
+                  customStyle={{
+                    "font-weight": "bold",
+                    "margin-left": "7px",
+                    padding: "7px",
+                  }}
+                >
+                  View Details
+                </DrawerButton> */}
+              </ButtonContainer>
+            </SizeContainer>
+          </DetailsContainer>
+        </QuickviewDrawerContainer>
+      ) : (
+        <>Loading </>
+      )}
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
     </Fragment>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+  changeQuantity: cartOperations.changeQuantity,
+  addToCart:cartOperations.addToCart,
 });
 
 export default connect(null, mapDispatchToProps)(QuickviewDrawer);

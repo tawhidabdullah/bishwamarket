@@ -3,19 +3,9 @@ import Slider from "react-slick";
 
 import styled from "styled-components";
 
-const MainSlider = ({
-  responsive,
-  ProductsByCategory,
-  customStyles,
-  ...props
-}) => {
-  const [activeSlide, setactiveSlide] = useState(0);
-  const [activeSlide2, setactiveSlide2] = useState(0);
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
+const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
 
+<<<<<<< HEAD
     responsive: responsive.responsive,
   };
   return (
@@ -38,6 +28,39 @@ const MainSlider = ({
     </Layout>
   );
 };
+=======
+ const [activeSlide, setactiveSlide] = useState(0);
+   const [activeSlide2, setactiveSlide2] = useState(0);
+   const settings = {
+     dots: false,
+     infinite: true,
+     speed: 500,
+
+     responsive: responsive.responsive,
+   };
+    return (
+      <Layout customStyles={customStyles}>
+        <MainContent customStyles={customStyles}>
+          <Slider {...settings}>
+            {props.data && props.data.length > 0
+              ? props.data.map((item) => {
+                  return (
+                    <ProductsByCategory
+                      item={item}
+                      customStyles={customStyles}
+                    />
+                  );
+                })
+              : ""}
+         
+          </Slider>
+        </MainContent>
+      </Layout>
+    );
+}
+
+   
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
 
 export default MainSlider;
 const Layout = styled.div`
@@ -62,11 +85,16 @@ const MainContent = styled.div`
   grid-template-columns: minmax(60px, auto);
 
   width: 100%;
-  @media only screen and (max-width: 560px) {
-    padding: ${(props) =>
-      props.customStyles ? (props.customStyles.padding ? "20px" : "") : ""};
+
+  @media only screen and (max-width: 560px) and(min-width:200px) {
     padding-right: 0px;
     padding-left: 8px;
+    padding: ${(props) =>
+      props.customStyles
+        ? props.customStyles.padding
+          ? props.customStyles.padding
+          : ""
+        : ""};
   }
 
   & .slick-slide {

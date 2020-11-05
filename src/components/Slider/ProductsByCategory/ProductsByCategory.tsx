@@ -7,6 +7,7 @@ import { useAlert } from "react-alert";
 // import  redux operations
 import { cartOperations } from "../../../state/ducks/cart";
 import { globalOperations } from "../../../state/ducks/globalState";
+import { productOperations } from "../../../state/ducks/Item";
 // import { wishListOperations } from "../../../state/ducks/wishList";
 
 // caching utilities
@@ -19,6 +20,7 @@ const ProductsByCategory = ({
   toggleQuickviewDrawer,
   addToCart,
   removeFromCart,
+  addProduct,
   customStyles,
   item,
   session,
@@ -96,12 +98,20 @@ const ProductsByCategory = ({
     }
   };
 
+<<<<<<< HEAD
  
+=======
+  const productDetail=()=>{
+   
+     addProduct(item);
+     toggleQuickviewDrawer();
+  }
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
         <ProductFront>
-          <img src={item.cover} className="img-fluid  " alt="product" />
+          <img src={item.cover} className="img-fluid " alt="product" />
         </ProductFront>
         <ProductBack>
           <img src={item.cover} className="img-fluid " alt="product" />
@@ -124,7 +134,11 @@ const ProductsByCategory = ({
         </ProductIcon>
 
         <ProductIcon
+<<<<<<< HEAD
           onClick={() => toggleQuickviewDrawer(item)}
+=======
+          onClick={productDetail}
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
           customStyles={customStyles}
         >
           <i className="fa fa-search"></i>
@@ -143,6 +157,7 @@ const ProductsByCategory = ({
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
           </Rating> */}
+<<<<<<< HEAD
           {/* <PriceTitel>
 {item.name || "PP"}
           </PriceTitel> */}
@@ -156,6 +171,15 @@ const ProductsByCategory = ({
             
             ${item.price}
           </Price>
+=======
+          <PriceTitel>{item && item.name ? item.name : " "}</PriceTitel>
+        </DetailLeft>
+        <DetailRight>
+          <CheckPrice>
+            $ {item && item.regularPrice ? item.regularPrice : " "}
+          </CheckPrice>
+          <Price>${item && item.price ? item.price : ""}</Price>
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
         </DetailRight>
       </ProductDetail>
       <NewLevel customStyles={customStyles}>
@@ -177,6 +201,8 @@ const mapDispatchToProps = {
   toggleQuickviewDrawer: globalOperations.toggleQuickviewDrawer,
   addToCart: cartOperations.addToCart,
   removeFromCart: cartOperations.removeFromCart,
+  addProduct: productOperations.addProduct,
+
   // addToWishlist: wishListOperations.addToWishList,
 };
 
@@ -485,7 +511,7 @@ const Price = styled.div`
   font-weight: 700;
 `;
 
-const PriceTitle = styled.div`
+const PriceTitel = styled.div`
   text-transform: capitalize;
   color: #777;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
