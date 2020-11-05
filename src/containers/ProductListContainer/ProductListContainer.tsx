@@ -1,26 +1,25 @@
-    //@ts-nocheck
-import React,{useEffect,useState} from 'react'
-import styled from "styled-components"
+//@ts-nocheck
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { LeftBar } from "../../components/ProductListing/LeftBar";
 import { RightBar } from "../../components/ProductListing/RightBar";
 import { SearchContain } from "../../components/Search/SearchContain/";
+import queryString from "query-string";
 
 import { useParams, useLocation } from "react-router-dom";
 
 // import hooks
-import { useQueryFetch, useHandleFetch } from '../../hooks';
-import queryString from "query-string";
-const ProductListContainer = () => {
+import { useHandleFetch } from "../../hooks";
 
-   const [productSearchState, handleProductSearchFetch] = useHandleFetch(
-     [],
-     "productSearch"
-   );
+const ProductListContainer = () => {
+  const [productSearchState, handleProductSearchFetch] = useHandleFetch(
+    [],
+    "productSearch"
+  );
 
   const location = useLocation();
- const [searchproduct, setproduct] = useState([]);
+  const [searchproduct, setproduct] = useState([]);
   let queryValue = queryString.parse(location.search).query;
-  console.log(queryValue, "queryValue");
 
   useEffect(() => {
     const setSearchCategoryProducts = async () => {
@@ -35,15 +34,11 @@ const ProductListContainer = () => {
     setSearchCategoryProducts();
   }, [queryValue]);
 
-
-  console.log(productSearchState, "productSearchStateproductSearchState");
   useEffect(() => {
     if (productSearchState.data) setproduct(productSearchState.data);
     else {
       setproduct([]);
     }
-
-
   }, [productSearchState.isLoading]);
   return (
     <Main>
@@ -68,10 +63,7 @@ const Section = styled.div`
     grid-template-columns: 1fr;
     width: 100%;
   }
-
- 
 `;
-
 
 const Main = styled.div`
   display: flex;

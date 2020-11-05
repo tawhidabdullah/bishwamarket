@@ -1,28 +1,42 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-const DashboardSideBar = ({ sidebarList }) => {
+// redux ops
+import { sessionOperations } from "../../state/ducks/session";
+
+const DashboardSideBar = ({ logout }) => {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    logout();
+    history.push("/");
+  };
+
   return (
     <DashboardSideBarContainer>
       <InnerContainer>
         <SidebarList>
-          {Array.isArray(sidebarList) &&
-            sidebarList &&
-            sidebarList[0] &&
-            sidebarList.map((item, idx) => (
-              <SidebarListItem key={idx}>
-                <span>
-                  <i className="fa fa-angle-right" /> {item}
-                </span>
-              </SidebarListItem>
-            ))}
+          <SidebarListItem>Account Info</SidebarListItem>
+          <SidebarListItem>Address Book</SidebarListItem>
+          <SidebarListItem>My Orders</SidebarListItem>
+          <SidebarListItem>My Wishlist</SidebarListItem>
+          <SidebarListItem>My Account</SidebarListItem>
+          <SidebarListItem>Change Password</SidebarListItem>
+          <SidebarListItem onClick={handleLogout}>Logout</SidebarListItem>
         </SidebarList>
       </InnerContainer>
     </DashboardSideBarContainer>
   );
 };
 
-export default DashboardSideBar;
+const mapDispatchToProps = {
+  logout: sessionOperations.logout,
+};
+
+export default connect(null, mapDispatchToProps)(DashboardSideBar);
 
 const DashboardSideBarContainer = styled.div`
   background-color: #fff;

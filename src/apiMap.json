@@ -164,6 +164,12 @@
       "url": "/api/brand/:id/product",
       "method": "get"
     },
+
+    "filterProduct": {
+      "url": "/api/product/filter?query=queryValue&sortOrder=sortOrderValue&sort=sortValue&limit=limitNumber&page=pageNumber",
+      "method": "post"
+    },
+
     "productSearch": {
       "url": "/api/search?query=queryValue&searchCategory=categoryId&sort=sortValue&sortOrder=sortOrderValue",
       "method": "get"

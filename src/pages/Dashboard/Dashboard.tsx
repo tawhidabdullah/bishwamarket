@@ -9,16 +9,6 @@ import { PageHeader } from "../../components/common/PageHeader";
 import { DashboardSideBar } from "../../containers/DashboardSidebar";
 import { DashboardContent } from "../../containers/DashboardContent";
 
-const sidebarList = [
-  "Account Info",
-  "Address Book",
-  "My Orders",
-  "My Wishlist",
-  "My Account",
-  "Change Password",
-  "Log Out",
-];
-
 const Dashboard = () => {
   return (
     <section>
@@ -27,7 +17,7 @@ const Dashboard = () => {
         <Container>
           <Row>
             <Col lg={3}>
-              <DashboardSideBar sidebarList={sidebarList} />
+              <DashboardSideBar />
             </Col>
             <Col lg={9}>
               <DashboardContent />

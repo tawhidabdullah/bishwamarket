@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Row, Col, Table } from "react-bootstrap";
 
@@ -9,12 +9,31 @@ import { Row, Col, Table } from "react-bootstrap";
 // import drawer button
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
 
+// hooks for fetching order history
+import { useHandleFetch } from "../../hooks";
+
 // import dummy images
 import image1 from "../../assets/wishlist/image1.jpg";
 
 //TODO must refactor this ugly piece of shit
 
 const OrderHistory = () => {
+  // this hook gets current user order history
+  const [orderHistoryState, handleOrderHistoryFetch] = useHandleFetch(
+    {},
+    "getCurrentUserOrders"
+  );
+
+  useEffect(() => {
+    const fetchOrderHistory = async () => {
+      const orderHistoryRes = await handleOrderHistoryFetch({});
+      console.log("order history state", orderHistoryState);
+      console.log("order history response", orderHistoryRes);
+    };
+
+    fetchOrderHistory();
+  }, []);
+
   return (
     <OrderHistoryContainer>
       <InnerContainer>
@@ -31,54 +50,9 @@ const OrderHistory = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <TableDataContainer>
-                    <img src={image1} alt="" />
-                  </TableDataContainer>
+                {/* {orderHistoryState && orderHistoryState.done && orderHistoryState.data.map(order => (
 
-                  <TableDataContainer>
-                    <TableData>
-                      <TableText customStyle={{ "font-weight": "bold" }}>
-                        Order No. 123456
-                      </TableText>
-                      <TableText>Cotton Shirt</TableText>
-                    </TableData>
-
-                    <MobileRow>
-                      <TableText customStyle={{ color: "#000" }}>
-                        $250.15
-                      </TableText>
-                      <TableData customStyle={{ "flex-direction": "row" }}>
-                        <TableText>Size: L</TableText>
-                        <TableText>Quantity: 1</TableText>
-                      </TableData>
-                      <TableText>
-                        <strong>Delivered </strong>({new Date().toDateString()})
-                      </TableText>
-                    </MobileRow>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableText
-                      customStyle={{ "font-size": "22px", color: "#000" }}
-                    >
-                      $250.15
-                    </TableText>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableData>
-                      <TableText>Size: L</TableText>
-                      <TableText>Quantity: 1</TableText>
-                    </TableData>
-                  </TableDataContainer>
-
-                  <TableDataContainer>
-                    <TableText>
-                      <strong>Delivered </strong>({new Date().toDateString()})
-                    </TableText>
-                  </TableDataContainer>
-                </tr>
+                ))} */}
 
                 <tr>
                   <TableDataContainer>

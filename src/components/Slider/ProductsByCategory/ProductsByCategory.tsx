@@ -98,11 +98,15 @@ const ProductsByCategory = ({
     }
   };
 
+<<<<<<< HEAD
+ 
+=======
   const productDetail=()=>{
    
      addProduct(item);
      toggleQuickviewDrawer();
   }
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
@@ -130,7 +134,11 @@ const ProductsByCategory = ({
         </ProductIcon>
 
         <ProductIcon
+<<<<<<< HEAD
+          onClick={() => toggleQuickviewDrawer(item)}
+=======
           onClick={productDetail}
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
           customStyles={customStyles}
         >
           <i className="fa fa-search"></i>
@@ -149,6 +157,21 @@ const ProductsByCategory = ({
             <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
           </Rating> */}
+<<<<<<< HEAD
+          {/* <PriceTitel>
+{item.name || "PP"}
+          </PriceTitel> */}
+        </DetailLeft>
+        <DetailRight>
+          <CheckPrice>
+          
+          $ {item.regularPrice}
+          </CheckPrice>
+          <Price>
+            
+            ${item.price}
+          </Price>
+=======
           <PriceTitel>{item && item.name ? item.name : " "}</PriceTitel>
         </DetailLeft>
         <DetailRight>
@@ -156,6 +179,7 @@ const ProductsByCategory = ({
             $ {item && item.regularPrice ? item.regularPrice : " "}
           </CheckPrice>
           <Price>${item && item.price ? item.price : ""}</Price>
+>>>>>>> 3b905ffb2b8febd865fed900e99e28906877e8d9
         </DetailRight>
       </ProductDetail>
       <NewLevel customStyles={customStyles}>

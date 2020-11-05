@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useAlert } from "react-alert";
 import jwt_decode from "jwt-decode";
+import { useHistory } from "react-router-dom";
 
 // import common elements
 import { InputField } from "../../components/common/InputField";
@@ -20,6 +21,8 @@ import { useHandleFetch } from "../../hooks";
 
 // redux ops
 import { cartOperations } from "../../state/ducks/cart";
+import { sessionOperations } from "../../state/ducks/session";
+import { login } from "../../state/ducks/session/actions";
 
 const inputStyles = { label: { "font-weight": "bold" } };
 
@@ -30,11 +33,18 @@ const CheckoutForm = ({
   getDeliveryInfo,
   session,
   cartItems,
+  login,
 }) => {
   const alert = useAlert();
+  const history = useHistory();
 
   const [createAccount, setCreateAccount] = useState(false);
-  const toggleAccount = () => setCreateAccount(!createAccount);
+  // const toggleAccount = () => setCreateAccount(!createAccount);
+
+  // state for managing server errors
+  const [errors, setErrors] = useState({});
+  const [alertError, setAlertError] = useState("Failed to Checkout!");
+  const [deliveryError, setDeliveryError] = useState(null);
 
   // state for setting cityList
   const [cityList, setCityList] = useState([]);
@@ -59,6 +69,7 @@ const CheckoutForm = ({
     },
     address1: "",
     password: "",
+    password2: "",
     createAccount: false,
   });
 
@@ -79,6 +90,9 @@ const CheckoutForm = ({
     {},
     "checkout"
   );
+
+  // hooks for clearing out cart
+  const [clearCartState, handleClearCart] = useHandleFetch({}, "clearCart");
 
   // this effect triggers cityList fetching whenever this component mounts
   useEffect(() => {
@@ -139,25 +153,40 @@ const CheckoutForm = ({
             deliveryArea: customerData.deliveryArea,
           });
         } catch (error) {
-          alert.error("Failed to get user data");
+          alert.error("Something went wrong!");
         }
       }
     }
   }, [session.isAuthenticated]);
+
+  // this effect sets error from createOrderState
+  useEffect(() => {
+    if (createOrderState.error.isError) {
+      let { error } = createOrderState.error;
+      setAlertError(error.error);
+      setErrors(error.checkoutError);
+      setDeliveryError(error.delivery);
+    }
+  }, [createOrderState.error]);
 
   const handleCheckoutInputChange = (e) => {
     setCheckoutState({ ...checkoutState, [e.target.name]: e.target.value });
   };
 
   const handleCheckout = async () => {
-    const items =
-      cartItems.map((item) => {
-        return {
-          product: item.product,
-          quantity: item.quantity,
-          variation: item.variation,
-        };
-      }) || [];
+    if (cartItems.length === 0) {
+      alert.error("Your cart is empty");
+      return;
+    }
+
+    const items = cartItems.map((item) => {
+      return {
+        product: item.product,
+        quantity: item.quantity,
+        variation: item.variation,
+        cover: item.cover,
+      };
+    });
 
     const orderData = {
       shippingAddress: {
@@ -173,14 +202,32 @@ const CheckoutForm = ({
       paymentMethod: "cod",
       delivery: selectedArea["_id"],
       password: checkoutState.password,
+      password2: checkoutState.password2,
       createAccount: !session.isAuthenticated ? true : false,
     };
 
     const orderRes = await handleCreateOrderFetch({ body: orderData });
-    console.log("orderRes", orderRes);
+    if (
+      orderRes &&
+      Object.keys(orderRes).length > 0 &&
+      orderRes.statusRes === "ok"
+    ) {
+      // check for new register
+      if (orderRes.token) {
+        localStorage.removeItem("authToken");
+        localStorage.setItem("authToken", orderRes.token);
+        login();
+      }
 
-    clearCart();
-    alert.success("Order placed successfully");
+      // clear redux cart store
+      clearCart();
+      setCheckoutState({});
+      await handleClearCart({});
+      alert.success("Order placed successfully");
+      history.push("/");
+    } else {
+      alert.error(alertError);
+    }
   };
 
   return (
@@ -195,6 +242,9 @@ const CheckoutForm = ({
             value={checkoutState.firstName}
             onChange={handleCheckoutInputChange}
           />
+          <ErrorText>
+            {errors && errors.firstName && errors.firstName}
+          </ErrorText>
         </Col>
 
         <Col md={6} sm={12} xs={12}>
@@ -206,6 +256,7 @@ const CheckoutForm = ({
             value={checkoutState.lastName}
             onChange={handleCheckoutInputChange}
           />
+          <ErrorText>{errors && errors.lastName && errors.lastName}</ErrorText>
         </Col>
 
         <Col md={6} sm={12} xs={12}>
@@ -217,6 +268,7 @@ const CheckoutForm = ({
             value={checkoutState.phone}
             onChange={handleCheckoutInputChange}
           />
+          <ErrorText>{errors && errors.phone && errors.phone}</ErrorText>
         </Col>
 
         <Col md={6} sm={12} xs={12}>
@@ -228,6 +280,7 @@ const CheckoutForm = ({
             value={checkoutState.email}
             onChange={handleCheckoutInputChange}
           />
+          <ErrorText>{errors && errors.email && errors.email}</ErrorText>
         </Col>
 
         <Col md={12} sm={12} xs={12}>
@@ -240,6 +293,7 @@ const CheckoutForm = ({
             value={checkoutState.address1}
             onChange={handleCheckoutInputChange}
           />
+          <ErrorText>{errors && errors.address1 && errors.address1}</ErrorText>
         </Col>
 
         <Col md={6} sm={12} xs={12}>
@@ -250,6 +304,7 @@ const CheckoutForm = ({
             options={cityList}
             handleChange={handleCityListChange}
           />
+          <ErrorText>{errors && errors.city && errors.city}</ErrorText>
         </Col>
 
         <Col md={6} sm={12} xs={12}>
@@ -260,6 +315,7 @@ const CheckoutForm = ({
             options={deliveryArea}
             handleChange={handleDeliveryAreaChange}
           />
+          <ErrorText>{deliveryError && deliveryError}</ErrorText>
         </Col>
 
         <Col md={12} sm={12} xs={12}>
@@ -271,6 +327,9 @@ const CheckoutForm = ({
             value={checkoutState.postalCode}
             onChange={handleCheckoutInputChange}
           />
+          <ErrorText>
+            {errors && errors.postalCode && errors.postalCode}
+          </ErrorText>
         </Col>
 
         {/* {!session.isAuthenticated && (
@@ -286,17 +345,36 @@ const CheckoutForm = ({
         )} */}
 
         {!session.isAuthenticated && (
-          <Col md={12} sm={12} xs={12}>
-            <InputField
-              label="Password"
-              customStyle={inputStyles}
-              name="password"
-              type="password"
-              value={checkoutState.password}
-              onChange={handleCheckoutInputChange}
-            />
-            <p>This will create a new account with the given information</p>
-          </Col>
+          <>
+            <Col md={12} sm={12} xs={12}>
+              <InputField
+                label="Password"
+                customStyle={inputStyles}
+                name="password"
+                type="password"
+                value={checkoutState.password}
+                onChange={handleCheckoutInputChange}
+              />
+              <ErrorText>
+                {errors && errors.password && errors.password}
+              </ErrorText>
+            </Col>
+
+            <Col md={12} sm={12} xs={12}>
+              <InputField
+                label="Confirm Password"
+                customStyle={inputStyles}
+                name="password2"
+                type="password"
+                value={checkoutState.password2}
+                onChange={handleCheckoutInputChange}
+              />
+              <ErrorText>
+                {errors && errors.password2 && errors.password2}
+              </ErrorText>
+              <p>This will create a new account with the given information</p>
+            </Col>
+          </>
         )}
 
         <Col onClick={handleCheckout} md={12} sm={12} xs={12}>
@@ -314,9 +392,18 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   clearCart: cartOperations.clearCart,
+  login: sessionOperations.login,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm);
+
+const ErrorText = styled.p`
+  color: rgba(255, 0, 0, 0.759);
+  font-size: 15px;
+  margin-top: -10px;
+  position: relative;
+  padding: 5px 10px;
+`;
 
 const CheckoutFormContainer = styled.form`
   padding: 30px;
