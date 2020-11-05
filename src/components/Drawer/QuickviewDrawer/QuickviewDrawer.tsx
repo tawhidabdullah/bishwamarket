@@ -25,6 +25,9 @@ import { globalOperations } from "../../../state/ducks/globalState";
 // import cart store
 import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
 
+
+import { useAlert } from "react-alert";
+
 import {useSelector} from "react-redux"
 const QuickviewDrawer = ({
   open,
@@ -36,12 +39,14 @@ const QuickviewDrawer = ({
   const Item = useSelector((state) => state.Item);
   const [quantity, setQuantity] = useState(1);
 
-  // useEffect(() => {
-  //   if (Item.length > 0) {
-  //     Item[0].quantity = 1;
-  //     console.log(Item[0], "boss");
-  //   }
-  // }, [Item.length]);
+  useEffect(() => {
+    if (Item.length > 0) {
+      Item[0].quantity = 1;
+      console.log(Item[0], "boss");
+    }
+  }, [Item.length]);
+
+  
 
   // const handleChangeQuantity = async (value) => {
   //   if (value === "minus") {
@@ -56,10 +61,41 @@ const QuickviewDrawer = ({
   //   }
 
   // };
-const handleCart=()=>{
-  /// addToCart(Item[0]);
-   console.log("YYYYYYY")
-}
+const handleAddToCart = async () => {
+  if (!Item[0].inStock) {
+    alert.error("Out of stock");
+    return;
+  }
+
+  const cartItem = {
+    product: Item[0]._id,
+    variation:
+      Item[0].pricing && Item[0].pricing[0] && Item[0].pricing[0]._id
+        ? Item[0].pricing[0]._id
+        : "",
+    name: Item[0].name,
+    quantity: 1,
+    cover: Item[0].cover,
+    price: Item[0].price,
+    url: Item[0].url,
+  };
+  console.log(cartItem,"plabon");
+
+  console.log(addToCart);
+  //  addToCart && addToCart(cartItem);
+
+
+  // if (session.isAuthenticated) {
+  //   const addToCartRes = await handleAddtoCartFetch({
+  //     body: {
+  //       items: [cartItem],
+  //     },
+  //   });
+
+  
+  // }
+  
+};
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleQuickviewDrawer()} />
@@ -151,16 +187,16 @@ const handleCart=()=>{
               </QuantityBox>
             </SizeContainer>
             <SizeContainer>
-              <ButtonContainer >
-                {/* <DrawerButton
+              <ButtonContainer>
+                <DrawerButton
                   customStyle={{
                     "font-weight": "bold",
                     "margin-right": "7px",
                     padding: "7px",
                   }}
                 >
-                  Add To Cart
-                </DrawerButton> */}
+                  <p onClick={() => handleAddToCart()}> Add To Cart</p>
+                </DrawerButton>
                 {/* <DrawerButton
                   customStyle={{
                     "font-weight": "bold",
