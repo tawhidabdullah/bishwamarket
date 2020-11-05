@@ -1,23 +1,12 @@
 //@ts-nocheck
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../../../assets/dropdown.png";
-import image2 from "../../../assets/1.png";
-import { IconButton, SelectCategory } from "../../../elemens";
-
 import nav1 from "../../../assets/nav/01.png";
-import nav2 from "../../../assets/nav/02.png";
-import nav3 from "../../../assets/nav/03.png";
-import nav4 from "../../../assets/nav/04.png";
-import nav5 from "../../../assets/nav/05.png";
-import nav6 from "../../../assets/nav/06.png";
-import nav7 from "../../../assets/nav/07.png";
-
-import nav8 from "../../../assets/nav/08.png";
-import nav9 from "../../../assets/nav/09.png";
-import { connect } from "react-redux";
+import { IconButton } from "../../../elemens";
 import { categoryOperations } from "../../../state/ducks/category";
-import { useHistory } from "react-router-dom";
 
 const SearchNav = ({
   setToggleCategory,

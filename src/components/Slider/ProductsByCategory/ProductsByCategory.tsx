@@ -67,6 +67,7 @@ const ProductsByCategory = ({
     };
 
     addToCart && addToCart(cartItem);
+
     alert.success("Product added to the cart");
 
     if (session.isAuthenticated) {
