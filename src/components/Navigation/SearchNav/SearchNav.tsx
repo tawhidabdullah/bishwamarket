@@ -8,6 +8,13 @@ import nav1 from "../../../assets/nav/01.png";
 import { IconButton } from "../../../elemens";
 import { categoryOperations } from "../../../state/ducks/category";
 
+
+// import component fetcher
+import ComponentFetcher from "../../ComponentFetcher";
+
+
+
+
 const SearchNav = ({
   setToggleCategory,
   toggleCategory,
@@ -138,12 +145,21 @@ const SearchNav = ({
         </Dropdowncategory>
       </SearchCategory>
       <Rightcontent>
-        <Call>
-          <i className="fa fa-phone"></i>
-          <span>
-            <span>123-456-76890</span>
-          </span>
-        </Call>
+
+      <ComponentFetcher type='text' apiMapKey='phone'>
+        {(phoneText) => (
+              <Call>
+                <i className="fa fa-phone"></i> &nbsp;
+                <span>
+                  <span>
+                    {phoneText}
+                  </span>
+                </span>
+              </Call>
+        )}
+    </ComponentFetcher>
+
+       
 
         {/* <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}

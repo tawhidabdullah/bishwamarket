@@ -39,10 +39,12 @@ const ProductListContainer = () => {
   );
 
   //ANCHOR filter logic
-  // what to expect from this handler
+  // what to expect from this handler ?
   // it will recieve an object/objectId as params
-  // check if this objectId exists in localstorage
-  // if not add it else remove from localstorage
+  // check if this objectId exists in localstorage ?
+  // if not add it else remove from localstorage ? 
+
+  
   const handleFilterProduct = (opt) => {
     let id = opt.id;
     // convert label to lowercase for convenience

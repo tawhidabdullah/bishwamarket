@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import React, { useEffect, Fragment, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -28,15 +27,35 @@ import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
 import { useAlert } from "react-alert";
 
 import { useSelector } from "react-redux";
+
+
+// import hooks
+import { useHandleFetch } from "../../../hooks";
+
+
 const QuickviewDrawer = ({
   open,
   toggleQuickviewDrawer,
   cartItems,
   changeQuantity,
   addToCart,
+  removeFromCart,
+  session
 }) => {
   const Item = useSelector((state) => state.Item);
   const [quantity, setQuantity] = useState(1);
+
+  const alert = useAlert();
+
+
+
+  // this hook send POST request to server to add item to cart
+  const [addToCartState, handleAddtoCartFetch] = useHandleFetch(
+    [],
+    "addtoCart"
+  );
+
+
 
   useEffect(() => {
     if (Item.length > 0) {
@@ -52,6 +71,7 @@ const QuickviewDrawer = ({
     }
 
     const cartItem = {
+      id: Item[0]._id,
       product: Item[0]._id,
       variation:
         Item[0].pricing && Item[0].pricing[0] && Item[0].pricing[0]._id
@@ -63,19 +83,30 @@ const QuickviewDrawer = ({
       price: Item[0].price,
       url: Item[0].url,
     };
-    console.log(cartItem, "plabon");
 
-    console.log({ addToCart });
     addToCart && addToCart(cartItem);
+    alert.success("Product added to the cart");
 
-    // if (session.isAuthenticated) {
-    //   const addToCartRes = await handleAddtoCartFetch({
-    //     body: {
-    //       items: [cartItem],
-    //     },
-    //   });
 
-    // }
+    if (session.isAuthenticated) {
+      (async () =>  {
+        const addToCartRes: any = await handleAddtoCartFetch({
+          body: {
+            items: [cartItem],
+          },
+        });
+  
+        if (addToCartRes && Object.keys(addToCartRes).length === 0) {
+          removeFromCart(cartItem);
+          alert.error("Something went wrong!");
+        }
+      })()
+      
+    }
+
+
+
+
   };
   return (
     <Fragment>
@@ -196,19 +227,29 @@ const QuickviewDrawer = ({
           </DetailsContainer>
         </QuickviewDrawerContainer>
       ) : (
-        <> </>
+        <></>
       )}
     </Fragment>
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    session: state.session
+  }
+}
+
 const mapDispatchToProps = (dispatch) => ({
   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
   changeQuantity: cartOperations.changeQuantity,
-  addToCart: cartOperations.addToCart,
+  addToCart: (value) =>  dispatch(cartOperations.addToCart(value)),
+  removeFromCart: (value) =>  dispatch(cartOperations.removeFromCart(value)),
 });
 
-export default connect(null, mapDispatchToProps)(QuickviewDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
+
+
+
 const Text1 = styled.div`
   cursor: pointer;
   @media only screen and (min-width: 590px) {

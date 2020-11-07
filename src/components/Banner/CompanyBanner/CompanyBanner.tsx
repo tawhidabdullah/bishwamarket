@@ -4,20 +4,35 @@ import styled from "styled-components";
 // import dummy image
 import Logo from "../../../assets/logo.png";
 
+// import config 
+import config from "../../../config.json";
+
+
+
+// import Component fetcher component
+import ComponentFetcher from "../../ComponentFetcher";
+
+
+
+
 const CompanyBanner = () => {
   return (
-    <CompanyBannerWrapper>
-      <CompanyBannerContainer>
-        <CompanyBannerItem>
-          <img src={Logo} alt="" />
-        </CompanyBannerItem>
-        <CompanyBannerItem>
-          It Is A Long Established Fact That A Reader Will Be Distracted By The
-          Readable Content Of A Page When Looking At Its Layout. The Point Of
-          Using Lorem Ipsum Is That It Has A More-Or-Less Normal Distribution.
-        </CompanyBannerItem>
-      </CompanyBannerContainer>
-    </CompanyBannerWrapper>
+      <ComponentFetcher type='text' apiMapKey='aboutText'>
+      {(aboutText) => (
+            <CompanyBannerWrapper>
+            <CompanyBannerContainer>
+              <CompanyBannerItem>
+                <CompanyLogoImageWrapper>
+                  <img src={`${config.baseURL}/images/logo.png`} alt="" />
+                </CompanyLogoImageWrapper>
+              </CompanyBannerItem>
+              <CompanyBannerItem>
+               {aboutText}
+              </CompanyBannerItem>
+            </CompanyBannerContainer>
+          </CompanyBannerWrapper>
+      )}
+    </ComponentFetcher>
   );
 };
 
@@ -29,6 +44,21 @@ const CompanyBannerWrapper = styled.section`
   font-family: PT Sans, sans-serif;
   color: #777;
 `;
+
+
+const CompanyLogoImageWrapper = styled.div`
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+
+  
+  & img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 
 const CompanyBannerContainer = styled.div`
   display: flex;

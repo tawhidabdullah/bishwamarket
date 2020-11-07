@@ -1,25 +1,17 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Formik } from "formik";
-import { connect } from "react-redux";
 import { useAlert } from "react-alert";
-
-// import state
-import { sessionOperations } from "../../state/ducks/session";
-
-// import hooks
-import { useHandleFetch } from "../../hooks";
-
+import styled from "styled-components";
+import { DrawerButton } from "../../components/common/Button/DrawerButton";
 // import common components
 import { InputField } from "../../components/common/InputField";
-import { DrawerButton } from "../../components/common/Button/DrawerButton";
-
 // import change password modal
 import { ResetPasswordModal } from "../../components/Modal/ResetPasswordModal";
-
+// import hooks
+import { useHandleFetch } from "../../hooks";
 // import utils
 import { validateEmail } from "../../utils";
+
 
 // input styles
 const inputStyles = {

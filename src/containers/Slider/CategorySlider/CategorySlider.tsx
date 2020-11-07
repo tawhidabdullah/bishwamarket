@@ -9,8 +9,7 @@ import { DealBanner } from "../../../components/Banner/DealBanner";
 import { CategoryItem } from "../../../components/Slider/CategoryItem";
 import {useSelector} from "react-redux"
 const CategorySlider = () => {
-      let category = useSelector((state) => state.category);
-      console.log(category, "categorycategory");
+  let category = useSelector((state) => state.category);
   const responsive = {
     responsive: [
       {
@@ -73,7 +72,7 @@ const CategorySlider = () => {
   };
   return (
     <Section>
-      <DealBanner />
+      {/* <DealBanner /> */}
 
       <MainSlider
         responsive={responsive}

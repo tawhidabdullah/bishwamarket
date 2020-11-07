@@ -4,17 +4,29 @@ import styled from "styled-components";
 // import dummy image
 import CallImage from "../../../assets/banner/call-img.png";
 
+// import Component fetcher component
+import ComponentFetcher from "../../ComponentFetcher";
+
+
+
+
 const Contact = () => {
   return (
-    <ContactContainer>
-      <ContactItem>
-        <img src={CallImage} />
-      </ContactItem>
+    <ComponentFetcher type='text' apiMapKey='phone'>
+        {(phoneText) => (
+              <ContactContainer>
+              <ContactItem>
+                <img src={CallImage} />
+              </ContactItem>
+        
+              <ContactItem>If you have any question please call us</ContactItem>
+        
+              <ContactItem>{phoneText}</ContactItem>
+            </ContactContainer>
+        )}
+    </ComponentFetcher>
 
-      <ContactItem>If you have any question please call us</ContactItem>
 
-      <ContactItem>123-456-7890</ContactItem>
-    </ContactContainer>
   );
 };
 

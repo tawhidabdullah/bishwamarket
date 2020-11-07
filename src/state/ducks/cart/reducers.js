@@ -16,7 +16,6 @@ const initialState = [];
 const cartReducer = createReducer(initialState)({
   [types.TOGGLE]: (state, action) => {
     const { cartItem } = action.payload;
-   console.log({ "cartItem4": cartItem });
 
     const index = utils.productPositionInCart(state, cartItem);
     if (index === -1) {

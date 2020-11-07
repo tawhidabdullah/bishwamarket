@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect , useSelector} from "react-redux";
 
 // import drawer
 import { SigninDrawer } from "../components/Drawer/SigninDrawer";
@@ -19,7 +19,8 @@ import { Footer } from "../components/Footer";
 
 import ScrollTopArrow from "../components/ScrollTopArrow";
 
-const Layout = ({ children, globalState }) => {
+const Layout = ({ children }) => {
+  const globalState = useSelector(state => state.globalState)
   const {
     openSigninDrawer,
     openWishlistDrawer,
@@ -55,4 +56,4 @@ const mapStateToProps = (state) => ({
   globalState: state.globalState,
 });
 
-export default connect(mapStateToProps)(Layout);
+export default Layout;

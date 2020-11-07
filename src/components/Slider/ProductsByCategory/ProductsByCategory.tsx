@@ -82,9 +82,7 @@ const ProductsByCategory = ({
         alert.error("Something went wrong!");
       }
     }
-    // if (checkIfItemExistsInCartItemById(cartItems, productToAdd)) {
 
-    // }
   };
 
   const handleAddItemToWishlist = async (productId) => {
@@ -130,7 +128,7 @@ const ProductsByCategory = ({
         </ProductIcon>
 
         <ProductIcon onClick={productDetail} customStyles={customStyles}>
-          <i className="fa fa-search"></i>
+          <i className="fa fa-eye"></i>
         </ProductIcon>
 
         <ProductIcon customStyles={customStyles}>

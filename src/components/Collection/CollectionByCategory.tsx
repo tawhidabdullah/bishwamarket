@@ -1,8 +1,23 @@
 import React from 'react'
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import img1 from "../../assets/collection/1 .jpg";
 const CollectionByCategory = ({ item }) => {
-  console.log(item,"item")
+
+  const history = useHistory();
+  
+  const addToStorage = (opt) => {
+    let filter =  localStorage.filter && localStorage.filter.length > 0
+    ? JSON.parse(localStorage.filter)
+    : []; 
+
+    filter = [...filter, opt];
+   
+    localStorage.setItem('filter', JSON.stringify(filter));
+    history.push('/product')
+  }
+
+
   return (
     <Conetens>
       <Imagediv>
@@ -22,7 +37,7 @@ const CollectionByCategory = ({ item }) => {
           industry. Lorem Ipsum has been the industry's standard dummy text ever
          
         </p> */}
-        <Button>shop now !</Button>
+        <Button onClick={() => addToStorage({"category": item.id})}>shop now !</Button>
       </Details>
     </Conetens>
   );

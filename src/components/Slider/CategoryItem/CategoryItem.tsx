@@ -1,17 +1,16 @@
 //@ts-ignore
 import React,{useRef} from "react";
 import styled from "styled-components"
-import img1 from "../../../assets/slider-tab/1.jpg"
 
 
-const CategoryItem = ({item}) => {
+const CategoryItem = ({item, isIcon = false}) => {
 
  
-
+console.log("categoryItemIcon", item);
   return (
     <CategoryContain>
       <ImgWrapper>
-        <img src={item.fullCover}></img>
+        <img src={isIcon ? item.icon : item.fullCover}></img>
       </ImgWrapper>
       <Button>{item.name}</Button>
     </CategoryContain>
@@ -37,25 +36,22 @@ const ImgWrapper = styled.div`
     border-style: none;
     width: 110px;
     height: 110px;
+    object-fit: contain;  
+
   }
 `;
 
 const Button = styled.div`
   padding: 10px 25px;
   font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
-
   margin-top: 15px;
-
   text-transform: uppercase;
-
   font-weight: 700;
   color: #fff !important;
-
   border-radius: 25px;
-
   line-height: 1;
-
   letter-spacing: 0.05em;
+  cursor: pointer;
 `;
 const CategoryContain = styled.div`
   text-align: center;

@@ -5,41 +5,71 @@ import styled from "styled-components";
 import PlayStoreImage from "../../../assets/banner/playstore.png";
 import AppleStoreImage from "../../../assets/banner/appleStore.png";
 
+
+// import component fetcher component 
+import ComponentFetcher from "../../ComponentFetcher";
+
 const SocialLinks = () => {
   return (
     <SocialLinksContainer>
       <div>
-        <SocialLinksItem>
-          <img src={PlayStoreImage} alt="" />
-        </SocialLinksItem>
+        <ComponentFetcher type='linkList' apiMapKey='appStoresLink'>
+              {(links) => (
+                  <>
+                 {links['google'] && (
+                      <SocialLinksItem href={links['google']['target']} target='_open'> 
+                        <img src={PlayStoreImage} alt="" />
+                      </SocialLinksItem>           
+                  )}
 
-        <SocialLinksItem>
-          <img src={AppleStoreImage} alt="" />
-        </SocialLinksItem>
+
+                  {links['apple'] && (
+                      <SocialLinksItem href={links['apple']['target']} target='_open'> 
+                        <img src={AppleStoreImage} alt="" />
+                      </SocialLinksItem>           
+                  )}
+                  </>
+              )}
+        </ComponentFetcher>
       </div>
 
-      <ExternalLinkContainer>
-        <ExternalLinkItem>Follow Us</ExternalLinkItem>
-        <ExternalLinkItem>
-          <i className="fa fa-facebook"></i>
-        </ExternalLinkItem>
+      <ComponentFetcher type='linkList' apiMapKey='socialLInk'>
+            {(links) => (
+                <ExternalLinkContainer>
+                <span style={{
+                  display: 'inline-block',
+                  marginRight:'25px',
+                  fontWeight: 600
+                }}>Follow Us</span>
 
-        <ExternalLinkItem>
-          <i className="fa fa-google-plus"></i>
-        </ExternalLinkItem>
 
-        <ExternalLinkItem>
-          <i className="fa fa-twitter"></i>
-        </ExternalLinkItem>
+                {links['facebook'] && (
+                  <ExternalLinkItem href={links['facebook']['target']} target='_open'> 
+                     <i className="fa fa-facebook"></i>
+                  </ExternalLinkItem>                 
+                )}
 
-        <ExternalLinkItem>
-          <i className="fa fa-instagram"></i>
-        </ExternalLinkItem>
+                {links['instagram'] && (
+                  <ExternalLinkItem href={links['instagram']['target']} target='_open'> 
+                     <i className="fa fa-instagram"></i>
+                  </ExternalLinkItem>                 
+                )}
 
-        <ExternalLinkItem>
-          <i className="fa fa-rss"></i>
-        </ExternalLinkItem>
-      </ExternalLinkContainer>
+                {links['twitter'] && (
+                  <ExternalLinkItem href={links['twitter']['target']} target='_open'> 
+                     <i className="fa fa-twitter"></i>
+                  </ExternalLinkItem>                 
+                )}
+
+                {links['youtube'] && (
+                  <ExternalLinkItem href={links['youtube']['target']} target='_open'> 
+                     <i className="fa fa-youtube"></i>
+                  </ExternalLinkItem>                 
+                )}
+
+                </ExternalLinkContainer>
+            )}
+      </ComponentFetcher>
     </SocialLinksContainer>
   );
 };
@@ -58,7 +88,7 @@ const SocialLinksContainer = styled.div`
   }
 `;
 
-const SocialLinksItem = styled.span`
+const SocialLinksItem = styled.a`
   padding: 15px 10px;
 `;
 
@@ -69,7 +99,7 @@ const ExternalLinkContainer = styled.div`
   margin-left: 20px;
 `;
 
-const ExternalLinkItem = styled.span`
+const ExternalLinkItem = styled.a`
   :first-child {
     padding: 0 20px;
   }
@@ -83,8 +113,11 @@ const ExternalLinkItem = styled.span`
     align-items: center;
     margin-right: 10px;
     background-color: #f7f7f7;
+    color: #333; 
     transition: all 0.3s ease;
     cursor: pointer;
+    text-decoration: none; 
+    
 
     :hover {
       border-radius: 50%;
