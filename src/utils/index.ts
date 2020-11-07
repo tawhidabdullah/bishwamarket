@@ -260,3 +260,46 @@ export function validateEmail(email) {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
+
+// pricing variation helpers
+
+export const convertPricingAttributeValuesToStringValue = (attribute) => {
+  if (!attribute || !(Object.keys(attribute).length > 0)) return [];
+
+  const result = [];
+  let Values = Object.values(attribute);
+  if (Values && Values.length > 0) {
+    Values.forEach((value) => {
+      // @ts-ignore
+      result.push(value);
+    });
+
+    return result.join(",");
+  }
+};
+
+export const getPricingOptions = (pricing) => {
+  if (pricing && pricing.length > 0) {
+    const pricingOptions = [];
+
+    pricing.forEach((pricingItem) => {
+      if (
+        pricingItem.attribute &&
+        Object.values(pricingItem.attribute).length > 0 &&
+        pricingItem._id
+      ) {
+        let pricingOption = {
+          value: pricingItem._id,
+          label: `${
+            convertPricingAttributeValuesToStringValue(pricingItem.attribute) ||
+            ""
+          }`,
+        };
+        // @ts-ignore
+        pricingOptions.push(pricingOption);
+      }
+    });
+
+    return pricingOptions;
+  } else return [];
+};

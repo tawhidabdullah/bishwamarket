@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useQueryFetch, useHandleFetch } from "../../../hooks";
+import { useQueryFetch } from "../../../hooks";
 const BrandNav = () => {
   const brandList = useQueryFetch("brandList");
   const [brandStatus, setStatus] = useState(true);
-  console.log(brandList, "brandList");
   useEffect(() => {
     if (brandList.isSuccess && brandList.data) {
       setStatus(false);
-      console.log(brandList.data, "brandList");
     }
   }, [brandList.isSuccess]);
 
@@ -24,8 +21,8 @@ const BrandNav = () => {
         {brandStatus ? (
           <> </>
         ) : (
-          brandList.data.map((item) => {
-            return <span>{item.name} </span>;
+          brandList.data.map((item, idx) => {
+            return <span key={idx}>{item.name} </span>;
           })
            
           

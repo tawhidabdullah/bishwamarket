@@ -5,8 +5,12 @@ export const Color = ({ children, customStyle }) => {
   return <ColorContainer customStyle={customStyle}>{children}</ColorContainer>;
 };
 
-export const Size = ({ children, customStyle }) => {
-  return <SizeContainer customStyle={customStyle}>{children}</SizeContainer>;
+export const Size = ({ children, customStyle, ...props }) => {
+  return (
+    <SizeContainer customStyle={customStyle} {...props}>
+      {children}
+    </SizeContainer>
+  );
 };
 
 const ColorContainer = styled.span`

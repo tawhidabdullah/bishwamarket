@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-
-// import navbar components
-import { MainNav } from "../../components/Navigation/MainNav";
-import { TopNav } from "../../components/Navigation/TopNav";
-import { SearchNav } from "../../components/Navigation/SearchNav";
-
-import { useQueryFetch, useHandleFetch } from "../../hooks";
-
+import React, { useEffect, useState } from "react";
 // import lib
 import { useLocation, useParams } from "react-router";
+import styled from "styled-components";
+// import navbar components
+import { MainNav } from "../../components/Navigation/MainNav";
+import { SearchNav } from "../../components/Navigation/SearchNav";
+import { TopNav } from "../../components/Navigation/TopNav";
+import { useQueryFetch } from "../../hooks";
 
 // dummy data
 const languageList = ["English", "Hindi", "Spanish", "Marathi"];
@@ -41,12 +38,6 @@ useEffect(() => {
     setCategoryListData(categoryListState.data);
   }
 }, [categoryListState.isSuccess]);
-
-
-
-
-
- 
 
   return (
     <NavigationContainer>
