@@ -303,3 +303,15 @@ export const getPricingOptions = (pricing) => {
     return pricingOptions;
   } else return [];
 };
+
+export const addFilterToStorage = (opt, cb) => {
+  let filter =
+    localStorage.filter && localStorage.filter.length > 0
+      ? JSON.parse(localStorage.filter)
+      : [];
+
+  filter = [...filter, opt];
+
+  localStorage.setItem("filter", JSON.stringify(filter));
+  cb();
+};

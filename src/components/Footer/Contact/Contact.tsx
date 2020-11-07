@@ -27,7 +27,7 @@ const Contact = ({ header }) => {
           <ComponentFetcher type='text' apiMapKey='phone'>
             {(phoneText) => {
               return (
-                <ContactItem>
+                <ContactItem href={`tel:${phoneText}`}> 
                   <i className="fa fa-phone"></i> &nbsp;
                   {phoneText}
                 </ContactItem>
@@ -39,7 +39,7 @@ const Contact = ({ header }) => {
           <ComponentFetcher type='text' apiMapKey='email'>
                 {(emailText) => {
                   return (
-                    <ContactItem>
+                    <ContactItem href={`mailto:${emailText}`}> 
                       <i className="fa fa-envelope"></i> &nbsp;
                       Email Us: {emailText}
                     </ContactItem>
@@ -84,7 +84,7 @@ const ListContainer = styled.div`
   justify-content: space-between;
 `;
 
-const ContactItem = styled.span`
+const ContactItem = styled.a`
   font-family: PT Sans, sans-serif;
   padding: 10px 0;
   color: #8d8d8d;

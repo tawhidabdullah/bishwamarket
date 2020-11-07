@@ -27,36 +27,47 @@ const RightNav = ({
       <ToggleContainer>
         <NavItems>
           <NavItem>
-            HOME <i className="fa fa-angle-down" />
-            <HomeDropdown />
+            HOME 
+            {/* <i className="fa fa-angle-down" /> */}
+            {/* <HomeDropdown /> */}
           </NavItem>
           <NavItem>
-            SHOP <i className="fa fa-angle-down" />
-            <ShopDropdown />
+            SHOP 
+            {/* <i className="fa fa-angle-down" /> */}
+            {/* <ShopDropdown /> */}
           </NavItem>
           <NavItem>
-            PRODUCTS <i className="fa fa-angle-down" />
-            <ProductDropdown />
+            Catalog 
+            {/* <i className="fa fa-angle-down" /> */}
+            {/* <ProductDropdown /> */}
           </NavItem>
-          <NavItem>
-            FEATURE <i className="fa fa-angle-down" />
+
+           <NavItem>
+            ABOUT  <i className="fa fa-angle-down" />
+            {/* <BlogDropdown /> */}
+          </NavItem>
+
+
+          {/* <NavItem>
+            FEATURE 
+            <i className="fa fa-angle-down" />
             <FeatureDropdown />
-          </NavItem>
-          <NavItem>
+          </NavItem> */}
+          {/* <NavItem>
             PAGES <i className="fa fa-angle-down" />
             <PageDropdown />
-          </NavItem>
-          <NavItem>
+          </NavItem> */}
+          {/* <NavItem>
             BLOG <i className="fa fa-angle-down" />
             <BlogDropdown />
-          </NavItem>
+          </NavItem> */}
         </NavItems>
       </ToggleContainer>
       <IconContainer>
         <IconWrapper onClick={() => toggleSigninDrawer()}>
           <i className="fa fa-user"></i>
         </IconWrapper>
-        <WishBox onClick={() => toggleWishlistDrawer()}>
+        {/* <WishBox onClick={() => toggleWishlistDrawer()}>
           <span>
             <i className="fa fa-heart"></i>
           </span>
@@ -65,7 +76,7 @@ const RightNav = ({
             <span>5 ITEM</span>
             <span>WISHLIST</span>
           </WishText>
-        </WishBox>
+        </WishBox> */}
         {/* <CartIcon onClick={() => toggleCartDrawer()}>
           <span>0</span>
           <i className="fa fa-shopping-cart"></i>

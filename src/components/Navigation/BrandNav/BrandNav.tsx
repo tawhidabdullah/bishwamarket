@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useQueryFetch } from "../../../hooks";
+import { useHistory } from "react-router-dom";
+import { useQueryFetch, useHandleFetch } from "../../../hooks";
+
+// import utils
+import { addFilterToStorage } from "../../../utils";
+
 const BrandNav = () => {
   const brandList = useQueryFetch("brandList");
   const [brandStatus, setStatus] = useState(true);
+  const history = useHistory();
+
   useEffect(() => {
     if (brandList.isSuccess && brandList.data) {
       setStatus(false);
@@ -21,11 +28,23 @@ const BrandNav = () => {
         {brandStatus ? (
           <> </>
         ) : (
-          brandList.data.map((item, idx) => {
-            return <span key={idx}>{item.name} </span>;
+          brandList.data.map((item) => {
+            return (
+              <span
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  addFilterToStorage({ brand: item.id }, () => {
+                    history.push("/product");
+                  })
+                }
+              >
+                {" "}
+                {item.name}{" "}
+              </span>
+            );
           })
-           
-          
         )}
       </Item>
     </BB>

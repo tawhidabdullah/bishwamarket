@@ -7,7 +7,6 @@ import { CollectionByCategory } from "../../components/Collection";
 import { useSelector } from "react-redux";
 const CollectionContainer = () => {
  let category = useSelector((state) => state.category);
- console.log(category, "categorycategory");
   return (
     <Section>
       <SearchContain title={"Collection"} />
@@ -15,7 +14,6 @@ const CollectionContainer = () => {
         {category.map(item=>{
           return <CollectionByCategory item={item}/>;
         })}
-
       </Main>
     </Section>
   );
@@ -31,6 +29,7 @@ const Main = styled.div`
   padding: 30px 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 `;
+
 
 const Section = styled.div`
 display:gtid;

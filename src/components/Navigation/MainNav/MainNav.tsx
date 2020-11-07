@@ -17,7 +17,7 @@ import { toggleCategoryDrawer } from "../../../state/ducks/globalState/actions";
 // import style
 import { NavToggler } from "./commonStyles";
 
-// import config 
+// import config
 import config from "../../../config.json";
 
 const MainNav = ({ toggleCategoryDrawer }) => {
@@ -57,15 +57,14 @@ const MainNavContainer = styled.div`
   }
 `;
 
-
 const LogoContainer = styled.div`
- /* width: 150px; */
+  /* width: 150px; */
   height: 60px;
   margin-right: 20px;
+  cursor: pointer;
 
-  
   & img {
-    width: 100%; 
+    width: 100%;
     height: 100%;
     object-fit: contain;
   }

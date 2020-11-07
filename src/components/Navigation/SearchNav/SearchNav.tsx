@@ -75,7 +75,7 @@ const SearchNav = ({
             setToggleCategory && setToggleCategory(!toggleCategory)
           }
         >
-          <IconButton />
+          <IconButton /> &nbsp;
           Shop By Category
         </ShopCategory>
 
@@ -148,7 +148,7 @@ const SearchNav = ({
 
       <ComponentFetcher type='text' apiMapKey='phone'>
         {(phoneText) => (
-              <Call>
+                <Call href={`tel:${phoneText}`}>
                 <i className="fa fa-phone"></i> &nbsp;
                 <span>
                   <span>
@@ -373,9 +373,10 @@ const Rightcontent = styled.div`
   display: flex;
   position: relative;
 `;
-const Call = styled.div`
+const Call = styled.a`
   padding: 20px 0;
   margin-left: 20px;
+  color: #333;
   @media only screen and (max-width: 980px) {
     display: none;
   }
