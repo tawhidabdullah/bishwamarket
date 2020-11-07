@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { nodeModuleNameResolver } from "typescript";
 
 import image1 from "../../../assets/dropdown.png";
-const LeftBar=()=> {
+const LeftBar  = () => {
 
     // const ListRef = useRef() as React.MutableRefObject<HTMLInputElement>;
     
@@ -18,7 +18,7 @@ const LeftBar=()=> {
       }
     };
 
-    
+
     return (
       <LeftContent>
         <Tag onClick={(e) => handle(0)}>
