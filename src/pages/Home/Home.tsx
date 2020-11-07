@@ -26,7 +26,7 @@ const Home = () => {
       <BrandNav />
       <Service />
       {/* <CollectionMediaBanner /> */}
-      <DiscountBanner />
+      {/* <DiscountBanner /> */}
       <Collection />
 
       <ProductByCategory />

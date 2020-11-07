@@ -4,20 +4,30 @@ import styled from "styled-components";
 // import dummy image
 import Logo from "../../../assets/logo.png";
 
+
+
+// import Component fetcher component
+import ComponentFetcher from "../../ComponentFetcher";
+
+
+
+
 const CompanyBanner = () => {
   return (
-    <CompanyBannerWrapper>
-      <CompanyBannerContainer>
-        <CompanyBannerItem>
-          <img src={Logo} alt="" />
-        </CompanyBannerItem>
-        <CompanyBannerItem>
-          It Is A Long Established Fact That A Reader Will Be Distracted By The
-          Readable Content Of A Page When Looking At Its Layout. The Point Of
-          Using Lorem Ipsum Is That It Has A More-Or-Less Normal Distribution.
-        </CompanyBannerItem>
-      </CompanyBannerContainer>
-    </CompanyBannerWrapper>
+      <ComponentFetcher type='text' apiMapKey='aboutText'>
+      {(aboutText) => (
+            <CompanyBannerWrapper>
+            <CompanyBannerContainer>
+              <CompanyBannerItem>
+                <img src={Logo} alt="" />
+              </CompanyBannerItem>
+              <CompanyBannerItem>
+               {aboutText}
+              </CompanyBannerItem>
+            </CompanyBannerContainer>
+          </CompanyBannerWrapper>
+      )}
+    </ComponentFetcher>
   );
 };
 

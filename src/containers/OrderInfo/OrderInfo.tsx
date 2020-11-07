@@ -1,10 +1,14 @@
-import React from "react";
+//@ts-nocheck
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import styled from "styled-components";
 
 // import order info detail component
 import { OrderInfoDetails } from "../../components/OrderInfoDetails";
 
 import DeliveryBanner from "./DeliveryBanner";
+
+import { Header } from "../../components/elements/Header";
 
 const summeryList = [
   "Order ID: 5563853658932",
@@ -24,24 +28,49 @@ const customStyle = {
   "line-height": 1,
 };
 
-const OrderInfo = () => {
+const OrderInfo = ({ order }) => {
+  console.log("order", order);
+
   return (
     <div>
       <Row>
         <Col sm={6}>
-          <OrderInfoDetails
-            header="Summery"
-            infos={summeryList}
-            customStyle={customStyle}
-          />
+          <OrderInfoDetailsContainer>
+            <Header customStyle={customStyle} content="Order Info" />
+            <InfoList>
+              <InfoListItem>Order ID: {order.shortCode}</InfoListItem>
+              <InfoListItem>
+                Ordered: {new Date(order.added).toDateString()}
+              </InfoListItem>
+              <InfoListItem>Total Price: ${order.totalPrice}</InfoListItem>
+            </InfoList>
+          </OrderInfoDetailsContainer>
         </Col>
 
         <Col sm={6}>
-          <OrderInfoDetails
-            header="Shipping Address"
-            infos={shippingAddress}
-            customStyle={customStyle}
-          />
+          <OrderInfoDetailsContainer>
+            <Header customStyle={customStyle} content="Shipping Address" />
+            <InfoList>
+              <InfoListItem>
+                Name:{order.shippingAddress && order.shippingAddress.firstName}{" "}
+                {order.shippingAddress && order.shippingAddress.lastName}
+              </InfoListItem>
+
+              <InfoListItem>
+                City: {order.shippingAddress && order.shippingAddress.city}
+              </InfoListItem>
+              <InfoListItem>
+                Country:{" "}
+                {order.shippingAddress && order.shippingAddress.country}
+              </InfoListItem>
+
+              <InfoListItem>
+                Country:{" "}
+                {order.shippingAddress && order.shippingAddress.address1}
+              </InfoListItem>
+              <InfoListItem>Total Price: ${order.totalPrice}</InfoListItem>
+            </InfoList>
+          </OrderInfoDetailsContainer>
         </Col>
 
         <Col sm={12}>
@@ -57,7 +86,7 @@ const OrderInfo = () => {
         </Col>
 
         <Col md={12}>
-          <DeliveryBanner />
+          <DeliveryBanner order={order} />
         </Col>
       </Row>
     </div>
@@ -65,3 +94,18 @@ const OrderInfo = () => {
 };
 
 export default OrderInfo;
+
+const OrderInfoDetailsContainer = styled.div`
+  padding-bottom: 30px;
+`;
+
+const InfoList = styled.ul`
+  padding-left: 0;
+  margin-bottom: 0;
+`;
+
+const InfoListItem = styled.li`
+  display: flex;
+  text-transform: capitalize;
+  font-size: 16px;
+`;

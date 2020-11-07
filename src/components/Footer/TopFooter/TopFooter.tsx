@@ -7,7 +7,7 @@ import { LinkList } from "../LinkLists";
 // import address component
 import { Contact } from "../Contact";
 
-// import hooks
+// import Component fetcher component
 import ComponentFetcher from "../../ComponentFetcher";
 
 

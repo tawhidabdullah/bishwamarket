@@ -37,6 +37,8 @@ const ImgWrapper = styled.div`
     border-style: none;
     width: 110px;
     height: 110px;
+    object-fit: cover;  
+
   }
 `;
 

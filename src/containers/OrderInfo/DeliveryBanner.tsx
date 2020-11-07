@@ -4,24 +4,23 @@ import styled from "styled-components";
 // import header element
 import { Header } from "../../components/elements/Header";
 
-const DeliveryBanner = () => {
+const headerStyles = {
+  "font-size": "calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)))",
+};
+
+const textStyles = {
+  "font-size": "calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)))",
+  "font-weight": 500,
+};
+
+const DeliveryBanner = ({ order }) => {
   return (
     <DeliveryBannerContainer>
-      <Header
-        customStyle={{
-          "font-size":
-            "calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)))",
-        }}
-        content="Expected Date of Delivery"
-      />
+      <Header customStyle={headerStyles} content="Expected Time of Delivery" />
 
       <Header
-        customStyle={{
-          "font-size":
-            "calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)))",
-          "font-weight": 500,
-        }}
-        content={new Date().toDateString()}
+        customStyle={textStyles}
+        content={order.deliveryRegion && order.deliveryRegion.time}
       />
     </DeliveryBannerContainer>
   );

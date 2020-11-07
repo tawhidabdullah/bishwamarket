@@ -240,30 +240,16 @@ export const replaceNumbers = (input: any) => {
   return output.join("");
 };
 
-// parse jwt
-// export const parseJWT = (token) => {
-//   let b64DecodeUnicode = (str) =>
-//     decodeURIComponent(
-//       Array.prototype.map
-//         .call(
-//           atob(str),
-//           (c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
-//         )
-//         .join("")
-//     );
-
-//   let parseJwt = (token) =>
-//     JSON.parse(
-//       b64DecodeUnicode(token.split(".")[1].replace("-", "+").replace("_", "/"))
-//     );
-
-//   return parseJWT;
-// };
-
-
+export const convertParamsId = (params) => {
+  if (Object.keys(params).length > 0) {
+    return params.map((param) => Object.values(param).join());
+  } else {
+    return [];
+  }
+};
 
 export function isEmpty(value) {
-  value = `${value}`
-  const emptyValues = ['undefined','null','true','false','','[]','{}']; 
-  return emptyValues.includes(value)
+  value = `${value}`;
+  const emptyValues = ["undefined", "null", "true", "false", "", "[]", "{}"];
+  return emptyValues.includes(value);
 }

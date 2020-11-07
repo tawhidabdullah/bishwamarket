@@ -1,10 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-const AuthButton = ({ children, customStyle, wrapperStyle }) => {
+interface Props {
+  children: any;
+  customStyle: any;
+  wrapperStyle: any;
+  onClick?: any;
+}
+
+
+const AuthButton = ({
+  children,
+  customStyle,
+  wrapperStyle,
+  onClick,
+}: Props) => {
   return (
     <AuthButtonContainer wrapperStyle={wrapperStyle}>
-      <Button type="button" customStyle={customStyle}>
+      <Button type="button" customStyle={customStyle} onClick={onClick}>
         {children}
       </Button>
     </AuthButtonContainer>

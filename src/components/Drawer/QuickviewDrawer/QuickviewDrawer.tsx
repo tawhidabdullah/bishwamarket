@@ -1,6 +1,5 @@
 // @ts-nocheck
-
-import React, { Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { InputGroup, FormControl } from "react-bootstrap";
@@ -19,129 +18,242 @@ import quickViewImage from "../../../assets/quickview.jpg";
 // import drawer button
 import { DrawerButton } from "../../common/Button/DrawerButton";
 
-const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
+// toggle cart action
+import { globalOperations } from "../../../state/ducks/globalState";
+
+// import cart store
+import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
+
+import { useAlert } from "react-alert";
+
+import { useSelector } from "react-redux";
+
+
+// import hooks
+import { useHandleFetch } from "../../../hooks";
+
+
+const QuickviewDrawer = ({
+  open,
+  toggleQuickviewDrawer,
+  cartItems,
+  changeQuantity,
+  addToCart,
+  removeFromCart,
+  session
+}) => {
+  const Item = useSelector((state) => state.Item);
+  const [quantity, setQuantity] = useState(1);
+
+  const alert = useAlert();
+
+
+
+  // this hook send POST request to server to add item to cart
+  const [addToCartState, handleAddtoCartFetch] = useHandleFetch(
+    [],
+    "addtoCart"
+  );
+
+
+
+  useEffect(() => {
+    if (Item.length > 0) {
+      Item[0].quantity = 1;
+      console.log(Item[0], "boss");
+    }
+  }, [Item.length]);
+
+  const handleAddToCart = () => {
+    if (!Item[0].inStock) {
+      alert.error("Out of stock");
+      return;
+    }
+
+    const cartItem = {
+      id: Item[0]._id,
+      product: Item[0]._id,
+      variation:
+        Item[0].pricing && Item[0].pricing[0] && Item[0].pricing[0]._id
+          ? Item[0].pricing[0]._id
+          : "",
+      name: Item[0].name,
+      quantity: 1,
+      cover: Item[0].cover,
+      price: Item[0].price,
+      url: Item[0].url,
+    };
+
+    addToCart && addToCart(cartItem);
+    alert.success("Product added to the cart");
+
+
+    if (session.isAuthenticated) {
+      (async () =>  {
+        const addToCartRes: any = await handleAddtoCartFetch({
+          body: {
+            items: [cartItem],
+          },
+        });
+  
+        if (addToCartRes && Object.keys(addToCartRes).length === 0) {
+          removeFromCart(cartItem);
+          alert.error("Something went wrong!");
+        }
+      })()
+      
+    }
+
+
+
+
+  };
   return (
     <Fragment>
       <BackDrop show={open} clicked={() => toggleQuickviewDrawer()} />
-      <QuickviewDrawerContainer show={open}>
-        <ImageContainer>
-          <img src={quickViewImage} alt="quick product preview" />
-          <Text clickAction={() => toggleQuickviewDrawer()}>
-            <Text1>&#10005;</Text1>
-          </Text>
-        </ImageContainer>
 
-        <DetailsContainer>
-          <DrawerHeader>
-            <Text>Woman T-shirt</Text>
+      {Item.length > 0 ? (
+        <QuickviewDrawerContainer show={open}>
+          <ImageContainer>
+            <img src={Item[0].cover} alt="quick product preview" />
             <Text clickAction={() => toggleQuickviewDrawer()}>
-              <Text2>&#10005;</Text2>
+              <Text1>&#10005;</Text1>
             </Text>
-          </DrawerHeader>
-          <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
-            $32.00
-          </Text>
-          <ColorContainer>
-            <ParentSize>
-              <Color customStyle={{ "background-color": "#f1e7e6" }} />
-              <Color customStyle={{ "background-color": "#d0edff" }} />
-              <Color customStyle={{ "background-color": "#bfbfbf" }} />
-            </ParentSize>
-          </ColorContainer>
-          <ProductDetailTextContainer>
+          </ImageContainer>
+          <DetailsContainer>
+            <DrawerHeader>
+              <Text>{Item[0].name}</Text>
+              <Text clickAction={() => toggleQuickviewDrawer()}>
+                <Text2>&#10005;</Text2>
+              </Text>
+            </DrawerHeader>
+            <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
+              {Item[0].price || ""}
+            </Text>
+
+            {/* <ColorContainer>
+              <ParentSize>
+                <Color customStyle={{ "background-color": "#f1e7e6" }} />
+                <Color customStyle={{ "background-color": "#d0edff" }} />
+                <Color customStyle={{ "background-color": "#bfbfbf" }} />
+              </ParentSize>
+            </ColorContainer> */}
+            <ProductDetailTextContainer>
+              <Text
+                customStyle={{
+                  "font-size": "16px",
+                  "font-weight": "700",
+                  color: "#333",
+                  padding: "5px 0",
+                }}
+              >
+                Product Details
+              </Text>
+              <Text
+                customStyle={{
+                  "font-size": "14px",
+                  padding: "5px 0",
+                  "line-height": "1.5em",
+                }}
+              >
+                {Item[0].description || ""}
+              </Text>
+            </ProductDetailTextContainer>
+            <SizeContainer>
+              <ParentSize>
+                <Size>S</Size>
+                <Size>M</Size>
+                <Size>L</Size>
+                <Size>XL</Size>
+              </ParentSize>
+            </SizeContainer>
             <Text
               customStyle={{
+                "font-weight": "bold",
                 "font-size": "16px",
-                "font-weight": "700",
+                padding: "0",
                 color: "#333",
-                padding: "5px 0",
               }}
             >
-              Product Details
+              Quantity
             </Text>
-            <Text
-              customStyle={{
-                "font-size": "14px",
-                padding: "5px 0",
-                "line-height": "1.5em",
-              }}
-            >
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium
-            </Text>
-          </ProductDetailTextContainer>
-          <SizeContainer>
-            <ParentSize>
-              <Size>S</Size>
-              <Size>M</Size>
-              <Size>L</Size>
-              <Size>XL</Size>
-            </ParentSize>
-          </SizeContainer>
-          <Text
-            customStyle={{
-              "font-weight": "bold",
-              "font-size": "16px",
-              padding: "0",
-              color: "#333",
-            }}
-          >
-            Quantity
-          </Text>
-          <SizeContainer>
-            <QuantityBox>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <QuantityAction>
-                    <i className="fa fa-angle-left"></i>
-                  </QuantityAction>
-                </InputGroup.Prepend>
-                <FormControl />
-                <InputGroup.Append>
-                  <QuantityAction>
-                    <i className="fa fa-angle-right"></i>
-                  </QuantityAction>
-                </InputGroup.Append>
-              </InputGroup>
-            </QuantityBox>
-          </SizeContainer>
-          <SizeContainer>
-            <ButtonContainer>
-              <DrawerButton
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-right": "7px",
-                  padding: "7px",
-                }}
-              >
-                Add To Cart
-              </DrawerButton>
-              <DrawerButton
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-left": "7px",
-                  padding: "7px",
-                }}
-              >
-                View Details
-              </DrawerButton>
-            </ButtonContainer>
-          </SizeContainer>
-        </DetailsContainer>
-      </QuickviewDrawerContainer>
+            <SizeContainer>
+              <QuantityBox>
+                <InputGroup>
+                  {/* <InputGroup.Prepend> */}
+                  {/* <QuantityAction
+                      onClick={() => handleChangeQuantity("plus")}
+                    >
+                      <i className="fa fa-angle-left"></i>
+                    </QuantityAction>
+                  </InputGroup.Prepend>
+                  <div style={{ padding: "10px" }}>{quantity}</div>
+                  <InputGroup.Append>
+                    <QuantityAction
+                      onClick={() => handleChangeQuantity("minus")}
+                    >
+                      <i className="fa fa-angle-right"></i>
+                    </QuantityAction> */}
+                  {/* </InputGroup.Append> */}
+                </InputGroup>
+              </QuantityBox>
+            </SizeContainer>
+            <SizeContainer>
+              <ButtonContainer>
+                <DrawerButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddToCart();
+                  }}
+                  customStyle={{
+                    "font-weight": "bold",
+                    "margin-right": "7px",
+                    padding: "7px",
+                  }}
+                >
+                  <p> Add To Cart</p>
+                </DrawerButton>
+                {/* <DrawerButton
+                  customStyle={{
+                    "font-weight": "bold",
+                    "margin-left": "7px",
+                    padding: "7px",
+                  }}
+                >
+                  View Details
+                </DrawerButton> */}
+              </ButtonContainer>
+            </SizeContainer>
+          </DetailsContainer>
+        </QuickviewDrawerContainer>
+      ) : (
+        <></>
+      )}
     </Fragment>
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    session: state.session
+  }
+}
+
 const mapDispatchToProps = (dispatch) => ({
   toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+  changeQuantity: cartOperations.changeQuantity,
+  addToCart: (value) =>  dispatch(cartOperations.addToCart(value)),
+  removeFromCart: (value) =>  dispatch(cartOperations.removeFromCart(value)),
 });
 
-export default connect(null, mapDispatchToProps)(QuickviewDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
+
+
+
 const Text1 = styled.div`
   cursor: pointer;
   @media only screen and (min-width: 590px) {
-   display:none;
+    display: none;
   }
 `;
 const Text2 = styled.div`
@@ -151,15 +263,13 @@ const Text2 = styled.div`
   }
 `;
 const QuickviewDrawerContainer = styled.div`
-
-
   position: fixed;
   left: 0;
   right: 0;
   top: 0%;
   height: 500px;
   width: 70%;
-    margin: 50px auto;
+  margin: 50px auto;
   z-index: 2000000;
   background-color: white;
   box-sizing: border-box;
@@ -178,7 +288,7 @@ const QuickviewDrawerContainer = styled.div`
   }
   @media screen and (max-width: 590px) {
     justify-content: center;
-    flex-direction:column;
+    flex-direction: column;
   }
 `;
 
@@ -210,26 +320,25 @@ const DetailsContainer = styled.div`
   width: 50%;
   overflow-y: auto;
   padding-bottom: 40px;
-  padding-top:40px;
+  padding-top: 40px;
   @media screen and (max-width: 590px) {
     width: 100%;
     text-align: center;
-   
   }
 `;
 
 const QuantityBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   margin-top: 10px;
-  width:200px;
+  width: 200px;
 `;
 
 const QuantityAction = styled(InputGroup.Text)`
   background-color: white;
   cursor: pointer;
-  width:50px;
+  width: 50px;
 `;
 
 const ButtonContainer = styled.div`
@@ -242,7 +351,7 @@ const DrawerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   @media screen and (max-width: 590px) {
-    justify-content: center;;
+    justify-content: center;
   }
 `;
 
@@ -260,8 +369,8 @@ const ParentSize = styled.div`
   display: flex;
   justify-content: center;
 
-  & Size{
-    margin-right:5px;
+  & Size {
+    margin-right: 5px;
   }
 `;
 

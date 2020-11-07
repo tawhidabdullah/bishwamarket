@@ -20,7 +20,7 @@ const productCardStyles = {
   containertop: "80%",
 };
 
-const RightBar = ({ products }) => {
+const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
 
@@ -40,6 +40,9 @@ const RightBar = ({ products }) => {
       <FilterDrawer
         open={isFilterDrawer}
         toggleFilterDrawer={toggleFilterDrawer}
+        filterLabels={filterLabels}
+        handleFilterProduct={handleFilterProduct}
+        ids={ids}
       />
       <Title>
         <h5>Showing Products Results</h5>
@@ -62,9 +65,13 @@ const RightBar = ({ products }) => {
         </TitleBottom>
       </Title>
       <Products>
-        {products.map((item) => {
+        {products.map((item, idx) => {
           return (
-            <ProductsByCategory item={item} customStyles={productCardStyles} />
+            <ProductsByCategory
+              key={idx}
+              item={item}
+              customStyles={productCardStyles}
+            />
           );
         })}
       </Products>

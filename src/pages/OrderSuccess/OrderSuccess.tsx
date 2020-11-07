@@ -1,13 +1,66 @@
-import React from "react";
+//@ts-nocheck
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Col, Row } from "react-bootstrap";
+import { connect } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 // import component
 import { OrderSuccessMessage } from "../../components/OrderSuccessMessage";
 import { OrderDetails } from "../../containers/OrderDetails";
 import { OrderInfo } from "../../containers/OrderInfo";
 
-const OrderSuccess = () => {
+// hook
+import { useHandleFetch } from "../../hooks";
+
+const OrderSuccess = ({ isAuthenticated }) => {
+  const history = useHistory();
+  const alert = useAlert();
+  const params = useParams();
+  const [products, setProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
+  const [order, setOrder] = useState({});
+
+  const [orderHistoryState, handleOrderHistoryFetch] = useHandleFetch(
+    {},
+    "getSingleOrderHistory"
+  );
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      alert.error("Unauthorized access");
+      history.push("/");
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    const fetchOrderData = async () => {
+      await handleOrderHistoryFetch({
+        urlOptions: {
+          placeHolders: {
+            orderId: params.orderId,
+          },
+        },
+      });
+    };
+
+    fetchOrderData();
+  }, []);
+
+  useEffect(() => {
+    if (orderHistoryState.done && orderHistoryState.data) {
+      setProducts(orderHistoryState.data.order.products);
+      setTotalPrice(orderHistoryState.data.order.totalPrice);
+      setOrder(orderHistoryState.data.order);
+
+      setDeliveryCharge(
+        Object.values(orderHistoryState.data.order.deliveryRegion.charge)[0]
+      );
+    }
+  }, [orderHistoryState]);
+
   return (
     <section>
       <OrderSuccessMessage />
@@ -15,11 +68,15 @@ const OrderSuccess = () => {
         <CustomContainer>
           <Row>
             <Col lg={6}>
-              <OrderDetails />
+              <OrderDetails
+                totalPrice={totalPrice}
+                deliveryCharge={deliveryCharge}
+                products={products}
+              />
             </Col>
 
             <Col lg={6}>
-              <OrderInfo />
+              <OrderInfo order={order} />
             </Col>
           </Row>
         </CustomContainer>
@@ -28,7 +85,11 @@ const OrderSuccess = () => {
   );
 };
 
-export default OrderSuccess;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.session.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(OrderSuccess);
 
 // TODO this style is repeating. must refactor into one unified styles
 const OrderSuccessContainer = styled.div`

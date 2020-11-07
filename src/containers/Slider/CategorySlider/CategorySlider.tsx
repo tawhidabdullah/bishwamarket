@@ -73,7 +73,7 @@ const CategorySlider = () => {
   };
   return (
     <Section>
-      <DealBanner />
+      {/* <DealBanner /> */}
 
       <MainSlider
         responsive={responsive}

@@ -13,9 +13,6 @@ import "slick-carousel/slick/slick-theme.css";
 // import home page on initial rendering
 import Home from "./pages/Home";
 
-
-
-
 // lazy load other components
 
 const Category = lazy(() => import("./pages/Category"));
@@ -40,43 +37,39 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 // //productList
 
 const App = () => {
-   
-
   return (
     <BrowserRouter>
       <Fragment>
         <Suspense fallback="Loading...">
           <Layout>
             <Switch>
-              
-                  <Route exact path={"/"}>
-                    <Home  />
-                  </Route>
+              <Route exact path={"/"}>
+                <Home />
+              </Route>
 
-                  <Route exact path={"/Search"}>
-                    <Search />
-                  </Route>
-                  <Route exact path="/product">
-                    <ProductListing  />
-                  </Route>
+              <Route exact path={"/Search"}>
+                <Search />
+              </Route>
+              <Route exact path="/product">
+                <ProductListing />
+              </Route>
 
-                  <Route exact path="/signin" component={SignIn} />
-                  <Route exact path="/signup" component={SignUp} />
-                  <Route
-                    exact
-                    path="/forgot-password"
-                    component={ForgotPassword}
-                  />
-                  <Route exact path="/checkout" component={Checkout} />
+              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/forgot-password" component={ForgotPassword} />
+              <Route exact path="/checkout" component={Checkout} />
 
-                  <Route exact path="/profile" component={Profile} />
-                  <Route exact path="/collection" component={Collection} />
-                  <Route exact path="/wishlist" component={WishlistPage} />
-                  <Route exact path="/order-history" component={OrderHistory} />
-                  <Route exact path="/order-success" component={OrderSuccess} />
-                  <Route exact path="/cart" component={Cart} />
-                  <Route exact path="/dashboard" component={Dashboard} />
-              
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/collection" component={Collection} />
+              <Route exact path="/wishlist" component={WishlistPage} />
+              <Route exact path="/order-history" component={OrderHistory} />
+              <Route
+                exact
+                path="/order-success/:orderId"
+                component={OrderSuccess}
+              />
+              <Route exact path="/cart" component={Cart} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </Layout>
           <GlobalStyles />

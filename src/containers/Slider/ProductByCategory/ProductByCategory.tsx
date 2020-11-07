@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 // import hooks
 import { useQueryFetch, useHandleFetch } from "../../../hooks";
+import { ProductNotFound } from "../../../components/ProductNotFound";
 
 const ProductByCategory = () => {
   //previously saving category data in redux is getting back
@@ -93,13 +94,7 @@ const[indexColor,setColor]=useState(0)
 
       {
         breakpoint: 1154,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          arrows: false,
-        },
+        settings: { products },
       },
       {
         breakpoint: 970,
@@ -138,19 +133,28 @@ const[indexColor,setColor]=useState(0)
   return (
     <Section>
       <BB>
-        {category.map((item,i) => (
-          <Span className="categoryName" key={i} onClick={() => handleCategoryId(item.id,i)}>{item.name}</Span>
+        {category.map((item, i) => (
+          <Span
+            className="categoryName"
+            key={i}
+            onClick={() => handleCategoryId(item.id, i)}
+          >
+            {item.name}
+          </Span>
         ))}
       </BB>
-      {products.length>0?  <MainSlider
-        responsive={responsive}
-        ProductsByCategory={ProductsByCategory}
-        data={products}
-        customStyles={{
-          Levelvisibility: "visible",
-        }}
-      />:(<p>No data found</p>)}
-    
+      {products.length > 0 ? (
+        <MainSlider
+          responsive={responsive}
+          ProductsByCategory={ProductsByCategory}
+          data={products}
+          customStyles={{
+            Levelvisibility: "visible",
+          }}
+        />
+      ) : (
+        <ProductNotFound />
+      )}
     </Section>
   );
 };

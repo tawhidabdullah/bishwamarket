@@ -12,30 +12,32 @@ const textStyles = {
   "font-weight": 500,
 };
 
-const OrderPrice = () => {
+const OrderPrice = ({ totalPrice, deliveryCharge }) => {
   return (
     <Fragment>
       <OrderPriceContainer>
         <PriceList>
           <PriceListItem>
             Subtotal
-            <Text customStyle={textStyles}>$240.00 </Text>
+            <Text customStyle={textStyles}>${totalPrice} </Text>
           </PriceListItem>
 
           <PriceListItem>
             Shipping
-            <Text customStyle={textStyles}>$10.00 </Text>
+            <Text customStyle={textStyles}>${deliveryCharge} </Text>
           </PriceListItem>
 
-          <PriceListItem>
+          {/* <PriceListItem>
             Tax(GST)
             <Text customStyle={textStyles}>$0.15 </Text>
-          </PriceListItem>
+          </PriceListItem> */}
         </PriceList>
       </OrderPriceContainer>
       <TotalPrice>
         Total
-        <Text customStyle={textStyles}>$250.15</Text>
+        <Text customStyle={textStyles}>
+          ${parseInt(totalPrice) + parseInt(deliveryCharge)}
+        </Text>
       </TotalPrice>
     </Fragment>
   );

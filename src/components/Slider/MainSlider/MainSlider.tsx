@@ -3,39 +3,37 @@ import Slider from "react-slick";
 
 import styled from "styled-components";
 
-const MainSlider=({responsive,ProductsByCategory,customStyles,...props})=> {
+const MainSlider = ({
+  responsive,
+  ProductsByCategory,
+  customStyles,
+  ...props
+}) => {
+  const [activeSlide, setactiveSlide] = useState(0);
+  const [activeSlide2, setactiveSlide2] = useState(0);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
 
- const [activeSlide, setactiveSlide] = useState(0);
-   const [activeSlide2, setactiveSlide2] = useState(0);
-   const settings = {
-     dots: false,
-     infinite: true,
-     speed: 500,
-
-     responsive: responsive.responsive,
-   };
-    return (
-      <Layout customStyles={customStyles}>
-        <MainContent customStyles={customStyles}>
-          <Slider {...settings}>
-            {props.data && props.data.length > 0
-              ? props.data.map((item) => {
-                  return (
-                    <ProductsByCategory
-                      item={item}
-                      customStyles={customStyles}
-                    />
-                  );
-                })
-              : ""}
-         
-          </Slider>
-        </MainContent>
-      </Layout>
-    );
-}
-
-   
+    responsive: responsive.responsive,
+  };
+  return (
+    <Layout customStyles={customStyles}>
+      <MainContent customStyles={customStyles}>
+        <Slider {...settings}>
+          {props.data && props.data.length > 0
+            ? props.data.map((item) => {
+                return (
+                  <ProductsByCategory item={item} customStyles={customStyles} />
+                );
+              })
+            : ""}
+        </Slider>
+      </MainContent>
+    </Layout>
+  );
+};
 
 export default MainSlider;
 const Layout = styled.div`

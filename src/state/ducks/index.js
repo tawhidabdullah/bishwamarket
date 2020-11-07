@@ -11,3 +11,4 @@ export { default as brand } from './brand';
 export { default as tag } from './tag';
 export { default as globalState } from './globalState';
 export { default as lingual } from './lingual';
+export { default as Item } from "./Item";

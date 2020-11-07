@@ -4,32 +4,23 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 // import { useHistory } from "react-router-dom";
 
-// dummy data
-import { FilterItems } from "./FilterItems";
+import { FilterCheckbox } from "../../common/FilterCheckbox";
 
-// import checkbox
-import { Checkbox } from "../../common/Checkbox";
-
-// import round button element
-import { Color } from "../../elements/RoundButton/RoundButton";
-
-// checkbox styles
-const checkboxStyles = {
+const inputStyles = {
   label: {
     "font-size": "13px",
-    color: "#777",
-    "font-weight": "bold",
+    margin: 0,
+    padding: "0 20px",
   },
 };
 
-const dropDownContainerStyles = {
-  display: "flex",
-  "flex-direction": "row",
-  "flex-wrap": "wrap",
-  "& span": { margin: "5px" },
-};
-
-const FilterDrawer = ({ open, toggleFilterDrawer }) => {
+const FilterDrawer = ({
+  open,
+  toggleFilterDrawer,
+  filterLabels,
+  handleFilterProduct,
+  ids,
+}) => {
   // const history = useHistory();
 
   const [activeTabs, setActiveTabs] = useState([]);
@@ -56,43 +47,30 @@ const FilterDrawer = ({ open, toggleFilterDrawer }) => {
         </DrawerHeader>
 
         <DrawerMenuContainer>
-          {FilterItems.map((item) => (
+          {Object.keys(filterLabels).map((filterType, idx) => (
             <>
-              <DrawerMenuItem key={item.id} onClick={() => setTabs(item.id)}>
-                <ItemText>{item.name}</ItemText>
+              <DrawerMenuItem key={idx} onClick={() => setTabs(idx)}>
+                <ItemText>{filterType}</ItemText>
                 <ItemText>
-                  {activeTabs.includes(item.id) ? (
+                  {activeTabs.includes(idx) ? (
                     <i className="fa fa-minus" />
                   ) : (
                     <i className="fa fa-plus" />
                   )}
                 </ItemText>
               </DrawerMenuItem>
-              {activeTabs.includes(item.id) && (
+              {activeTabs.includes(idx) && (
                 <>
-                  {item.name === "COLORS" ? (
-                    <DropdownItemContainer
-                      customStyle={dropDownContainerStyles}
-                    >
-                      {item.items.map((i) => (
-                        <Color
-                          key={i.id}
-                          customStyle={{ "background-color": i.name }}
-                        />
-                      ))}
-                    </DropdownItemContainer>
-                  ) : (
-                    <DropdownItemContainer>
-                      {item.items.map((i) => (
-                        // <DropdownItem>{i.name}</DropdownItem>
-                        <Checkbox
-                          key={i.id}
-                          label={i.name}
-                          customStyle={checkboxStyles}
-                        />
-                      ))}
-                    </DropdownItemContainer>
-                  )}
+                  {filterLabels[filterType].map((opt) => (
+                    <FilterCheckbox
+                      key={opt.id}
+                      label={opt.name}
+                      value={{ id: opt.id, header: filterType }}
+                      ids={ids}
+                      handleChange={handleFilterProduct}
+                      customStyle={inputStyles}
+                    />
+                  ))}
                 </>
               )}
             </>

@@ -724,6 +724,60 @@ class Converter {
     };
   }
 
+  async filterProduct(resData) {
+    const data = resData.data || [];
+    const next = resData.page?.next;
+    const total = resData.page?.totalIndex;
+    // const isNext = resData.page.next;
+
+    let convertedData =
+      data.length > 0 &&
+      data.map((product) => {
+        return {
+          ...product,
+          id: product._id || "",
+          name: product.name && product.name,
+          description: product.description && product.description,
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
+          }`,
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
+          unit: product.unit,
+          url: product.url,
+          price:
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
+          stock:
+            product.pricing &&
+            product.pricing.length > 0 &&
+            product.pricing[0].stock.available,
+          pricing: product.pricing,
+          date: product.date,
+          venue: product.venue,
+          offerTaka:
+            product.price &&
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
+              : 0,
+        };
+      });
+
+    return {
+      data: convertedData,
+      next,
+      total,
+    };
+  }
+
+  async getSingleOrderHistory(data) {
+    return data;
+  }
+
   /**
    * @public
    * @method offerListCount convert api data from API to general format based on config server
@@ -1925,6 +1979,8 @@ class Converter {
     } else return false;
   }
 
+ 
+
   /**
    * @public
    * @method aboutText convert api data from API to general format based on config server
@@ -1943,6 +1999,8 @@ class Converter {
       } else return false;
     } else return false;
   }
+
+
 
   /**
    * @public
@@ -1963,8 +2021,7 @@ class Converter {
     } else return false;
   }
 
-
-   /**
+  /**
    * @public
    * @method email convert api data from API to general format based on config server
    * @param {Object} data response objectc from alpha
@@ -1982,7 +2039,6 @@ class Converter {
       } else return false;
     } else return false;
   }
-
 
   /**
    * @public
@@ -2005,8 +2061,7 @@ class Converter {
     return items;
   }
 
-
- /**
+  /**
    * @public
    * @method myAccountComponentLinks convert api data from API to general format based on config server
    * @param {Object} data response objectc from wc
@@ -2025,12 +2080,8 @@ class Converter {
       };
     });
 
-
     return items;
   }
-
-
-  
 
   /**
    * @public

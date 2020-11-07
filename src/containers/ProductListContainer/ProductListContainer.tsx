@@ -1,57 +1,138 @@
-    //@ts-nocheck
-import React,{useEffect,useState} from 'react'
-import styled from "styled-components"
+//@ts-nocheck
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { LeftBar } from "../../components/ProductListing/LeftBar";
 import { RightBar } from "../../components/ProductListing/RightBar";
 import { SearchContain } from "../../components/Search/SearchContain/";
+import queryString from "query-string";
 
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+// utility for converting id object to id array
+import { convertParamsId } from "../../utils";
 
 // import hooks
-import { useQueryFetch, useHandleFetch } from '../../hooks';
-import queryString from "query-string";
-const ProductListContainer = () => {
+import { useHandleFetch } from "../../hooks";
 
-   const [productSearchState, handleProductSearchFetch] = useHandleFetch(
-     [],
-     "productSearch"
-   );
+const ProductListContainer = () => {
+  // this state stores existing ids in localstorage
+  const [ids, setIds] = useState([]);
+
+  const [params, setParams] = useState([]);
+
+  const [filterLabels, setFilterLabels] = useState({
+    Tag: [],
+    Category: [],
+    Brand: [],
+  });
+
+  const [productSearchState, handleProductSearchFetch] = useHandleFetch(
+    [],
+    "filterProduct"
+  );
+
+  const [tagState, handleTagFetch] = useHandleFetch({}, "tagList");
+  const [brandState, handleBrandFetch] = useHandleFetch({}, "brandList");
+  const [categoryState, handleCategoryFetch] = useHandleFetch(
+    {},
+    "categoryList"
+  );
+
+  //ANCHOR filter logic
+  // what to expect from this handler
+  // it will recieve an object/objectId as params
+  // check if this objectId exists in localstorage
+  // if not add it else remove from localstorage
+  const handleFilterProduct = (opt) => {
+    let id = opt.id;
+    // convert label to lowercase for convenience
+    let label = opt.header.toLowerCase();
+
+    // parse existing filters from localstorage
+    let filterIds =
+      localStorage.filter && localStorage.filter.length > 0
+        ? JSON.parse(localStorage.filter)
+        : [];
+    // hmm! seems like we have filterIds in localstorage.
+    // let's check whether incoming id exists in filterIds
+    let isExist = filterIds.find((param) => Object.values(param).join() === id);
+
+    if (!isExist) {
+      // newParams[filterIds, {[filter]: id}]
+      filterIds = [...filterIds, { [label]: id }];
+    } else {
+      // alert! there is an imposter among us
+      // nadal, execute him/her
+      filterIds = filterIds.filter(
+        (param) => Object.values(param).join() !== id
+      );
+    }
+
+    setParams(filterIds);
+    localStorage.setItem("filter", JSON.stringify(filterIds));
+  };
+
+  useEffect(() => {
+    if (localStorage.filter) {
+      setIds(convertParamsId(JSON.parse(localStorage.filter)));
+    }
+  }, [params]);
 
   const location = useLocation();
- const [searchproduct, setproduct] = useState([]);
+  const [searchproduct, setproduct] = useState([]);
   let queryValue = queryString.parse(location.search).query;
-  console.log(queryValue, "queryValue");
 
   useEffect(() => {
     const setSearchCategoryProducts = async () => {
-      const newProductsRes = await handleProductSearchFetch({
+      const productRes = await handleProductSearchFetch({
+        body: params,
         urlOptions: {
           params: {
             queryValue,
           },
         },
       });
+
+      console.log("productRes", productRes);
+      if (productRes.data) {
+        setproduct(productRes.data);
+      }
     };
     setSearchCategoryProducts();
-  }, [queryValue]);
+  }, [queryValue, params]);
 
-
-  console.log(productSearchState, "productSearchStateproductSearchState");
   useEffect(() => {
-    if (productSearchState.data) setproduct(productSearchState.data);
-    else {
-      setproduct([]);
-    }
+    const fetchLabels = async () => {
+      const tagRes = await handleTagFetch({});
+      const brandRes = await handleBrandFetch({});
+      const categoryRes = await handleCategoryFetch({});
 
+      setFilterLabels({
+        Tag: tagRes,
+        Category: categoryRes,
+        Brand: brandRes,
+      });
+    };
 
-  }, [productSearchState.isLoading]);
+    fetchLabels();
+  }, []);
+
   return (
     <Main>
       <SearchContain title={"CATEGORY"} />
       <Section>
-        <LeftBar />
+        <LeftBar
+          filterLabels={filterLabels}
+          ids={ids}
+          handleFilterProduct={handleFilterProduct}
+        />
 
-        <RightBar products={searchproduct} />
+        <RightBar
+          ids={ids}
+          filterLabels={filterLabels}
+          handleFilterProduct={handleFilterProduct}
+          products={searchproduct}
+        />
       </Section>
     </Main>
   );
@@ -68,10 +149,7 @@ const Section = styled.div`
     grid-template-columns: 1fr;
     width: 100%;
   }
-
- 
 `;
-
 
 const Main = styled.div`
   display: flex;
