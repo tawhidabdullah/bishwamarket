@@ -13,18 +13,18 @@ import ComponentFetcher from "../../ComponentFetcher";
 const Contact = () => {
   return (
     <ComponentFetcher type='text' apiMapKey='phone'>
-    {(phoneText) => (
-          <ContactContainer>
-          <ContactItem>
-            <img src={CallImage} />
-          </ContactItem>
-    
-          <ContactItem>If you have any question please call us</ContactItem>
-    
-          <ContactItem>{phoneText}</ContactItem>
-        </ContactContainer>
-    )}
-  </ComponentFetcher>
+        {(phoneText) => (
+              <ContactContainer>
+              <ContactItem>
+                <img src={CallImage} />
+              </ContactItem>
+        
+              <ContactItem>If you have any question please call us</ContactItem>
+        
+              <ContactItem>{phoneText}</ContactItem>
+            </ContactContainer>
+        )}
+    </ComponentFetcher>
 
 
   );

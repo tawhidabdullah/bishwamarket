@@ -11,14 +11,14 @@ const TopNav = (props) => {
   return (
     <TopNavContainer>
       <LeftNav />
-      <RightNav
+      {/* <RightNav
         languageList={props.languageList}
         toggleLingual={props.toggleLingual}
         setToggleLingual={props.setToggleLingual}
         currencyList={props.currencyList}
         toggleCurrency={props.toggleCurrency}
         setToggleCurrency={props.setToggleCurrency}
-      />
+      /> */}
     </TopNavContainer>
   );
 };

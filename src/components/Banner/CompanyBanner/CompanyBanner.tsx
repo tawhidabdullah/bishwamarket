@@ -4,6 +4,9 @@ import styled from "styled-components";
 // import dummy image
 import Logo from "../../../assets/logo.png";
 
+// import config 
+import config from "../../../config.json";
+
 
 
 // import Component fetcher component
@@ -19,7 +22,9 @@ const CompanyBanner = () => {
             <CompanyBannerWrapper>
             <CompanyBannerContainer>
               <CompanyBannerItem>
-                <img src={Logo} alt="" />
+                <CompanyLogoImageWrapper>
+                  <img src={`${config.baseURL}/images/logo.png`} alt="" />
+                </CompanyLogoImageWrapper>
               </CompanyBannerItem>
               <CompanyBannerItem>
                {aboutText}
@@ -39,6 +44,21 @@ const CompanyBannerWrapper = styled.section`
   font-family: PT Sans, sans-serif;
   color: #777;
 `;
+
+
+const CompanyLogoImageWrapper = styled.div`
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+
+  
+  & img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 
 const CompanyBannerContainer = styled.div`
   display: flex;

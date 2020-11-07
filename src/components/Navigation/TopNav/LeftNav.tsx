@@ -5,22 +5,39 @@ import styled from "styled-components";
 // import common component
 import { ItemText } from "../../common/ItemText";
 
+// import component fetcher
+import ComponentFetcher from "../../ComponentFetcher";
+
 const LeftNav = () => {
   return (
     <LeftContainer>
-      <ItemText>Free shipping on order over $99</ItemText>
-      <ItemText>Download app</ItemText>
-      <ItemText>
-        <i className="fa fa-apple"></i>
-      </ItemText>
-
-      <ItemText>
-        <i className="fa fa-android"></i>
-      </ItemText>
-
-      <ItemText>
-        <i className="fa fa-windows"></i>
-      </ItemText>
+      {/* <ItemText>Free shipping on order over $99</ItemText> */}
+      <ComponentFetcher type='linkList' apiMapKey='appStoresLink'>
+              {(links) => (
+                  <>
+                  <ItemText customStyles={{'cursor': 'auto'}}>
+                    Download app
+                  </ItemText>
+                      
+                 {links['google'] && (
+                     <a href={links['google']['target']} target='_open'>
+                     <ItemText>
+                         <i className="fa fa-android"></i>
+                       </ItemText>
+                     </a>
+                               
+                  )}
+                  {links['apple'] && (
+                     <a href={links['apple']['target']} target='_open'>
+                     <ItemText>
+                         <i className="fa fa-apple"></i>
+                       </ItemText>
+                     </a>
+                               
+                  )}
+                  </>
+              )}
+        </ComponentFetcher>
     </LeftContainer>
   );
 };

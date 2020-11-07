@@ -17,6 +17,9 @@ import { toggleCategoryDrawer } from "../../../state/ducks/globalState/actions";
 // import style
 import { NavToggler } from "./commonStyles";
 
+// import config 
+import config from "../../../config.json";
+
 const MainNav = ({ toggleCategoryDrawer }) => {
   const history = useHistory();
 
@@ -29,7 +32,7 @@ const MainNav = ({ toggleCategoryDrawer }) => {
         <i className="fa fa-bars"></i>
       </NavToggler>
       <LogoContainer onClick={() => history.push("/")}>
-        <img src={Logo} alt="company logo" />
+        <img src={`${config.baseURL}/images/logo.png`} alt="company logo" />
       </LogoContainer>
       <RightNav customStyle={{ color: "black", "font-weight": "bold" }} />
     </MainNavContainer>
@@ -54,18 +57,18 @@ const MainNavContainer = styled.div`
   }
 `;
 
+
 const LogoContainer = styled.div`
-  margin-right: auto;
-  cursor: pointer;
+ width: 150px;
+  height: 150px;
+  margin-right: 20px;
 
-  @media screen and (max-width: 991px) {
-    width: 25%;
-    height: auto;
-
-    & img {
-      width: 100%;
-      height: 100%;
-    }
+  
+  & img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+  }
   }
 
   @media screen and (max-width: 578px) {

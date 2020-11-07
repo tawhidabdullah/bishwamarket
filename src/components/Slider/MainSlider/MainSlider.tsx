@@ -25,7 +25,7 @@ const MainSlider = ({
           {props.data && props.data.length > 0
             ? props.data.map((item) => {
                 return (
-                  <ProductsByCategory item={item} customStyles={customStyles} />
+                  <ProductsByCategory item={item} customStyles={customStyles} isIcon={true} />
                 );
               })
             : ""}
