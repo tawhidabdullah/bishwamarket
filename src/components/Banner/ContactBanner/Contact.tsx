@@ -21,7 +21,13 @@ const Contact = () => {
         
               <ContactItem>If you have any question please call us</ContactItem>
         
-              <ContactItem>{phoneText}</ContactItem>
+              <ContactItem>
+                <a href={`tel:${phoneText}`} style={{
+                  color: '#fff'
+                }}>
+                  {phoneText}
+                </a>
+              </ContactItem>
             </ContactContainer>
         )}
     </ComponentFetcher>

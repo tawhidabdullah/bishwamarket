@@ -260,3 +260,17 @@ export function validateEmail(email) {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
+
+
+
+
+export const addFilterToStorage = (opt,cb) => {
+  let filter =  localStorage.filter && localStorage.filter.length > 0
+  ? JSON.parse(localStorage.filter)
+  : []; 
+
+  filter = [...filter, opt];
+ 
+  localStorage.setItem('filter', JSON.stringify(filter));
+  cb(); 
+}

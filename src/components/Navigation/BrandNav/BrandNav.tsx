@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useQueryFetch, useHandleFetch } from "../../../hooks";
+
+
+// import utils
+import { addFilterToStorage } from "../../../utils";
+
+
 const BrandNav = () => {
   const brandList = useQueryFetch("brandList");
   const [brandStatus, setStatus] = useState(true);
-  console.log(brandList, "brandList");
+  const history = useHistory(); 
+
+
   useEffect(() => {
     if (brandList.isSuccess && brandList.data) {
       setStatus(false);
-      console.log(brandList.data, "brandList");
     }
   }, [brandList.isSuccess]);
 
@@ -25,7 +32,11 @@ const BrandNav = () => {
           <> </>
         ) : (
           brandList.data.map((item) => {
-            return <span>{item.name} </span>;
+            return <span style={{
+              cursor:'pointer'
+            }} onClick={() => addFilterToStorage({'brand': item.id}, () => {
+              history.push('/product')
+            })}> {item.name} </span>;
           })
            
           

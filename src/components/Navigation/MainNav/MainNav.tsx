@@ -59,9 +59,10 @@ const MainNavContainer = styled.div`
 
 
 const LogoContainer = styled.div`
- width: 150px;
+  width: 150px;
   height: 150px;
   margin-right: 20px;
+  cursor: pointer;
 
   
   & img {

@@ -1,18 +1,25 @@
 //@ts-ignore
 import React,{useRef} from "react";
 import styled from "styled-components"
+import { useHistory } from "react-router-dom";
+
+
+// import utils
+import { addFilterToStorage } from "../../../utils";
 
 
 const CategoryItem = ({item, isIcon = false}) => {
+  const history = useHistory(); 
 
- 
-console.log("categoryItemIcon", item);
+
   return (
     <CategoryContain>
       <ImgWrapper>
         <img src={isIcon ? item.icon : item.fullCover}></img>
       </ImgWrapper>
-      <Button>{item.name}</Button>
+      <Button onClick={() => addFilterToStorage({'category' : item.id},() => {
+        history.push('/product')
+      })}>{item.name}</Button>
     </CategoryContain>
   );
 };
