@@ -69,7 +69,6 @@ const LogoContainer = styled.div`
     height: 100%;
     object-fit: contain;
   }
-  }
 
   @media screen and (max-width: 578px) {
     width: 30%;
