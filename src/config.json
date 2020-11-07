@@ -1,5 +1,5 @@
 {
   "server": "alpha",
-  "baseURL": "https://jirabo.com/",
+  "baseURL": "http://localhost:5000",
   "baseURL2": "https://jirabo.com"
 }

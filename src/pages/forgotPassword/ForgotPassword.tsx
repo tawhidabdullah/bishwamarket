@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Formik } from "formik";
 import { connect } from "react-redux";
@@ -14,9 +14,39 @@ import { useHandleFetch } from "../../hooks";
 // import common components
 import { InputField } from "../../components/common/InputField";
 import { DrawerButton } from "../../components/common/Button/DrawerButton";
-import { Text } from "../../components/elements/Text";
+
+// import change password modal
+import { ResetPasswordModal } from "../../components/Modal/ResetPasswordModal";
+
+// import utils
+import { validateEmail } from "../../utils";
+
+// input styles
+const inputStyles = {
+  label: {
+    "font-weight": "bold",
+    "font-size": "18px",
+    "padding-bottom": 0,
+  },
+  "::placeholder": {
+    "text-align": "center",
+  },
+};
 
 const ForgotPassword = () => {
+  const alert = useAlert();
+
+  const [isMail, setIsMail] = useState(false);
+  const [isToken, setIsToken] = useState(false);
+  const [recoveryMail, setRecoveryMail] = useState("");
+  const [resetToken, setResetToken] = useState("");
+  const [isTokenValid, setIsTokenValid] = useState(false);
+
+  const [isModal, setIsModal] = useState(false);
+
+  const openModal = () => setIsModal(true);
+  const closeModal = () => setIsModal(false);
+
   const [recoverPass, handleRecoverPass] = useHandleFetch(
     {},
     "recoverPassword"
@@ -26,39 +56,115 @@ const ForgotPassword = () => {
     "validateToken"
   );
 
+  const handleRecoveryMailSubmit = async (e) => {
+    e.preventDefault();
+    if (validateEmail(recoveryMail)) {
+      const recoveryMailRes = await handleRecoverPass({
+        body: {
+          username: recoveryMail,
+        },
+      });
+
+      if (recoveryMailRes && recoveryMailRes.status === "sent") {
+        setRecoveryMail(recoveryMailRes.data.email);
+        setIsMail(true);
+      } else {
+        alert.error("No user found with this email");
+      }
+    } else {
+      alert.error("Invalid email address");
+      return;
+    }
+  };
+
+  const handleValidateTokenSubmit = async (e) => {
+    e.preventDefault();
+    const resetTokenRes = await handleValidateToken({
+      body: {
+        resetToken,
+      },
+    });
+
+    if (resetTokenRes && resetTokenRes.status === "ok") {
+      setIsToken(true);
+    } else {
+      alert.error("Invalid Reset Code");
+    }
+  };
+
   return (
     <ForgotPasswordWrapper>
       <ForgotPasswordContainer>
         <Header>FORGOT YOUR PASSWORD?</Header>
 
         <FormContainer>
-          <Form>
-            <InputField
-              type="text"
-              label="Email"
-              name="email"
-              placeholder="Enter your email"
-              customStyle={{
-                label: {
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-bottom": 0,
-                },
-                "::placeholder": {
-                  "text-align": "center",
-                },
-              }}
-            />
+          {!isMail && !isToken && (
+            <Form onSubmit={handleRecoveryMailSubmit}>
+              <InputField
+                type="text"
+                label="Email"
+                name="email"
+                placeholder="Enter your email"
+                value={recoveryMail}
+                customStyle={inputStyles}
+                onChange={(e) => setRecoveryMail(e.target.value)}
+              />
 
-            <ButtonContainer>
+              <ButtonContainer>
+                <DrawerButton
+                  type="submit"
+                  wrapperStyle={{ width: "50%" }}
+                  customStyle={{ padding: "8px 0" }}
+                >
+                  Submit
+                </DrawerButton>
+              </ButtonContainer>
+            </Form>
+          )}
+
+          {isMail && !isToken && (
+            <Form onSubmit={handleValidateTokenSubmit}>
+              <p>Reset code sent to {recoveryMail}</p>
+              <InputField
+                type="text"
+                label="Reset Token"
+                name="resetToken"
+                placeholder="Enter reset token"
+                value={resetToken}
+                customStyle={inputStyles}
+                onChange={(e) => setResetToken(e.target.value)}
+              />
+
+              <ButtonContainer>
+                <DrawerButton
+                  type="submit"
+                  wrapperStyle={{ width: "50%" }}
+                  customStyle={{ padding: "8px 0" }}
+                >
+                  Submit
+                </DrawerButton>
+              </ButtonContainer>
+            </Form>
+          )}
+
+          {isMail && isToken && (
+            <>
               <DrawerButton
-                wrapperStyle={{ width: "50%" }}
+                type="submit"
+                wrapperStyle={{}}
                 customStyle={{ padding: "8px 0" }}
+                onClick={openModal}
               >
-                Submit
+                Reset Password
               </DrawerButton>
-            </ButtonContainer>
-          </Form>
+              <ResetPasswordModal
+                size="md"
+                show={isModal}
+                onHide={closeModal}
+                resetToken={resetToken}
+              />
+            </>
+          )}
         </FormContainer>
       </ForgotPasswordContainer>
     </ForgotPasswordWrapper>

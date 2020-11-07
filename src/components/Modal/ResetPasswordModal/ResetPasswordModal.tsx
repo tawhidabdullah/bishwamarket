@@ -21,9 +21,9 @@ import { sessionOperations } from "../../../state/ducks/session";
 
 // import validation schema
 import {
-  initialChangePasswordValues,
-  changePasswordValidationSchema,
-} from "../../../validation/changePassword.validator";
+  initialResetPasswordValues,
+  resetPasswordValidationSchema,
+} from "../../../validation/ResetPassword.validator";
 
 const headerStyles = {
   "font-size": "16px",
@@ -43,25 +43,29 @@ const buttonStyles = {
   "font-weight": "bold",
 };
 
-const ChangePasswordModal = ({ show, onHide, size, logout }) => {
+const ResetPasswordModal = ({ show, onHide, size, logout, resetToken }) => {
   const alert = useAlert();
   const history = useHistory();
 
   // this hook update password
-  const [changePasswordState, handleChangePassword] = useHandleFetch(
+  const [resetPasswordState, handleResetPassword] = useHandleFetch(
     {},
-    "changePassword"
+    "resetPassword"
   );
 
-  const handleChangePasswordSubmit = async (values, actions) => {
-    const changePassRes = await handleChangePassword({
-      body: values,
+  const handleResetPasswordSubmit = async (values, actions) => {
+    const resetPassRes = await handleResetPassword({
+      body: {
+        newPassword: values.newPassword,
+        confirmPassword: values.confirmPassword,
+        resetToken: resetToken
+      },
     });
 
-    if (changePassRes && changePassRes.status === "ok") {
+    if (resetPassRes && resetPassRes.status === "ok") {
       localStorage.removeItem("authToken");
       logout();
-      alert.success("Password changed successfully. Please Login to continue");
+      alert.success("Password resetted successfully. Please Login to continue");
       history.push("/signin");
       onHide();
     }
@@ -71,20 +75,20 @@ const ChangePasswordModal = ({ show, onHide, size, logout }) => {
 
   return (
     <Modal size={size} show={show} onHide={onHide}>
-      <ChangePasswordModalContainer>
+      <ResetPasswordModalContainer>
         <ModalHeader>
-          <Header customStyle={headerStyles} content="Update Password" />
+          <Header customStyle={headerStyles} content="Reset Password" />
           <Text customStyle={closeButtonStyles} clickAction={onHide}>
             &#10005;
           </Text>
         </ModalHeader>
         <ModalBody>
           <Formik
-            initialValues={{ ...initialChangePasswordValues }}
-            validationSchema={changePasswordValidationSchema}
+            initialValues={{ ...initialResetPasswordValues }}
+            validationSchema={resetPasswordValidationSchema}
             validateOnBlur={false}
             onSubmit={(values, actions) =>
-              handleChangePasswordSubmit(values, actions)
+              handleResetPasswordSubmit(values, actions)
             }
           >
             {({
@@ -97,24 +101,6 @@ const ChangePasswordModal = ({ show, onHide, size, logout }) => {
               setFieldTouched,
             }) => (
               <form onSubmit={handleSubmit}>
-                <InputField
-                  label="Old Password"
-                  type="password"
-                  name="password"
-                  customStyle={{ ...inputStyles, label: { "padding-top": 0 } }}
-                  value={values.password}
-                  onChange={(e) => {
-                    handleChange(e);
-                    setFieldTouched("password");
-                  }}
-                />
-
-                <ErrorText>
-                  {(touched.password && errors.password) ||
-                    (!isSubmitting &&
-                      changePasswordState.error["error"]["password"])}
-                </ErrorText>
-
                 <InputField
                   label="New Password"
                   type="password"
@@ -130,25 +116,25 @@ const ChangePasswordModal = ({ show, onHide, size, logout }) => {
                 <ErrorText>
                   {(touched.newPassword && errors.newPassword) ||
                     (!isSubmitting &&
-                      changePasswordState.error["error"]["newPassword"])}
+                      resetPasswordState.error["error"]["newPassword"])}
                 </ErrorText>
 
                 <InputField
                   label="Confirm New Password"
                   type="password"
-                  name="newPassword2"
+                  name="confirmPassword"
                   customStyle={inputStyles}
-                  value={values.newPassword2}
+                  value={values.confirmPassword}
                   onChange={(e) => {
                     handleChange(e);
-                    setFieldTouched("newPassword2");
+                    setFieldTouched("confirmPassword");
                   }}
                 />
 
                 <ErrorText>
-                  {(touched.newPassword2 && errors.newPassword2) ||
+                  {(touched.confirmPassword && errors.confirmPassword) ||
                     (!isSubmitting &&
-                      changePasswordState.error["error"]["newPassword2"])}
+                      resetPasswordState.error["error"]["confirmPassword"])}
                 </ErrorText>
 
                 <DrawerButton
@@ -162,7 +148,7 @@ const ChangePasswordModal = ({ show, onHide, size, logout }) => {
             )}
           </Formik>
         </ModalBody>
-      </ChangePasswordModalContainer>
+      </ResetPasswordModalContainer>
     </Modal>
   );
 };
@@ -171,7 +157,7 @@ const mapDispatchToProps = {
   logout: sessionOperations.logout,
 };
 
-export default connect(null, mapDispatchToProps)(ChangePasswordModal);
+export default connect(null, mapDispatchToProps)(ResetPasswordModal);
 
 const ErrorText = styled.p`
   color: rgba(255, 0, 0, 0.759);
@@ -180,7 +166,7 @@ const ErrorText = styled.p`
   position: absolute;
 `;
 
-const ChangePasswordModalContainer = styled.div`
+const ResetPasswordModalContainer = styled.div`
   padding: 20px 20px;
 `;
 

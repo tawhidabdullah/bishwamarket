@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as Yup from "yup";
 
 export const initialSignupValues = {
@@ -5,6 +6,7 @@ export const initialSignupValues = {
   lastName: "",
   email: "",
   password: "",
+  password2: "",
 };
 
 export const signupValidationSchema = Yup.object().shape({
@@ -24,4 +26,10 @@ export const signupValidationSchema = Yup.object().shape({
     .label("Password")
     .required("Password is required")
     .min(6, "Password must have at least 6 characters"),
+
+  password2: Yup.string()
+    .label("Confirm password")
+    .required()
+    .min(6, "Confirm password must have at least 6 characters")
+    .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });

@@ -1,16 +1,14 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useAlert } from "react-alert";
 import { Col, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { useAlert } from "react-alert";
-
+import styled from "styled-components";
 // import component
 import { OrderSuccessMessage } from "../../components/OrderSuccessMessage";
 import { OrderDetails } from "../../containers/OrderDetails";
 import { OrderInfo } from "../../containers/OrderInfo";
-
 // hook
 import { useHandleFetch } from "../../hooks";
 

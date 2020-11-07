@@ -1,26 +1,11 @@
 //@ts-nocheck
-import React, { useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-
+import { Header } from "../../components/elements/Header";
 // import order info detail component
 import { OrderInfoDetails } from "../../components/OrderInfoDetails";
-
 import DeliveryBanner from "./DeliveryBanner";
-
-import { Header } from "../../components/elements/Header";
-
-const summeryList = [
-  "Order ID: 5563853658932",
-  "Order Date: October 22, 2018",
-  "Order Total: $907.28",
-];
-const shippingAddress = [
-  "Gerg Harvell",
-  "568, Suite Ave.",
-  "Austrlia, 235153",
-  "Contact No. 987456321",
-];
 
 const customStyle = {
   "font-size": "calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)))",
@@ -28,9 +13,13 @@ const customStyle = {
   "line-height": 1,
 };
 
-const OrderInfo = ({ order }) => {
-  console.log("order", order);
+const textStyles = {
+  padding: "unset",
+  "font-size": "16px",
+  "line-height": "20px",
+};
 
+const OrderInfo = ({ order }) => {
   return (
     <div>
       <Row>
@@ -52,7 +41,7 @@ const OrderInfo = ({ order }) => {
             <Header customStyle={customStyle} content="Shipping Address" />
             <InfoList>
               <InfoListItem>
-                Name:{order.shippingAddress && order.shippingAddress.firstName}{" "}
+                Name: {order.shippingAddress && order.shippingAddress.firstName}{" "}
                 {order.shippingAddress && order.shippingAddress.lastName}
               </InfoListItem>
 
@@ -65,7 +54,7 @@ const OrderInfo = ({ order }) => {
               </InfoListItem>
 
               <InfoListItem>
-                Country:{" "}
+                Address:{" "}
                 {order.shippingAddress && order.shippingAddress.address1}
               </InfoListItem>
               <InfoListItem>Total Price: ${order.totalPrice}</InfoListItem>
@@ -77,11 +66,7 @@ const OrderInfo = ({ order }) => {
           <OrderInfoDetails
             header="Payment Method"
             infos="Pay on Delivery (Cash/Card). Cash on delivery (COD) availabel. Card/Net banking acceptance subject to device availability."
-            customStyle={{
-              padding: "unset",
-              "font-size": "16px",
-              "line-height": "20px",
-            }}
+            customStyle={textStyles}
           />
         </Col>
 

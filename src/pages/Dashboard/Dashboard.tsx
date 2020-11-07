@@ -1,28 +1,27 @@
-import React, {useEffect} from "react";
-import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { useAlert } from "react-alert";
+import { Col, Container, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useAlert } from "react-alert";
+import styled from "styled-components";
 
 // import header element
 import { PageHeader } from "../../components/common/PageHeader";
+import { DashboardContent } from "../../containers/DashboardContent";
 
 // import side bar component
 import { DashboardSideBar } from "../../containers/DashboardSidebar";
-import { DashboardContent } from "../../containers/DashboardContent";
 
-const Dashboard = ({isAuthenticated}) => {
-
+const Dashboard = ({ isAuthenticated }) => {
   const history = useHistory();
   const alert = useAlert();
-  
+
   useEffect(() => {
-    if(!isAuthenticated) {
+    if (!isAuthenticated) {
       alert.error("Unauthorized access");
-      history.push('/');
+      history.push("/");
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <section>
@@ -43,9 +42,9 @@ const Dashboard = ({isAuthenticated}) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.session.isAuthenticated,
-})
+});
 
 export default connect(mapStateToProps)(Dashboard);
 

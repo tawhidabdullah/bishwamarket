@@ -6,18 +6,19 @@ interface Props {
   customStyle: any;
   wrapperStyle: any;
   onClick?: any;
+  type?: string;
 }
-
 
 const AuthButton = ({
   children,
   customStyle,
   wrapperStyle,
   onClick,
+  type = "button",
 }: Props) => {
   return (
     <AuthButtonContainer wrapperStyle={wrapperStyle}>
-      <Button type="button" customStyle={customStyle} onClick={onClick}>
+      <Button type={type} customStyle={customStyle} onClick={onClick}>
         {children}
       </Button>
     </AuthButtonContainer>

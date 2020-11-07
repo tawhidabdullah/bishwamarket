@@ -39,7 +39,7 @@ const OrderSuccessMessage = () => {
                   color: "#777",
                 }}
               >
-                Transaction ID:267676GHERT105467
+                Transaction ID:{""}
               </Text>
             </MessageContainer>
           </Col>

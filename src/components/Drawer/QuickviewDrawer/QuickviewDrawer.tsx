@@ -196,7 +196,7 @@ const QuickviewDrawer = ({
           </DetailsContainer>
         </QuickviewDrawerContainer>
       ) : (
-        <>Loading </>
+        <> </>
       )}
     </Fragment>
   );

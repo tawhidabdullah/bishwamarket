@@ -1,22 +1,23 @@
 //@ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { Row, Col, Modal } from "react-bootstrap";
+import jwt_decode from "jwt-decode";
 
 // import elements
 import { Header } from "../../components/elements/Header";
 import { Text } from "../../components/elements/Text";
+
+// import modals
+import { ContactModal } from "../../components/Modal/ContactModal";
+import { AddressModal } from "../../components/Modal/AddressModal";
+import { ChangePasswordModal } from "../../components/Modal/ChangePasswordModal";
 
 // import account info component
 import AccountInfo from "./AccountInfo";
 
 // import styles
 import { headerStyles, textStyles } from "./Dashboard.styles";
-
-// import modals
-import { ContactModal } from "../../components/Modal/ContactModal";
-import { ChangePasswordModal } from "../../components/Modal/ChangePasswordModal";
-import { AddressModal } from "../../components/Modal/AddressModal";
 
 const DashboardContent = () => {
   // TODO should all these state be repeated?
@@ -35,12 +36,31 @@ const DashboardContent = () => {
   const openAddressModal = () => setIsAddressModal(true);
   const closeAddressModal = () => setIsAddressModal(false);
 
+  const [customerData, setCustomerData] = useState(null);
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    setToken(authToken);
+  });
+
+  useEffect(() => {
+    try {
+      setCustomerData(jwt_decode(token));
+    } catch (error) {
+      return;
+    }
+  }, [token]);
+
   return (
     <DashboardContentWrapper>
       <InnerContainer>
         <Header customStyle={headerStyles} content="My Dashboard" />
 
-        <Text customStyle={textStyles}>Hello, MARK JECNO !</Text>
+        <Text customStyle={textStyles}>
+          Hello,{" "}
+          {customerData && `${customerData.firstName} ${customerData.lastName}`}
+        </Text>
         <br />
         <Text customStyle={textStyles}>
           From your My Account Dashboard you have the ability to view a snapshot
@@ -51,66 +71,72 @@ const DashboardContent = () => {
         <AccountInfoContainer>
           <Header customStyle={headerStyles} content="Account Information" />
           <Row>
-            <Col sm={6}>
-              <AccountInfo
-                title="Contact Information"
-                infoList={[
-                  "MARK JECNO",
-                  "MARK-JECNO@gmail.com",
-                  "+8801234-458-987",
-                ]}
-                showModal={isContactModal}
-                openModal={openContactModal}
-                modal={
-                  <ContactModal
-                    show={isContactModal}
-                    onHide={closeContactModal}
+            {customerData && (
+              <>
+                <Col sm={6}>
+                  <AccountInfo
+                    title="Contact Information"
+                    infoList={[
+                      `${customerData.firstName} ${customerData.lastName}`,
+                      `${customerData.email}`,
+                      ` ${customerData.phone}`,
+                    ]}
+                    showModal={isContactModal}
+                    openModal={openContactModal}
+                    modal={
+                      <ContactModal
+                        show={isContactModal}
+                        onHide={closeContactModal}
+                        size="md"
+                        info={customerData}
+                      />
+                    }
+                  />
+
+                  <Text
+                    customStyle={{
+                      ...textStyles,
+                      "font-weight": "700",
+                      cursor: "pointer",
+                      color: "#00baf2",
+                      "letter-spacing": "unset",
+                    }}
+                    clickAction={openPasswordModal}
+                  >
+                    Change Password
+                  </Text>
+                  <ChangePasswordModal
+                    show={isPasswordModal}
+                    onHide={closePasswordModal}
                     size="md"
                   />
-                }
-              />
+                </Col>
 
-              <Text
-                customStyle={{
-                  ...textStyles,
-                  "font-weight": "700",
-                  cursor: "pointer",
-                  color: "#00baf2",
-                  "letter-spacing": "unset",
-                }}
-                clickAction={openPasswordModal}
-              >
-                Change Password
-              </Text>
-              <ChangePasswordModal
-                show={isPasswordModal}
-                onHide={closePasswordModal}
-                size="md"
-              />
-            </Col>
-
-            <Col sm={6}>
-              <AccountInfo
-                title="Address"
-                infoList={[
-                  "First name: Mark",
-                  "Last name: Jecno",
-                  "City/Town: Dhaka",
-                  "Country: Bangladesh",
-                  " Address: Nikunjo-2, Khilkhet, Dhaka",
-                  "Phone: 123-456-789",
-                ]}
-                showModal={isAddressModal}
-                openModal={openAddressModal}
-                modal={
-                  <AddressModal
-                    show={isAddressModal}
-                    onHide={closeAddressModal}
-                    size="md"
+                <Col sm={6}>
+                  <AccountInfo
+                    title="Address"
+                    infoList={[
+                      `First name: ${customerData.firstName}`,
+                      `Last name: ${customerData.lastName}`,
+                      `City: ${customerData.city || "no city found"}`,
+                      `Country: ${customerData.country || "no country found"}`,
+                      `Address: ${customerData.address1 || "no address found"}`,
+                      `Phone: ${customerData.phone || "no phone found"}`,
+                    ]}
+                    showModal={isAddressModal}
+                    openModal={openAddressModal}
+                    modal={
+                      <AddressModal
+                        show={isAddressModal}
+                        onHide={closeAddressModal}
+                        size="md"
+                        info={customerData}
+                      />
+                    }
                   />
-                }
-              />
-            </Col>
+                </Col>
+              </>
+            )}
           </Row>
         </AccountInfoContainer>
       </InnerContainer>
