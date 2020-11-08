@@ -44,7 +44,7 @@ const RightNav = ({
 
            <NavItem>
             ABOUT  <i className="fa fa-angle-down" />
-            {/* <BlogDropdown /> */}
+            <BlogDropdown />
           </NavItem>
 
 

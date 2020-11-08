@@ -1,0 +1,33 @@
+
+// Responsive Variables
+
+// min : 1200px, max 1499
+$desktop-device: "only screen and (min-width: 75em) and (max-width: 93.6875em)";
+
+// min : 992px, max 1199
+$laptop-device: "only screen and (min-width: 62em) and (max-width: 74.9375em)";
+
+// min : 768px, max 991px
+$tablet-device: "only screen and (min-width: 48em) and (max-width: 61.9375em)";
+
+// max 767px
+$large-mobile: "only screen and (max-width: 47.9375em)";
+
+// max 575px
+$small-mobile: "only screen and (max-width: 35.9375em)";
+
+// max 479px
+$extra-small-mobile: "only screen and (max-width: 29.9375em)";
+
+$color-primary-1: #091436;
+$color-primary-2: #111b3d;
+$color-primary-overlay: rgba(17, 27, 61, 0.51);
+$color-light-1: #feffff;
+$color-light-2: #def2f1;
+$color-light-back-1: #f7f8fa;
+$color-light-back-2: #f7f8fa;
+$color-dark-1: #071029;
+$color-golden: rgb(211, 180, 102);
+$color-sweet-red: #9c2e53;
+
+$transition--cubic: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
