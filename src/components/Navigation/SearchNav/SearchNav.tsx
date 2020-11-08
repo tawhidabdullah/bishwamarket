@@ -311,7 +311,7 @@ const Contents = styled.div`
   /* margin-left: 35px; */
   border-radius: 0;
   padding: 20px 10px 20px 10px;
-  border: 2px solid #f1f1f1;
+  /* border: 2px solid #f1f1f1; */
   z-index: 10;
   -webkit-transition: height 2s;
   transition: height 2s;
