@@ -22,13 +22,30 @@ const useProductVariation = (pricing) => {
     }
   };
 
+  const getDefaultVariationId = (pricing) => {
+    const defaultVariationId = pricing?.[0]?.["_id"];
+    return defaultVariationId;
+  };
+
   useEffect(() => {
     const pricingOptions = getPricingOptions(pricing);
-    setAttributes(pricingOptions);
-    const defaultVariationId = pricingOptions?.[0]?.["value"];
-    setSelectedVariationId(defaultVariationId);
-    const defaultPrice = getPriceByVariationId(defaultVariationId);
-    setPrice(defaultPrice);
+    let defaultVariationId = "";
+
+    // if there is not attribute, then just return the default price.
+    if (!pricingOptions[0]) {
+      defaultVariationId = getDefaultVariationId(pricing);
+      const price = getPriceByVariationId(defaultVariationId);
+      setPrice(price);
+    }
+    // do these if there's attributes
+    else {
+      setAttributes(pricingOptions);
+      defaultVariationId = getDefaultVariationId(pricing);
+      // set default variation id to selected variation id.
+      setSelectedVariationId(defaultVariationId);
+      const defaultPrice = getPriceByVariationId(defaultVariationId);
+      setPrice(defaultPrice);
+    }
   }, [pricing]);
 
   useEffect(() => {

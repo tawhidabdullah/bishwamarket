@@ -1,6 +1,10 @@
-import React from "react";
+//@ts-nocheck
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { useAlert } from "react-alert";
 
 // import global actions
 import { globalOperations } from "../../../state/ducks/globalState";
@@ -11,6 +15,7 @@ import ProductDropdown from "./ProductDropdown";
 import FeatureDropdown from "./FeatureDropdown";
 import PageDropdown from "./PageDropdown";
 import BlogDropdown from "./BlogDropdown";
+import AccountDropdown from "./AccountDropdown";
 
 // import styles
 import { IconWrapper, NavToggler } from "./commonStyles";
@@ -21,32 +26,47 @@ const RightNav = ({
   toggleWishlistDrawer,
   toggleCartDrawer,
   toggleNavigationDrawer,
+  isAuthenticated,
 }) => {
+  const alert = useAlert();
+
+  const [customerData, setCustomerData] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const token = localStorage.getItem("authToken");
+      try {
+        setCustomerData(jwt_decode(token));
+      } catch (error) {
+        alert.error("Unauthorized access");
+      }
+    }
+  }, [isAuthenticated]);
+
   return (
     <NavItemContainer>
       <ToggleContainer>
         <NavItems>
-          <NavItem>
-            HOME 
+          <NavItem to="/">
+            HOME
             {/* <i className="fa fa-angle-down" /> */}
             {/* <HomeDropdown /> */}
           </NavItem>
-          <NavItem>
-            SHOP 
+          <NavItem to="/product">
+            SHOP
             {/* <i className="fa fa-angle-down" /> */}
             {/* <ShopDropdown /> */}
           </NavItem>
-          <NavItem>
-            Catalog 
+          <NavItem to="/collection">
+            Collection
             {/* <i className="fa fa-angle-down" /> */}
             {/* <ProductDropdown /> */}
           </NavItem>
 
-           <NavItem>
-            ABOUT  <i className="fa fa-angle-down" />
+          <NavItem to="##">
+            ABOUT <i className="fa fa-angle-down" />
             {/* <BlogDropdown /> */}
           </NavItem>
-
 
           {/* <NavItem>
             FEATURE 
@@ -61,12 +81,22 @@ const RightNav = ({
             BLOG <i className="fa fa-angle-down" />
             <BlogDropdown />
           </NavItem> */}
+
+          <NavItem to="##">
+            {isAuthenticated
+              ? `Logged in as ${customerData && customerData.firstName}`
+              : "Account"}{" "}
+            <span>
+              <i className="fa fa-angle-down" />
+            </span>
+            <AccountDropdown isAuthenticated={isAuthenticated} />
+          </NavItem>
         </NavItems>
       </ToggleContainer>
       <IconContainer>
-        <IconWrapper onClick={() => toggleSigninDrawer()}>
+        {/* <IconWrapper onClick={() => toggleSigninDrawer()}>
           <i className="fa fa-user"></i>
-        </IconWrapper>
+        </IconWrapper> */}
         {/* <WishBox onClick={() => toggleWishlistDrawer()}>
           <span>
             <i className="fa fa-heart"></i>
@@ -90,6 +120,10 @@ const RightNav = ({
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.session.isAuthenticated,
+});
+
 const mapDispatchToProps = {
   toggleSigninDrawer: globalOperations.toggleSigninDrawer,
   toggleWishlistDrawer: globalOperations.toggleWishlistDrawer,
@@ -97,9 +131,9 @@ const mapDispatchToProps = {
   toggleNavigationDrawer: globalOperations.toggleNavigationDrawer,
 };
 
-export default connect(null, mapDispatchToProps)(RightNav);
+export default connect(mapStateToProps, mapDispatchToProps)(RightNav);
 
-const NavItem = styled.li`
+const NavItem = styled(Link)`
   cursor: pointer;
   transition: 200ms;
   text-decoration: none;
@@ -130,6 +164,11 @@ const NavItems = styled.ul`
   justify-content: space-between;
   /* width: 38vw; */
   font-size: 15px;
+
+  & a {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 const NavItemContainer = styled.div`

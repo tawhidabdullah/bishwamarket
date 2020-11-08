@@ -1,17 +1,12 @@
 //@ts-ignore
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { MainSlider } from "../../components/Slider/MainSlider";
-import { Blog } from "../../components/Banner/Blog";
 import CollectionItem from "../../components/CollectionItem/CollectionItem";
+import { MainSlider } from "../../components/Slider/MainSlider";
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
-import offerImg from "../../assets/offerBanner/offer-banner.png";
-
 import { useQueryFetch } from "../../hooks";
 
 const ImageBanner = () => {
-
-
   //offerState
   const [offerData, setofferData] = useState([]);
   const [bannerStatus, setBannerStatus] = useState(true);
@@ -26,9 +21,6 @@ const ImageBanner = () => {
     }
   }, [featuredOffer.isSuccess]);
 
-
-
-
   //sliderData state
   const [status, setStatus] = useState(true);
   const [data, setdata] = useState([]);
@@ -42,8 +34,6 @@ const ImageBanner = () => {
       setStatus(false);
     }
   }, [bannerState.isSuccess]);
-
-
 
   //responsive slider
   const responsive = {
@@ -81,7 +71,7 @@ const ImageBanner = () => {
       },
     ],
   };
-  
+
   return (
     <NavigationContainer>
       <Content></Content>
@@ -110,8 +100,8 @@ const ImageBanner = () => {
         <> </>
       ) : (
         <BottomImage>
-          {offerData.map((item) => {
-            return <CollectionItem customStyles={{}} item={item} />;
+          {offerData.map((item, idx) => {
+            return <CollectionItem key={idx} customStyles={{}} item={item} />;
           })}
         </BottomImage>
       )}

@@ -85,8 +85,8 @@ const CartDrawer = ({
           <DrawerItemContainer>
             {cartItems &&
               cartItems.length > 0 &&
-              cartItems.map((item) => (
-                <DrawerItem key={item.product}>
+              cartItems.map((item, idx) => (
+                <DrawerItem key={idx}>
                   <QuantityContainer>
                     <i
                       className="fa fa-plus"

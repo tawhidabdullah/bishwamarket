@@ -1,41 +1,66 @@
-import React from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import img1 from "../../assets/collection/1 .jpg";
 
-
 // import utils
 import { addFilterToStorage } from "../../utils";
-const CollectionByCategory = ({ item }) => {
 
+const CollectionByCategory = ({ item }) => {
   const history = useHistory();
+
+  const [isDropdown, setIsDropdown] = useState(false);
+
   return (
     <Conetens>
       <Imagediv>
         <img src={item.fullCover || item.cover || item.icon || img1} />
       </Imagediv>
       <Details>
-        <h4>
-          (
-          {item && item.hasOwnProperty("subCategory") && item.subCategory
-            ? item.subCategory.length
-            : "0"}{" "}
-          products)
-        </h4>
-        <h6>{item.name}</h6>
-        {/* <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-         
-        </p> */}
-        <Button onClick={() => addFilterToStorage({"category": item.id}, () => {  
-          history.push('/product')
-        })}>shop now !</Button>
+        <p
+          onClick={() => setIsDropdown((value) => !value)}
+          style={{ fontWeight: "bold", cursor: "pointer" }}
+        >
+          {item.name}{" "}
+          <span
+            style={{
+              display: "inline-block",
+              marginRight: "10px",
+              cursor: "pointer",
+            }}
+          >
+            <i className={`fa fa-angle-${isDropdown ? "up" : "down"}`} />
+          </span>
+        </p>
+
+        {item &&
+          item.subCategory &&
+          isDropdown &&
+          item.subCategory.map((sub) => (
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                addFilterToStorage({ category: sub.id }, () =>
+                  history.push("/product")
+                )
+              }
+            >
+              {sub.name}
+            </p>
+          ))}
+        <Button
+          onClick={() =>
+            addFilterToStorage({ category: item.id }, () => {
+              history.push("/product");
+            })
+          }
+        >
+          shop now
+        </Button>
       </Details>
     </Conetens>
   );
 };
-
 
 export default CollectionByCategory;
 
@@ -44,7 +69,7 @@ const Conetens = styled.div`
   flex-direction: column;
 `;
 const Imagediv = styled.div`
-height:240px;
+  height: 240px;
 
   & img {
     height: 100%;
@@ -82,6 +107,6 @@ const Button = styled.button`
 
   &:hover {
     background-color: black;
-    color:ghostwhite;
+    color: ghostwhite;
   }
 `;

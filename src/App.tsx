@@ -33,6 +33,7 @@ const OrderHistory = lazy(() => import("./pages/OrderHistory"));
 const OrderSuccess = lazy(() => import("./pages/OrderSuccess"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
+const ErrorPage = lazy(() => import("./pages/Error"));
 
 // //productList
 
@@ -70,6 +71,7 @@ const App = () => {
               />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route path="*" component={ErrorPage} />
             </Switch>
           </Layout>
           <GlobalStyles />

@@ -17,19 +17,16 @@ const ProductByCategory = () => {
   //previously saving category data in redux is getting back
   let category = useSelector((state) => state.category);
 
-
-
   //state
   const [selectedCateoryId, setSelectedCategoryId] = useState("");
-const[indexColor,setColor]=useState(0)
+  const [indexColor, setColor] = useState(0);
   const [products, setproducts] = useState([]);
-  
 
   //setting initial selectedCateoryId
   useEffect(() => {
     if (category.length > 0) {
       setSelectedCategoryId(category[0].id);
-    } 
+    }
   }, [category.length]);
 
   //for data fetching hooks
@@ -50,8 +47,6 @@ const[indexColor,setColor]=useState(0)
           },
         },
       });
-
-      console.log(newProductsRes, "newProductsRes");
     };
 
     if (selectedCateoryId) {
@@ -66,16 +61,10 @@ const[indexColor,setColor]=useState(0)
       categoryProductsState.data.data
     ) {
       setproducts(categoryProductsState.data.data);
-      let p=document.getElementsByClassName("categoryName");
-      console.log(p[0],"p");
+      let p = document.getElementsByClassName("categoryName");
       p[indexColor].style.color = "red";
-    } 
-   
-    else {
+    } else {
       setproducts([]);
-   
-    
-    
     }
   }, [categoryProductsState.data]);
 
@@ -121,12 +110,12 @@ const[indexColor,setColor]=useState(0)
     ],
   };
 
-  const handleCategoryId = (id,index) => {
+  const handleCategoryId = (id, index) => {
     setSelectedCategoryId(id);
     let p = document.getElementsByClassName("categoryName");
-   
+
     p[index].style.color = "red";
-    p[indexColor].style.color="#444"
+    p[indexColor].style.color = "#444";
     setColor(index);
   };
 
@@ -161,7 +150,7 @@ const[indexColor,setColor]=useState(0)
 export default ProductByCategory;
 
 const Section = styled.div`
-margin-top:10px;
+  margin-top: 10px;
 `;
 
 const BB = styled.div`
@@ -174,7 +163,7 @@ const BB = styled.div`
 
   padding-bottom: 16px;
   padding-top: 16px;
-  padding-left:10px;
+  padding-left: 10px;
 `;
 
 const Span = styled.div`

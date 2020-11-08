@@ -28,9 +28,10 @@ const BrandNav = () => {
         {brandStatus ? (
           <> </>
         ) : (
-          brandList.data.map((item) => {
+          brandList.data.map((item, idx) => {
             return (
               <span
+                key={idx}
                 style={{
                   cursor: "pointer",
                 }}
