@@ -8,6 +8,9 @@ import nav1 from "../../../assets/nav/01.png";
 import { IconButton } from "../../../elemens";
 import { categoryOperations } from "../../../state/ducks/category";
 
+// import utils
+import { addFilterToStorage } from "../../../utils";
+
 
 // import component fetcher
 import ComponentFetcher from "../../ComponentFetcher";
@@ -85,7 +88,9 @@ const SearchNav = ({
               <ul className="nav-cat title-font">
                 {subcategory.slice(0, minlength).map((subitem, it) => {
                   return (
-                    <li key={it}>
+                    <li key={it} onClick={() => addFilterToStorage({'category': subitem.id},() => {
+                      history.push('/product')
+                    })}>
                       <img src={subitem.thumbnail || subitem.cover || nav1} />
 
                       <a>{subitem.name || plabon}</a>

@@ -43,7 +43,7 @@ const RightNav = ({
           </NavItem>
 
            <NavItem>
-            ABOUT  <i className="fa fa-angle-down" />
+            ABOUT   &nbsp; <i className="fa fa-angle-down" />
             {/* <BlogDropdown /> */}
           </NavItem>
 
@@ -127,7 +127,7 @@ const NavItems = styled.ul`
   margin: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   /* width: 38vw; */
   font-size: 15px;
 `;
