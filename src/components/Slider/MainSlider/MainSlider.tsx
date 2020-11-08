@@ -14,6 +14,7 @@ const MainSlider = ({
   const settings = {
     dots: false,
     infinite: true,
+    arrows: true,
     speed: 500,
 
     responsive: responsive.responsive,

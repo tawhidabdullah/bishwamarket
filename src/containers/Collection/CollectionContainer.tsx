@@ -30,7 +30,7 @@ const Main = styled.div`
 `;
 
 const Section = styled.div`
-  display: gtid;
+  display: grid;
   justify-items: center;
   align-items: center;
 `;

@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState } from "react";
 import Slider from "react-slick";
 import img from "../../../assets/banner/1.jpg";
@@ -39,7 +35,7 @@ const MediaBannerSlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -60,18 +56,19 @@ const MediaBannerSlider = () => {
     ],
   };
   return (
-      <Main> <MainContent>
-      <Slider {...settings}>
-        <MediaBanner />
-        <MediaBanner />
-        <MediaBanner />
+    <Main>
+      {" "}
+      <MainContent>
+        <Slider {...settings}>
+          <MediaBanner />
+          <MediaBanner />
+          <MediaBanner />
 
-        <MediaBanner />
-        <MediaBanner />
-      </Slider>
-    </MainContent>
+          <MediaBanner />
+          <MediaBanner />
+        </Slider>
+      </MainContent>
     </Main>
-   
   );
 };
 
@@ -82,7 +79,7 @@ const Main = styled.div`
   padding: 70px;
 
   @media only screen and (max-width: 600px) {
-    padding:20px 10px;
+    padding: 20px 10px;
   }
 `;
 const MainContent = styled.div`
@@ -99,7 +96,5 @@ const MainContent = styled.div`
     flex-wrap: wrap;
     border-right: 1px solid #ddd;
     padding: 30px;
-   
-   
   }
 `;

@@ -134,7 +134,7 @@ const ProductsByCategory = ({
           <i className="fa fa-exchange"></i>
         </ProductIcon> */}
       </ProductIconContainer>
-      <ProductDetail customStyles={{ ...customStyles, width: "100%" }}>
+      <ProductDetail customStyles={customStyles}>
         <DetailLeft customStyles={customStyles}>
           {/* <Rating>
             <i className="fa fa-star"></i>
@@ -253,7 +253,7 @@ const ProductDetail = styled.div`
         : "row"
       : "row"};
 
-  width: 100%;
+  width: 220px;
 
   flex-wrap: wrap;
   padding-bottom: 10px;
@@ -302,7 +302,7 @@ const ProductBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* margin: 10px 0; */
+  margin: 10px 0px;
 
   position: relative;
   overflow: hidden;

@@ -1,5 +1,6 @@
-import React from "react";
-import { connect , useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // import drawer
 import { SigninDrawer } from "../components/Drawer/SigninDrawer";
@@ -19,8 +20,12 @@ import { Footer } from "../components/Footer";
 
 import ScrollTopArrow from "../components/ScrollTopArrow";
 
+// import redux opts
+import { globalOperations } from "../state/ducks/globalState";
+
 const Layout = ({ children }) => {
-  const globalState = useSelector(state => state.globalState)
+  const globalState = useSelector((state) => state.globalState);
+  const dispatch = useDispatch();
   const {
     openSigninDrawer,
     openWishlistDrawer,
@@ -31,6 +36,17 @@ const Layout = ({ children }) => {
     openSettingsDrawer,
     openSearchDrawer,
   } = globalState;
+  const history = useHistory();
+
+  useEffect(() => {
+    history.listen((location) => {
+      if (history.action === "POP" || history.action === "PUSH") {
+        if (location.pathname !== "/") {
+          dispatch(globalOperations.toggleShopByCategory());
+        }
+      }
+    });
+  });
 
   return (
     <>
@@ -51,9 +67,5 @@ const Layout = ({ children }) => {
     </>
   );
 };
-
-const mapStateToProps = (state) => ({
-  globalState: state.globalState,
-});
 
 export default Layout;

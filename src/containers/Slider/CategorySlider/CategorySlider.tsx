@@ -1,13 +1,11 @@
-
-
-  //@ts-nocheck
+//@ts-nocheck
 import React from "react";
 
 import styled from "styled-components";
 import { MainSlider } from "../../../components/Slider/MainSlider";
 import { DealBanner } from "../../../components/Banner/DealBanner";
 import { CategoryItem } from "../../../components/Slider/CategoryItem";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 const CategorySlider = () => {
   let category = useSelector((state) => state.category);
   const responsive = {
@@ -19,7 +17,7 @@ const CategorySlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -30,7 +28,7 @@ const CategorySlider = () => {
           initialSlide: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -40,7 +38,7 @@ const CategorySlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -51,7 +49,7 @@ const CategorySlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -61,17 +59,14 @@ const CategorySlider = () => {
       //     slidesToShow: 2,
       //     slidesToScroll: 1,
       //     infinite: true,
-      //     dots: false,
+      //     dots: true,
       //     arrows: false,
       //   },
       // },
     ],
-
-
-
   };
   return (
-    <Section>
+    <Section className="categorySlider">
       {/* <DealBanner /> */}
 
       <MainSlider

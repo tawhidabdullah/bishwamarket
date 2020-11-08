@@ -77,7 +77,7 @@ const ProductByCategory = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -93,7 +93,7 @@ const ProductByCategory = () => {
           initialSlide: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -104,7 +104,7 @@ const ProductByCategory = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
     ],
@@ -120,31 +120,33 @@ const ProductByCategory = () => {
   };
 
   return (
-    <Section>
-      <BB>
-        {category.map((item, i) => (
-          <Span
-            className="categoryName"
-            key={i}
-            onClick={() => handleCategoryId(item.id, i)}
-          >
-            {item.name}
-          </Span>
-        ))}
-      </BB>
-      {products.length > 0 ? (
-        <MainSlider
-          responsive={responsive}
-          ProductsByCategory={ProductsByCategory}
-          data={products}
-          customStyles={{
-            Levelvisibility: "visible",
-          }}
-        />
-      ) : (
-        <ProductNotFound />
-      )}
-    </Section>
+    <div style={{ width: "95%", margin: "0 auto" }}>
+      <Section>
+        <BB>
+          {category.map((item, i) => (
+            <Span
+              className="categoryName"
+              key={i}
+              onClick={() => handleCategoryId(item.id, i)}
+            >
+              {item.name}
+            </Span>
+          ))}
+        </BB>
+        {products.length > 0 ? (
+          <MainSlider
+            responsive={responsive}
+            ProductsByCategory={ProductsByCategory}
+            data={products}
+            customStyles={{
+              Levelvisibility: "visible",
+            }}
+          />
+        ) : (
+          <ProductNotFound />
+        )}
+      </Section>
+    </div>
   );
 };
 export default ProductByCategory;

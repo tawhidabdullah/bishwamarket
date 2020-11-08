@@ -223,8 +223,13 @@ const CheckoutForm = ({
       clearCart();
       setCheckoutState({});
       await handleClearCart({});
-      alert.success("Order placed successfully");
-      history.push("/");
+
+      if (orderRes._id) {
+        history.push(`/order-success/${orderRes._id}`);
+      } else {
+        alert.success("Order placed successfully");
+        history.push("/");
+      }
     } else {
       alert.error(alertError);
     }
@@ -378,7 +383,9 @@ const CheckoutForm = ({
         )}
 
         <Col onClick={handleCheckout} md={12} sm={12} xs={12}>
-          <DrawerButton>Place Order</DrawerButton>
+          <DrawerButton>
+            {createOrderState.isLoading ? "Placing Order..." : "Place Order"}
+          </DrawerButton>
         </Col>
       </Row>
     </CheckoutFormContainer>

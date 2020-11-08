@@ -1,12 +1,11 @@
 // import React, { useState,useRef,useEffect } from "react";
- import styled from "styled-components";
-
+import styled from "styled-components";
 
 import React, { useState } from "react";
 import Slider from "react-slick";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { Blog } from "../../components/Banner/Blog";
- import { HotdealItem } from "../../components/HotdealItem";
+import { HotdealItem } from "../../components/HotdealItem";
 import { MediaBanner } from "../../components/Slider/MediaBanner";
 
 import img1 from "../../assets/hotDeal/1.jpg";
@@ -15,35 +14,32 @@ import { RightBar } from "../../components/ProductListing/RightBar";
 
 // const SlideCustom = (props) => {
 
-
-
 // const [current, setCurrent] = useState(0);
 
-  // const onNext = () => {
-  //   if (current + 1 == slides.length) {
-  //     setCurrent(0);
-  //   } else setCurrent((current) => current + 1);
-  // };
+// const onNext = () => {
+//   if (current + 1 == slides.length) {
+//     setCurrent(0);
+//   } else setCurrent((current) => current + 1);
+// };
 
-  // const onPrev = () => {
-  //   if (current - 1 < 0) {
-  //     let last = slides.length - 1;
-  //     setCurrent(last);
-  //   } else setCurrent((current) => current - 1);
-  // };
+// const onPrev = () => {
+//   if (current - 1 < 0) {
+//     let last = slides.length - 1;
+//     setCurrent(last);
+//   } else setCurrent((current) => current - 1);
+// };
 
-  // {/* <Slider > */}
-        
-        //  <HotdealItem
-        //   url={slides[current].url}
-        //   title={slides[current].title}
-        //   onNext={onNext}
-        //   onPrev={onPrev} 
+// {/* <Slider > */}
 
-        // />
+//  <HotdealItem
+//   url={slides[current].url}
+//   title={slides[current].title}
+//   onNext={onNext}
+//   onPrev={onPrev}
 
-        
-        // </Slider>
+// />
+
+// </Slider>
 //   console.log(props);
 //   return (
 //     <div>
@@ -91,11 +87,10 @@ const CollectionMediaBanner = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
-      }
-      
-    ]
+      },
+    ],
   };
 
   const settings2 = {
@@ -110,7 +105,7 @@ const CollectionMediaBanner = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
           vertical: true,
 
           swipeToSlide: true,
@@ -124,8 +119,7 @@ const CollectionMediaBanner = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
-        
+          arrows: true,
 
           swipeToSlide: true,
           focusOnSelect: true,
@@ -232,10 +226,10 @@ const CollectionMediaBanner = () => {
       </Main>
     </Section>
   );
-};;
+};
 export default CollectionMediaBanner;
-const Section=styled.div`
-background-color:#fff;
+const Section = styled.div`
+  background-color: #fff;
 `;
 const MainContents = styled.div`
   outline: none;
@@ -248,7 +242,7 @@ const MainContents = styled.div`
   grid-template-columns: 85% 15%;
   @media only screen and (max-width: 1000px) and (min-width: 580px) {
     grid-column: 1 / 3;
-    width:100%;
+    width: 100%;
     margin: 0 auto;
   }
   @media only screen and (max-width: 580px) and (min-width: 500px) {
@@ -307,18 +301,15 @@ const MainContents = styled.div`
   }
 `;
 
-
-const LeftContens=styled.div`
-
-`;
+const LeftContens = styled.div``;
 const Main = styled.div`
   background-color: #fff;
   display: grid;
   justify-content: center;
   padding: 30px;
   grid-template-columns: 300px 1fr auto;
-  max-width:1400px;
-  margin:0 auto;
+  max-width: 1400px;
+  margin: 0 auto;
   @media only screen and (max-width: 1000px) and (min-width: 580px) {
     grid-template-columns: 1fr 1fr;
   }
@@ -339,26 +330,23 @@ const MainContent = styled.div`
 `;
 
 const MidContent = styled.div`
-
   display: grid;
   grid-template-columns: minmax(140px, 1fr);
-  text-align:center;
-  align-items:center;
+  text-align: center;
+  align-items: center;
 `;
 
 const Jewellerybanner = styled.div`
-  background-size: cover ;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   padding: 35px;
-  height:100%;
- display:grid;
- align-items:center;
+  height: 100%;
+  display: grid;
+  align-items: center;
 `;
 
-const Text= styled.div`
-
-`;
+const Text = styled.div``;
 const HotDealContainer = styled.div`
   background-color: #f2f2f2;
 `;
@@ -386,10 +374,6 @@ const Rightslide = styled.div`
   padding-top: 100px;
   @media only screen and (max-width: 580px) {
     padding-top: 0px;
-    padding-left:10px;
+    padding-left: 10px;
   }
 `;
-
-
-
-

@@ -36,6 +36,7 @@ const useProductVariation = (pricing) => {
       defaultVariationId = getDefaultVariationId(pricing);
       const price = getPriceByVariationId(defaultVariationId);
       setPrice(price);
+      setSelectedVariationId(defaultVariationId);
     }
     // do these if there's attributes
     else {

@@ -26,7 +26,7 @@ const SpecilaProductSlider = () => {
           slidesToScroll: 4,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -37,7 +37,7 @@ const SpecilaProductSlider = () => {
           slidesToScroll: 4,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -48,7 +48,7 @@ const SpecilaProductSlider = () => {
           initialSlide: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -59,7 +59,7 @@ const SpecilaProductSlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
     ],
@@ -75,14 +75,16 @@ const SpecilaProductSlider = () => {
         }}
       />
 
-      <MainSlider
-        responsive={responsive}
-        ProductsByCategory={ProductsByCategory}
-        data={products}
-        customStyles={{
-          Levelvisibility: "visible",
-        }}
-      />
+      <div style={{ width: "95%", margin: "0 auto" }}>
+        <MainSlider
+          responsive={responsive}
+          ProductsByCategory={ProductsByCategory}
+          data={products}
+          customStyles={{
+            Levelvisibility: "visible",
+          }}
+        />
+      </div>
     </Section>
   );
 };

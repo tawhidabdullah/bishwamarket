@@ -1,16 +1,14 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
-const SearchContain=({title})=> {
-    return (
-      <Breadcrumbmain>
-        <Contain>
-          <h2>{title}</h2>
-         
-        </Contain>
-      </Breadcrumbmain>
-    );
-}
-
+const SearchContain = ({ title }) => {
+  return (
+    <Breadcrumbmain>
+      <Contain>
+        <h2>{title}</h2>
+      </Contain>
+    </Breadcrumbmain>
+  );
+};
 
 export default SearchContain;
 
@@ -20,7 +18,7 @@ const Breadcrumbmain = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  width:100%;
+  width: 100%;
 `;
 
 const Contain = styled.div`

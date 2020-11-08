@@ -34,7 +34,7 @@ const ContentSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -44,7 +44,7 @@ const ContentSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -54,7 +54,7 @@ const ContentSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -65,7 +65,7 @@ const ContentSlider = () => {
           slidesToScroll: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -76,7 +76,7 @@ const ContentSlider = () => {
           initialSlide: 2,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -86,7 +86,7 @@ const ContentSlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
       {
@@ -96,7 +96,7 @@ const ContentSlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
 
@@ -107,7 +107,7 @@ const ContentSlider = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: false,
-          arrows: false,
+          arrows: true,
         },
       },
     ],

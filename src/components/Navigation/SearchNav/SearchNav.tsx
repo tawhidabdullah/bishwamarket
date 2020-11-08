@@ -200,6 +200,9 @@ const SearchNav = ({
         </span>
         <input
           type="text"
+          style={{
+            flex: 1,
+          }}
           placeholder="Search a Product"
           value={searchValue}
           onChange={onSearchBarChange}
