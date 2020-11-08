@@ -58,7 +58,7 @@ const WishListDrawer = ({
             <WishListText>
               <span>Item name</span>
               <span>Size</span>
-              <span>$Price</span>
+              <span>&#2547;&nbsp;Price</span>
             </WishListText>
 
             <span>
@@ -74,7 +74,7 @@ const WishListDrawer = ({
             <WishListText>
               <span>Item name</span>
               <span>Size</span>
-              <span>$Price</span>
+              <span>&#2547;&nbsp;Price</span>
             </WishListText>
 
             <span>
@@ -90,7 +90,7 @@ const WishListDrawer = ({
             <WishListText>
               <span>Item name</span>
               <span>Size</span>
-              <span>$Price</span>
+              <span>&#2547;&nbsp;Price</span>
             </WishListText>
 
             <span>
@@ -100,7 +100,7 @@ const WishListDrawer = ({
           <hr />
           <SubTotalContainer>
             <span>Subtotal</span>
-            <span>$220</span>
+            <span>&#2547;&nbsp;220</span>
           </SubTotalContainer>
           <hr />
           <DrawerButton

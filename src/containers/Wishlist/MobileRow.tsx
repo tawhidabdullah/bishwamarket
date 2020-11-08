@@ -9,7 +9,7 @@ const MobileRow = () => {
   return (
     <MobileRowContainer>
       <TableText content="In Stock" />
-      <TableText>$250.15</TableText>
+      <TableText>&#2547;&nbsp;250.15</TableText>
       <TableText>
         <ActionContainer
           customStyle={{

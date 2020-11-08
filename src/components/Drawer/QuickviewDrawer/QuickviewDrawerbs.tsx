@@ -47,7 +47,7 @@ const QuickviewDrawer = ({ open, toggleQuickviewDrawer }) => {
                 </Text>
               </DrawerHeader>
               <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
-                $32.00
+              &#2547;&nbsp;32.00
               </Text>
 
               <ColorContainer>

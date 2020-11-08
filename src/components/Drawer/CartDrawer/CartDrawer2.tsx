@@ -103,11 +103,11 @@ const CartDrawer = ({
 
                   <ItemInfo>
                     <ItemHeader>{item.name}</ItemHeader>
-                    <Price>${item.price}</Price>
+                    <Price>&#2547;&nbsp;{item.price}</Price>
                   </ItemInfo>
 
                   <CartItemTotal>
-                    ${parseInt(item.price) * parseInt(item.quantity)}
+                  &#2547;&nbsp;{parseInt(item.price) * parseInt(item.quantity)}
                   </CartItemTotal>
 
                   <RemoveItem onClick={() => handleRemoveFromCart(item)}>
@@ -124,7 +124,7 @@ const CartDrawer = ({
               }}
             >
               <span>Checkout</span>
-              <span>${totalPrice}</span>
+              <span>&#2547;&nbsp;{totalPrice}</span>
             </CheckoutButton>
           </CartFooter>
         </CartContainer>

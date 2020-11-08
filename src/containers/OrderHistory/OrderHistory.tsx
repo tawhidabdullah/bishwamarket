@@ -79,7 +79,7 @@ const OrderHistory = () => {
 
                         <MobileRow>
                           <TableText customStyle={{ color: "#000" }}>
-                            Total Price: ${order.totalPrice}
+                            Total Price: &#2547;&nbsp;{order.totalPrice}
                           </TableText>
 
                           <TableText>
@@ -93,7 +93,7 @@ const OrderHistory = () => {
                         <TableText
                           customStyle={{ "font-size": "22px", color: "#000" }}
                         >
-                          ${order.totalPrice}
+                          &#2547;&nbsp;{order.totalPrice}
                         </TableText>
                       </TableDataContainer>
 

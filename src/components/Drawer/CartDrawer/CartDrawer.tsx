@@ -56,7 +56,7 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
 
               <WishListText>
                 <span>Item name</span>
-                <span>1 X $250</span>
+                <span>1 X &#2547;&nbsp;250</span>
               </WishListText>
               <span>
                 <i className="fa fa-trash"></i>
@@ -72,7 +72,7 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
 
               <WishListText>
                 <span>Item name</span>
-                <span>1 X $250</span>
+                <span>1 X &#2547;&nbsp;250</span>
               </WishListText>
 
               <span>
@@ -89,7 +89,7 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
 
               <WishListText>
                 <span>Item name</span>
-                <span>1 X $250</span>
+                <span>1 X &#2547;&nbsp;250</span>
               </WishListText>
 
               <span>
@@ -100,7 +100,7 @@ const CartDrawer = ({ open, toggleCartDrawer }) => {
           <CTAContainer>
             <SubTotalContainer>
               <span>Subtotal</span>
-              <span>$220</span>
+              <span>&#2547;&nbsp;220</span>
             </SubTotalContainer>
 
             <ButtonContainer>

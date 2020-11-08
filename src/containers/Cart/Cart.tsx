@@ -56,7 +56,7 @@ const Cart = () => {
                         min="0"
                         value="1"
                       />
-                      <TableText>$250.15</TableText>
+                      <TableText>&#2547;&nbsp;250.15</TableText>
                       <TableText>
                         <ActionButton>&#10005;</ActionButton>
                       </TableText>
@@ -67,7 +67,7 @@ const Cart = () => {
                     <TableText
                       customStyle={{ "font-size": "22px", color: "#000" }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
 
@@ -94,7 +94,7 @@ const Cart = () => {
                     <TableText
                       customStyle={{ "font-size": "22px", color: "#00baf2" }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
                 </tr>
@@ -121,7 +121,7 @@ const Cart = () => {
                         min="0"
                         value="1"
                       />
-                      <TableText>$250.15</TableText>
+                      <TableText>&#2547;&nbsp;250.15</TableText>
                       <TableText>
                         <ActionButton>&#10005;</ActionButton>
                       </TableText>
@@ -132,7 +132,7 @@ const Cart = () => {
                     <TableText
                       customStyle={{ "font-size": "22px", color: "#000" }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
 
@@ -159,7 +159,7 @@ const Cart = () => {
                     <TableText
                       customStyle={{ "font-size": "22px", color: "#00baf2" }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
                 </tr>

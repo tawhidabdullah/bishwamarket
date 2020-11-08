@@ -132,7 +132,7 @@ const QuickviewDrawer = ({
               <Text>{Item[0].name}</Text>
             </DrawerHeader>
             <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
-              Price: ${price}
+              Price: &#2547;&nbsp;{price}
             </Text>
 
             <ProductDetailTextContainer>

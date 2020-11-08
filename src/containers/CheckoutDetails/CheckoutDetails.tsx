@@ -51,22 +51,22 @@ const CheckoutDetails = ({
               cartItems.map((item, idx) => (
                 <QuantityListItem key={idx}>
                   {item.name} X {item.quantity}
-                  <span>${item.quantity * item.price}</span>
+                  <span>&#2547;&nbsp;{item.quantity * item.price}</span>
                 </QuantityListItem>
               ))}
           </QuantityList>
 
           <SubTotalList>
             <SubTotalListItem>
-              SubTotal <SubTotal>${totalPrice}</SubTotal>
+              SubTotal <SubTotal>&#2547;&nbsp;{totalPrice}</SubTotal>
             </SubTotalListItem>
 
             <SubTotalListItem>
-              Shipping <SubTotal>${shippingCost}</SubTotal>
+              Shipping <SubTotal>&#2547;&nbsp;{shippingCost}</SubTotal>
             </SubTotalListItem>
 
             <SubTotalListItem>
-              Payment <SubTotal>${shippingCost}</SubTotal>
+              Payment <SubTotal>&#2547;&nbsp;{shippingCost}</SubTotal>
             </SubTotalListItem>
           </SubTotalList>
 
@@ -74,7 +74,7 @@ const CheckoutDetails = ({
             <TotalPriceItem>
               Total{" "}
               <SubTotal>
-                ${parseInt(totalPrice) + parseInt(shippingCost)}
+              &#2547;&nbsp;{parseInt(totalPrice) + parseInt(shippingCost)}
               </SubTotal>
             </TotalPriceItem>
           </TotalPriceList>

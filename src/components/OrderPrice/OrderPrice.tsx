@@ -19,24 +19,24 @@ const OrderPrice = ({ totalPrice, deliveryCharge }) => {
         <PriceList>
           <PriceListItem>
             Subtotal
-            <Text customStyle={textStyles}>${totalPrice} </Text>
+            <Text customStyle={textStyles}>&#2547;&nbsp;{totalPrice} </Text>
           </PriceListItem>
 
           <PriceListItem>
             Shipping
-            <Text customStyle={textStyles}>${deliveryCharge} </Text>
+            <Text customStyle={textStyles}>&#2547;&nbsp;{deliveryCharge} </Text>
           </PriceListItem>
 
           {/* <PriceListItem>
             Tax(GST)
-            <Text customStyle={textStyles}>$0.15 </Text>
+            <Text customStyle={textStyles}>&#2547;&nbsp;0.15 </Text>
           </PriceListItem> */}
         </PriceList>
       </OrderPriceContainer>
       <TotalPrice>
         Total
         <Text customStyle={textStyles}>
-          ${parseInt(totalPrice) + parseInt(deliveryCharge)}
+        &#2547;&nbsp;{parseInt(totalPrice) + parseInt(deliveryCharge)}
         </Text>
       </TotalPrice>
     </Fragment>

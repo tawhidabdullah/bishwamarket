@@ -31,7 +31,7 @@ const OrderInfo = ({ order }) => {
               <InfoListItem>
                 Ordered: {new Date(order.added).toDateString()}
               </InfoListItem>
-              <InfoListItem>Total Price: ${order.totalPrice}</InfoListItem>
+              <InfoListItem>Total Price: &#2547;&nbsp;{order.totalPrice}</InfoListItem>
             </InfoList>
           </OrderInfoDetailsContainer>
         </Col>
@@ -57,7 +57,7 @@ const OrderInfo = ({ order }) => {
                 Address:{" "}
                 {order.shippingAddress && order.shippingAddress.address1}
               </InfoListItem>
-              <InfoListItem>Total Price: ${order.totalPrice}</InfoListItem>
+              <InfoListItem>Total Price: &#2547;&nbsp;{order.totalPrice}</InfoListItem>
             </InfoList>
           </OrderInfoDetailsContainer>
         </Col>
