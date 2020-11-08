@@ -14,7 +14,7 @@ const ImageBannerCategoryItem = ({category}) => {
     }
     return (
       <CategoryItem>
-      <ul style={{marginBottom: "0 !important"}} className="nav-cat title-font">
+      <ul className="nav-cat title-font">
         {category.slice(0, 6).map((cat, it) => {
           return (
             <li key={it} onClick={() => addFilterToStorage({'category': cat.id},() => {

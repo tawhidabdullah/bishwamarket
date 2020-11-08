@@ -82,7 +82,7 @@ const SearchNav = ({
           Shop By Category
         </ShopCategory>
 
-        {toggleCategory ? (
+        {/* {toggleCategory ? (
           <Contents>
             <CategoryItem>
               <ul className="nav-cat title-font">
@@ -112,7 +112,7 @@ const SearchNav = ({
           </Contents>
         ) : (
           ""
-        )}
+        )} */}
       </NavCategory>
       <SearchCategory>
         <span>
