@@ -1,21 +1,20 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../../../assets/dropdown.png";
-import nav1 from "../../../assets/nav/01.png";
 import { IconButton } from "../../../elemens";
-import { globalOperations } from "../../../state/ducks/globalState";
+import { useQueryFetch } from "../../../hooks";
 import { categoryOperations } from "../../../state/ducks/category";
-
+import { globalOperations } from "../../../state/ducks/globalState";
 // import utils
 import { addFilterToStorage } from "../../../utils";
-
-
 // import component fetcher
 import ComponentFetcher from "../../ComponentFetcher";
-import { useQueryFetch } from "../../../hooks";
+
+
+
 
 
 
@@ -32,7 +31,7 @@ const SearchNav = ({
   const [subcategory, setSubCategory] = useState([]);
   const [minlength, setminlength] = useState(8);
   const history = useHistory();
-  const globalState = useSelector(state => state.globalState); 
+  const globalState = useSelector(state => state.globalState);
 
   const location = useLocation();
 
@@ -70,7 +69,7 @@ const SearchNav = ({
     return location.pathname === '/'
   }
 
-  console.log('routeMatch',location);
+  console.log('routeMatch', location);
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);
@@ -85,7 +84,13 @@ const SearchNav = ({
   };
 
 
-  const categoryList = useQueryFetch('categoryList')
+  const categoryList = useQueryFetch('categoryList');
+
+  const [showMore, setShowMore] = useState(false);
+
+  const handleDisplayMoreClick = () => {
+    setShowMore(!showMore);
+  };
   return (
     <SearchNavContainer>
       <NavCategory>
@@ -102,21 +107,21 @@ const SearchNav = ({
           <Contents>
             <CategoryItem>
               <ul className="nav-cat title-font">
-                {categoryList.isSuccess && categoryList.data?.length > 0 && categoryList.data.slice(0,minlength).map((cat) => {
+                {categoryList.isSuccess && categoryList.data?.length > 0 && categoryList.data.slice(0, 6).map((cat) => {
                   return (
-                    <li style={{cursor: "pointer"}} key={cat.id} 
-                    onClick={() => addFilterToStorage({'category': cat.id},() => {
-                      history.push('/product')
-                    })}>
+                    <li style={{ cursor: "pointer" }} key={cat.id}
+                      onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+                        history.push('/product')
+                      })}>
                       <img src={cat.icon || cat.thumbnail} />
 
                       <a>{cat.name}</a>
                     </li>
                   )
                 })}
-             
 
-                <li style={{cursor: "pointer"}} onClick={updateLength}>
+
+                {/* <li style={{ cursor: "pointer" }} onClick={updateLength}>
                   <a className="mor-slide-click">
                     more category <i className="fa fa-angle-down pro-down"></i>
                     <i
@@ -125,12 +130,51 @@ const SearchNav = ({
                     ></i>
                   </a>
                 </li>
+
+                //=============================== */}
+                <li style={{ cursor: "pointer", display: showMore ? "none" : 'block' }} >
+                  <a
+                    onClick={handleDisplayMoreClick}
+                    className="mor-slide-click">
+                    more category <i className="fa fa-angle-down pro-down"></i>
+                    <i
+                      className="fa fa-angle-up pro-up"
+                      style={{ display: "none" }}
+                    ></i>
+                  </a>
+                </li>
+                <div style={{ display: showMore ? "block" : 'none', cursor: "pointer" }}>
+                  {categoryList.data.slice(6).map((cat, it) => {
+                    return (
+                      <>
+                        <li style={{ transition: "opacity 3s" }} key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+                          history.push('/product')
+                        })}>
+                          <img src={cat.thumbnail || cat.cover} />
+
+                          <a>{cat.name}</a>
+                        </li>
+                      </>
+                    );
+                  })}
+                  <li style={{ cursor: "pointer", display: showMore ? "block" : 'none' }} >
+                    <a
+                      onClick={handleDisplayMoreClick}
+                      className="mor-slide-click">
+                      more category <i className="fa fa-angle-up pro-up"></i>
+                      <i
+                        className="fa fa-angle-up pro-up"
+                        style={{ display: "none" }}
+                      ></i>
+                    </a>
+                  </li>
+                </div>
               </ul>
             </CategoryItem>
           </Contents>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </NavCategory>
       <SearchCategory>
         <span>
@@ -152,7 +196,7 @@ const SearchNav = ({
           <select
             onChange={(e) =>
               categoryListData[e.target.value] &&
-              categoryListData[e.target.value].hasOwnProperty("subCategory")
+                categoryListData[e.target.value].hasOwnProperty("subCategory")
                 ? setSubCategory(categoryListData[e.target.value].subCategory)
                 : setSubCategory([])
             }
@@ -169,20 +213,20 @@ const SearchNav = ({
       </SearchCategory>
       <Rightcontent>
 
-      <ComponentFetcher type='text' apiMapKey='phone'>
-        {(phoneText) => (
-                <Call href={`tel:${phoneText}`}>
-                <i className="fa fa-phone"></i> &nbsp;
+        <ComponentFetcher type='text' apiMapKey='phone'>
+          {(phoneText) => (
+            <Call href={`tel:${phoneText}`}>
+              <i className="fa fa-phone"></i> &nbsp;
+              <span>
                 <span>
-                  <span>
-                    {phoneText}
-                  </span>
+                  {phoneText}
                 </span>
-              </Call>
-        )}
-    </ComponentFetcher>
+              </span>
+            </Call>
+          )}
+        </ComponentFetcher>
 
-       
+
 
         {/* <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
@@ -309,13 +353,17 @@ const CategoryItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
+  background: #fff;
+  position: absolute;
+  width: 100%;
 
   & img {
     margin-right: 10px;
     border: 2px solid #f0f0f0;
     border-radius: 50%;
     padding: 3px;
-    height: 46.5px;
+    height: 40px;
+    width: 40px;
     transition: all 0.5s ease;
   }
 

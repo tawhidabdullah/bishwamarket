@@ -49,11 +49,11 @@ const ImageBannerCategoryItem = ({ category }) => {
               ></i>
             </a>
           </li>
-          <div style={{ display: showMore ? "block" : 'none', cursor: "pointer" }}>
+          <div className="imageBannerCategoryItem" style={{ display: showMore ? "block" : 'none', visibility: showMore ? "visible" : 'hidden', cursor: "pointer", opacity: showMore ? "1" : "0.2" }}>
             {category.slice(6).map((cat, it) => {
               return (
                 <>
-                  <li key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+                  <li style={{transition: "all 3s"}} key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
                     history.push('/product')
                   })}>
                     <img src={cat.thumbnail || cat.cover} />
