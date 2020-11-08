@@ -12,10 +12,10 @@ import { addFilterToStorage } from "../../utils";
 const ImageBannerCategoryItem = ({ category }) => {
   const history = useHistory();
   const [showMore, setShowMore] = useState(false);
-  
+
   const handleDisplayMoreClick = () => {
     setShowMore(!showMore);
-  }; 
+  };
 
   const globalState = useSelector(state => state.globalState);
   if (globalState.openShopByCategory) {
@@ -24,13 +24,13 @@ const ImageBannerCategoryItem = ({ category }) => {
         <ul className="nav-cat title-font">
           {category.slice(0, 6).map((cat, it) => {
             return (
-              <li 
-              style={{
-                cursor:'pointer'
-              }}
-              key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
-                history.push('/product')
-              })}>
+              <li
+                style={{
+                  cursor: 'pointer'
+                }}
+                key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+                  history.push('/product')
+                })}>
                 <img src={cat.thumbnail || cat.cover} />
 
                 <a>{cat.name}</a>
@@ -38,7 +38,7 @@ const ImageBannerCategoryItem = ({ category }) => {
             );
           })}
 
-          <li style={{cursor: "pointer"}} >
+          <li style={{ cursor: "pointer", display: showMore ? "none" : 'block' }} >
             <a
               onClick={handleDisplayMoreClick}
               className="mor-slide-click">
@@ -49,20 +49,32 @@ const ImageBannerCategoryItem = ({ category }) => {
               ></i>
             </a>
           </li>
+          <div style={{ display: showMore ? "block" : 'none', cursor: "pointer" }}>
+            {category.slice(6).map((cat, it) => {
+              return (
+                <>
+                  <li key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+                    history.push('/product')
+                  })}>
+                    <img src={cat.thumbnail || cat.cover} />
 
-          {category.slice(6).map((cat, it) => {
-            return (
-              <div style={{ display: showMore ? "block" : 'none', cursor: "pointer" }}>
-                <li key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
-                  history.push('/product')
-                })}>
-                  <img src={cat.thumbnail || cat.cover} />
-
-                  <a>{cat.name}</a>
-                </li>
-              </div>
-            );
-          })}
+                    <a>{cat.name}</a>
+                  </li>
+                </>
+              );
+            })}
+            <li style={{ cursor: "pointer", display: showMore ? "block" : 'none' }} >
+              <a
+                onClick={handleDisplayMoreClick}
+                className="mor-slide-click">
+                more category <i className="fa fa-angle-up pro-up"></i>
+                <i
+                  className="fa fa-angle-up pro-up"
+                  style={{ display: "none" }}
+                ></i>
+              </a>
+            </li>
+          </div>
         </ul>
       </CategoryItem>
     )
