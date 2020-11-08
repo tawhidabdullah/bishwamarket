@@ -1,36 +1,22 @@
 // @ts-nocheck
-import React, { useEffect, Fragment, useState } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { InputGroup, FormControl } from "react-bootstrap";
-
-// import elements
-import { BackDrop } from "../../elements/Backdrop";
-import { Text } from "../../elements/Text";
-import { Color, Size } from "../../elements/RoundButton/RoundButton";
-
-// import toggle drawer action
-import { toggleQuickviewDrawer } from "../../../state/ducks/globalState/actions";
-
-// import drawer button
-import { DrawerButton } from "../../common/Button/DrawerButton";
-
-// toggle cart action
-import { globalOperations } from "../../../state/ducks/globalState";
-
-// import cart store
-import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
-
+import React, { Fragment, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
-
-import { useSelector } from "react-redux";
-
+import { InputGroup } from "react-bootstrap";
+import { connect, useSelector } from "react-redux";
+import styled from "styled-components";
 // import hooks
 import { useHandleFetch } from "../../../hooks";
+// import cart store
+import { cartOperations } from "../../../state/ducks/cart";
+// import toggle drawer action
+import { toggleQuickviewDrawer } from "../../../state/ducks/globalState/actions";
+// import drawer button
+import { DrawerButton } from "../../common/Button/DrawerButton";
+// import elements
+import { BackDrop } from "../../elements/Backdrop";
+import { Size } from "../../elements/RoundButton/RoundButton";
+import { Text } from "../../elements/Text";
 import { useProductVariation } from "./hooks";
-
-// import utils
-import { getPricingOptions } from "../../../utils";
 
 const QuickviewDrawer = ({
   open,
@@ -67,7 +53,10 @@ const QuickviewDrawer = ({
     "addtoCart"
   );
 
-  console.log("attributes", attributes);
+  // set to default quantity after each unmount
+  useEffect(() => {
+    return () => setQuantity(1);
+  }, [open === false]);
 
   useEffect(() => {
     if (Item.length > 0) {
@@ -125,35 +114,46 @@ const QuickviewDrawer = ({
             </Text>
           </ImageContainer>
           <DetailsContainer>
-            {/* <Text clickAction={() => toggleQuickviewDrawer()}> */}
             <Text2 onClick={() => toggleQuickviewDrawer()}>&#10005;</Text2>
-            {/* </Text> */}
-            <DrawerHeader>
-              <Text>{Item[0].name}</Text>
-            </DrawerHeader>
-            <Text customStyle={{ "font-weight": "bold", "padding-top": "0" }}>
-              Price: &#2547;&nbsp;{price}
-            </Text>
 
-            <ProductDetailTextContainer>
-              <Text
-                customStyle={{
-                  "font-size": "16px",
-                  "font-weight": "700",
-                  color: "#333",
-                  padding: "5px 0",
-                }}
-              >
-                Product Details
-              </Text>
-              <div dangerouslySetInnerHTML={{ __html: Item[0].description }} />
-            </ProductDetailTextContainer>
-            <SizeContainer
+            <DrawerHeader>
+              <Text customStyle={{ "font-size": "18px" }}>{Item[0].name}</Text>
+            </DrawerHeader>
+            <Text
               customStyle={{
-                padding: "unset",
-                padding: "20px 0 15px 0",
+                "font-weight": "bold",
+                "padding-top": "0",
+                "font-size": "24px",
+                padding: "20px 0",
               }}
             >
+              Price: ${price}
+            </Text>
+
+            {Item[0].description && (
+              <ProductDetailTextContainer>
+                <Text
+                  customStyle={{
+                    "font-size": "16px",
+                    "font-weight": "700",
+                    color: "#333",
+                    padding: "5px 0",
+                    "padding-bottom": "10px",
+                  }}
+                >
+                  Product Details
+                </Text>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    marginRight: "20px",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: Item[0].description }}
+                />
+              </ProductDetailTextContainer>
+            )}
+
+            <SizeContainer>
               <ParentSize>
                 {attributes.length > 0 &&
                   attributes.map((attribute) => {
@@ -202,6 +202,7 @@ const QuickviewDrawer = ({
                     "margin-right": "7px",
                     padding: "7px",
                   }}
+                  wrapperStyle={{ padding: "20px 0" }}
                 >
                   Add To Cart
                 </DrawerButton>
@@ -326,8 +327,8 @@ const DetailsContainer = styled.div`
   text-align: left;
   width: 50%;
   overflow-y: auto;
-  padding-bottom: 40px;
-  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
   @media screen and (max-width: 590px) {
     width: 100%;
     text-align: center;
@@ -393,7 +394,7 @@ const SizeContainer = styled.div`
   display: flex;
   justify-content: start;
 
-  padding: 15px 0 8px 0;
+  padding: 0 0 8px 0;
 
   ${(props) => props.customStyle}
   @media screen and (max-width: 590px) {

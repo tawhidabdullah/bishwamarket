@@ -1,21 +1,15 @@
 //@ts-ignore
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { MainSlider } from "../../components/Slider/MainSlider";
-import { Blog } from "../../components/Banner/Blog";
 import CollectionItem from "../../components/CollectionItem/CollectionItem";
+import { MainSlider } from "../../components/Slider/MainSlider";
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
-import offerImg from "../../assets/offerBanner/offer-banner.png";
-
 import { useQueryFetch } from "../../hooks";
 import { SearchNav } from "../../components/Navigation/SearchNav";
 import ImageBannerCategoryItem from "./ImageBannerCategoryItem";
 import { category } from "../../state/ducks";
 
-
 const ImageBanner = () => {
-
-
   //offerState
   const [offerData, setofferData] = useState([]);
   const [bannerStatus, setBannerStatus] = useState(true);
@@ -31,9 +25,6 @@ const ImageBanner = () => {
     }
   }, [featuredOffer.isSuccess]);
 
-
-
-
   //sliderData state
   const [status, setStatus] = useState(true);
   const [data, setdata] = useState([]);
@@ -47,8 +38,6 @@ const ImageBanner = () => {
       setStatus(false);
     }
   }, [bannerState.isSuccess]);
-
-
 
   //responsive slider
   const responsive = {
@@ -86,7 +75,6 @@ const ImageBanner = () => {
       },
     ],
   };
-  
 
   return (
     <NavigationContainer>
@@ -94,7 +82,6 @@ const ImageBanner = () => {
         {categoryList.isSuccess && categoryList.data?.length > 0 && (
           <ImageBannerCategoryItem category={categoryList.data} />
         )}
-        
       </Content>
 
       <SliderBanner>
@@ -117,7 +104,7 @@ const ImageBanner = () => {
         )}
       </SliderBanner>
 
-        {/* {bannerStatus ? (
+      {/* {bannerStatus ? (
           <> </>
         ) : (
           <BottomImage>
@@ -202,5 +189,3 @@ const BottomImage = styled.div`
     grid-template-columns: 2fr 2fr 2fr;
   } */
 `;
-
-

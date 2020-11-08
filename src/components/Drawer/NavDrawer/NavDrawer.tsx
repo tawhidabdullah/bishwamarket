@@ -69,7 +69,7 @@ const NavDrawer = ({ open, toggleNavigationDrawer }) => {
                       </DropdownItem>
                       {i.subItems && (
                         <DropdownItemContainer>
-                          {i.subItems.map((sub) => (
+                          {i.subItems.map((sub, idx) => (
                             <DropdownItem
                               onClick={() => {
                                 gotoPath(sub.path);

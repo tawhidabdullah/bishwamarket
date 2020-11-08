@@ -1,24 +1,23 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 import { SearchContain } from "../../components/Search/SearchContain";
 import { CollectionByCategory } from "../../components/Collection";
 
-
 import { useSelector } from "react-redux";
 const CollectionContainer = () => {
- let category = useSelector((state) => state.category);
+  let category = useSelector((state) => state.category);
+
   return (
     <Section>
       <SearchContain title={"Collection"} />
       <Main>
-        {category.map(item=>{
-          return <CollectionByCategory item={item}/>;
+        {category.map((item, idx) => {
+          return <CollectionByCategory key={idx} item={item} />;
         })}
       </Main>
     </Section>
   );
 };
-
 
 export default CollectionContainer;
 const Main = styled.div`
@@ -30,10 +29,8 @@ const Main = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 `;
 
-
 const Section = styled.div`
-display:gtid;
-justify-items:center;
-align-items:center;
-
+  display: gtid;
+  justify-items: center;
+  align-items: center;
 `;

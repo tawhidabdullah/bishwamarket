@@ -23,9 +23,6 @@ const ForgotPassword = lazy(() => import("./pages/forgotPassword"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 
 const ProductListing = lazy(() => import("./pages/ProductListing"));
-// import Category from "./pages/Category";
-// import Search from "./pages/Search";
-// import { SignIn } from "./pages/Signin";
 const Profile = lazy(() => import("./pages/Profile"));
 const Collection = lazy(() => import("./pages/Collection"));
 const WishlistPage = lazy(() => import("./pages/Wishlist"));
@@ -33,9 +30,8 @@ const OrderHistory = lazy(() => import("./pages/OrderHistory"));
 const OrderSuccess = lazy(() => import("./pages/OrderSuccess"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
+const ErrorPage = lazy(() => import("./pages/Error"));
 const Page = lazy(() => import("./pages/Page"));
-
-// //productList
 
 const App = () => {
   return (
@@ -71,7 +67,8 @@ const App = () => {
               />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/dashboard" component={Dashboard} />
-              <Route path={'/page'} component={Page} />
+              <Route path={"/page"} component={Page} />
+              <Route path="*" component={ErrorPage} />
             </Switch>
           </Layout>
           <GlobalStyles />

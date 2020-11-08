@@ -21,6 +21,7 @@ const inputStyles = {
 };
 
 const FilterBox = ({ opts, header, handleFilterProduct, ids }) => {
+  console.log("header", header);
   return (
     <FilterBoxContainer>
       {opts && opts.length > 0 && (
@@ -33,8 +34,10 @@ const FilterBox = ({ opts, header, handleFilterProduct, ids }) => {
             key={opt.id}
             label={opt.name}
             value={{ id: opt.id, header }}
+            subCategory={opt.subCategory}
             ids={ids}
             handleChange={handleFilterProduct}
+            header={header}
             customStyle={{ ...inputStyles }}
           />
         ))}

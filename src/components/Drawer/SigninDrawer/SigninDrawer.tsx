@@ -135,18 +135,33 @@ const SigninDrawer = ({ open, toggleSigninDrawer, login }) => {
                 {isSubmitting ? "Login..." : "Login"}
               </DrawerButton>
 
-              <Text
-                clickAction={() => history.push("/forgot-password")}
-                customStyles={{ "font-weight": "bold", cursor: "pointer" }}
+              <div
+                onClick={() => {
+                  history.push("/forgot-password");
+                  toggleSigninDrawer();
+                }}
               >
-                Forgot Password?
-              </Text>
-              <Text
-                clickAction={() => history.push("/signup")}
-                customStyles={{ cursor: "pointer" }}
+                <Text
+                  clickAction={() => {}}
+                  customStyles={{ "font-weight": "bold", cursor: "pointer" }}
+                >
+                  Forgot Password?
+                </Text>
+              </div>
+
+              <div
+                onClick={() => {
+                  history.push("/signup");
+                  toggleSigninDrawer();
+                }}
               >
-                New to store? Signup now
-              </Text>
+                <Text
+                  clickAction={() => {}}
+                  customStyles={{ cursor: "pointer" }}
+                >
+                  New to store? Signup now
+                </Text>
+              </div>
             </FormContainer>
           )}
         </Formik>
