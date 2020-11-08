@@ -1,20 +1,20 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../../../assets/dropdown.png";
-import nav1 from "../../../assets/nav/01.png";
 import { IconButton } from "../../../elemens";
+import { useQueryFetch } from "../../../hooks";
 import { categoryOperations } from "../../../state/ducks/category";
-
+import { globalOperations } from "../../../state/ducks/globalState";
 // import utils
 import { addFilterToStorage } from "../../../utils";
-
 // import component fetcher
 import ComponentFetcher from "../../ComponentFetcher";
 
 const SearchNav = ({
+  toggleShopByCategory,
   setToggleCategory,
   toggleCategory,
   toggleGiftBox,
@@ -25,6 +25,10 @@ const SearchNav = ({
   const [subcategory, setSubCategory] = useState([]);
   const [minlength, setminlength] = useState(8);
   const history = useHistory();
+  const globalState = useSelector((state) => state.globalState);
+
+  const location = useLocation();
+
   const handleSub = (value) => {
     if (
       categoryListData[value] &&
@@ -54,6 +58,11 @@ const SearchNav = ({
   };
   //search
 
+  const isHomePage = () => {
+    return location.pathname === "/";
+  };
+
+  console.log("routeMatch", location);
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);
@@ -66,116 +75,173 @@ const SearchNav = ({
     if (subcategory.length < minlength) setminlength(minlength + 8);
     else setminlength(subcategory.length);
   };
+
+  const categoryList = useQueryFetch("categoryList");
+
+  const [showMore, setShowMore] = useState(false);
+
+  const handleDisplayMoreClick = () => {
+    setShowMore(!showMore);
+  };
   return (
     <SearchNavContainer>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
-        <NavCategory>
-          <ShopCategory
-            onClick={() =>
-              setToggleCategory && setToggleCategory(!toggleCategory)
-            }
-          >
-            <IconButton /> &nbsp; Shop By Category
-          </ShopCategory>
+      <NavCategory>
+        <ShopCategory
+          onClick={() => toggleShopByCategory && toggleShopByCategory()}
+        >
+          <IconButton /> &nbsp; Shop By Category
+        </ShopCategory>
 
-          {toggleCategory ? (
-            <Contents>
-              <CategoryItem>
-                <ul className="nav-cat title-font">
-                  {subcategory.slice(0, minlength).map((subitem, it) => {
+        {!isHomePage() && globalState.openShopByCategory ? (
+          <Contents>
+            <CategoryItem>
+              <ul className="nav-cat title-font">
+                {categoryList.isSuccess &&
+                  categoryList.data?.length > 0 &&
+                  categoryList.data.slice(0, 6).map((cat) => {
                     return (
                       <li
-                        key={it}
+                        style={{ cursor: "pointer" }}
+                        key={cat.id}
                         onClick={() =>
-                          addFilterToStorage({ category: subitem.id }, () => {
+                          addFilterToStorage({ category: cat.id }, () => {
                             history.push("/product");
                           })
                         }
                       >
-                        <img src={subitem.thumbnail || subitem.cover || nav1} />
+                        <img src={cat.icon || cat.thumbnail} />
 
-                        <a>{subitem.name || plabon}</a>
+                        <a>{cat.name}</a>
                       </li>
                     );
                   })}
 
-                  <li onClick={updateLength}>
-                    <a className="mor-slide-click">
-                      more category{" "}
-                      <i className="fa fa-angle-down pro-down"></i>
+                {/* <li style={{ cursor: "pointer" }} onClick={updateLength}>
+                  <a className="mor-slide-click">
+                    more category <i className="fa fa-angle-down pro-down"></i>
+                    <i
+                      className="fa fa-angle-up pro-up"
+                      style={{ display: "none" }}
+                    ></i>
+                  </a>
+                </li>
+
+                //=============================== */}
+                <li
+                  style={{
+                    cursor: "pointer",
+                    display: showMore ? "none" : "block",
+                  }}
+                >
+                  <a
+                    onClick={handleDisplayMoreClick}
+                    className="mor-slide-click"
+                  >
+                    more category <i className="fa fa-angle-down pro-down"></i>
+                    <i
+                      className="fa fa-angle-up pro-up"
+                      style={{ display: "none" }}
+                    ></i>
+                  </a>
+                </li>
+                <div
+                  style={{
+                    display: showMore ? "block" : "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  {categoryList.data.slice(6).map((cat, it) => {
+                    return (
+                      <>
+                        <li
+                          style={{ transition: "opacity 3s" }}
+                          key={it}
+                          onClick={() =>
+                            addFilterToStorage({ category: cat.id }, () => {
+                              history.push("/product");
+                            })
+                          }
+                        >
+                          <img src={cat.thumbnail || cat.cover} />
+
+                          <a>{cat.name}</a>
+                        </li>
+                      </>
+                    );
+                  })}
+                  <li
+                    style={{
+                      cursor: "pointer",
+                      display: showMore ? "block" : "none",
+                    }}
+                  >
+                    <a
+                      onClick={handleDisplayMoreClick}
+                      className="mor-slide-click"
+                    >
+                      more category <i className="fa fa-angle-up pro-up"></i>
                       <i
                         className="fa fa-angle-up pro-up"
                         style={{ display: "none" }}
                       ></i>
                     </a>
                   </li>
-                </ul>
-              </CategoryItem>
-            </Contents>
-          ) : (
-            ""
-          )}
-        </NavCategory>
-        <SearchCategory>
-          <span>
-            <i className="fa fa-search"></i>
-          </span>
-          <input
-            style={{
-              flex: 1,
-            }}
-            type="text"
-            placeholder="Search a Product"
-            value={searchValue}
-            onChange={onSearchBarChange}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handleSearch();
-              }
-            }}
-          ></input>
-          <Dropdowncategory>
-            <select
-              onChange={(e) =>
-                categoryListData[e.target.value] &&
-                categoryListData[e.target.value].hasOwnProperty("subCategory")
-                  ? setSubCategory(categoryListData[e.target.value].subCategory)
-                  : setSubCategory([])
-              }
-            >
-              {categoryListData.map((item, i) => {
-                return (
-                  <option key={i} value={i}>
-                    {item.name}
-                  </option>
-                );
-              })}
-            </select>
-          </Dropdowncategory>
-        </SearchCategory>
-
+                </div>
+              </ul>
+            </CategoryItem>
+          </Contents>
+        ) : (
+          ""
+        )}
+      </NavCategory>
+      <SearchCategory>
+        <span>
+          <i className="fa fa-search"></i>
+        </span>
+        <input
+          type="text"
+          placeholder="Search a Product"
+          value={searchValue}
+          onChange={onSearchBarChange}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch();
+            }
+          }}
+        ></input>
+        <Dropdowncategory>
+          <select
+            onChange={(e) =>
+              categoryListData[e.target.value] &&
+              categoryListData[e.target.value].hasOwnProperty("subCategory")
+                ? setSubCategory(categoryListData[e.target.value].subCategory)
+                : setSubCategory([])
+            }
+          >
+            {categoryListData.map((item, i) => {
+              return (
+                <option key={i} value={i}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </select>
+        </Dropdowncategory>
+      </SearchCategory>
+      <Rightcontent>
         <ComponentFetcher type="text" apiMapKey="phone">
           {(phoneText) => (
-            <Rightcontent>
-              <Call href={`tel:${phoneText}`}>
-                <i className="fa fa-phone"></i> &nbsp;
-                <span>
-                  <span>{phoneText}</span>
-                </span>
-              </Call>
-            </Rightcontent>
+            <Call href={`tel:${phoneText}`}>
+              <i className="fa fa-phone"></i> &nbsp;
+              <span>
+                <span>{phoneText}</span>
+              </span>
+            </Call>
           )}
         </ComponentFetcher>
-      </div>
 
-      {/* <Gift
+        {/* <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
         >
           <GiftIcon>
@@ -202,12 +268,14 @@ const SearchNav = ({
         ) : (
           ""
         )} */}
+      </Rightcontent>
     </SearchNavContainer>
   );
 };
 
 const mapDispatchToProps = {
   addCategory: categoryOperations.addCategory,
+  toggleShopByCategory: globalOperations.toggleShopByCategory,
 };
 export default connect(null, mapDispatchToProps)(SearchNav);
 
@@ -233,18 +301,21 @@ const SearchNavContainerChild = styled.div`
 const Contents = styled.div`
   position: absolute;
   top: 70px;
-  left: -40px;
-  width: 250px;
+  left: 30%;
+  width: 240px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin-top: 10px;
   background-color: #fff;
-  margin-left: 35px;
+  /* margin-left: 35px; */
   border-radius: 0;
-  padding: 20px 10px 20px 20px;
+  padding: 20px 10px 20px 10px;
   border: 2px solid #f1f1f1;
   z-index: 10;
-
+  -webkit-transition: height 2s;
   transition: height 2s;
+  -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 
   @media only screen and (max-width: 1150px) {
@@ -299,13 +370,17 @@ const CategoryItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
+  background: #fff;
+  position: absolute;
+  width: 100%;
 
   & img {
     margin-right: 10px;
     border: 2px solid #f0f0f0;
     border-radius: 50%;
     padding: 3px;
-    height: 46.5px;
+    height: 40px;
+    width: 40px;
     transition: all 0.5s ease;
   }
 

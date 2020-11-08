@@ -12,6 +12,7 @@ const initialState = {
   openQuickviewDrawer: false,
   openSettingsDrawer: false,
   openSearchDrawer: false,
+  openShopByCategory: true,
   categories: [],
 };
 
@@ -101,6 +102,13 @@ const globalReducer = createReducer(initialState)({
     return {
       ...state,
       openSearchDrawer: !state.openSearchDrawer,
+    };
+  },
+
+  [types.TOGGLE_SHOP_BY_CATEGORY]: (state, action) => {
+    return {
+      ...state,
+      openShopByCategory: !state.openShopByCategory,
     };
   },
 });

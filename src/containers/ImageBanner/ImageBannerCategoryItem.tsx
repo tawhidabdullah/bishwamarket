@@ -1,70 +1,100 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import { createTrue } from 'typescript';
+import { categoryOperations } from "../../state/ducks/category";
+
 
 // import utils
 import { addFilterToStorage } from "../../utils";
 
-const ImageBannerCategoryItem = ({category}) => {
-    const history = useHistory(); 
-    const [showMore, setShowMore]= useState(false);
-    const handleDisplayMoreClick= ()=> {
-      setShowMore(!showMore);
-    }
+const ImageBannerCategoryItem = ({ category }) => {
+  const history = useHistory();
+  const [showMore, setShowMore] = useState(false);
+
+  const handleDisplayMoreClick = () => {
+    setShowMore(!showMore);
+  };
+
+  const globalState = useSelector(state => state.globalState);
+  if (globalState.openShopByCategory) {
     return (
       <CategoryItem>
-      <ul style={{marginBottom: "0 !important"}} className="nav-cat title-font">
-        {category.slice(0, 6).map((cat, it) => {
-          return (
-            <li key={it} onClick={() => addFilterToStorage({'category': cat.id},() => {
-              history.push('/product')
-            })}>
-              <img src={cat.thumbnail || cat.cover} />
-  
-              <a>{cat.name}</a>
-            </li>
-          );
-        })}
-  
-        <li >
-          <a
-          onClick={handleDisplayMoreClick}
-           className="mor-slide-click">
-            more category <i className="fa fa-angle-down pro-down"></i>
-            <i
-              className="fa fa-angle-up pro-up"
-              style={{ display: "none" }}
-            ></i>
-          </a>
-        </li>
-
-          {category.slice(6).map((cat, it) => {
+        <ul className="nav-cat title-font">
+          {category.slice(0, 6).map((cat, it) => {
             return (
-              <div style={{display: showMore? "block" : 'none'}}>
-                <li key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+              <li
+                style={{
+                  cursor: 'pointer'
+                }}
+                key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
                   history.push('/product')
                 })}>
-                  <img src={cat.thumbnail || cat.cover} />
+                <img src={cat.thumbnail || cat.cover} />
 
-                  <a>{cat.name}</a>
-                </li>
-              </div>
+                <a>{cat.name}</a>
+              </li>
             );
           })}
+
+          <li style={{ cursor: "pointer", display: showMore ? "none" : 'block' }} >
+            <a
+              onClick={handleDisplayMoreClick}
+              className="mor-slide-click">
+              more category <i className="fa fa-angle-down pro-down"></i>
+              <i
+                className="fa fa-angle-up pro-up"
+                style={{ display: "none" }}
+              ></i>
+            </a>
+          </li>
+          <div className="imageBannerCategoryItem" style={{ display: showMore ? "block" : 'none', visibility: showMore ? "visible" : 'hidden', cursor: "pointer", opacity: showMore ? "1" : "0.2" }}>
+            {category.slice(6).map((cat, it) => {
+              return (
+                <>
+                  <li style={{transition: "all 3s"}} key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
+                    history.push('/product')
+                  })}>
+                    <img src={cat.thumbnail || cat.cover} />
+
+                    <a>{cat.name}</a>
+                  </li>
+                </>
+              );
+            })}
+            <li style={{ cursor: "pointer", display: showMore ? "block" : 'none' }} >
+              <a
+                onClick={handleDisplayMoreClick}
+                className="mor-slide-click">
+                more category <i className="fa fa-angle-up pro-up"></i>
+                <i
+                  className="fa fa-angle-up pro-up"
+                  style={{ display: "none" }}
+                ></i>
+              </a>
+            </li>
+          </div>
         </ul>
-    </CategoryItem>
+      </CategoryItem>
     )
   }
-  
 
-  export default ImageBannerCategoryItem; 
+  else {
+    return null;
+  }
+}
 
-  const CategoryItem = styled.div`
+
+export default ImageBannerCategoryItem;
+
+const CategoryItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
   background: #fff;
+  position: absolute;
+  width: 100%;
 
   & img {
     margin-right: 10px;

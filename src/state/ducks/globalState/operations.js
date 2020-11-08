@@ -10,6 +10,7 @@ import {
   toggleSearchDrawer,
   toggleSettingsDrawer,
   toggleWishlistDrawer,
+  toggleShopByCategory
 } from "./actions";
 
 export {
@@ -24,4 +25,5 @@ export {
   toggleSearchDrawer,
   toggleSettingsDrawer,
   toggleWishlistDrawer,
+  toggleShopByCategory
 };
