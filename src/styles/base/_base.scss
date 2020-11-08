@@ -35,26 +35,26 @@ $viga-font: 'Viga', sans-serif;
 $lato-font: 'Lato', sans-serif;
 
 
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-}
+// *,
+// *::before,
+// *::after {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: inherit;
+// }
 
-html {
-    box-sizing: border-box;
-    font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+// html {
+//     box-sizing: border-box;
+//     font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
 
-    @media only screen and (max-width: $bp-largest) {
-        font-size: 50%;
-    }
-}
+//     @media only screen and (max-width: $bp-largest) {
+//         font-size: 50%;
+//     }
+// }
 
-.f700 {
-    font-weight: 700;
-}
+// .f700 {
+//     font-weight: 700;
+// }
 
 
 @font-face {
@@ -115,28 +115,28 @@ html {
 
 
 
-body {
-    font-family: SegoeUI, Hind Siliguri, sans-serif !important;
-    // font-family: $open-sans, Hind Siliguri, sans-serif;
-    // color: $color-grey-dark-2;
-    // font-weight: 300;
-    // line-height: 1.6;
-}
+// body {
+//     font-family: SegoeUI, Hind Siliguri, sans-serif !important;
+//     // font-family: $open-sans, Hind Siliguri, sans-serif;
+//     // color: $color-grey-dark-2;
+//     // font-weight: 300;
+//     // line-height: 1.6;
+// }
 
-a,
-a:link,
-a:visited,
-a:hover,
-a:active {
-    text-decoration: none;
-    color:#000000;
-}
+// a,
+// a:link,
+// a:visited,
+// a:hover,
+// a:active {
+//     text-decoration: none;
+//     color:#000000;
+// }
 
-ul {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
+// ul {
+//     list-style: none;
+//     margin: 0px;
+//     padding: 0px;
+// }
 
 // 28-09-2020
 .product-card {

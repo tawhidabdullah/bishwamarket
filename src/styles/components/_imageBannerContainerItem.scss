@@ -1,0 +1,6 @@
+.fa-angle-down {
+    transition: 0.3s;
+    &:hover {
+        transform: rotate(180deg);
+    }
+}
