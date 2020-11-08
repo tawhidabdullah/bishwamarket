@@ -18,7 +18,7 @@ const WishlistItem = () => {
 
         <MobileRow>
           <TableText>In Stock</TableText>
-          <TableText>$250.15</TableText>
+          <TableText>&#2547;&nbsp;250.15</TableText>
           <TableText>
             <ActionButtons
               customStyle={{
@@ -32,7 +32,7 @@ const WishlistItem = () => {
 
       <TableDataContainer>
         <TableText customStyle={{ "font-size": "22px", color: "#000" }}>
-          $250.15
+        &#2547;&nbsp;250.15
         </TableText>
       </TableDataContainer>
 

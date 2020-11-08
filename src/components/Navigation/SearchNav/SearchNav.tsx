@@ -8,6 +8,9 @@ import nav1 from "../../../assets/nav/01.png";
 import { IconButton } from "../../../elemens";
 import { categoryOperations } from "../../../state/ducks/category";
 
+// import utils
+import { addFilterToStorage } from "../../../utils";
+
 
 // import component fetcher
 import ComponentFetcher from "../../ComponentFetcher";
@@ -85,7 +88,9 @@ const SearchNav = ({
               <ul className="nav-cat title-font">
                 {subcategory.slice(0, minlength).map((subitem, it) => {
                   return (
-                    <li key={it}>
+                    <li key={it} onClick={() => addFilterToStorage({'category': subitem.id},() => {
+                      history.push('/product')
+                    })}>
                       <img src={subitem.thumbnail || subitem.cover || nav1} />
 
                       <a>{subitem.name || plabon}</a>
@@ -203,7 +208,7 @@ const SearchNavContainer = styled.div`
   background-color: #ff6000;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   @media only screen and (max-width: 580px) {
     display: none;
@@ -238,6 +243,7 @@ const Contents = styled.div`
 `;
 const NavCategory = styled.div`
   position: relative;
+  width: 25%;
   @media only screen and (max-width: 1200px) {
     display: none;
   }
@@ -307,9 +313,11 @@ const SearchCategory = styled.div`
   background-color: #fff;
   height: 63px;
   display: flex;
+  flex: 1;
   align-items: stretch;
   flex-wrap: wrap;
   padding: 0px 10px;
+  margin: 0px 10px;
 
   & span {
     padding: 10px 20px;
@@ -372,11 +380,15 @@ const Dropdowncategory = styled.div`
 const Rightcontent = styled.div`
   display: flex;
   position: relative;
+  padding: 0 20px;
 `;
 const Call = styled.a`
-  padding: 20px 0;
-  margin-left: 20px;
-  color: #333;
+    padding: 20px 0;
+    margin-left: 20px;
+    color: #fff !important;
+    font-size: 18px;
+    font-weight: 600;
+
   @media only screen and (max-width: 980px) {
     display: none;
   }

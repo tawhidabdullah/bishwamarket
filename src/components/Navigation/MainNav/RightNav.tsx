@@ -58,14 +58,14 @@ const RightNav = ({
             {/* <ShopDropdown /> */}
           </NavItem>
           <NavItem to="/collection">
-            Collection
+            COLLECTION
             {/* <i className="fa fa-angle-down" /> */}
             {/* <ProductDropdown /> */}
           </NavItem>
 
-          <NavItem to="##">
+          <NavItem>
             ABOUT <i className="fa fa-angle-down" />
-            {/* <BlogDropdown /> */}
+            <BlogDropdown />
           </NavItem>
 
           {/* <NavItem>
@@ -85,7 +85,7 @@ const RightNav = ({
           <NavItem to="##">
             {isAuthenticated
               ? `Logged in as ${customerData && customerData.firstName}`
-              : "Account"}{" "}
+              : "ACCOUNT"}{" "}
             <span>
               <i className="fa fa-angle-down" />
             </span>
@@ -141,6 +141,7 @@ const NavItem = styled(Link)`
   white-space: nowrap;
   color: black;
   position: relative;
+  text-transform: uppercase;
 
   :hover {
     & ul {
@@ -161,7 +162,7 @@ const NavItems = styled.ul`
   margin: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   /* width: 38vw; */
   font-size: 15px;
 

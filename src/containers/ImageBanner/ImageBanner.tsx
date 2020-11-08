@@ -5,6 +5,9 @@ import CollectionItem from "../../components/CollectionItem/CollectionItem";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
 import { useQueryFetch } from "../../hooks";
+import { SearchNav } from "../../components/Navigation/SearchNav";
+import ImageBannerCategoryItem from "./ImageBannerCategoryItem";
+import { category } from "../../state/ducks";
 
 const ImageBanner = () => {
   //offerState
@@ -13,6 +16,7 @@ const ImageBanner = () => {
 
   //fetching offer bdata
   const featuredOffer = useQueryFetch("featuredOffer");
+  const categoryList = useQueryFetch("categoryList");
   //setting fetching data to state
   useEffect(() => {
     if (featuredOffer.isSuccess && featuredOffer.data) {
@@ -74,7 +78,11 @@ const ImageBanner = () => {
 
   return (
     <NavigationContainer>
-      <Content></Content>
+      <Content>
+        {categoryList.isSuccess && categoryList.data?.length > 0 && (
+          <ImageBannerCategoryItem category={categoryList.data} />
+        )}
+      </Content>
 
       <SliderBanner>
         {status ? (
@@ -96,27 +104,38 @@ const ImageBanner = () => {
         )}
       </SliderBanner>
 
-      {bannerStatus ? (
-        <> </>
-      ) : (
-        <BottomImage>
-          {offerData.map((item, idx) => {
-            return <CollectionItem key={idx} customStyles={{}} item={item} />;
-          })}
-        </BottomImage>
-      )}
+      {/* {bannerStatus ? (
+          <> </>
+        ) : (
+          <BottomImage>
+            {offerData.map((item) => {
+              return <CollectionItem customStyles={{}} item={item} />;
+            })}
+          </BottomImage>
+        )} */}
     </NavigationContainer>
   );
 };
 
 export default ImageBanner;
 
+const NavCategory = styled.div`
+  position: relative;
+  width: 25%;
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
 const NavigationContainer = styled.div`
   display: grid;
-  grid-template-columns: 25% 75%;
-  grid-auto-rows: minmax(170px, auto);
+  grid-template-columns: 20% 80%;
+  /* grid-auto-rows: minmax(170px, auto); */
+  margin-bottom: 10px;
   justify-content: center;
   background-color: #f2f2f2;
+  padding: 0 100px;
+  grid-column-gap: 10px;
 
   /* @media only screen and (min-width: 1450px) {
     grid-template-columns: 25% 60% auto;
@@ -133,6 +152,7 @@ const NavigationContainer = styled.div`
 const Content = styled.div`
   display: grid;
   grid-row: 1/ 3;
+  margin-top: 10px;
 
   @media only screen and (max-width: 1150px) {
     display: none;

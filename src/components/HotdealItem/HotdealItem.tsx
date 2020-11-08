@@ -53,8 +53,8 @@ const HotdealItem =()=> {
               <PriceBox>
                 <p>it is a long established fact that a reader.</p>
                 <Price>
-                  <span>$45.00</span>
-                  <span>$50.30</span>
+                  <span>&#2547;&nbsp;45.00</span>
+                  <span>&#2547;&nbsp;50.30</span>
                 </Price>
               </PriceBox>
             </div>

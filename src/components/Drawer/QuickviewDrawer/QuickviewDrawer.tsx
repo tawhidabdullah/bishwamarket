@@ -1,36 +1,22 @@
 // @ts-nocheck
-import React, { useEffect, Fragment, useState } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { InputGroup, FormControl } from "react-bootstrap";
-
-// import elements
-import { BackDrop } from "../../elements/Backdrop";
-import { Text } from "../../elements/Text";
-import { Color, Size } from "../../elements/RoundButton/RoundButton";
-
-// import toggle drawer action
-import { toggleQuickviewDrawer } from "../../../state/ducks/globalState/actions";
-
-// import drawer button
-import { DrawerButton } from "../../common/Button/DrawerButton";
-
-// toggle cart action
-import { globalOperations } from "../../../state/ducks/globalState";
-
-// import cart store
-import { cartOperations, cartSelectors } from "../../../state/ducks/cart";
-
+import React, { Fragment, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
-
-import { useSelector } from "react-redux";
-
+import { InputGroup } from "react-bootstrap";
+import { connect, useSelector } from "react-redux";
+import styled from "styled-components";
 // import hooks
 import { useHandleFetch } from "../../../hooks";
+// import cart store
+import { cartOperations } from "../../../state/ducks/cart";
+// import toggle drawer action
+import { toggleQuickviewDrawer } from "../../../state/ducks/globalState/actions";
+// import drawer button
+import { DrawerButton } from "../../common/Button/DrawerButton";
+// import elements
+import { BackDrop } from "../../elements/Backdrop";
+import { Size } from "../../elements/RoundButton/RoundButton";
+import { Text } from "../../elements/Text";
 import { useProductVariation } from "./hooks";
-
-// import utils
-import { getPricingOptions } from "../../../utils";
 
 const QuickviewDrawer = ({
   open,

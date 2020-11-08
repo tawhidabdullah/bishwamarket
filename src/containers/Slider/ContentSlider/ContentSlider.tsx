@@ -110,7 +110,7 @@ const ContentSlider = () => {
           <Slider {...settings}>
             <Button>80% OFF </Button>
             <Button>On SALE</Button>
-            <Button>ONLY 49$</Button>
+            <Button>ONLY 49&#2547;&nbsp;</Button>
             <Button>UUNDER @150</Button>
             <Button>SAVE MONEY</Button>
             <Button>FREE SHIPPING</Button>

@@ -24,7 +24,7 @@ const MediaBanner = () => {
                   <i className="fa fa-star"></i>
                 </div>
                 <p>Generator on Internet.</p>
-                <h6>$153.00</h6>
+                <h6>&#2547;&nbsp;153.00</h6>
               </div>
             </MediaContent>
           </MediaBody>
@@ -45,7 +45,7 @@ const MediaBanner = () => {
                   <i className="fa fa-star"></i>
                 </div>
                 <p>Generator on Internet.</p>
-                <h6>$153.00</h6>
+                <h6>&#2547;&nbsp;153.00</h6>
               </div>
             </MediaContent>
           </MediaBody>

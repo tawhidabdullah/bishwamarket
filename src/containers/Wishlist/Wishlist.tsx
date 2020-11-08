@@ -43,7 +43,7 @@ const Wishlist = () => {
 
                     <MobileRow>
                       <TableText>In Stock</TableText>
-                      <TableText>$250.15</TableText>
+                      <TableText>&#2547;&nbsp;250.15</TableText>
                       <TableText>
                         <ActionContainer
                           customStyle={{
@@ -64,7 +64,7 @@ const Wishlist = () => {
                     <TableText
                       customStyle={{ "font-size": "22px", color: "#000" }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
 
@@ -94,7 +94,7 @@ const Wishlist = () => {
 
                     <MobileRow>
                       <TableText>In Stock</TableText>
-                      <TableText>$250.15</TableText>
+                      <TableText>&#2547;&nbsp;250.15</TableText>
                       <TableText>
                         <ActionContainer
                           customStyle={{
@@ -115,7 +115,7 @@ const Wishlist = () => {
                     <TableText
                       customStyle={{ "font-size": "22px", color: "#000" }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
 
@@ -144,7 +144,7 @@ const Wishlist = () => {
                     </TableText>
                     <MobileRow>
                       <TableText>In Stock</TableText>
-                      <TableText>$250.15</TableText>
+                      <TableText>&#2547;&nbsp;250.15</TableText>
                       <TableText>
                         <ActionContainer
                           customStyle={{
@@ -168,7 +168,7 @@ const Wishlist = () => {
                         color: "#000",
                       }}
                     >
-                      $250.15
+                      &#2547;&nbsp;250.15
                     </TableText>
                   </TableDataContainer>
 

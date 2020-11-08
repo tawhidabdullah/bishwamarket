@@ -17,7 +17,7 @@ function CartIcon({ toggleCartDrawer, cartItems, totalPrice }) {
         <ShoppingIcon />
 
         <ItemCount>{cartItems.length}</ItemCount>
-        <TotalPrice>${totalPrice}</TotalPrice>
+        <TotalPrice>&#2547;&nbsp;{totalPrice}</TotalPrice>
       </ShoppingIconContainer>
     </a>
   );

@@ -148,9 +148,9 @@ const ProductsByCategory = ({
         </DetailLeft>
         <DetailRight>
           <CheckPrice>
-            $ {item && item.regularPrice ? item.regularPrice : " "}
+          &#2547;&nbsp; {item && item.regularPrice ? item.regularPrice : " "}
           </CheckPrice>
-          <Price>${item && item.price ? item.price : ""}</Price>
+          <Price>&#2547;&nbsp;{item && item.price ? item.price : ""}</Price>
         </DetailRight>
       </ProductDetail>
       <NewLevel customStyles={customStyles}>
