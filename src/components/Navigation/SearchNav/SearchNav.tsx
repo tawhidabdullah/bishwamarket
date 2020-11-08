@@ -1,11 +1,12 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../../../assets/dropdown.png";
 import nav1 from "../../../assets/nav/01.png";
 import { IconButton } from "../../../elemens";
+import { globalOperations } from "../../../state/ducks/globalState";
 import { categoryOperations } from "../../../state/ducks/category";
 
 // import utils
@@ -14,11 +15,13 @@ import { addFilterToStorage } from "../../../utils";
 
 // import component fetcher
 import ComponentFetcher from "../../ComponentFetcher";
+import { useQueryFetch } from "../../../hooks";
 
 
 
 
 const SearchNav = ({
+  toggleShopByCategory,
   setToggleCategory,
   toggleCategory,
   toggleGiftBox,
@@ -29,6 +32,10 @@ const SearchNav = ({
   const [subcategory, setSubCategory] = useState([]);
   const [minlength, setminlength] = useState(8);
   const history = useHistory();
+  const globalState = useSelector(state => state.globalState); 
+
+  const location = useLocation();
+
   const handleSub = (value) => {
     if (
       categoryListData[value] &&
@@ -58,6 +65,12 @@ const SearchNav = ({
   };
   //search
 
+
+  const isHomePage = () => {
+    return location.pathname === '/'
+  }
+
+  console.log('routeMatch',location);
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);
@@ -70,35 +83,40 @@ const SearchNav = ({
     if (subcategory.length < minlength) setminlength(minlength + 8);
     else setminlength(subcategory.length);
   };
+
+
+  const categoryList = useQueryFetch('categoryList')
   return (
     <SearchNavContainer>
       <NavCategory>
         <ShopCategory
           onClick={() =>
-            setToggleCategory && setToggleCategory(!toggleCategory)
+            toggleShopByCategory && toggleShopByCategory()
           }
         >
           <IconButton /> &nbsp;
           Shop By Category
         </ShopCategory>
 
-        {/* {toggleCategory ? (
+        {!isHomePage() && globalState.openShopByCategory ? (
           <Contents>
             <CategoryItem>
               <ul className="nav-cat title-font">
-                {subcategory.slice(0, minlength).map((subitem, it) => {
+                {categoryList.isSuccess && categoryList.data?.length > 0 && categoryList.data.slice(0,minlength).map((cat) => {
                   return (
-                    <li key={it} onClick={() => addFilterToStorage({'category': subitem.id},() => {
+                    <li style={{cursor: "pointer"}} key={cat.id} 
+                    onClick={() => addFilterToStorage({'category': cat.id},() => {
                       history.push('/product')
                     })}>
-                      <img src={subitem.thumbnail || subitem.cover || nav1} />
+                      <img src={cat.icon || cat.thumbnail} />
 
-                      <a>{subitem.name || plabon}</a>
+                      <a>{cat.name}</a>
                     </li>
-                  );
+                  )
                 })}
+             
 
-                <li onClick={updateLength}>
+                <li style={{cursor: "pointer"}} onClick={updateLength}>
                   <a className="mor-slide-click">
                     more category <i className="fa fa-angle-down pro-down"></i>
                     <i
@@ -112,7 +130,7 @@ const SearchNav = ({
           </Contents>
         ) : (
           ""
-        )} */}
+        )}
       </NavCategory>
       <SearchCategory>
         <span>
@@ -193,6 +211,9 @@ const SearchNav = ({
         ) : (
           ""
         )} */}
+
+
+
       </Rightcontent>
     </SearchNavContainer>
   );
@@ -200,6 +221,7 @@ const SearchNav = ({
 
 const mapDispatchToProps = {
   addCategory: categoryOperations.addCategory,
+  toggleShopByCategory: globalOperations.toggleShopByCategory
 };
 export default connect(null, mapDispatchToProps)(SearchNav);
 
@@ -216,21 +238,24 @@ const SearchNavContainer = styled.div`
 `;
 
 const Contents = styled.div`
-  position: absolute;
-  top: 70px;
-  left: -40px;
-  width: 250px;
-  height: fit-content;
-  margin-top: 10px;
-  background-color: #fff;
-  margin-left: 35px;
-  border-radius: 0;
-  padding: 20px 10px 20px 20px;
-  border: 2px solid #f1f1f1;
-  z-index: 10;
-
-  transition: height 2s;
-  transition-timing-function: ease-in-out;
+    position: absolute;
+    top: 70px;
+    left: 30%;
+    width: 240px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-top: 10px;
+    background-color: #fff;
+    /* margin-left: 35px; */
+    border-radius: 0;
+    padding: 20px 10px 20px 10px;
+    border: 2px solid #f1f1f1;
+    z-index: 10;
+    -webkit-transition: height 2s;
+    transition: height 2s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 
   @media only screen and (max-width: 1150px) {
     display: none;

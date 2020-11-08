@@ -153,6 +153,7 @@ const Content = styled.div`
   display: grid;
   grid-row: 1/ 3;
   margin-top: 10px;
+  position: relative;
 
   @media only screen and (max-width: 1150px) {
     display: none;
