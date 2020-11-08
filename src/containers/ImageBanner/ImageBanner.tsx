@@ -106,15 +106,15 @@ const ImageBanner = () => {
         )}
       </SliderBanner>
 
-      {bannerStatus ? (
-        <> </>
-      ) : (
-        <BottomImage>
-          {offerData.map((item) => {
-            return <CollectionItem customStyles={{}} item={item} />;
-          })}
-        </BottomImage>
-      )}
+        {/* {bannerStatus ? (
+          <> </>
+        ) : (
+          <BottomImage>
+            {offerData.map((item) => {
+              return <CollectionItem customStyles={{}} item={item} />;
+            })}
+          </BottomImage>
+        )} */}
     </NavigationContainer>
   );
 };
@@ -124,7 +124,8 @@ export default ImageBanner;
 const NavigationContainer = styled.div`
   display: grid;
   grid-template-columns: 25% 75%;
-  grid-auto-rows: minmax(170px, auto);
+  /* grid-auto-rows: minmax(170px, auto); */
+  margin-bottom: 10px;
   justify-content: center;
   background-color: #f2f2f2;
 

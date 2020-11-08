@@ -48,7 +48,7 @@ export default connect(null, mapDispatchToProps)(MainNav);
 const MainNavContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 85%;
+  width: 60%;
   margin: 0 auto;
   padding: 20px 0;
 
@@ -59,7 +59,7 @@ const MainNavContainer = styled.div`
 
 const LogoContainer = styled.div`
   /* width: 150px; */
-  height: 60px;
+  height: 70px;
   margin-right: 20px;
   cursor: pointer;
 
