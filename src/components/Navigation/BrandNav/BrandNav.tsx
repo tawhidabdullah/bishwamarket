@@ -55,10 +55,8 @@ const BrandNav = () => {
 export default BrandNav;
 
 const BB = styled.div`
-  display: grid !important;
-
-  align-items: start;
-  grid-template-columns: 1fr 4fr;
+  display: flex;
+  justify-content: center;
   font-size: 14px;
   background-color: #fff;
   padding: 30px 20px;
@@ -115,6 +113,10 @@ const Item = styled.div`
     color: #777;
 
     font-weight: 400;
+  }
+
+  & span:hover {
+    color: #ff6000;
   }
 
   @media only screen and (max-width: 1000px) {

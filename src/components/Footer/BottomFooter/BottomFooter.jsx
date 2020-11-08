@@ -33,7 +33,7 @@ export default BottomFooter;
 const BottomFooterWrapper = styled.div`
   margin-bottom: 20px;
   background-color: white;
-  padding: 10px 0;
+  padding: 20px 0;
   width: 100%;
   font-family: PT Sans, sans-serif;
   color: #8d8d8d;
@@ -61,5 +61,11 @@ const BottomFooterItem = styled.div`
   & img {
     padding: 0 10px;
     cursor: pointer;
+    width: auto;
+    height: 30px;
+  }
+
+  @media screen and (max-width: 991px) {
+    margin-top: 10px;
   }
 `;

@@ -1,26 +1,39 @@
-//@ts-nocheck
-import React, { Fragment, useState } from "react";
+// @ts-nocheck
+import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { useAlert } from "react-alert";
 
-// import backdrop element
-// import { BackDrop } from "../../elements/Backdrop";
-
-// import toggle drawer action
-import { toggleNavigationDrawer } from "../../../state/ducks/globalState/actions";
-
-// dummy data
+// menu data
 import { MenuItems } from "./NavItems";
 
-const NavDrawer = ({ open, toggleNavigationDrawer }) => {
+// redux ops
+import { globalOperations } from "../../../state/ducks/globalState";
+import { sessionOperations } from "../../../state/ducks/session";
+
+const NavDrawer = ({
+  open,
+  toggleNavigationDrawer,
+  isAuthenticated,
+  logout,
+}) => {
   const history = useHistory();
+  const alert = useAlert();
 
   const [activeTabs, setActiveTabs] = useState([]);
-  // for showing color on active tab
-  // const [activeTabColor, setActiveColor] = useState("#444");
+  const [username, setUsername] = useState("");
 
-  // const [isIncluded, setIsIncluded] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    try {
+      let data = jwt_decode(token);
+      setUsername(data.firstName || "");
+    } catch (error) {
+      return;
+    }
+  }, [isAuthenticated]);
 
   const setTabs = (id) => {
     if (activeTabs.includes(id)) {
@@ -33,7 +46,76 @@ const NavDrawer = ({ open, toggleNavigationDrawer }) => {
     }
   };
 
-  const gotoPath = (path) => (path ? history.push(path) : null);
+  const gotoPath = (path, item) => {
+    if (item.items && item.items.length > 0) return;
+    if (path === "##") {
+      localStorage.removeItem("authToken");
+      logout();
+      history.push("/");
+      toggleNavigationDrawer();
+      return;
+    }
+    history.push(path);
+    toggleNavigationDrawer();
+  };
+
+  const renderNavItem = (item) => {
+    return (
+      <>
+        <DrawerMenuItem key={item.id} onClick={() => setTabs(item.id)}>
+          <ItemText
+            onClick={() => gotoPath(item.path, item)}
+            // @ts-ignore
+            active={activeTabs.includes(item.id)}
+          >
+            {item.name === "LOGGED IN AS"
+              ? `${item.name} ${username}`
+              : item.name}
+          </ItemText>
+
+          {item.items && item.items.length > 0 && (
+            <ItemText
+              // @ts-ignore
+              active={activeTabs.includes(item.id)}
+            >
+              {
+                // @ts-ignore
+                activeTabs.includes(item.id) ? (
+                  <i className="fa fa-minus" />
+                ) : (
+                  <i className="fa fa-plus" />
+                )
+              }
+            </ItemText>
+          )}
+        </DrawerMenuItem>
+        {
+          // @ts-ignore
+          activeTabs.includes(item.id) && item.items && item.items.length > 0 && (
+            <DropdownItemContainer>
+              {item.items.map((i) => (
+                <Fragment key={i.id}>
+                  <DropdownItem onClick={() => gotoPath(i.path, i)}>
+                    {i.items ? (
+                      <strong>
+                        {i.name === "LOGGED IN AS"
+                          ? `${i.name} ${username}`
+                          : i.name}
+                      </strong>
+                    ) : (
+                      i.name
+                    )}
+                  </DropdownItem>
+                </Fragment>
+              ))}
+            </DropdownItemContainer>
+          )
+        }
+      </>
+    );
+  };
+
+  console.log({ username });
 
   return (
     <Fragment>
@@ -48,44 +130,9 @@ const NavDrawer = ({ open, toggleNavigationDrawer }) => {
         <DrawerMenuContainer>
           {MenuItems.map((item) => (
             <>
-              <DrawerMenuItem key={item.id} onClick={() => setTabs(item.id)}>
-                <ItemText active={activeTabs.includes(item.id)}>
-                  {item.name}
-                </ItemText>
-                <ItemText active={activeTabs.includes(item.id)}>
-                  {activeTabs.includes(item.id) ? (
-                    <i className="fa fa-minus" />
-                  ) : (
-                    <i className="fa fa-plus" />
-                  )}
-                </ItemText>
-              </DrawerMenuItem>
-              {activeTabs.includes(item.id) && (
-                <DropdownItemContainer>
-                  {item.items.map((i) => (
-                    <Fragment key={i.id}>
-                      <DropdownItem>
-                        {i.subItems ? <strong>{i.name}</strong> : i.name}
-                      </DropdownItem>
-                      {i.subItems && (
-                        <DropdownItemContainer>
-                          {i.subItems.map((sub, idx) => (
-                            <DropdownItem
-                              onClick={() => {
-                                gotoPath(sub.path);
-                                toggleNavigationDrawer();
-                              }}
-                              key={sub.id}
-                            >
-                              {sub.name}
-                            </DropdownItem>
-                          ))}
-                        </DropdownItemContainer>
-                      )}
-                    </Fragment>
-                  ))}
-                </DropdownItemContainer>
-              )}
+              {isAuthenticated && item.isAuth === true && renderNavItem(item)}
+              {item.isAuth == "MAYBE" && renderNavItem(item)}
+              {!isAuthenticated && item.isAuth === false && renderNavItem(item)}
             </>
           ))}
         </DrawerMenuContainer>
@@ -94,11 +141,16 @@ const NavDrawer = ({ open, toggleNavigationDrawer }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleNavigationDrawer: () => dispatch(toggleNavigationDrawer()),
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.session.isAuthenticated,
 });
 
-export default connect(null, mapDispatchToProps)(NavDrawer);
+const mapDispatchToProps = {
+  toggleNavigationDrawer: globalOperations.toggleNavigationDrawer,
+  logout: sessionOperations.logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavDrawer);
 
 const NavDrawerContainer = styled.div`
   position: fixed;
@@ -135,11 +187,7 @@ const DropdownItemContainer = styled.ul`
 const DropdownItem = styled.li`
   padding: 9px 10px;
   list-style: none;
-
-  font-weight: ${(props) => (props.header?.length > 0 ? "bold" : "")};
-
-  /* font-weight: ${(props) =>
-    props.header && props.header.length > 0 ? "bold" : "normal"}; */
+  font-weight: bold;
 `;
 
 const DrawerHeader = styled.div`
@@ -164,6 +212,7 @@ const ItemText = styled.span`
   /* color: #ff6000; */
   font-size: 14px;
   padding: 5px 0;
+  font-weight: bold;
   color: ${(props) => (props.active ? `#ff6000` : `#444`)};
 `;
 
@@ -181,10 +230,4 @@ const DrawerMenuItem = styled.div`
   padding: 10px 15px;
   font-weight: bold;
   color: #777;
-
-  & span:last-child {
-    margin-right: 20px;
-    font-size: 11px;
-    font-weight: normal;
-  }
 `;

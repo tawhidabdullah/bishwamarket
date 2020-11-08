@@ -11,12 +11,8 @@ import { categoryOperations } from "../../../state/ducks/category";
 // import utils
 import { addFilterToStorage } from "../../../utils";
 
-
 // import component fetcher
 import ComponentFetcher from "../../ComponentFetcher";
-
-
-
 
 const SearchNav = ({
   setToggleCategory,
@@ -72,101 +68,114 @@ const SearchNav = ({
   };
   return (
     <SearchNavContainer>
-      <NavCategory>
-        <ShopCategory
-          onClick={() =>
-            setToggleCategory && setToggleCategory(!toggleCategory)
-          }
-        >
-          <IconButton /> &nbsp;
-          Shop By Category
-        </ShopCategory>
-
-        {toggleCategory ? (
-          <Contents>
-            <CategoryItem>
-              <ul className="nav-cat title-font">
-                {subcategory.slice(0, minlength).map((subitem, it) => {
-                  return (
-                    <li key={it} onClick={() => addFilterToStorage({'category': subitem.id},() => {
-                      history.push('/product')
-                    })}>
-                      <img src={subitem.thumbnail || subitem.cover || nav1} />
-
-                      <a>{subitem.name || plabon}</a>
-                    </li>
-                  );
-                })}
-
-                <li onClick={updateLength}>
-                  <a className="mor-slide-click">
-                    more category <i className="fa fa-angle-down pro-down"></i>
-                    <i
-                      className="fa fa-angle-up pro-up"
-                      style={{ display: "none" }}
-                    ></i>
-                  </a>
-                </li>
-              </ul>
-            </CategoryItem>
-          </Contents>
-        ) : (
-          ""
-        )}
-      </NavCategory>
-      <SearchCategory>
-        <span>
-          <i className="fa fa-search"></i>
-        </span>
-        <input
-          type="text"
-          placeholder="Search a Product"
-          value={searchValue}
-          onChange={onSearchBarChange}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              handleSearch();
-            }
-          }}
-        ></input>
-        <Dropdowncategory>
-          <select
-            onChange={(e) =>
-              categoryListData[e.target.value] &&
-              categoryListData[e.target.value].hasOwnProperty("subCategory")
-                ? setSubCategory(categoryListData[e.target.value].subCategory)
-                : setSubCategory([])
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
+        <NavCategory>
+          <ShopCategory
+            onClick={() =>
+              setToggleCategory && setToggleCategory(!toggleCategory)
             }
           >
-            {categoryListData.map((item, i) => {
-              return (
-                <option key={i} value={i}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-        </Dropdowncategory>
-      </SearchCategory>
-      <Rightcontent>
+            <IconButton /> &nbsp; Shop By Category
+          </ShopCategory>
 
-      <ComponentFetcher type='text' apiMapKey='phone'>
-        {(phoneText) => (
-                <Call href={`tel:${phoneText}`}>
+          {toggleCategory ? (
+            <Contents>
+              <CategoryItem>
+                <ul className="nav-cat title-font">
+                  {subcategory.slice(0, minlength).map((subitem, it) => {
+                    return (
+                      <li
+                        key={it}
+                        onClick={() =>
+                          addFilterToStorage({ category: subitem.id }, () => {
+                            history.push("/product");
+                          })
+                        }
+                      >
+                        <img src={subitem.thumbnail || subitem.cover || nav1} />
+
+                        <a>{subitem.name || plabon}</a>
+                      </li>
+                    );
+                  })}
+
+                  <li onClick={updateLength}>
+                    <a className="mor-slide-click">
+                      more category{" "}
+                      <i className="fa fa-angle-down pro-down"></i>
+                      <i
+                        className="fa fa-angle-up pro-up"
+                        style={{ display: "none" }}
+                      ></i>
+                    </a>
+                  </li>
+                </ul>
+              </CategoryItem>
+            </Contents>
+          ) : (
+            ""
+          )}
+        </NavCategory>
+        <SearchCategory>
+          <span>
+            <i className="fa fa-search"></i>
+          </span>
+          <input
+            style={{
+              flex: 1,
+            }}
+            type="text"
+            placeholder="Search a Product"
+            value={searchValue}
+            onChange={onSearchBarChange}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleSearch();
+              }
+            }}
+          ></input>
+          <Dropdowncategory>
+            <select
+              onChange={(e) =>
+                categoryListData[e.target.value] &&
+                categoryListData[e.target.value].hasOwnProperty("subCategory")
+                  ? setSubCategory(categoryListData[e.target.value].subCategory)
+                  : setSubCategory([])
+              }
+            >
+              {categoryListData.map((item, i) => {
+                return (
+                  <option key={i} value={i}>
+                    {item.name}
+                  </option>
+                );
+              })}
+            </select>
+          </Dropdowncategory>
+        </SearchCategory>
+
+        <ComponentFetcher type="text" apiMapKey="phone">
+          {(phoneText) => (
+            <Rightcontent>
+              <Call href={`tel:${phoneText}`}>
                 <i className="fa fa-phone"></i> &nbsp;
                 <span>
-                  <span>
-                    {phoneText}
-                  </span>
+                  <span>{phoneText}</span>
                 </span>
               </Call>
-        )}
-    </ComponentFetcher>
+            </Rightcontent>
+          )}
+        </ComponentFetcher>
+      </div>
 
-       
-
-        {/* <Gift
+      {/* <Gift
           onClick={() => setToggleGiftBox && setToggleGiftBox(!toggleGiftBox)}
         >
           <GiftIcon>
@@ -193,7 +202,6 @@ const SearchNav = ({
         ) : (
           ""
         )} */}
-      </Rightcontent>
     </SearchNavContainer>
   );
 };
@@ -208,11 +216,18 @@ const SearchNavContainer = styled.div`
   background-color: #ff6000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
+  /* justify-content: space-between; */
 
   @media only screen and (max-width: 580px) {
     display: none;
   }
+`;
+
+const SearchNavContainerChild = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Contents = styled.div`
@@ -311,7 +326,7 @@ const CategoryItem = styled.div`
 `;
 const SearchCategory = styled.div`
   background-color: #fff;
-  height: 63px;
+  height: 58px;
   display: flex;
   flex: 1;
   align-items: stretch;
@@ -345,6 +360,7 @@ const Dropdowncategory = styled.div`
   margin-right: -1px;
   display: flex;
   position: relative;
+  padding-left: 30px;
   & select {
     appearance: none;
     outline: none;
@@ -380,14 +396,18 @@ const Dropdowncategory = styled.div`
 const Rightcontent = styled.div`
   display: flex;
   position: relative;
-  padding: 0 20px;
+  margin-right: 100px;
+
+  @media only screen and (max-width: 980px) {
+    display: none;
+  }
 `;
 const Call = styled.a`
-    padding: 20px 0;
-    margin-left: 20px;
-    color: #fff !important;
-    font-size: 18px;
-    font-weight: 600;
+  padding: 20px 0;
+  margin-left: 20px;
+  color: #fff !important;
+  font-size: 18px;
+  font-weight: 600;
 
   @media only screen and (max-width: 980px) {
     display: none;

@@ -141,8 +141,11 @@ const SignIn = ({ login, cartItems, addProductsToCart }) => {
                 <ButtonContainer>
                   <div onClick={handleSubmit}>
                     <DrawerButton
-                      wrapperStyle={{ "padding-right": "10px" }}
-                      customStyle={{ padding: "8px 0", width: "80%" }}
+                      wrapperStyle={{
+                        "padding-right": "10px",
+                        width: "100%",
+                      }}
+                      customStyle={{ padding: "8px 0" }}
                     >
                       {isSubmitting ? "Login..." : "Login"}
                     </DrawerButton>
@@ -264,7 +267,7 @@ const ButtonContainer = styled.div`
   margin-top: 20px;
 
   & div {
-    width: 50%;
+    width: 75%;
   }
 
   & span {

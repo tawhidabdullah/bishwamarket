@@ -12,32 +12,28 @@ const LeftNav = () => {
   return (
     <LeftContainer>
       {/* <ItemText>Free shipping on order over $99</ItemText> */}
-      <ComponentFetcher type='linkList' apiMapKey='appStoresLink'>
-              {(links) => (
-                  <>
-                  <ItemText customStyles={{'cursor': 'auto'}}>
-                    Download app
-                  </ItemText>
-                      
-                 {links['google'] && (
-                     <a href={links['google']['target']} target='_open'>
-                     <ItemText>
-                         <i className="fa fa-android"></i>
-                       </ItemText>
-                     </a>
-                               
-                  )}
-                  {links['apple'] && (
-                     <a href={links['apple']['target']} target='_open'>
-                     <ItemText>
-                         <i className="fa fa-apple"></i>
-                       </ItemText>
-                     </a>
-                               
-                  )}
-                  </>
-              )}
-        </ComponentFetcher>
+      <ComponentFetcher type="linkList" apiMapKey="appStoresLink">
+        {(links) => (
+          <>
+            <ItemText customStyles={{ cursor: "auto" }}>Download app</ItemText>
+
+            {links["google"] && (
+              <a href={links["google"]["target"]} target="_open">
+                <ItemText>
+                  <i className="fa fa-android"></i>
+                </ItemText>
+              </a>
+            )}
+            {links["apple"] && (
+              <a href={links["apple"]["target"]} target="_open">
+                <ItemText>
+                  <i className="fa fa-apple"></i>
+                </ItemText>
+              </a>
+            )}
+          </>
+        )}
+      </ComponentFetcher>
     </LeftContainer>
   );
 };
@@ -49,11 +45,11 @@ const LeftContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     span:first-child {
       display: none;
     }
-  }
+  } */
 
   @media screen and (max-width: 578px) {
     margin: 0 auto;

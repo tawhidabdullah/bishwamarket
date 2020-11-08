@@ -114,7 +114,7 @@ const RightNav = ({
       </IconContainer>
 
       <NavToggler onClick={() => toggleNavigationDrawer()}>
-        <i className="fa fa-bars"></i>
+        <i className="fa fa-bars" />
       </NavToggler>
     </NavItemContainer>
   );

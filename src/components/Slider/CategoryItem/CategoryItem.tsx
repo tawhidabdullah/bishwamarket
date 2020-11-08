@@ -1,29 +1,30 @@
 //@ts-ignore
-import React,{useRef} from "react";
-import styled from "styled-components"
+import React, { useRef } from "react";
+import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-
 
 // import utils
 import { addFilterToStorage } from "../../../utils";
 
+const CategoryItem = ({ item, isIcon = false }) => {
+  const history = useHistory();
 
-const CategoryItem = ({item, isIcon = false}) => {
-  const history = useHistory(); 
-
-
+  const handleClick = () => {
+    addFilterToStorage({ category: item.id }, () => {
+      history.push("/product");
+    });
+  };
   return (
     <CategoryContain>
-      <ImgWrapper>
+      <ImgWrapper onClick={handleClick}>
         <img src={isIcon ? item.icon : item.fullCover}></img>
       </ImgWrapper>
-      <Button onClick={() => addFilterToStorage({'category' : item.id},() => {
-        history.push('/product')
-      })}>{item.name}</Button>
+      <Button onClick={handleClick}>{item.name}</Button>
     </CategoryContain>
   );
 };
 export default CategoryItem;
+
 const ImgWrapper = styled.div`
   border: 1px solid #fff;
   padding: 5px;
@@ -32,7 +33,7 @@ const ImgWrapper = styled.div`
   border-radius: 50%;
   margin: 0 auto;
   position: relative;
-
+  cursor: pointer;
 
   & img {
     border-radius: 100%;
@@ -43,8 +44,7 @@ const ImgWrapper = styled.div`
     border-style: none;
     width: 110px;
     height: 110px;
-    object-fit: contain;  
-
+    object-fit: contain;
   }
 `;
 
@@ -70,4 +70,3 @@ const CategoryContain = styled.div`
     background-color: #ff6000;
   }
 `;
-

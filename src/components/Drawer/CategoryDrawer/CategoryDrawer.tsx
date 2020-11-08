@@ -1,7 +1,10 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+// import hooks
+import { useQueryFetch } from "../../../hooks";
 // import backdrop element
 // import { BackDrop } from "../../elements/Backdrop";
 
@@ -12,12 +15,17 @@ import styled from "styled-components";
 // import dummy data
 import { categoryList } from "./dummyData";
 
+// import utils
+import { addFilterToStorage } from "../../../utils";
+
 // import toggle drawer action
 import { toggleCategoryDrawer } from "../../../state/ducks/globalState/actions";
 
 // dummy data
 
 const CategoryDrawer = ({ open, toggleCategoryDrawer }) => {
+  const categoryList = useQueryFetch("categoryList");
+  const history = useHistory();
   return (
     <Fragment>
       {/* <BackDrop show={open} clicked={handleClose} /> */}
@@ -29,9 +37,23 @@ const CategoryDrawer = ({ open, toggleCategoryDrawer }) => {
         </DrawerHeader>
 
         <DrawerMenuContainer>
-          {categoryList.map((category, idx) => (
-            <DrawerMenuItem key={idx}>{category}</DrawerMenuItem>
-          ))}
+          {categoryList.isSuccess &&
+            categoryList.data?.length > 0 &&
+            categoryList.data.map((category) => {
+              return (
+                <DrawerMenuItem
+                  onClick={() =>
+                    addFilterToStorage({ category: category.id }, () => {
+                      history.push("/product");
+                      toggleCategoryDrawer();
+                    })
+                  }
+                  key={category.id}
+                >
+                  {category.name}
+                </DrawerMenuItem>
+              );
+            })}
         </DrawerMenuContainer>
       </CategoryDrawerContainer>
     </Fragment>

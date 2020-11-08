@@ -82,7 +82,6 @@ const ProductsByCategory = ({
         alert.error("Something went wrong!");
       }
     }
-
   };
 
   const handleAddItemToWishlist = async (productId) => {
@@ -119,23 +118,23 @@ const ProductsByCategory = ({
         >
           <i className="fa fa-shopping-bag"></i>
         </ProductIcon>
-        <ProductIcon
+        {/* <ProductIcon
           title="Add Item to wishlist"
           onClick={() => handleAddItemToWishlist(_id)}
           customStyles={customStyles}
         >
           <i className="fa fa-heart-o"></i>
-        </ProductIcon>
+        </ProductIcon> */}
 
         <ProductIcon onClick={productDetail} customStyles={customStyles}>
           <i className="fa fa-eye"></i>
         </ProductIcon>
 
-        <ProductIcon customStyles={customStyles}>
+        {/* <ProductIcon customStyles={customStyles}>
           <i className="fa fa-exchange"></i>
-        </ProductIcon>
+        </ProductIcon> */}
       </ProductIconContainer>
-      <ProductDetail customStyles={customStyles}>
+      <ProductDetail customStyles={{ ...customStyles, width: "100%" }}>
         <DetailLeft customStyles={customStyles}>
           {/* <Rating>
             <i className="fa fa-star"></i>
@@ -147,16 +146,18 @@ const ProductsByCategory = ({
           <PriceTitel>{item && item.name ? item.name : " "}</PriceTitel>
         </DetailLeft>
         <DetailRight>
-          <CheckPrice>
-          &#2547;&nbsp; {item && item.regularPrice ? item.regularPrice : " "}
-          </CheckPrice>
+          {/* <CheckPrice>
+            &#2547;&nbsp; {item && item.regularPrice ? item.regularPrice : " "}
+          </CheckPrice> */}
           <Price>&#2547;&nbsp;{item && item.price ? item.price : ""}</Price>
         </DetailRight>
       </ProductDetail>
-      <NewLevel customStyles={customStyles}>
+      {/* <NewLevel customStyles={customStyles}>
         <div>new</div>
-      </NewLevel>
-      <OnSale customStyles={customStyles}>on sale</OnSale>
+      </NewLevel> */}
+      {item.offerTaka !== 0 && (
+        <OnSale customStyles={customStyles}>on sale</OnSale>
+      )}
     </ProductBox>
   );
 };
@@ -252,7 +253,7 @@ const ProductDetail = styled.div`
         : "row"
       : "row"};
 
-  width: 220px;
+  width: 100%;
 
   flex-wrap: wrap;
   padding-bottom: 10px;
@@ -301,7 +302,7 @@ const ProductBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px 0px;
+  /* margin: 10px 0; */
 
   position: relative;
   overflow: hidden;

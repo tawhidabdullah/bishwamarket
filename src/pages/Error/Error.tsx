@@ -18,8 +18,8 @@ const headerStyles = {
 
 const subHeaderStyles = {
   color: "#333",
-  " font-weight": 700,
-  " letter-spacing": "3px",
+  "font-weight": 700,
+  "letter-spacing": "3px",
   "margin-top": "100px",
   "text-transform": "uppercase",
 };
@@ -54,4 +54,14 @@ const ErrorPageContainer = styled.section`
 const ErrorContent = styled.div`
   padding: 130px 0;
   text-align: center;
+
+  @media screen and (max-width: 578px) {
+    & h2:first-child {
+      font-size: 105px;
+    }
+
+    & h2:last-child {
+      font-size: 25px;
+    }
+  }
 `;

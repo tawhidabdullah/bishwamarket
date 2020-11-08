@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Slider from "react-slick";
 import img from "../../../assets/banner/1.jpg";
 import fimg1 from "../../../assets/slider-tab/1.jpg";
@@ -6,9 +7,18 @@ import bimg1 from "../../../assets/slider-tab/a1.jpg";
 
 import styled from "styled-components";
 
+// import utils
+import { addFilterToStorage } from "../../../utils";
+
+// import hooks
+import { useQueryFetch } from "../../../hooks";
+
 const ContentSlider = () => {
+  const tagList = useQueryFetch("tagList");
   const [activeSlide, setactiveSlide] = useState(0);
   const [activeSlide2, setactiveSlide2] = useState(0);
+  const history = useHistory();
+
   const settings = {
     // dots: false,
     // infinite: true,
@@ -79,7 +89,6 @@ const ContentSlider = () => {
           arrows: false,
         },
       },
-
       {
         breakpoint: 640,
         settings: {
@@ -104,32 +113,38 @@ const ContentSlider = () => {
     ],
   };
   return (
-     <Maxconatiner>
-      <Main>
-        <MainContent>
-          <Slider {...settings}>
-            <Button>80% OFF </Button>
-            <Button>On SALE</Button>
-            <Button>ONLY 49&#2547;&nbsp;</Button>
-            <Button>UUNDER @150</Button>
-            <Button>SAVE MONEY</Button>
-            <Button>FREE SHIPPING</Button>
-            <Button>EXTRA 10% OFF</Button>
-            <Button>10% OFF</Button>
-          </Slider>
-        </MainContent>
-      </Main>
-     </Maxconatiner> 
+    <>
+      {tagList.isSuccess && tagList.data?.length > 0 && (
+        <>
+          <Maxconatiner>
+            <Main>
+              <MainContent>
+                <Slider {...settings}>
+                  {tagList.data.map((tag) => (
+                    <Button
+                      onClick={() =>
+                        addFilterToStorage({ tag: tag.id }, () => {
+                          history.push("/product");
+                        })
+                      }
+                    >
+                      {tag.name}
+                    </Button>
+                  ))}
+                </Slider>
+              </MainContent>
+            </Main>
+          </Maxconatiner>
+        </>
+      )}
+    </>
   );
-  
-   
 };
 
 export default ContentSlider;
-const Maxconatiner=styled.div`
-display:flex;
-justify-content:center;
-
+const Maxconatiner = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 const Main = styled.div`
   /* max-width: 1500px; */
@@ -147,7 +162,6 @@ const MainContent = styled.div`
   outline: none;
   border: none;
   background-color: #f2f2f2;
- 
 
   & .slick-slide {
     outline: none;
@@ -158,13 +172,11 @@ const MainContent = styled.div`
   }
 `;
 
-
 const Button = styled.div`
   font-size: 16px;
   background: #fff;
   outline: none;
-
-
+  cursor: pointer;
   min-width: 150px;
   padding: 30px 7px;
   margin: 1rem 0px;
@@ -208,10 +220,3 @@ const Button = styled.div`
     transition: all 0.35s;
   }
 `;
-
-
-
-
-
-
-

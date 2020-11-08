@@ -120,7 +120,7 @@ const ProductListContainer = () => {
 
   return (
     <Main>
-      <SearchContain title={"CATEGORY"} />
+      {/* <SearchContain title={"CATEGORY"} /> */}
       <Section>
         <LeftBar
           filterLabels={filterLabels}
@@ -143,17 +143,20 @@ export default ProductListContainer;
 
 const Section = styled.div`
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 10px;
   grid-template-columns: 1fr 3fr;
+  margin: 0 90px;
 
   @media only screen and (max-width: 992px) {
     grid-template-columns: 1fr;
     width: 100%;
+    margin: 0 auto;
   }
 `;
 
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 20px;
+  /* margin: 40px 20px; */
+  margin-top: 20px;
 `;

@@ -62,6 +62,8 @@ const LogoContainer = styled.div`
   height: 70px;
   margin-right: 20px;
   cursor: pointer;
+  height: 75px;
+  margin-left: 50px;
 
   & img {
     width: 100%;

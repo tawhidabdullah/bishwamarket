@@ -44,7 +44,7 @@ const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
         handleFilterProduct={handleFilterProduct}
         ids={ids}
       />
-      <Title>
+      {/* <Title>
         <h5>Showing Products Results</h5>
         <TitleBottom>
           <Dropdowncategory>
@@ -63,7 +63,7 @@ const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
             </select>
           </Dropdowncategory>
         </TitleBottom>
-      </Title>
+      </Title> */}
       <Products>
         {products.map((item, idx) => {
           return (

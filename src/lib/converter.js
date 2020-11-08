@@ -308,6 +308,14 @@ class Converter {
           metaTitle: product.metaTitle,
           metaTags: product.metaTags,
           metaDescription: product.metaDescription,
+          offerTaka:
+            product.price &&
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
+              : 0,
         };
       });
 
@@ -1979,8 +1987,6 @@ class Converter {
     } else return false;
   }
 
- 
-
   /**
    * @public
    * @method aboutText convert api data from API to general format based on config server
@@ -1999,8 +2005,6 @@ class Converter {
       } else return false;
     } else return false;
   }
-
-
 
   /**
    * @public

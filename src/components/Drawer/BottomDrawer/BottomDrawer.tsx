@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // import toggle drawer actions
 import {
@@ -18,16 +19,18 @@ const BottomDrawer = ({
   toggleSettingsDrawer,
   toggleSearchDrawer,
 }) => {
+  const history = useHistory();
+
   return (
     <BottomDrawerWrapper>
       <BottomDrawerContainer>
-        <DrawerIcon onClick={() => toggleSearchDrawer()}>
+        <DrawerIcon onClick={() => history.push("/search")}>
           <i className="fa fa-search"></i>
         </DrawerIcon>
 
-        <DrawerIcon onClick={() => toggleWishlistDrawer()}>
+        {/* <DrawerIcon onClick={() => toggleWishlistDrawer()}>
           <i className="fa fa-heart-o"></i>
-        </DrawerIcon>
+        </DrawerIcon> */}
 
         <DrawerIcon onClick={() => toggleCartDrawer()}>
           <i className="fa fa-shopping-cart"></i>
