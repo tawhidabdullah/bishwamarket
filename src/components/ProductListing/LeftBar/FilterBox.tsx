@@ -21,7 +21,6 @@ const inputStyles = {
 };
 
 const FilterBox = ({ opts, header, handleFilterProduct, ids }) => {
-  console.log("header", header);
   return (
     <FilterBoxContainer>
       {opts && opts.length > 0 && (

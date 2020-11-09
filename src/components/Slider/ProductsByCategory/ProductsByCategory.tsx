@@ -136,20 +136,13 @@ const ProductsByCategory = ({
       </ProductIconContainer>
       <ProductDetail customStyles={customStyles}>
         <DetailLeft customStyles={customStyles}>
-          {/* <Rating>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-          </Rating> */}
           <PriceTitel>{item && item.name ? item.name : " "}</PriceTitel>
         </DetailLeft>
         <DetailRight>
           {/* <CheckPrice>
             &#2547;&nbsp; {item && item.regularPrice ? item.regularPrice : " "}
           </CheckPrice> */}
-          <Price>&#2547;&nbsp;{item && item.price ? item.price : ""}</Price>
+          <Price>৳ {item && item.price ? item.price : ""}</Price>
         </DetailRight>
       </ProductDetail>
       {/* <NewLevel customStyles={customStyles}>
@@ -253,12 +246,10 @@ const ProductDetail = styled.div`
         : "row"
       : "row"};
 
-  width: 220px;
+  width: 100%;
 
   flex-wrap: wrap;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 10px 0 10px 10px;
   background-color: ${(props) =>
     props.customStyles
       ? props.customStyles.productBackgroundColor
@@ -283,18 +274,12 @@ const ProductDetail = styled.div`
       props.customStyles.productBackgroundColor ? "100%" : "170px"};
   }
 
-  @media only screen and (max-width: 580px) and (min-width: 401px) {
-    width: ${(props) =>
-      props.customStyles.productBackgroundColor ? "100%" : "180px"};
+  @media  screen and (max-width: 580px) {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
   }
-  @media only screen and (max-width: 400px) and (min-width: 350px) {
-    width: ${(props) =>
-      props.customStyles.productBackgroundColor ? "100%" : "170px"};
-  }
-  @media only screen and (max-width: 350px) {
-    width: ${(props) =>
-      props.customStyles.productBackgroundColor ? "100%" : "150px"};
-  }
+ 
 `;
 
 const ProductBox = styled.div`
@@ -435,13 +420,9 @@ const NewLevel = styled.div`
 `;
 
 const DetailLeft = styled.div`
-  width: ${(props) =>
-    props.customStyles
-      ? props.customStyles.containertop
-        ? "100%"
-        : "60%"
-      : "60%"};
-  @media only screen and (max-width: 580px) {
+  width: ${(props) =>  props.customStyles ? props.customStyles.containertop ? "100%" : "60%" : "60%" };
+
+  @media only screen and (max-width: 578px) {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -449,15 +430,10 @@ const DetailLeft = styled.div`
   }
 `;
 const DetailRight = styled.div`
-  width: ${(props) =>
-    props.customStyles
-      ? props.customStyles.containertop
-        ? "100%"
-        : "40%"
-      : "40%"};
+  width: ${(props) => props.customStyles ? props.customStyles.containertop ? "100%" : "40%" : "40%"};
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
 
-  @media only screen and (max-width: 580px) {
+  @media  screen and (max-width: 580px) {
     display: flex;
     justify-content: start;
     width: 100%;
@@ -487,4 +463,9 @@ const PriceTitel = styled.div`
   text-transform: capitalize;
   color: #777;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+
+  @media screen and (max-width: 580px) {
+    font-size: 16px;
+    font-weight: 500;
+  }
 `;

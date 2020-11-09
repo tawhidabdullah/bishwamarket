@@ -22,6 +22,7 @@ const textStyles = {
 };
 
 const OrderedProductDetails = ({ product }) => {
+  console.log("product", product);
   return (
     <CustomRow>
       <Col xs={3}>
@@ -39,12 +40,12 @@ const OrderedProductDetails = ({ product }) => {
       <CustomColumn xs={3}>
         <Header customStyle={headerStyles} content="Quantity" />
 
-        <Header customStyle={textStyles} content={product.unitPrice} />
+        <Header customStyle={textStyles} content={product.quantity} />
       </CustomColumn>
       <CustomColumn xs={3}>
         <Header customStyle={headerStyles} content="Price" />
 
-        <Header customStyle={textStyles} content={product.unitPrice} />
+        <Header customStyle={textStyles} content={`৳ ${product.price}`} />
       </CustomColumn>
     </CustomRow>
   );

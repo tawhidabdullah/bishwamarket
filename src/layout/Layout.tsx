@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
     history.listen((location) => {
       if (history.action === "POP" || history.action === "PUSH") {
         if (location.pathname !== "/") {
-          dispatch(globalOperations.toggleShopByCategory());
+          dispatch(globalOperations.closeShopByCategory());
         }
       }
     });

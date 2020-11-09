@@ -4,14 +4,21 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ProductsByCategory } from "../../../components/Slider/ProductsByCategory";
 import { MainSlider } from "../../../components/Slider/MainSlider";
-import { Blog } from "../../../components/Banner/Blog";
-import { Productcontain } from "../../../components/Navigation/ProductConatain";
 
 import { useSelector } from "react-redux";
 
 // import hooks
 import { useQueryFetch, useHandleFetch } from "../../../hooks";
 import { ProductNotFound } from "../../../components/ProductNotFound";
+
+// import spinner
+import { Spinner } from "../../../components/Spinner";
+
+// styles
+const containerStyles = {
+  width: "95%",
+  margin: "0 auto",
+};
 
 const ProductByCategory = () => {
   //previously saving category data in redux is getting back
@@ -120,8 +127,10 @@ const ProductByCategory = () => {
   };
 
   return (
-    <div style={{ width: "95%", margin: "0 auto" }}>
+    <div style={containerStyles}>
       <Section>
+        {/* give a component useful name
+        FOR FUCK SAKE!!! */}
         <BB>
           {category.map((item, i) => (
             <Span
@@ -133,7 +142,10 @@ const ProductByCategory = () => {
             </Span>
           ))}
         </BB>
-        {products.length > 0 ? (
+
+        {categoryProductsState.isLoading ? (
+          <Spinner />
+        ) : products.length > 0 ? (
           <MainSlider
             responsive={responsive}
             ProductsByCategory={ProductsByCategory}
@@ -143,7 +155,7 @@ const ProductByCategory = () => {
             }}
           />
         ) : (
-          <ProductNotFound />
+          <ProductNotFound>No product found in this category</ProductNotFound>
         )}
       </Section>
     </div>
@@ -162,20 +174,16 @@ const BB = styled.div`
   font-size: 14px;
   flex-wrap: wrap;
   background-color: #fff;
-
-  padding-bottom: 16px;
-  padding-top: 16px;
-  padding-left: 10px;
+  width: 98%;
+  margin: 0 auto;
+  padding: 16px 0 16px 10px;
 `;
 
 const Span = styled.div`
-  padding-right: 10px;
-  padding-left: 5px;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 10px 10px 10px 5px;
 
   margin-right: 10px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 
   letter-spacing: 0.05em;
   cursor: pointer;

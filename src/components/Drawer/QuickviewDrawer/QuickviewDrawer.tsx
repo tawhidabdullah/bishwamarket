@@ -25,10 +25,11 @@ const QuickviewDrawer = ({
   changeQuantity,
   addToCart,
   removeFromCart,
+  Item,
   session,
 }) => {
   const alert = useAlert();
-  const Item = useSelector((state) => state.Item);
+  // const Item = useSelector((state) => state.Item);
 
   // state for default item quantity
   const [quantity, setQuantity] = useState(1);
@@ -220,6 +221,7 @@ const QuickviewDrawer = ({
 const mapStateToProps = (state) => {
   return {
     session: state.session,
+    Item: state.Item,
   };
 };
 

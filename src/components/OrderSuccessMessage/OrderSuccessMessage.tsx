@@ -7,7 +7,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Header } from "../elements/Header";
 import { Text } from "../elements/Text";
 
-const OrderSuccessMessage = () => {
+const textStyles = {
+  " font-size": "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
+  padding: "unset",
+  color: "#777",
+};
+
+const OrderSuccessMessage = ({ orderStatus }) => {
+  console.log("orderstatus", orderStatus);
   return (
     <OrderSuccessMessageWrapper>
       <Container>
@@ -19,28 +26,13 @@ const OrderSuccessMessage = () => {
                 customStyle={{ "font-size": "30.46px" }}
                 content="Thank you"
               />
-              <Text
-                customStyle={{
-                  " font-size":
-                    "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
-                  padding: "unset",
-                  color: "#777",
-                }}
-              >
-                Payment Is Successfully Processsed And Your Order Is On The Way
+              <Text customStyle={textStyles}>
+                Your order is placed successfully and your current order status
+                is: <strong>{orderStatus.toUpperCase()}</strong>
               </Text>
 
               <br />
-              <Text
-                customStyle={{
-                  " font-size":
-                    "calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)))",
-                  padding: "unset",
-                  color: "#777",
-                }}
-              >
-                Transaction ID:{""}
-              </Text>
+              {/* <Text customStyle={textStyles}>Transaction ID:{""}</Text> */}
             </MessageContainer>
           </Col>
         </Row>

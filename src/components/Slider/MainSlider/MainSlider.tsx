@@ -50,7 +50,7 @@ const Layout = styled.div`
 const MainContent = styled.div`
   outline: none;
   border: none;
-  max-width: 1400px;
+  /* max-width: 1400px; */
   background-color: ${(props) =>
     props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 

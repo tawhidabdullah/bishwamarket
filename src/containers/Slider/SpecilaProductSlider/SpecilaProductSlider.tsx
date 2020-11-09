@@ -5,6 +5,7 @@ import { ProductsByCategory } from "../../../components/Slider/ProductsByCategor
 import { MainSlider } from "../../../components/Slider/MainSlider";
 import { Blog } from "../../../components/Banner/Blog";
 import { useQueryFetch } from "../../../hooks";
+
 const SpecilaProductSlider = () => {
   const productsState = useQueryFetch("productList");
   const [status, setstatus] = useState(true);
@@ -64,18 +65,35 @@ const SpecilaProductSlider = () => {
       },
     ],
   };
+
+  console.log("products", products);
+
   return (
     <Section>
       <Blog
-        title="special Products"
+        title="SPECIAL PRODUCTS"
         customStyles={{
           height: "100px",
           backgroundColor: "#fff",
           marginBottom: "20px",
+          fontSize: "30px",
+          fontWeight: "bold",
         }}
       />
 
-      <div style={{ width: "95%", margin: "0 auto" }}>
+      <MobileScreenViewContainer>
+        {products &&
+          products.length > 0 &&
+          products.map((product, idx) => (
+            <ProductsByCategory
+              key={idx}
+              item={product}
+              customStyles={{ Levelvisibility: "visible" }}
+              isIcon={true}
+            />
+          ))}
+      </MobileScreenViewContainer>
+      <DesktopScreenViewContainer>
         <MainSlider
           responsive={responsive}
           ProductsByCategory={ProductsByCategory}
@@ -84,10 +102,32 @@ const SpecilaProductSlider = () => {
             Levelvisibility: "visible",
           }}
         />
-      </div>
+      </DesktopScreenViewContainer>
     </Section>
   );
 };
 export default SpecilaProductSlider;
 
 const Section = styled.div``;
+
+const MobileScreenViewContainer = styled.div`
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 578px) {
+    display: flex;
+  }
+`;
+
+const DesktopScreenViewContainer = styled.div`
+  width: 95%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 578px) {
+    display: none;
+  }
+`;

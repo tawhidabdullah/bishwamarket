@@ -17,7 +17,7 @@ function CartIcon({ toggleCartDrawer, cartItems, totalPrice }) {
         <ShoppingIcon />
 
         <ItemCount>{cartItems.length}</ItemCount>
-        <TotalPrice>&#2547;&nbsp;{totalPrice}</TotalPrice>
+        <TotalPrice>৳ {totalPrice}</TotalPrice>
       </ShoppingIconContainer>
     </a>
   );

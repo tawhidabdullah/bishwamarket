@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { Col, Container, Row } from "react-bootstrap";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,9 +12,12 @@ import { DashboardContent } from "../../containers/DashboardContent";
 // import side bar component
 import { DashboardSideBar } from "../../containers/DashboardSidebar";
 
-const Dashboard = ({ isAuthenticated }) => {
+const Dashboard = () => {
+
   const history = useHistory();
   const alert = useAlert();
+
+  const isAuthenticated = useSelector(state => state.session.isAuthenticated)
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -42,11 +45,8 @@ const Dashboard = ({ isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.session.isAuthenticated,
-});
 
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;
 
 const DashboardContainer = styled.div`
   background-color: #f9f9f9 !important;

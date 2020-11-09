@@ -65,3 +65,12 @@ export const cacheCategoryList = (categories) => ({
 export const toggleShopByCategory = () => ({
   type: types.TOGGLE_SHOP_BY_CATEGORY,
 });
+
+
+export const closeShopByCategory = () => ({
+  type: types.CLOSE_SHOP_BY_CATEGORY,
+});
+
+export const openShopByCategory = () => ({
+  type: types.OPEN_SHOP_BY_CATEGORY,
+});
