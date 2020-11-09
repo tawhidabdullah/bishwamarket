@@ -12,7 +12,7 @@ const initialState = {
   openQuickviewDrawer: false,
   openSettingsDrawer: false,
   openSearchDrawer: false,
-  openShopByCategory: true,
+  openShopByCategory: false,
   categories: [],
 };
 

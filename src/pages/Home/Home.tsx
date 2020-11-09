@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 //con tainer
 import { ImageBanner } from "../../containers/ImageBanner";
@@ -18,8 +19,18 @@ import { Service } from "../../components/Navigation/ServiceNav";
 import { DiscountBanner } from "../../components/Banner/DiscountBanner";
 import { Collection } from "../../components/Banner/CollectionBanner";
 
+// import redux ops
+import { globalOperations } from "../../state/ducks/globalState";
+
 const Home = () => {
- 
+  const dispatch = useDispatch();
+
+  React.useLayoutEffect(() => {
+    dispatch(globalOperations.toggleShopByCategory());
+
+    return () => dispatch(globalOperations.toggleShopByCategory());
+  });
+
   return (
     <>
       <ImageBanner />
@@ -36,7 +47,7 @@ const Home = () => {
       <LatestBlog /> */}
 
       <ContentSlider />
-      <SpecilaProductSlider  />
+      <SpecilaProductSlider />
       <ContactBanner />
       <CompanyBanner />
     </>

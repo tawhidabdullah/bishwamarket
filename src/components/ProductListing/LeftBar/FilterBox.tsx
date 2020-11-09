@@ -48,6 +48,6 @@ const FilterBox = ({ opts, header, handleFilterProduct, ids }) => {
 export default FilterBox;
 
 const FilterBoxContainer = styled.div`
-  padding: 20px;
-  margin-bottom: 40px;
+  padding: 20px 7px;
+  /* margin-bottom: 40px; */
 `;
