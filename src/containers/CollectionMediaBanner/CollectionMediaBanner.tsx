@@ -1,7 +1,6 @@
-// import React, { useState,useRef,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import React, { useState } from "react";
 import Slider from "react-slick";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { Blog } from "../../components/Banner/Blog";
@@ -11,6 +10,12 @@ import { MediaBanner } from "../../components/Slider/MediaBanner";
 import img1 from "../../assets/hotDeal/1.jpg";
 import img from "../../assets/6.jpg";
 import { RightBar } from "../../components/ProductListing/RightBar";
+
+// import elements
+import { Header } from "../../components/elements/Header";
+
+// import hooks
+import { useHandleFetch } from "../../hooks";
 
 // const SlideCustom = (props) => {
 
@@ -54,12 +59,33 @@ import { RightBar } from "../../components/ProductListing/RightBar";
 const CollectionMediaBanner = () => {
   // const slider = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-  const [nav1, setNav1] = React.useState([]);
-  const [nav2, setNav2] = React.useState([]);
+  const [nav1, setNav1] = useState([]);
+  const [nav2, setNav2] = useState([]);
   let slider1 = [];
   let slider2 = [];
 
-  React.useEffect(() => {
+  // this hook fetch most popular products
+  const [popularProductRes, handlePopularProductFetch] = useHandleFetch(
+    {},
+    "popular"
+  );
+
+  // this hook fetch product with available offer
+  const [offerProductState, handleOfferProductFetch] = useHandleFetch(
+    {},
+    "offerProduct"
+  );
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await handlePopularProductFetch({});
+      await handleOfferProductFetch({});
+    };
+
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
     setNav1(slider1);
     setNav2(slider2);
   }, []);
@@ -133,52 +159,56 @@ const CollectionMediaBanner = () => {
       <Main>
         {" "}
         <MainContent>
+          <Header
+            content="MOST POPULAR PRODUCTS"
+            customStyle={{ fontSize: "20px", marginBottom: "20px" }}
+          />
           <Slider {...settings}>
-            <MediaBanner />
-            <MediaBanner />
-            <MediaBanner />
-
-            <MediaBanner />
-            <MediaBanner />
+            {popularProductRes.done &&
+              popularProductRes.data.length > 0 &&
+              popularProductRes.data.map((product, idx) => (
+                <>
+                  {idx === 0 && (
+                    <MediaBanner product={popularProductRes.data.slice(0, 2)} />
+                  )}
+                  {idx !== 0 && (
+                    <MediaBanner
+                      product={popularProductRes.data.slice(idx, idx + 2)}
+                    />
+                  )}
+                  {/* <MediaBanner
+                    product={popularProductRes.data.slice(idx, idx + 2)}
+                  /> */}
+                </>
+              ))}
           </Slider>
         </MainContent>
         <MidContent>
-          <Jewellerybanner style={{ backgroundImage: `url(${img})` }}>
-            <Text>
-              <h2>save 30% off</h2>
-              <h3>Jewellery</h3>
-            </Text>
-          </Jewellerybanner>
+          <Jewellerybanner style={{ backgroundImage: `url(${img})` }} />
         </MidContent>
         <MainContents>
           <LeftContens>
+            <Header
+              content="TODAY'S HOT OFFER"
+              customStyle={{ fontSize: "20px", textAlign: "center" }}
+            />
             <Slider
-              asNavFor={nav2}
-              ref={(slider) => (slider1 = slider)}
+              // asNavFor={nav2}
+              // ref={(slider) => (slider1 = slider)}
               arrows={true}
             >
-              <div>
-                <HotdealItem />
-              </div>
-              <div>
-                <HotdealItem />
-              </div>
-              <div>
-                <HotdealItem />
-              </div>
-              <div>
-                <HotdealItem />
-              </div>
-              <div>
-                <HotdealItem />
-              </div>
-              <div>
-                <HotdealItem />
-              </div>
+              {offerProductState.done &&
+                offerProductState.data &&
+                offerProductState.data.length > 0 &&
+                offerProductState.data.map((item, idx) => (
+                  <div>
+                    <HotdealItem offerProduct={item} />
+                  </div>
+                ))}
             </Slider>
           </LeftContens>
 
-          <Rightslide>
+          {/* <Rightslide>
             <Slider
               asNavFor={nav1}
               ref={(slider) => (slider2 = slider)}
@@ -221,7 +251,7 @@ const CollectionMediaBanner = () => {
                 />
               </div>
             </Slider>
-          </Rightslide>
+          </Rightslide> */}
         </MainContents>
       </Main>
     </Section>
@@ -308,7 +338,8 @@ const Main = styled.div`
   justify-content: center;
   padding: 30px;
   grid-template-columns: 300px 1fr auto;
-  max-width: 1400px;
+  /* max-width: 1400px; */
+  width: 98%;
   margin: 0 auto;
   @media only screen and (max-width: 1000px) and (min-width: 580px) {
     grid-template-columns: 1fr 1fr;

@@ -7,6 +7,7 @@ import { ContactBanner } from "../../components/Banner/ContactBanner";
 //components
 import { BrandNav } from "../../components/Navigation/BrandNav";
 import { Service } from "../../components/Navigation/ServiceNav";
+import { CollectionMediaBanner } from "../../containers/CollectionMediaBanner";
 
 //con tainer
 import { ImageBanner } from "../../containers/ImageBanner";
@@ -14,8 +15,11 @@ import { CategorySlider } from "../../containers/Slider/CategorySlider";
 import ContentSlider from "../../containers/Slider/ContentSlider/ContentSlider";
 import { ProductByCategory } from "../../containers/Slider/ProductByCategory";
 import { SpecilaProductSlider } from "../../containers/Slider/SpecilaProductSlider";
+
 // import redux ops
 import { globalOperations } from "../../state/ducks/globalState";
+
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -28,25 +32,23 @@ const Home = () => {
 
   return (
     <>
-      {/* <ImageBanner />
+      <ImageBanner />
       <BrandNav />
-      <Service /> */}
-      {/* <CollectionMediaBanner /> */}
+      <Service />
+      <CollectionMediaBanner />
       {/* <DiscountBanner /> */}
-      {/* <Collection /> */}
+      <Collection />
 
       <ProductByCategory />
 
       <CategorySlider />
-      {/* <MediaBannerSlider />
-      <LatestBlog /> */}
 
       <ContentSlider />
       <SpecilaProductSlider />
       <ContactBanner />
       <CompanyBanner />
     </>
-  );
+);
 };
 
 export default Home;

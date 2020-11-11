@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+
 const Service = () => {
   return (
-    <BB>
+    <ServiceNavContainer>
       <div className="media">
         <svg
           height="679pt"
@@ -57,7 +57,7 @@ const Service = () => {
           <h5>ONLINE PAYMENT</h5>
         </div>
       </div>
-    </BB>
+    </ServiceNavContainer>
   );
 };
 
@@ -66,7 +66,7 @@ const Service = () => {
 export default Service;
 
 
-const BB = styled.div`
+const ServiceNavContainer = styled.div`
   background-color: #ffa800;
 
   display: grid !important;

@@ -190,6 +190,10 @@
       "url": "/api/product?limit=limitNumber",
       "method": "get"
     },
+    "offerProduct": {
+      "url":"/api/product/offer",
+      "method": "get"
+    },
     "relatedProductList": {
       "url": "/api/product/related/:id",
       "method": "get"

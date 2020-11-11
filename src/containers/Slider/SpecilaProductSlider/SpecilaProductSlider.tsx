@@ -66,8 +66,6 @@ const SpecilaProductSlider = () => {
     ],
   };
 
-  console.log("products", products);
-
   return (
     <Section>
       <Blog

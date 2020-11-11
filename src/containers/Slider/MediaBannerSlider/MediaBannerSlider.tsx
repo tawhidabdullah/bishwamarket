@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from "react";
 import Slider from "react-slick";
 import img from "../../../assets/banner/1.jpg";

@@ -1268,6 +1268,65 @@ class Converter {
     return convertedData;
   }
 
+  async popular(data) {
+    let convertedData = [];
+
+    if (data && data.popularProduct && data.popularProduct.data.length > 0) {
+      data.popularProduct.data.map((product) => {
+        let newData = {
+          _id: product._id,
+          url: product.url && product.url,
+          name: product.name,
+          price: product.price && parseFloat(product.price.regular),
+          offerPrice: product.price && parseFloat(product.price.offer),
+          image: `${config["baseURL"]}${
+            (product.cover && product.cover["thumbnail"]).substring(1) || ""
+          }`,
+
+          inStock: product.inStock && product.inStock,
+          defaultVariation:
+            product.price &&
+            product.price.defaultVariation &&
+            product.price.defaultVariation,
+        };
+
+        convertedData.push(newData);
+      });
+    }
+
+    return convertedData;
+  }
+
+  async offerProduct(data) {
+    let convertedData = [];
+
+    if (data && data.data && data.data.length > 0) {
+      data.data.map((product) => {
+        let newData = {
+          _id: product._id,
+          url: product.url && product.url,
+          name: product.name,
+          price: product.price && parseFloat(product.price.regular),
+          offerPrice: product.price && parseFloat(product.price.offer),
+          description: product.description || "",
+          image: `${config["baseURL"]}${
+            (product.cover && product.cover["thumbnail"]).substring(1) || ""
+          }`,
+
+          inStock: product.inStock && product.inStock,
+          defaultVariation:
+            product.price &&
+            product.price.defaultVariation &&
+            product.price.defaultVariation,
+        };
+
+        convertedData.push(newData);
+      });
+    }
+
+    return convertedData;
+  }
+
   /**
    * @public
    * @method brandDetail convert api data from API to general format based on config server
