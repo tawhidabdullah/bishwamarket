@@ -128,7 +128,7 @@ const QuickviewDrawer = ({
                 padding: "20px 0",
               }}
             >
-              Price: ${price}
+              Price: &#2547;&nbsp;{price}
             </Text>
 
             {Item[0].description && (
