@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
@@ -34,6 +34,8 @@ const CheckoutForm = ({
   session,
   cartItems,
   login,
+  checkout,
+  checkoutState
 }) => {
   const alert = useAlert();
   const history = useHistory();
@@ -57,7 +59,7 @@ const CheckoutForm = ({
   const [deliveryArea, setDeliveryArea] = useState([]);
 
   // checkout state
-  const [checkoutState, setCheckoutState] = useState({
+  const [checkoutBodyData, setCheckoutBodyData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -84,12 +86,11 @@ const CheckoutForm = ({
     [],
     "getDeliveryCharge"
   );
-
   // hooks for sending checkout data
-  const [createOrderState, handleCreateOrderFetch] = useHandleFetch(
-    {},
-    "checkout"
-  );
+  // const [checkoutState, handleCreateOrderFetch] = useHandleFetch(
+  //   {},
+  //   "checkout"
+  // );
 
   // hooks for clearing out cart
   const [clearCartState, handleClearCart] = useHandleFetch({}, "clearCart");
@@ -143,7 +144,7 @@ const CheckoutForm = ({
         try {
           const customerData = jwt_decode(localStorage.getItem("authToken"));
 
-          setCheckoutState({
+          setCheckoutBodyData({
             firstName: customerData.firstName,
             lastName: customerData.lastName,
             city: customerData.city,
@@ -158,19 +159,20 @@ const CheckoutForm = ({
       }
     }
   }, [session.isAuthenticated]);
+  
 
-  // this effect sets error from createOrderState
+  // this effect sets error from checkoutState
   useEffect(() => {
-    if (createOrderState.error.isError) {
-      let { error } = createOrderState.error;
+    if (checkoutState.error.isError) {
+      let { error } = checkoutState.error;
       setAlertError(error.error);
       setErrors(error.checkoutError);
       setDeliveryError(error.delivery);
     }
-  }, [createOrderState.error]);
+  }, [checkoutState.error]);
 
   const handleCheckoutInputChange = (e) => {
-    setCheckoutState({ ...checkoutState, [e.target.name]: e.target.value });
+    setCheckoutBodyData({ ...checkoutBodyData, [e.target.name]: e.target.value });
   };
 
   const handleCheckout = async () => {
@@ -190,23 +192,23 @@ const CheckoutForm = ({
 
     const orderData = {
       shippingAddress: {
-        firstName: checkoutState.firstName,
-        lastName: checkoutState.lastName,
-        phone: checkoutState.phone,
-        email: checkoutState.email,
-        address1: checkoutState.address1,
+        firstName: checkoutBodyData.firstName,
+        lastName: checkoutBodyData.lastName,
+        phone: checkoutBodyData.phone,
+        email: checkoutBodyData.email,
+        address1: checkoutBodyData.address1,
         country: "Bangladesh",
         city: selectedCity,
       },
       items,
       paymentMethod: "cod",
       delivery: selectedArea["_id"],
-      password: checkoutState.password,
-      password2: checkoutState.password2,
+      password: checkoutBodyData.password,
+      password2: checkoutBodyData.password2,
       createAccount: !session.isAuthenticated ? true : false,
     };
 
-    const orderRes = await handleCreateOrderFetch({ body: orderData });
+    const orderRes = await checkout({ body: orderData });
     if (
       orderRes &&
       Object.keys(orderRes).length > 0 &&
@@ -221,7 +223,7 @@ const CheckoutForm = ({
 
       // clear redux cart store
       clearCart();
-      setCheckoutState({});
+      setCheckoutBodyData({});
       await handleClearCart({});
 
       if (orderRes._id) {
@@ -244,7 +246,7 @@ const CheckoutForm = ({
             label="First Name"
             type="text"
             name="firstName"
-            value={checkoutState.firstName}
+            value={checkoutBodyData.firstName}
             onChange={handleCheckoutInputChange}
           />
           <ErrorText>
@@ -258,7 +260,7 @@ const CheckoutForm = ({
             label="Last Name"
             type="text"
             name="lastName"
-            value={checkoutState.lastName}
+            value={checkoutBodyData.lastName}
             onChange={handleCheckoutInputChange}
           />
           <ErrorText>{errors && errors.lastName && errors.lastName}</ErrorText>
@@ -270,7 +272,7 @@ const CheckoutForm = ({
             label="Phone"
             type="text"
             name="phone"
-            value={checkoutState.phone}
+            value={checkoutBodyData.phone}
             onChange={handleCheckoutInputChange}
           />
           <ErrorText>{errors && errors.phone && errors.phone}</ErrorText>
@@ -282,7 +284,7 @@ const CheckoutForm = ({
             label="Email"
             type="email"
             name="email"
-            value={checkoutState.email}
+            value={checkoutBodyData.email}
             onChange={handleCheckoutInputChange}
           />
           <ErrorText>{errors && errors.email && errors.email}</ErrorText>
@@ -295,7 +297,7 @@ const CheckoutForm = ({
             type="text"
             name="address1"
             placeholder="Street address"
-            value={checkoutState.address1}
+            value={checkoutBodyData.address1}
             onChange={handleCheckoutInputChange}
           />
           <ErrorText>{errors && errors.address1 && errors.address1}</ErrorText>
@@ -329,7 +331,7 @@ const CheckoutForm = ({
             label="Postal Code"
             type="text"
             name="postalCode"
-            value={checkoutState.postalCode}
+            value={checkoutBodyData.postalCode}
             onChange={handleCheckoutInputChange}
           />
           <ErrorText>
@@ -357,7 +359,7 @@ const CheckoutForm = ({
                 customStyle={inputStyles}
                 name="password"
                 type="password"
-                value={checkoutState.password}
+                value={checkoutBodyData.password}
                 onChange={handleCheckoutInputChange}
               />
               <ErrorText>
@@ -371,7 +373,7 @@ const CheckoutForm = ({
                 customStyle={inputStyles}
                 name="password2"
                 type="password"
-                value={checkoutState.password2}
+                value={checkoutBodyData.password2}
                 onChange={handleCheckoutInputChange}
               />
               <ErrorText>
@@ -384,7 +386,7 @@ const CheckoutForm = ({
 
         <Col onClick={handleCheckout} md={12} sm={12} xs={12}>
           <DrawerButton>
-            {createOrderState.isLoading ? "Placing Order..." : "Place Order"}
+            {checkoutState.isLoading ? "Placing Order..." : "Place Order"}
           </DrawerButton>
         </Col>
       </Row>

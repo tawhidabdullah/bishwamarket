@@ -6,6 +6,9 @@ import { Row, Col } from "react-bootstrap";
 import { CheckoutForm } from "../../containers/CheckoutForm";
 import { CheckoutDetails } from "../../containers/CheckoutDetails";
 
+// * import the package
+import { CheckoutPage } from "../../package/pages";
+
 const Checkout = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const getShippingCost = (cost) => setShippingCost(cost);
@@ -13,25 +16,33 @@ const Checkout = () => {
   const [deliveryInfo, setDeliveryInfo] = useState(null);
 
   return (
-    <CheckoutWrapper>
-      <Header>Billing Details</Header>
-      <Row>
-        <Col lg={6} sm={12} xs={12}>
-          <CheckoutForm
-            getDeliveryInfo={setDeliveryInfo}
-            getShippingCost={getShippingCost}
-            customStyle={{}}
-          />
-        </Col>
-
-        <Col lg={6} sm={12} xs={12}>
-          <CheckoutDetails
-            deliveryInfo={deliveryInfo}
-            shippingCost={shippingCost}
-          />
-        </Col>
-      </Row>
-    </CheckoutWrapper>
+    <CheckoutPage>
+      {({checkoutState,checkout}) => {
+        return (
+          <CheckoutWrapper>
+          <Header>Billing Details</Header>
+          <Row>
+            <Col lg={6} sm={12} xs={12}>
+              <CheckoutForm
+                checkout={checkout}
+                checkoutState={checkoutState}
+                getDeliveryInfo={setDeliveryInfo}
+                getShippingCost={getShippingCost}
+                customStyle={{}}
+              />
+            </Col>
+    
+            <Col lg={6} sm={12} xs={12}>
+              <CheckoutDetails
+                deliveryInfo={deliveryInfo}
+                shippingCost={shippingCost}
+              />
+            </Col>
+          </Row>
+        </CheckoutWrapper>
+        )
+      }}
+    </CheckoutPage>
   );
 };
 

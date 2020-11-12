@@ -1,0 +1,1 @@
+export const printCheckout = () => console.log('checkout'); 
