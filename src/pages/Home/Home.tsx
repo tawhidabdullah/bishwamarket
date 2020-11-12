@@ -9,17 +9,16 @@ import { BrandNav } from "../../components/Navigation/BrandNav";
 import { Service } from "../../components/Navigation/ServiceNav";
 import { CollectionMediaBanner } from "../../containers/CollectionMediaBanner";
 
-//con tainer
+//container
 import { ImageBanner } from "../../containers/ImageBanner";
 import { CategorySlider } from "../../containers/Slider/CategorySlider";
 import ContentSlider from "../../containers/Slider/ContentSlider/ContentSlider";
 import { ProductByCategory } from "../../containers/Slider/ProductByCategory";
 import { SpecilaProductSlider } from "../../containers/Slider/SpecilaProductSlider";
+import { NewProduct } from "../../containers/NewProduct";
 
 // import redux ops
 import { globalOperations } from "../../state/ducks/globalState";
-
-
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -45,10 +44,11 @@ const Home = () => {
 
       <ContentSlider />
       <SpecilaProductSlider />
+      <NewProduct />
       <ContactBanner />
       <CompanyBanner />
     </>
-);
+  );
 };
 
 export default Home;

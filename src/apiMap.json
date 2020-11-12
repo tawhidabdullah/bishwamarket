@@ -183,7 +183,7 @@
       "method": "get"
     },
     "productList": {
-      "url": "/api/product",
+      "url": "/api/product?sort=sortValue&sortOrder=sortOrderValue&limit=limitValue",
       "method": "get"
     },
     "offerListCount": {
@@ -191,7 +191,7 @@
       "method": "get"
     },
     "offerProduct": {
-      "url":"/api/product/offer",
+      "url": "/api/product/offer",
       "method": "get"
     },
     "relatedProductList": {

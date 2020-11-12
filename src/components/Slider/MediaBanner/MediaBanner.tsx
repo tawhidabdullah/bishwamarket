@@ -18,6 +18,7 @@ const MediaBanner = ({
   addToCart,
   isAuthenticated,
   removeFromCart,
+  customStyle,
 }) => {
   const alert = useAlert();
 
@@ -58,16 +59,13 @@ const MediaBanner = ({
   };
 
   return (
-    <MediaBannercontainer>
+    <MediaBannercontainer customStyle={customStyle}>
       {product &&
         product.map((item, idx) => (
           <MediaBannerBox key={idx}>
             <Media>
-              <img
-                src={product.image}
-                className="img-fluid  "
-                alt="popular products"
-              />
+              <img src={image} className="img-fluid  " alt="popular products" />
+
               <MediaBody>
                 <MediaContent>
                   <div>
@@ -113,6 +111,7 @@ const ShoppingBag = styled.p`
   padding: 10px;
   margin: 10px 0;
   font-size: 16px;
+  width: fit-content;
 `;
 
 const ProductNameLabel = styled.p`
@@ -124,9 +123,10 @@ const ProductNameLabel = styled.p`
 
 const MediaBannercontainer = styled.div`
   background-color: #f2f2f2;
+  ${(props) => props.customStyle}
 `;
 const MediaBannerBox = styled.div`
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 
   & h5 {
     font-size: 16px;

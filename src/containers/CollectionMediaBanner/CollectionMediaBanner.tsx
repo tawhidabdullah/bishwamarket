@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import Slider from "react-slick";
 import { MainSlider } from "../../components/Slider/MainSlider";
@@ -63,6 +64,8 @@ const CollectionMediaBanner = () => {
   const [nav2, setNav2] = useState([]);
   let slider1 = [];
   let slider2 = [];
+
+  const history = useHistory();
 
   // this hook fetch most popular products
   const [popularProductRes, handlePopularProductFetch] = useHandleFetch(
@@ -182,6 +185,9 @@ const CollectionMediaBanner = () => {
                 </>
               ))}
           </Slider>
+          <ViewMoreText onClick={() => history.push("/product")}>
+            View more...
+          </ViewMoreText>
         </MainContent>
         <MidContent>
           <Jewellerybanner style={{ backgroundImage: `url(${img})` }} />
@@ -257,10 +263,29 @@ const CollectionMediaBanner = () => {
     </Section>
   );
 };
+
 export default CollectionMediaBanner;
+
 const Section = styled.div`
   background-color: #fff;
 `;
+
+const ViewMoreText = styled.p`
+  font-size: 14px;
+  background-color: #ff6000;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-align: center;
+  width: fit-content;
+  color: #fff;
+  cursor: pointer;
+  transition: ease-in-out 400ms;
+
+  :hover {
+    background-color: orange;
+  }
+`;
+
 const MainContents = styled.div`
   outline: none;
   background-color: #f2f2f2;
