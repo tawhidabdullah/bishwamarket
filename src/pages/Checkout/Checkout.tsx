@@ -17,7 +17,7 @@ const Checkout = () => {
 
   return (
     <CheckoutPage>
-      {({checkoutState,checkout}) => {
+      {({checkoutState,checkout, cityList}) => {
         return (
           <CheckoutWrapper>
           <Header>Billing Details</Header>
@@ -26,6 +26,7 @@ const Checkout = () => {
               <CheckoutForm
                 checkout={checkout}
                 checkoutState={checkoutState}
+                cityList={cityList}
                 getDeliveryInfo={setDeliveryInfo}
                 getShippingCost={getShippingCost}
                 customStyle={{}}

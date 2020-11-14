@@ -17,12 +17,10 @@ import { DrawerButton } from "../../components/common/Button/DrawerButton";
 import { useHandleFetch } from "../../hooks";
 
 // // form props are separated
-// import { FormProps } from "./formProps";
 
 // redux ops
 import { cartOperations } from "../../state/ducks/cart";
 import { sessionOperations } from "../../state/ducks/session";
-import { login } from "../../state/ducks/session/actions";
 
 const inputStyles = { label: { "font-weight": "bold" } };
 
@@ -35,7 +33,8 @@ const CheckoutForm = ({
   cartItems,
   login,
   checkout,
-  checkoutState
+  checkoutState,
+  cityList
 }) => {
   const alert = useAlert();
   const history = useHistory();
@@ -48,8 +47,6 @@ const CheckoutForm = ({
   const [alertError, setAlertError] = useState("Failed to Checkout!");
   const [deliveryError, setDeliveryError] = useState(null);
 
-  // state for setting cityList
-  const [cityList, setCityList] = useState([]);
   // state for default/selected city
   const [selectedCity, setSelectedCity] = useState(null);
   // state for default/selected area
@@ -75,35 +72,16 @@ const CheckoutForm = ({
     createAccount: false,
   });
 
-  // hooks for fetching city list
-  const [cityListState, handleCityListFetch] = useHandleFetch(
-    [],
-    "deliveryCityList"
-  );
-
   // hooks for fetching delivery region within a city
   const [deliveryAreaState, handleDeliveryAreaFetch] = useHandleFetch(
     [],
     "getDeliveryCharge"
   );
-  // hooks for sending checkout data
-  // const [checkoutState, handleCreateOrderFetch] = useHandleFetch(
-  //   {},
-  //   "checkout"
-  // );
 
   // hooks for clearing out cart
   const [clearCartState, handleClearCart] = useHandleFetch({}, "clearCart");
 
-  // this effect triggers cityList fetching whenever this component mounts
-  useEffect(() => {
-    const fetchCityList = async () => {
-      const res = await handleCityListFetch({});
-      setCityList(res);
-    };
 
-    fetchCityList();
-  }, []);
 
   // fetch respective delivery area of a city
   useEffect(() => {
