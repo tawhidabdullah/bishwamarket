@@ -8,6 +8,10 @@
       "url": "/api/component/banner",
       "method": "get"
     },
+    "mediaCollectionBanner": {
+      "url": "/api/component/mediaCollectionBanner",
+      "method": "get"
+    },
     "partners": {
       "url": "/api/component/partners",
       "method": "get"

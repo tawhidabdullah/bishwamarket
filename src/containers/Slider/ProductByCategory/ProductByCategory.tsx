@@ -132,47 +132,45 @@ const ProductByCategory = () => {
   };
 
   return (
-    <div style={containerStyles}>
-      <Section>
-        <MobileViewToggler
-          onClick={() => setIsCategoryLabels((value) => !value)}
-        >
-          <DrawerButton>View Categories</DrawerButton>
-        </MobileViewToggler>
+    <Section>
+      <MobileViewToggler onClick={() => setIsCategoryLabels((value) => !value)}>
+        <DrawerButton>View Categories</DrawerButton>
+      </MobileViewToggler>
 
-        {isCategoryLabels && (
-          <MobileCategoryLabels>
-            {category.map((item, idx) => (
-              <CategoryLabel
-                className={
-                  item.id === selectedCateoryId
-                    ? "categoryName categoryName-active"
-                    : "categoryName"
-                }
-                key={idx}
-                onClick={() => {
-                  handleCategoryId(item.id, idx);
-                  setIsCategoryLabels(false);
-                }}
-              >
-                {item.name}
-              </CategoryLabel>
-            ))}
-          </MobileCategoryLabels>
-        )}
-
-        <CategoryLabels>
+      {isCategoryLabels && (
+        <MobileCategoryLabels>
           {category.map((item, idx) => (
             <CategoryLabel
-              className="categoryName"
+              className={
+                item.id === selectedCateoryId
+                  ? "categoryName categoryName-active"
+                  : "categoryName"
+              }
               key={idx}
-              onClick={() => handleCategoryId(item.id, idx)}
+              onClick={() => {
+                handleCategoryId(item.id, idx);
+                setIsCategoryLabels(false);
+              }}
             >
               {item.name}
             </CategoryLabel>
           ))}
-        </CategoryLabels>
+        </MobileCategoryLabels>
+      )}
 
+      <CategoryLabels>
+        {category.map((item, idx) => (
+          <CategoryLabel
+            className="categoryName"
+            key={idx}
+            onClick={() => handleCategoryId(item.id, idx)}
+          >
+            {item.name}
+          </CategoryLabel>
+        ))}
+      </CategoryLabels>
+
+      <div style={containerStyles}>
         {categoryProductsState.isLoading ? (
           <Spinner />
         ) : products.length > 0 ? (
@@ -187,8 +185,8 @@ const ProductByCategory = () => {
         ) : (
           <ProductNotFound>No product found in this category</ProductNotFound>
         )}
-      </Section>
-    </div>
+      </div>
+    </Section>
   );
 };
 export default ProductByCategory;
@@ -214,7 +212,7 @@ const MobileCategoryLabels = styled.div`
   font-size: 14px;
   flex-wrap: wrap;
   background-color: #fff;
-  width: 97.5%;
+  width: 100%;
   margin: 0 auto;
   padding: 16px 0 16px 10px;
 
@@ -236,9 +234,10 @@ const CategoryLabels = styled.div`
   font-size: 14px;
   flex-wrap: wrap;
   background-color: #fff;
-  width: 97.5%;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 10px !important;
+  margin-top: 25px !important;
 
   @media screen and (max-width: 578px) {
     display: none !important;
@@ -258,7 +257,7 @@ const CategoryLabel = styled.div`
   font-weight: 550;
   /* background-color: #f2f2f2; */
   position: relative;
-  line-height: 60px;
+  line-height: 70px;
   margin-right: 15px;
 
   .categoryName-active {

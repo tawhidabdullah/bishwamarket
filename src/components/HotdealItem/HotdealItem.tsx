@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import html_parser from "html-react-parser";
 import { useAlert } from "react-alert";
 
 // import redux ops
 import { cartOperations } from "../../state/ducks/cart";
+import { productOperations } from "../../state/ducks/Item";
+import { globalOperations } from "../../state/ducks/globalState";
 
 // hooks for add to cart
 import { useHandleFetch } from "../../hooks";
@@ -17,6 +19,7 @@ const HotdealItem = ({
   isAuthenticated,
 }) => {
   const alert = useAlert();
+  const dispatch = useDispatch();
 
   // this hook add to item to cart
   const [addToCartState, handleAddtoCartPost] = useHandleFetch({}, "addToCart");
@@ -79,15 +82,37 @@ const HotdealItem = ({
   }
 
   console.log({ offerProduct });
+
+  const addToDrawer = () => {
+    dispatch(productOperations.addProduct(offerProduct));
+    dispatch(globalOperations.toggleQuickviewDrawer());
+  };
+
   return (
     <HotDealContainer>
       <HotContainer>
-        <div className="right-slick-img">
+        <div
+          onClick={addToDrawer}
+          style={{
+            padding: "10px",
+            border: "1px solid #ddd",
+            background: "#fff",
+            cursor: "pointer",
+          }}
+          className="right-slick-img"
+        >
           <img src={offerProduct.image} />
         </div>
         <HotdealCenter>
           <div>
-            <Text>{offerProduct.name}</Text>
+            <Text
+              onClick={addToDrawer}
+              style={{
+                cursor: "pointer",
+              }}
+            >
+              {offerProduct.name}
+            </Text>
             <PriceBox>
               {html_parser(
                 `${

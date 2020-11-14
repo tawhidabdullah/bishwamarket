@@ -16,7 +16,7 @@ import { RightBar } from "../../components/ProductListing/RightBar";
 import { Header } from "../../components/elements/Header";
 
 // import hooks
-import { useHandleFetch } from "../../hooks";
+import { useHandleFetch, useQueryFetch } from "../../hooks";
 
 // const SlideCustom = (props) => {
 
@@ -78,6 +78,8 @@ const CollectionMediaBanner = () => {
     {},
     "offerProduct"
   );
+
+  const bannerState = useQueryFetch("banner");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -189,9 +191,13 @@ const CollectionMediaBanner = () => {
             View more...
           </ViewMoreText>
         </MainContent>
-        <MidContent>
-          <Jewellerybanner style={{ backgroundImage: `url(${img})` }} />
-        </MidContent>
+        {bannerState.isSuccess && bannerState.data?.length > 0 && (
+          <MidContent>
+            <Jewellerybanner
+              style={{ backgroundImage: `url(${bannerState.data?.[0].src})` }}
+            />
+          </MidContent>
+        )}
         <MainContents>
           <LeftContens>
             <Header
@@ -374,7 +380,7 @@ const Main = styled.div`
   }
 
   @media only screen and (min-width: 1300px) {
-    grid-template-columns: 25% 15% 60%;
+    grid-template-columns: 30% 15% 55%;
   }
 `;
 const MainContent = styled.div`

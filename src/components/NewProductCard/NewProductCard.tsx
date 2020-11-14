@@ -69,11 +69,11 @@ const NewProductCard = ({
 
   return (
     <NewProductCardContainer>
-      <ImageContainer>
+      <ImageContainer onClick={handleAddToDrawer}>
         <img className="img-fluid" src={product.cover} alt="" />
       </ImageContainer>
       <CardInfoContainer>
-        <h3>{product.name}</h3>
+        <h3 onClick={handleAddToDrawer}>{product.name}</h3>
         <p>৳{product.price}</p>
         {parseFloat(product.offer) > 0 && <p>Offer: {product.offer}</p>}
         {/* <ShoppingBag>
@@ -120,14 +120,15 @@ const CardInfoContainer = styled.div`
 
   h3 {
     /* font-weight: 600; */
-    font-size: 14px;
+    font-size: 16px;
+    cursor: pointer;
   }
 
   & p {
     margin-bottom: 0;
-    margin-top: 10px;
-    font-weight: 600;
-    font-size: 14px;
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 15px;
     color: #ffa800;
   }
 
@@ -143,9 +144,22 @@ const CardInfoContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 25%;
-  height: fit-content;
+  height: 100%;
+  background: #fff;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: 110px;
+  width: 100px;
   padding-left: 5px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
   @media screen and (max-width: 768px) {
     width: 35%;

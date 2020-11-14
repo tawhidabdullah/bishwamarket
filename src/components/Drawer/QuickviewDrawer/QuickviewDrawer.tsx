@@ -397,6 +397,7 @@ const SizeContainer = styled.div`
   justify-content: start;
 
   padding: 0 0 8px 0;
+  margin-top: 10px;
 
   ${(props) => props.customStyle}
   @media screen and (max-width: 590px) {

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 
 // import config for image url
@@ -12,6 +12,8 @@ import image from "../../../assets/media/1.jpg";
 
 // import redux ops
 import { cartOperations } from "../../../state/ducks/cart";
+import { productOperations } from "../../../state/ducks/Item";
+import { globalOperations } from "../../../state/ducks/globalState";
 
 const MediaBanner = ({
   product,
@@ -22,6 +24,7 @@ const MediaBanner = ({
 }) => {
   const alert = useAlert();
 
+  const dispatch = useDispatch();
   // this hook add to item to cart
   const [addToCartState, handleAddtoCartPost] = useHandleFetch({}, "addToCart");
 
@@ -58,18 +61,30 @@ const MediaBanner = ({
     }
   };
 
+  const addToDrawer = () => {
+    dispatch(productOperations.addProduct(product));
+    dispatch(globalOperations.toggleQuickviewDrawer());
+  };
+
   return (
     <MediaBannercontainer customStyle={customStyle}>
       {product &&
         product.map((item, idx) => (
           <MediaBannerBox key={idx}>
             <Media>
-              <img src={image} className="img-fluid  " alt="popular products" />
+              <img
+                onClick={addToDrawer}
+                src={image}
+                className="img-fluid  "
+                alt="popular products"
+              />
 
               <MediaBody>
                 <MediaContent>
                   <div>
-                    <ProductNameLabel>{item.name}</ProductNameLabel>
+                    <ProductNameLabel onClick={addToDrawer}>
+                      {item.name}
+                    </ProductNameLabel>
                     <h6>৳ {item.price}</h6>
                     {/* <ShoppingBag onClick={() => handleAddToCart(item)}>
                       <span>
@@ -144,6 +159,14 @@ const Media = styled.div`
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
+
+  img {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
 `;
 
 const MediaBody = styled.div`

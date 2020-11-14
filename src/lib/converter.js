@@ -1274,6 +1274,7 @@ class Converter {
     if (data && data.popularProduct && data.popularProduct.data.length > 0) {
       data.popularProduct.data.map((product) => {
         let newData = {
+          ...product,
           _id: product._id,
           url: product.url && product.url,
           name: product.name,
@@ -1288,6 +1289,35 @@ class Converter {
             product.price &&
             product.price.defaultVariation &&
             product.price.defaultVariation,
+          id: product._id || "",
+          name: product.name && product.name,
+          description: product.description && product.description,
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
+          }`,
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
+          unit: product.unit,
+          url: product.url,
+          price:
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
+          stock:
+            product.pricing &&
+            product.pricing.length > 0 &&
+            product.pricing[0].stock.available,
+          pricing: product.pricing,
+          date: product.date,
+          venue: product.venue,
+          offerTaka:
+            product.price &&
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
+              : 0,
         };
 
         convertedData.push(newData);
@@ -1303,6 +1333,7 @@ class Converter {
     if (data && data.data && data.data.length > 0) {
       data.data.map((product) => {
         let newData = {
+          ...product,
           _id: product._id,
           url: product.url && product.url,
           name: product.name,
@@ -1319,6 +1350,35 @@ class Converter {
             product.price &&
             product.price.defaultVariation &&
             product.price.defaultVariation,
+          id: product._id || "",
+          name: product.name && product.name,
+          description: product.description && product.description,
+          cover: `${config["baseURL"]}${
+            (product.cover && product.cover["medium"]) || ""
+          }`,
+          regularPrice: product.price && product.price["regular"],
+          offerPrice: product.price && product.price["offer"],
+          unit: product.unit,
+          url: product.url,
+          price:
+            product.price && parseInt(product.price["offer"])
+              ? product.price["offer"]
+              : product.price["regular"],
+          stock:
+            product.pricing &&
+            product.pricing.length > 0 &&
+            product.pricing[0].stock.available,
+          pricing: product.pricing,
+          date: product.date,
+          venue: product.venue,
+          offerTaka:
+            product.price &&
+            parseInt(product.price["offer"]) &&
+            parseInt(product.price["regular"]) >
+              parseInt(product.price["offer"])
+              ? parseInt(product.price["regular"]) -
+                parseInt(product.price["offer"])
+              : 0,
         };
 
         convertedData.push(newData);
@@ -1733,6 +1793,34 @@ class Converter {
    * @returns {Object}  converted data
    */
   async banner(data) {
+    const items = data.items || [];
+
+    if (items.length > 0) {
+      const featureOfferItems = [];
+      items.forEach((featuredItem) => {
+        if (featuredItem.image && featuredItem.image[0]) {
+          featureOfferItems.push({
+            title: featuredItem.title,
+            target: featuredItem.target,
+            src:
+              featuredItem.image &&
+              featuredItem.image[0] &&
+              `${config["baseURL"]}${featuredItem.image[0].original}`,
+          });
+        }
+      });
+
+      return featureOfferItems;
+    } else return false;
+  }
+
+  /**
+   * @public
+   * @method mediaCollectionBanner convert api data from API to general format based on config server
+   * @param {Object} data response objectc from alpha
+   * @returns {Object}  converted data
+   */
+  async mediaCollectionBanner(data) {
     const items = data.items || [];
 
     if (items.length > 0) {
