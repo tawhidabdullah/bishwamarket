@@ -150,6 +150,10 @@ const NavigationContainer = styled.div`
   @media only screen and (max-width: 1150px) {
     grid-template-columns: 1fr;
   }
+
+  @media only screen and (max-width: 800px) {
+    padding: 0 20px;
+  }
 `;
 
 const BannerSideBar = styled.div`

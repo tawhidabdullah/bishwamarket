@@ -148,6 +148,10 @@ const Maxconatiner = styled.div`
   width: 96%;
   margin-top: 6px !important;
   margin: 0 auto;
+
+  @media screen and (max-width: 800px) {
+    width: 85% !important;
+  }
 `;
 const Main = styled.div`
   /* max-width: 1500px; */

@@ -170,7 +170,7 @@ const ProductByCategory = () => {
         ))}
       </CategoryLabels>
 
-      <div style={containerStyles}>
+      <ProductsContainer style={containerStyles}>
         {categoryProductsState.isLoading ? (
           <Spinner />
         ) : products.length > 0 ? (
@@ -185,11 +185,19 @@ const ProductByCategory = () => {
         ) : (
           <ProductNotFound>No product found in this category</ProductNotFound>
         )}
-      </div>
+      </ProductsContainer>
     </Section>
   );
 };
 export default ProductByCategory;
+
+const ProductsContainer = styled.div`
+  width: 96%;
+  margin: 20px auto 20px auto;
+  @media screen and (max-width: 800px) {
+    width: 80% !important;
+  }
+`;
 
 const Section = styled.div`
   margin-top: 10px;
