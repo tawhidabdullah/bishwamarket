@@ -19,8 +19,6 @@ import { SpecilaProductSlider } from "../../containers/Slider/SpecilaProductSlid
 // import redux ops
 import { globalOperations } from "../../state/ducks/globalState";
 
-
-
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -48,7 +46,7 @@ const Home = () => {
       <ContactBanner />
       <CompanyBanner />
     </>
-);
+  );
 };
 
 export default Home;

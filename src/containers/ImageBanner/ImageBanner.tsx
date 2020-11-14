@@ -76,13 +76,14 @@ const ImageBanner = () => {
     ],
   };
 
+  console.log("BannerData", data);
   return (
     <NavigationContainer>
-      <Content>
+      <BannerSideBar>
         {categoryList.isSuccess && categoryList.data?.length > 0 && (
           <ImageBannerCategoryItem category={categoryList.data} />
         )}
-      </Content>
+      </BannerSideBar>
 
       <SliderBanner>
         {status ? (
@@ -104,15 +105,15 @@ const ImageBanner = () => {
         )}
       </SliderBanner>
 
-      {/* {bannerStatus ? (
-          <> </>
-        ) : (
-          <BottomImage>
-            {offerData.map((item) => {
-              return <CollectionItem customStyles={{}} item={item} />;
-            })}
-          </BottomImage>
-        )} */}
+      {bannerStatus ? (
+        <> </>
+      ) : (
+        <BottomImage>
+          {offerData.map((item) => {
+            return <CollectionItem customStyles={{}} item={item} />;
+          })}
+        </BottomImage>
+      )}
     </NavigationContainer>
   );
 };
@@ -134,8 +135,10 @@ const NavigationContainer = styled.div`
   margin-bottom: 10px;
   justify-content: center;
   background-color: #f2f2f2;
-  padding: 0 100px;
+  padding: 0 50px;
+  grid-row-gap: 15px;
   grid-column-gap: 10px;
+  padding-bottom: 10px;
 
   /* @media only screen and (min-width: 1450px) {
     grid-template-columns: 25% 60% auto;
@@ -149,9 +152,10 @@ const NavigationContainer = styled.div`
   }
 `;
 
-const Content = styled.div`
+const BannerSideBar = styled.div`
   display: grid;
-  grid-row: 1/ 3;
+  grid-row: 1/ -1;
+  grid-column: 1/2;
   margin-top: 10px;
   position: relative;
 
@@ -162,15 +166,15 @@ const Content = styled.div`
 
 const SliderBanner = styled.div`
   margin-top: 10px;
+  grid-row: 1/ 2;
 `;
 
 const BottomImage = styled.div`
   display: grid;
-
   grid-template-columns: 2fr 2fr;
-  margin-left: -10px;
   grid-auto-rows: minmax(180px, auto);
   grid-gap: 10px;
+
   @media only screen and (max-width: 1150px) and (min-width: 580px) {
     grid-template-columns: 2fr 2fr 2fr;
     margin-left: 0px;
@@ -182,7 +186,7 @@ const BottomImage = styled.div`
   }
 
   @media only screen and (min-width: 1250px) {
-    grid-column: 2/ 10;
+    grid-column: 2/ -1;
     grid-template-columns: 2fr 2fr 2fr;
   }
   /* @media only screen and (min-width: 1151px) and (max-width: 1449px) {
