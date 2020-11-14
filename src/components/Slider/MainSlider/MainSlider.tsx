@@ -55,8 +55,8 @@ const MainContent = styled.div`
     props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px; */
+  /* padding-left: 15px; */
   margin-right: auto;
   margin-left: auto;
   padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};

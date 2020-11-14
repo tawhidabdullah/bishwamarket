@@ -145,7 +145,8 @@ export default ContentSlider;
 const Maxconatiner = styled.div`
   display: flex;
   justify-content: center;
-  width: 95%;
+  width: 96%;
+  margin-top: 6px !important;
   margin: 0 auto;
 `;
 const Main = styled.div`

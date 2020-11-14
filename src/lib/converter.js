@@ -1306,8 +1306,9 @@ class Converter {
           _id: product._id,
           url: product.url && product.url,
           name: product.name,
-          price: product.price && parseFloat(product.price.regular),
-          offerPrice: product.price && parseFloat(product.price.offer),
+          price: product.price && parseInt(product.price.regular),
+          offerPrice: product.price && parseInt(product.price.offer),
+          regularPrice: product.price && parseInt(product.price.regular),
           description: product.description || "",
           image: `${config["baseURL"]}${
             (product.cover && product.cover["thumbnail"]).substring(1) || ""

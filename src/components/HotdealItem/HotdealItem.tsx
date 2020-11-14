@@ -2,11 +2,83 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import html_parser from "html-react-parser";
+import { useAlert } from "react-alert";
 
 // import redux ops
 import { cartOperations } from "../../state/ducks/cart";
 
-const HotdealItem = ({ offerProduct }) => {
+// hooks for add to cart
+import { useHandleFetch } from "../../hooks";
+
+const HotdealItem = ({
+  offerProduct,
+  addToCart,
+  removeFromCart,
+  isAuthenticated,
+}) => {
+  const alert = useAlert();
+
+  // this hook add to item to cart
+  const [addToCartState, handleAddtoCartPost] = useHandleFetch({}, "addToCart");
+
+  const handleAddToCart = async (item) => {
+    if (!item.inStock) {
+      alert.error(`${item.name} is out of stock`);
+      return;
+    }
+
+    const cartItem = {
+      product: item._id,
+      variation: item.defaultVariation,
+      name: item.name,
+      quantity: 1,
+      cover: item.image,
+      price: item.price,
+      url: item.url,
+    };
+
+    addToCart(cartItem);
+    alert.success("Product added to cart");
+
+    if (isAuthenticated) {
+      const addToCartRes: any = await handleAddtoCartPost({
+        body: {
+          items: [cartItem],
+        },
+      });
+
+      if (addToCartRes && Object.keys(addToCartRes).length === 0) {
+        removeFromCart(cartItem);
+        alert.error("Something went wrong");
+      }
+    }
+  };
+
+  function renderPrice(regularPrice: any = 0, offerPrice: any = 0, priceType) {
+    switch (priceType) {
+      case "regular":
+        return regularPrice || null;
+      case "offer":
+        if (offerPrice) {
+          console.log("shitoff");
+        }
+        return parseInt(offerPrice) || null;
+      case "price":
+        if (
+          offerPrice &&
+          offerPrice != 0 &&
+          parseInt(offerPrice) < parseInt(regularPrice)
+        ) {
+          return offerPrice;
+        } else {
+          return regularPrice;
+        }
+      default:
+        return regularPrice || null;
+    }
+  }
+
+  console.log({ offerProduct });
   return (
     <HotDealContainer>
       <HotContainer>
@@ -17,18 +89,59 @@ const HotdealItem = ({ offerProduct }) => {
           <div>
             <Text>{offerProduct.name}</Text>
             <PriceBox>
-              {html_parser(offerProduct.description.substring(0, 150) || "")}
+              {html_parser(
+                `${
+                  offerProduct.description.length > 100
+                    ? offerProduct.description.substring(0, 100) + "...."
+                    : offerProduct.description
+                }` || ""
+              )}
 
-              <Price>
+              {/* <Price>
                 <span>Regular Price: ৳ {offerProduct.price}</span> <br />
                 <span>Offer Price: ৳ {offerProduct.offerPrice}</span>
+              </Price> */}
+
+              <Price>
+                {renderPrice(
+                  offerProduct.regularPrice,
+                  offerProduct.offerPrice,
+                  "offer"
+                ) ? (
+                  <p>
+                    ৳{offerProduct.offerPrice}{" "}
+                    <del>৳{offerProduct.regularPrice}</del>
+                  </p>
+                ) : (
+                  <p
+                    style={{
+                      color: "#ffa600",
+                      fontWeight: 700,
+                    }}
+                  >
+                    ৳
+                    {renderPrice(
+                      offerProduct.regularPrice,
+                      offerProduct.offerPrice,
+                      "price"
+                    )}
+                  </p>
+                )}
               </Price>
             </PriceBox>
-            <div>
+            {/* <p
+              onClick={() => handleAddToCart(offerProduct)}
+              style={{
+                margin: "0 10px",
+                width: "fit-content",
+                cursor: "pointer",
+              }}
+              title="Add to Cart"
+            >
               <span>
                 <i className="fa fa-shopping-bag" />
               </span>
-            </div>
+            </p> */}
           </div>
         </HotdealCenter>
       </HotContainer>
@@ -36,17 +149,24 @@ const HotdealItem = ({ offerProduct }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.session.isAuthenticated,
+});
+
 const mapDispatchToProps = {
   addToCart: cartOperations.addToCart,
+  removeFromCart: cartOperations.removeFromCart,
 };
 
-export default connect()(HotdealItem);
+export default connect(mapStateToProps, mapDispatchToProps)(HotdealItem);
 
 const HotDealContainer = styled.div`
   background-color: #f2f2f2;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  /* padding: 30px; */
+  margin-top: 20px;
+
   @media only screen and (max-width: 580px) {
     width: 90%;
   }
@@ -100,6 +220,7 @@ const Timer = styled.div`
     line-height: 1.6;
     margin: 20px 10px;
     letter-spacing: 0.05em;
+    font-weight: 600;
   }
 
   & span {
@@ -129,11 +250,16 @@ const PriceBox = styled.div`
   line-height: 1.6;
   margin: 20px 10px;
   letter-spacing: 0.05em;
+  font-size: 14px;
 `;
 
 const Price = styled.div`
-  & p {
-    margin: 20px 10px;
+  p {
+    font-size: 20px;
+  }
+  & p del {
+    color: #ff6000;
+    font-size: 12px;
   }
 
   & span {

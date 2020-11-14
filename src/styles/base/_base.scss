@@ -229,10 +229,17 @@ $lato-font: "Lato", sans-serif;
 
 // changing react-slick default style
 
-.slick-prev:before,
+.slick-prev:before {
+  font-size: 20px;
+  color: #999;
+  content: "\f104";
+  font: normal normal normal 30px/1 FontAwesome;
+}
 .slick-next:before {
-  font-size: 30px;
-  color: #ff6000;
+  font-size: 20px;
+  color: #999;
+  content: "\f105";
+  font: normal normal normal 30px/1 FontAwesome;
 }
 
 .categorySlider {
@@ -243,6 +250,36 @@ $lato-font: "Lato", sans-serif;
   }
 }
 
+.popularProductsSlider {
+  .slick-prev:before {
+    font-size: 15px;
+    color: #999;
+    content: "\f104";
+    font: normal normal normal 30px/1 FontAwesome;
+  }
+}
+
+.popularProductsSlider {
+  .slick-next:before {
+    font-size: 15px;
+    color: #999;
+    content: "\f105";
+    font: normal normal normal 30px/1 FontAwesome;
+  }
+}
+
 .slick-slide {
   justify-content: center !important;
+}
+
+/// products by category's cateory name title
+
+.categoryName-active::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background-color: #ff6000;
+  width: 100%;
+  content: "";
 }

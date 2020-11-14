@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import Slider from "react-slick";
 import { MainSlider } from "../../components/Slider/MainSlider";
@@ -63,6 +64,8 @@ const CollectionMediaBanner = () => {
   const [nav2, setNav2] = useState([]);
   let slider1 = [];
   let slider2 = [];
+
+  const history = useHistory();
 
   // this hook fetch most popular products
   const [popularProductRes, handlePopularProductFetch] = useHandleFetch(
@@ -158,9 +161,9 @@ const CollectionMediaBanner = () => {
     <Section>
       <Main>
         {" "}
-        <MainContent>
+        <MainContent className="popularProductsSlider">
           <Header
-            content="MOST POPULAR PRODUCTS"
+            content="POPULAR PRODUCTS"
             customStyle={{ fontSize: "20px", marginBottom: "20px" }}
           />
           <Slider {...settings}>
@@ -182,6 +185,9 @@ const CollectionMediaBanner = () => {
                 </>
               ))}
           </Slider>
+          <ViewMoreText onClick={() => history.push("/product")}>
+            View more...
+          </ViewMoreText>
         </MainContent>
         <MidContent>
           <Jewellerybanner style={{ backgroundImage: `url(${img})` }} />
@@ -190,7 +196,7 @@ const CollectionMediaBanner = () => {
           <LeftContens>
             <Header
               content="TODAY'S HOT OFFER"
-              customStyle={{ fontSize: "20px", textAlign: "center" }}
+              customStyle={{ fontSize: "20px" }}
             />
             <Slider
               // asNavFor={nav2}
@@ -257,17 +263,36 @@ const CollectionMediaBanner = () => {
     </Section>
   );
 };
+
 export default CollectionMediaBanner;
+
 const Section = styled.div`
   background-color: #fff;
 `;
+
+const ViewMoreText = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  width: fit-content;
+  color: #ff6000;
+  cursor: pointer;
+  transition: ease-in-out 400ms;
+  margin-top: 20px;
+  font-weight: 700;
+
+  :hover {
+    color: #eea826;
+  }
+`;
+
 const MainContents = styled.div`
   outline: none;
   background-color: #f2f2f2;
-  padding: 10px;
+  padding: 30px;
 
   display: grid;
-  width: 600px;
+  /* width: 600px; */
 
   grid-template-columns: 85% 15%;
   @media only screen and (max-width: 1000px) and (min-width: 580px) {
@@ -294,8 +319,8 @@ const MainContents = styled.div`
     width: 300px;
   }
   & .slick-prev {
-    top: 35px;
-    right: -15px;
+    top: -28px;
+    right: -55px;
     left: unset;
     z-index: 9;
 
@@ -305,8 +330,8 @@ const MainContents = styled.div`
     }
   }
   & .slick-next {
-    top: 35px;
-    right: -40px;
+    top: -28px;
+    right: -80px;
     z-index: 9;
     background: transparent;
     width: 20px;
@@ -349,12 +374,12 @@ const Main = styled.div`
   }
 
   @media only screen and (min-width: 1300px) {
-    grid-template-columns: 1fr 300px 1fr;
+    grid-template-columns: 25% 15% 60%;
   }
 `;
 const MainContent = styled.div`
   outline: none;
-  padding: 30px;
+  padding: 30px 40px;
   background-color: #f2f2f2;
   display: grid;
   grid-template-columns: minmax(140px, 1fr);

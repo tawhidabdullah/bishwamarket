@@ -274,12 +274,11 @@ const ProductDetail = styled.div`
       props.customStyles.productBackgroundColor ? "100%" : "170px"};
   }
 
-  @media  screen and (max-width: 580px) {
+  @media screen and (max-width: 580px) {
     width: 100%;
     background-color: #fff;
     padding: 20px;
   }
- 
 `;
 
 const ProductBox = styled.div`
@@ -288,6 +287,7 @@ const ProductBox = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 10px 0px;
+  max-width: 230px;
 
   position: relative;
   overflow: hidden;
@@ -420,7 +420,12 @@ const NewLevel = styled.div`
 `;
 
 const DetailLeft = styled.div`
-  width: ${(props) =>  props.customStyles ? props.customStyles.containertop ? "100%" : "60%" : "60%" };
+  width: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containertop
+        ? "100%"
+        : "60%"
+      : "60%"};
 
   @media only screen and (max-width: 578px) {
     display: flex;
@@ -430,10 +435,15 @@ const DetailLeft = styled.div`
   }
 `;
 const DetailRight = styled.div`
-  width: ${(props) => props.customStyles ? props.customStyles.containertop ? "100%" : "40%" : "40%"};
+  width: ${(props) =>
+    props.customStyles
+      ? props.customStyles.containertop
+        ? "100%"
+        : "40%"
+      : "40%"};
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
 
-  @media  screen and (max-width: 580px) {
+  @media screen and (max-width: 580px) {
     display: flex;
     justify-content: start;
     width: 100%;

@@ -18,6 +18,7 @@ const MediaBanner = ({
   addToCart,
   isAuthenticated,
   removeFromCart,
+  customStyle,
 }) => {
   const alert = useAlert();
 
@@ -58,26 +59,23 @@ const MediaBanner = ({
   };
 
   return (
-    <MediaBannercontainer>
+    <MediaBannercontainer customStyle={customStyle}>
       {product &&
         product.map((item, idx) => (
           <MediaBannerBox key={idx}>
             <Media>
-              <img
-                src={product.image}
-                className="img-fluid  "
-                alt="popular products"
-              />
+              <img src={image} className="img-fluid  " alt="popular products" />
+
               <MediaBody>
                 <MediaContent>
                   <div>
                     <ProductNameLabel>{item.name}</ProductNameLabel>
                     <h6>৳ {item.price}</h6>
-                    <ShoppingBag onClick={() => handleAddToCart(item)}>
+                    {/* <ShoppingBag onClick={() => handleAddToCart(item)}>
                       <span>
                         <i title="Add to Cart" className="fa fa-shopping-bag" />
                       </span>
-                    </ShoppingBag>
+                    </ShoppingBag> */}
                   </div>
                 </MediaContent>
               </MediaBody>
@@ -113,6 +111,7 @@ const ShoppingBag = styled.p`
   padding: 10px;
   margin: 10px 0;
   font-size: 16px;
+  width: fit-content;
 `;
 
 const ProductNameLabel = styled.p`
@@ -124,9 +123,10 @@ const ProductNameLabel = styled.p`
 
 const MediaBannercontainer = styled.div`
   background-color: #f2f2f2;
+  ${(props) => props.customStyle}
 `;
 const MediaBannerBox = styled.div`
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 
   & h5 {
     font-size: 16px;
@@ -163,8 +163,8 @@ const MediaContent = styled.div`
     color: #ff6000;
     cursor: pointer;
     font-weight: 700;
-    margin-top: 3px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 15px;
     margin-bottom: 0;
   }
 `;

@@ -225,6 +225,15 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+  changeQuantity: cartOperations.changeQuantity,
+  addToCart: (value) => dispatch(cartOperations.addToCart(value)),
+  removeFromCart: (value) => dispatch(cartOperations.removeFromCart(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
+
 const QuantityCounterBox = styled.div`
   & p {
     font-weight: bold;
@@ -246,15 +255,6 @@ const QuantityCounterBox = styled.div`
     background-color: #eee;
   }
 `;
-
-const mapDispatchToProps = (dispatch) => ({
-  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
-  changeQuantity: cartOperations.changeQuantity,
-  addToCart: (value) => dispatch(cartOperations.addToCart(value)),
-  removeFromCart: (value) => dispatch(cartOperations.removeFromCart(value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
 
 const Text1 = styled.div`
   cursor: pointer;
