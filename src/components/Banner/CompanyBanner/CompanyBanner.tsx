@@ -47,11 +47,19 @@ const CompanyBannerWrapper = styled.section`
 
 
 const CompanyLogoImageWrapper = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 0 30px !important;
-
+  width: 150px;
+  height: 150px;
+  margin-bottom: 0;
+  margin-right: 20px;
   
+  @media screen and (max-width: 991px) {
+    height: auto; 
+    width: 100%;
+    padding: 0 50px !important;
+    margin-right: 0; 
+    margin-bottom: 20px;
+  }
+
   & img {
     width: 100%; 
     height: 100%;

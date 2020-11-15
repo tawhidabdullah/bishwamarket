@@ -159,8 +159,6 @@ const CollectionMediaBanner = () => {
               customStyle={{ fontSize: "20px" }}
             />
             <Slider
-              // asNavFor={nav2}
-              // ref={(slider) => (slider1 = slider)}
               arrows={true}
             >
               {offerProductState.done &&
@@ -241,7 +239,7 @@ const MainContents = styled.div`
 
     @media only screen and (max-width: 580px) {
       right: 55px;
-      top: 5px;
+      top: -25px;
     }
   }
   & .slick-next {
@@ -251,10 +249,14 @@ const MainContents = styled.div`
     background: transparent;
     width: 20px;
     height: 20px;
+
+
     @media only screen and (max-width: 580px) {
       right: 25px;
-      top: 5px;
+      top: -25px;
     }
+
+
   }
   & .slick-prev::before {
     color: #999;
