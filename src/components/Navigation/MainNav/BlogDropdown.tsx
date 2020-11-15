@@ -1,18 +1,17 @@
 //@ts-nocheck
 import React, { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { useQueryFetch } from '../../../hooks';
+import { useQueryFetch } from "../../../hooks";
 
 // import styles
 import { DropdownContainerStyles, DropdownItemStyles } from "./commonStyles";
 
 const Blogdropdown = (props) => {
-
   const history = useHistory();
 
-  const paegListState = useQueryFetch('pageList');
+  const paegListState = useQueryFetch("pageList");
 
   const handleClose = (url) => {
     history.push(url);
@@ -21,15 +20,14 @@ const Blogdropdown = (props) => {
   const [pagesData, setPagesData] = useState([]);
 
   useEffect(() => {
-
     if (paegListState.isSuccess) {
       const pageList =
         paegListState.data && paegListState.data.length > 0
           ? paegListState.data.map((prod) => {
-            return {
-              ...prod,
-            };
-          })
+              return {
+                ...prod,
+              };
+            })
           : {};
       // @ts-ignore
       setPagesData(pageList);
@@ -37,10 +35,10 @@ const Blogdropdown = (props) => {
       const pageList =
         paegListState.data && paegListState.data.length > 0
           ? paegListState.data.map((prod) => {
-            return {
-              ...prod,
-            };
-          })
+              return {
+                ...prod,
+              };
+            })
           : {};
       // @ts-ignore
       setPagesData(pageList);
@@ -57,10 +55,8 @@ const Blogdropdown = (props) => {
 
         {pagesData &&
           pagesData.length &&
-          pagesData.map((page) => (
-            <BlogDropdownItem
-              onClick={() => handleClose(page.url)}
-            >
+          pagesData.map((page, idx) => (
+            <BlogDropdownItem key={idx} onClick={() => handleClose(page.url)}>
               {page.name}
             </BlogDropdownItem>
           ))}

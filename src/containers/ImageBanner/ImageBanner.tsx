@@ -108,8 +108,8 @@ const ImageBanner = () => {
         <> </>
       ) : (
         <BottomImage>
-          {offerData.map((item) => {
-            return <CollectionItem customStyles={{}} item={item} />;
+          {offerData.map((item, idx) => {
+            return <CollectionItem key={idx} customStyles={{}} item={item} />;
           })}
         </BottomImage>
       )}

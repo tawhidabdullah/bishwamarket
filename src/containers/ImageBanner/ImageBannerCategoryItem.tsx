@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -68,10 +68,10 @@ const ImageBannerCategoryItem = ({ category }) => {
           >
             {category.slice(8).map((cat, it) => {
               return (
-                <>
+                <Fragment key={it}>
                   <li
                     style={{ transition: "all 3s" }}
-                    key={it}
+                    // key={it}
                     onClick={() =>
                       addFilterToStorage({ category: cat.id }, () => {
                         history.push("/product");
@@ -82,7 +82,7 @@ const ImageBannerCategoryItem = ({ category }) => {
 
                     <a>{cat.name}</a>
                   </li>
-                </>
+                </Fragment>
               );
             })}
             <li

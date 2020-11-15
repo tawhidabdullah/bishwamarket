@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
 import { useAlert } from "react-alert";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
 // import hooks
 import { useHandleFetch } from "../../hooks";
@@ -10,9 +10,6 @@ import { useHandleFetch } from "../../hooks";
 import { cartOperations } from "../../state/ducks/cart";
 import { globalOperations } from "../../state/ducks/globalState";
 import { productOperations } from "../../state/ducks/Item";
-
-// import quicview drawer
-import { QuickViewDrawer } from "../Drawer/QuickviewDrawer";
 
 const NewProductCard = ({
   product,

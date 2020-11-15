@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Slider from "react-slick";
-
 import styled from "styled-components";
 
 const MainSlider = ({
@@ -9,8 +8,8 @@ const MainSlider = ({
   customStyles,
   ...props
 }) => {
-  const [activeSlide, setactiveSlide] = useState(0);
-  const [activeSlide2, setactiveSlide2] = useState(0);
+  // const [activeSlide, setactiveSlide] = useState(0);
+  // const [activeSlide2, setactiveSlide2] = useState(0);
   const settings = {
     dots: false,
     infinite: true,

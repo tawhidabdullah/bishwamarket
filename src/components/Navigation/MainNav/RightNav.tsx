@@ -1,21 +1,15 @@
 //@ts-nocheck
+import jwt_decode from "jwt-decode";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { useAlert } from "react-alert";
+import styled from "styled-components";
 
 // import global actions
 import { globalOperations } from "../../../state/ducks/globalState";
-
-import HomeDropdown from "./HomeDropdown";
-import ShopDropdown from "./ShopDropdown";
-import ProductDropdown from "./ProductDropdown";
-import FeatureDropdown from "./FeatureDropdown";
-import PageDropdown from "./PageDropdown";
-import BlogDropdown from "./BlogDropdown";
 import AccountDropdown from "./AccountDropdown";
+import BlogDropdown from "./BlogDropdown";
 
 // import styles
 import { IconWrapper, NavToggler } from "./commonStyles";
@@ -63,7 +57,7 @@ const RightNav = ({
             {/* <ProductDropdown /> */}
           </NavItem>
 
-          <NavItem>
+          <NavItem to="##">
             ABOUT <i className="fa fa-angle-down" />
             <BlogDropdown />
           </NavItem>

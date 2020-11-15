@@ -126,12 +126,12 @@ const NavDrawer = ({
         </DrawerHeader>
 
         <DrawerMenuContainer>
-          {MenuItems.map((item) => (
-            <>
+          {MenuItems.map((item, idx) => (
+            <Fragment key={idx}>
               {isAuthenticated && item.isAuth === true && renderNavItem(item)}
               {item.isAuth == "MAYBE" && renderNavItem(item)}
               {!isAuthenticated && item.isAuth === false && renderNavItem(item)}
-            </>
+            </Fragment>
           ))}
         </DrawerMenuContainer>
       </NavDrawerContainer>

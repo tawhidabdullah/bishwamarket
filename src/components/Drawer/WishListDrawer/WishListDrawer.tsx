@@ -34,7 +34,7 @@ const WishListDrawer = ({
       // console.log(getWishlistRes);
     };
 
-    fetchWishlist();
+    // fetchWishlist();
   }, []);
 
   return (

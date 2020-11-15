@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 // import lib
 import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
+
 // import navbar components
 import { MainNav } from "../../components/Navigation/MainNav";
 import { SearchNav } from "../../components/Navigation/SearchNav";
@@ -30,14 +32,14 @@ const Navigation = ({}) => {
   const params = useParams();
   const location = useLocation();
 
-   const categoryListState = useQueryFetch("categoryList");
-   const [categoryListData, setCategoryListData] = useState([]);
+  const categoryListState = useQueryFetch("categoryList");
+  const [categoryListData, setCategoryListData] = useState([]);
 
-useEffect(() => {
-  if (categoryListState.isSuccess && categoryListState.data) {
-    setCategoryListData(categoryListState.data);
-  }
-}, [categoryListState.isSuccess]);
+  useEffect(() => {
+    if (categoryListState.isSuccess && categoryListState.data) {
+      setCategoryListData(categoryListState.data);
+    }
+  }, [categoryListState.isSuccess]);
 
   return (
     <NavigationContainer>
@@ -50,6 +52,7 @@ useEffect(() => {
         setToggleCurrency={setToggleCurrency}
         toggleCategory={toggleCategory}
       />
+
       <MainNav />
 
       {categoryListState.isSuccess &&
@@ -71,6 +74,7 @@ useEffect(() => {
 const NavigationContainer = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #fff;
 `;
 
 export default Navigation;
