@@ -47,9 +47,9 @@ const CompanyBannerWrapper = styled.section`
 
 
 const CompanyLogoImageWrapper = styled.div`
-  width: 150px;
-  height: 150px;
-  margin-right: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0 30px !important;
 
   
   & img {
@@ -67,10 +67,11 @@ const CompanyBannerContainer = styled.div`
   margin: 0 auto;
   width: 85vw;
   padding: 35px 0;
+  
 
   @media screen and (max-width: 991px) {
     flex-direction: column;
-    width: 75vw;
+    text-align: center;
 
     & div {
       padding: 8px 0;

@@ -14,67 +14,79 @@ const SocialLinks = () => {
     <SocialLinksContainer>
       <div>
         <ComponentFetcher type='linkList' apiMapKey='appStoresLink'>
-              {(links) => (
-                  <>
-                 {links['google'] && (
-                      <SocialLinksItem href={links['google']['target']} target='_open'> 
-                        <img src={PlayStoreImage} alt="" />
-                      </SocialLinksItem>           
-                  )}
-
-
-                  {links['apple'] && (
-                      <SocialLinksItem href={links['apple']['target']} target='_open'> 
-                        <img src={AppleStoreImage} alt="" />
-                      </SocialLinksItem>           
-                  )}
-                  </>
+          {(links) => (
+            <>
+              {links['google'] && (
+                <SocialLinksItem href={links['google']['target']} target='_open'>
+                  <img src={PlayStoreImage} alt="" />
+                </SocialLinksItem>
               )}
+
+              {links['apple'] && (
+                <SocialLinksItem href={links['apple']['target']} target='_open'>
+                  <img src={AppleStoreImage} alt="" />
+                </SocialLinksItem>
+              )}
+            </>
+          )}
         </ComponentFetcher>
       </div>
 
       <ComponentFetcher type='linkList' apiMapKey='socialLInk'>
-            {(links) => (
-                <ExternalLinkContainer>
-                <span style={{
-                  display: 'inline-block',
-                  marginRight:'25px',
-                  fontWeight: 600
-                }}>Follow Us</span>
+        {(links) => (
+          <ExternalLinkContainer>
+            <FollowUsText
+            >
+                Follow Us
+              </FollowUsText>
 
 
-                {links['facebook'] && (
-                  <ExternalLinkItem href={links['facebook']['target']} target='_open'> 
-                     <i className="fa fa-facebook"></i>
-                  </ExternalLinkItem>                 
-                )}
-
-                {links['instagram'] && (
-                  <ExternalLinkItem href={links['instagram']['target']} target='_open'> 
-                     <i className="fa fa-instagram"></i>
-                  </ExternalLinkItem>                 
-                )}
-
-                {links['twitter'] && (
-                  <ExternalLinkItem href={links['twitter']['target']} target='_open'> 
-                     <i className="fa fa-twitter"></i>
-                  </ExternalLinkItem>                 
-                )}
-
-                {links['youtube'] && (
-                  <ExternalLinkItem href={links['youtube']['target']} target='_open'> 
-                     <i className="fa fa-youtube"></i>
-                  </ExternalLinkItem>                 
-                )}
-
-                </ExternalLinkContainer>
+            {links['facebook'] && (
+              <ExternalLinkItem href={links['facebook']['target']} target='_open'>
+                <i className="fa fa-facebook"></i>
+              </ExternalLinkItem>
             )}
+
+            {links['instagram'] && (
+              <ExternalLinkItem href={links['instagram']['target']} target='_open'>
+                <i className="fa fa-instagram"></i>
+              </ExternalLinkItem>
+            )}
+
+            {links['twitter'] && (
+              <ExternalLinkItem href={links['twitter']['target']} target='_open'>
+                <i className="fa fa-twitter"></i>
+              </ExternalLinkItem>
+            )}
+
+            {links['youtube'] && (
+              <ExternalLinkItem href={links['youtube']['target']} target='_open'>
+                <i className="fa fa-youtube"></i>
+              </ExternalLinkItem>
+            )}
+
+          </ExternalLinkContainer>
+        )}
       </ComponentFetcher>
     </SocialLinksContainer>
   );
 };
 
 export default SocialLinks;
+
+
+const FollowUsText = styled.span`
+      display: inline-block; 
+      font-weight: 600; 
+      margin-right: 25px;
+
+      @media screen and (max-width: 991px) {
+        display: none;
+     }
+
+
+`; 
+
 
 const SocialLinksContainer = styled.div`
   display: flex;
@@ -97,6 +109,19 @@ const ExternalLinkContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-left: 20px;
+
+  span {
+
+    @media screen and (max-width: 991px) {
+      display: none;
+      margin-top: 15px;
+    }
+
+    }
+    
+
+
+
 `;
 
 const ExternalLinkItem = styled.a`
@@ -125,4 +150,11 @@ const ExternalLinkItem = styled.a`
       color: ghostwhite;
     }
   }
+
+  
+  @media screen and (max-width: 991px) {
+        margin-top: 20px;
+     }
+
+
 `;

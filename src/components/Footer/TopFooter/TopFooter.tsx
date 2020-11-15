@@ -72,6 +72,7 @@ const TopFooterContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
+    width: 100%; 
   }
 `;
 
@@ -94,6 +95,6 @@ const LinkListContainer = styled.div`
   @media screen and (max-width: 768px) {
     padding-right: unset;
     border-right: unset;
-    padding-left: 50px;
+    padding-left: 30px;
   }
 `;
