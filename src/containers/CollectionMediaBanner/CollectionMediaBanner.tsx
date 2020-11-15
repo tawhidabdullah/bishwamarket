@@ -1,61 +1,18 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-
 import Slider from "react-slick";
-import { MainSlider } from "../../components/Slider/MainSlider";
-import { Blog } from "../../components/Banner/Blog";
-import { HotdealItem } from "../../components/HotdealItem";
-import { MediaBanner } from "../../components/Slider/MediaBanner";
+import styled from "styled-components";
 
-import img1 from "../../assets/hotDeal/1.jpg";
 import img from "../../assets/6.jpg";
-import { RightBar } from "../../components/ProductListing/RightBar";
+import img1 from "../../assets/hotDeal/1.jpg";
 
 // import elements
 import { Header } from "../../components/elements/Header";
+import { HotdealItem } from "../../components/HotdealItem";
+import { MediaBanner } from "../../components/Slider/MediaBanner";
 
 // import hooks
 import { useHandleFetch, useQueryFetch } from "../../hooks";
-
-// const SlideCustom = (props) => {
-
-// const [current, setCurrent] = useState(0);
-
-// const onNext = () => {
-//   if (current + 1 == slides.length) {
-//     setCurrent(0);
-//   } else setCurrent((current) => current + 1);
-// };
-
-// const onPrev = () => {
-//   if (current - 1 < 0) {
-//     let last = slides.length - 1;
-//     setCurrent(last);
-//   } else setCurrent((current) => current - 1);
-// };
-
-// {/* <Slider > */}
-
-//  <HotdealItem
-//   url={slides[current].url}
-//   title={slides[current].title}
-//   onNext={onNext}
-//   onPrev={onPrev}
-
-// />
-
-// </Slider>
-//   console.log(props);
-//   return (
-//     <div>
-//       <img src={props.url} />
-//       <button onClick={props.onPrev}>Prev</button>
-//       <p>{props.title}</p>
-//       <button onClick={props.onNext}>Next</button>
-//     </div>
-//   );
-// };
 
 const CollectionMediaBanner = () => {
   // const slider = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -172,7 +129,7 @@ const CollectionMediaBanner = () => {
             {popularProductRes.done &&
               popularProductRes.data.length > 0 &&
               popularProductRes.data.map((product, idx) => (
-                <>
+                <Fragment key={idx}>
                   {idx === 0 && (
                     <MediaBanner product={popularProductRes.data.slice(0, 2)} />
                   )}
@@ -181,10 +138,7 @@ const CollectionMediaBanner = () => {
                       product={popularProductRes.data.slice(idx, idx + 2)}
                     />
                   )}
-                  {/* <MediaBanner
-                    product={popularProductRes.data.slice(idx, idx + 2)}
-                  /> */}
-                </>
+                </Fragment>
               ))}
           </Slider>
           <ViewMoreText onClick={() => history.push("/product")}>
@@ -213,57 +167,12 @@ const CollectionMediaBanner = () => {
                 offerProductState.data &&
                 offerProductState.data.length > 0 &&
                 offerProductState.data.map((item, idx) => (
-                  <div>
+                  <div key={idx}>
                     <HotdealItem offerProduct={item} />
                   </div>
                 ))}
             </Slider>
           </LeftContens>
-
-          {/* <Rightslide>
-            <Slider
-              asNavFor={nav1}
-              ref={(slider) => (slider2 = slider)}
-              {...settings2}
-            >
-              <div>
-                <img
-                  src={slides[0].url}
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={slides[0].url}
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={slides[0].url}
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={slides[0].url}
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={slides[0].url}
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={slides[0].url}
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-            </Slider>
-          </Rightslide> */}
         </MainContents>
       </Main>
     </Section>
@@ -406,36 +315,4 @@ const Jewellerybanner = styled.div`
   height: 100%;
   display: grid;
   align-items: center;
-`;
-
-const Text = styled.div``;
-const HotDealContainer = styled.div`
-  background-color: #f2f2f2;
-`;
-
-const HotContain = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-`;
-
-const HotdealCenter = styled.div`
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: start;
-  justify-content: start;
-  height: 100%;
-`;
-
-const HotRating = styled.div`
-  line-height: 1;
-  margin: 20px 10px;
-  color: #ffa800;
-`;
-const Rightslide = styled.div`
-  padding-top: 100px;
-  @media only screen and (max-width: 580px) {
-    padding-top: 0px;
-    padding-left: 10px;
-  }
 `;

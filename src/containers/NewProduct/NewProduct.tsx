@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 // import elements
@@ -6,13 +6,11 @@ import { Header } from "../../components/elements/Header";
 
 // import product card
 import { NewProductCard } from "../../components/NewProductCard";
-import { MediaBanner } from "../../components/Slider/MediaBanner";
+
 // hooks for data fetching
-import { useHandleFetch, useQueryFetch } from "../../hooks";
+import { useHandleFetch } from "../../hooks";
 
 const NewProduct = () => {
-  // const [newProduct, setNewProduct] = useState([])
-  // this hook fetch data in sorted order
   const [newProductState, handleNewProductFetch] = useHandleFetch(
     {},
     "productList"
@@ -34,16 +32,6 @@ const NewProduct = () => {
     fetchNewProducts();
   }, []);
 
-  // useEffect(() => {
-  //   if(newProductState.done && newProductState.data && newProductState.data.data.length > 0) {
-
-  //   }
-  // })
-
-  // const newProductState = useQueryFetch("productList");
-
-  console.log("newProduct", newProductState);
-
   return (
     <Wrapper>
       <NewProductContainer>
@@ -59,17 +47,10 @@ const NewProduct = () => {
         <ProductDisplayContainer>
           {newProductState.done &&
             newProductState.data &&
+            newProductState.data.data &&
             newProductState.data.data.length > 0 &&
             newProductState.data.data.map((item, idx) => (
               <NewProductCard key={idx} product={item} />
-              // <MediaBanner
-              //   key={idx}
-              //   product={[item]}
-              //   customStyle={{
-              //     backgroundColor: "#fff",
-              //     border: "1px solid #f2f2f2",
-              //   }}
-              // />
             ))}
         </ProductDisplayContainer>
       </NewProductContainer>

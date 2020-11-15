@@ -76,7 +76,6 @@ const ImageBanner = () => {
     ],
   };
 
-  console.log("BannerData", data);
   return (
     <NavigationContainer>
       <BannerSideBar>

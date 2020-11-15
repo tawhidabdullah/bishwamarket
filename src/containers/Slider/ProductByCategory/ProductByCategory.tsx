@@ -122,48 +122,54 @@ const ProductByCategory = () => {
     ],
   };
 
-  const handleCategoryId = (id, index) => {
-    setSelectedCategoryId(id);
-    let p = document.getElementsByClassName("categoryName");
-    p[index].classList.add("categoryName-active");
-    p[index].style.color = "#ff6000";
-    p[indexColor].style.color = "#444";
-    setColor(index);
-  };
+  // const handleCategoryId = (id, index) => {
+  //   setSelectedCategoryId(id);
+  //   let p = document.getElementsByClassName("categoryName");
+  //   p[index].classList.add("categoryName-active");
+  //   p[index].style.color = "#ff6000";
+  //   p[indexColor].style.color = "#444";
+  //   setColor(index);
+  // };
 
   return (
     <Section>
-      <MobileViewToggler onClick={() => setIsCategoryLabels((value) => !value)}>
+      {/* <MobileViewToggler onClick={() => setIsCategoryLabels((value) => !value)}>
         <DrawerButton>View Categories</DrawerButton>
-      </MobileViewToggler>
+      </MobileViewToggler> */}
 
-      {isCategoryLabels && (
-        <MobileCategoryLabels>
-          {category.map((item, idx) => (
-            <CategoryLabel
-              className={
-                item.id === selectedCateoryId
-                  ? "categoryName categoryName-active"
-                  : "categoryName"
-              }
-              key={idx}
-              onClick={() => {
-                handleCategoryId(item.id, idx);
-                setIsCategoryLabels(false);
-              }}
-            >
-              {item.name}
-            </CategoryLabel>
-          ))}
-        </MobileCategoryLabels>
-      )}
+      {/* {isCategoryLabels && ( */}
+      <MobileCategoryLabels>
+        {category.map((item, idx) => (
+          <CategoryLabel
+            className={
+              item.id === selectedCateoryId
+                ? "categoryName categoryName-active"
+                : "categoryName"
+            }
+            key={idx}
+            onClick={() => {
+              // handleCategoryId(item.id, idx);
+              setSelectedCategoryId(item.id);
+              // setIsCategoryLabels(false);
+            }}
+          >
+            {item.name}
+          </CategoryLabel>
+        ))}
+      </MobileCategoryLabels>
+      {/* )} */}
 
       <CategoryLabels>
         {category.map((item, idx) => (
           <CategoryLabel
-            className="categoryName"
+            className={
+              item.id === selectedCateoryId
+                ? "categoryName categoryName-active"
+                : "categoryName"
+            }
             key={idx}
-            onClick={() => handleCategoryId(item.id, idx)}
+            // onClick={() => handleCategoryId(item.id, idx)}
+            onClick={() => setSelectedCategoryId(item.id)}
           >
             {item.name}
           </CategoryLabel>
@@ -174,14 +180,29 @@ const ProductByCategory = () => {
         {categoryProductsState.isLoading ? (
           <Spinner />
         ) : products.length > 0 ? (
-          <MainSlider
-            responsive={responsive}
-            ProductsByCategory={ProductsByCategory}
-            data={products}
-            customStyles={{
-              Levelvisibility: "visible",
-            }}
-          />
+          <>
+            <MobileView>
+              {products.map((product, idx) => (
+                <ProductsByCategory
+                  key={idx}
+                  item={product}
+                  customStyles={{ Levelvisibility: "visible" }}
+                  responsive={responsive}
+                  isIcon={true}
+                />
+              ))}
+            </MobileView>
+            <DesktopView>
+              <MainSlider
+                responsive={responsive}
+                ProductsByCategory={ProductsByCategory}
+                data={products}
+                customStyles={{
+                  Levelvisibility: "visible",
+                }}
+              />
+            </DesktopView>
+          </>
         ) : (
           <ProductNotFound>No product found in this category</ProductNotFound>
         )}
@@ -193,14 +214,35 @@ export default ProductByCategory;
 
 const ProductsContainer = styled.div`
   width: 96%;
-  margin: 20px auto 20px auto;
+  margin: 20px auto;
   @media screen and (max-width: 800px) {
     width: 80% !important;
+  }
+
+  @media screen and (max-width: 578px) {
+    width: 100% !important;
   }
 `;
 
 const Section = styled.div`
   margin-top: 10px;
+`;
+
+const DesktopView = styled.div`
+  @media screen and (max-width: 578px) {
+    display: none;
+  }
+`;
+
+const MobileView = styled.div`
+  display: none;
+
+  @media screen and (max-width: 578px) {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 10px;
+    margin: 0 10px;
+  }
 `;
 
 const MobileViewToggler = styled.div`
@@ -215,14 +257,6 @@ const MobileViewToggler = styled.div`
 
 const MobileCategoryLabels = styled.div`
   display: none;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  flex-wrap: wrap;
-  background-color: #fff;
-  width: 100%;
-  margin: 0 auto;
-  padding: 16px 0 16px 10px;
 
   /* opacity: 0;
   transition: all 5s; */
@@ -230,6 +264,14 @@ const MobileCategoryLabels = styled.div`
   @media screen and (max-width: 578px) {
     display: flex !important;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    flex-wrap: wrap;
+    background-color: #fff;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
     /* opacity: 1;
     transition: all 5s; */
   }
@@ -255,9 +297,6 @@ const CategoryLabels = styled.div`
 const CategoryLabel = styled.div`
   padding: 10px 10px 10px 5px;
   /* margin: 0 10px 10px 0; */
-  -webkit-letter-spacing: 0.05em;
-  -moz-letter-spacing: 0.05em;
-  -ms-letter-spacing: 0.05em;
   letter-spacing: 0.05em;
   cursor: pointer;
   color: #444;
@@ -273,5 +312,14 @@ const CategoryLabel = styled.div`
 
   &:hover {
     color: #ffcccb;
+  }
+
+  @media screen and (max-width: 578px) {
+    line-height: 35px;
+    padding: 0 5px;
+    border: 1px solid #eee;
+    margin: unset;
+    font-weight: 500;
+    margin: 5px;
   }
 `;
