@@ -15,9 +15,9 @@ const Contact = () => {
     <ComponentFetcher type='text' apiMapKey='phone'>
         {(phoneText) => (
               <ContactContainer>
-              <ContactItem>
+              <ImageContactContainer>
                 <img src={CallImage} />
-              </ContactItem>
+              </ImageContactContainer>
         
               <ContactItem>If you have any question please call us</ContactItem>
         
@@ -46,7 +46,7 @@ const ImageContactContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    padding: 15px 10px;
+    padding: 20px 10px;
   }
 
 `

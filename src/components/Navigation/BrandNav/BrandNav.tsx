@@ -97,6 +97,7 @@ const BrandList = styled.ul`
       padding: 3px 8px;
       margin: 5px;
       font-size: 13px;
+      font-weight: 600;
     }
   }
 `;

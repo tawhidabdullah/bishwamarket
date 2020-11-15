@@ -295,16 +295,15 @@ const CategoryLabels = styled.div`
 
 const CategoryLabel = styled.div`
   padding: 10px 10px 10px 5px;
-  /* margin: 0 10px 10px 0; */
   letter-spacing: 0.05em;
   cursor: pointer;
   color: #444;
   text-transform: uppercase;
   font-weight: 550;
-  /* background-color: #f2f2f2; */
   position: relative;
   line-height: 70px;
   margin-right: 15px;
+  font-weight: 600 !important;
 
   .categoryName-active {
   }
