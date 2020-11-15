@@ -6,6 +6,14 @@ import { MainSlider } from "../../../components/Slider/MainSlider";
 import { Blog } from "../../../components/Banner/Blog";
 import { useQueryFetch } from "../../../hooks";
 
+const blogStyles = {
+  height: "100px",
+  backgroundColor: "#fff",
+  marginBottom: "20px",
+  fontSize: "30px",
+  fontWeight: "bold",
+};
+
 const SpecilaProductSlider = () => {
   const productsState = useQueryFetch("productList");
   const [status, setstatus] = useState(true);
@@ -68,16 +76,7 @@ const SpecilaProductSlider = () => {
 
   return (
     <Section>
-      <Blog
-        title="SPECIAL PRODUCTS"
-        customStyles={{
-          height: "100px",
-          backgroundColor: "#fff",
-          marginBottom: "20px",
-          fontSize: "30px",
-          fontWeight: "bold",
-        }}
-      />
+      <Blog title="SPECIAL PRODUCTS" customStyles={blogStyles} />
 
       <MobileScreenViewContainer>
         {products &&
@@ -110,14 +109,19 @@ const Section = styled.div``;
 
 const MobileScreenViewContainer = styled.div`
   display: none;
-  flex-direction: column;
+  /* flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto; */
 
   @media screen and (max-width: 578px) {
-    display: flex;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 10px;
+    justify-content: flex-end;
+    margin: 0 10px;
+    /* align-items: center; */
   }
 `;
 

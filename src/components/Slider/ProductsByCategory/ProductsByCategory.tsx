@@ -311,6 +311,11 @@ const ProductBox = styled.div`
           : "visible"
         : "visible"};
   }
+
+  @media screen and (max-width: 578px) {
+    max-width: none;
+    margin: unset;
+  }
 `;
 
 const ProductIcon = styled.span`
@@ -353,8 +358,8 @@ const ProductImgbox = styled.div`
     }
 
     @media only screen and (max-width: 580px) and (min-width: 401px) {
-      width: 180px;
-      height: 260px;
+      width: 150px;
+      height: 200px;
     }
     @media only screen and (max-width: 400px) and (min-width: 350px) {
       width: 170px;

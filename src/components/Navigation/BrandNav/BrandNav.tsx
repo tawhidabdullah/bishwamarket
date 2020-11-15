@@ -1,125 +1,102 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useQueryFetch, useHandleFetch } from "../../../hooks";
+import { useQueryFetch } from "../../../hooks";
 
 // import utils
 import { addFilterToStorage } from "../../../utils";
 
 const BrandNav = () => {
   const brandList = useQueryFetch("brandList");
-  const [brandStatus, setStatus] = useState(true);
+  const [brandStatus, setStatus] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
     if (brandList.isSuccess && brandList.data) {
-      setStatus(false);
+      setStatus(true);
     }
   }, [brandList.isSuccess]);
 
   //brandList
   return (
-    <BB>
-      <TITLE>
-        <span>TOP BRAND</span>
-        <span>:</span>
-      </TITLE>
-      <Item>
+    <TopBrandListContainer>
+      <BrandList>
+        <li>Top brand</li>
+        <li>:</li>
         {brandStatus ? (
-          <> </>
+          brandList.data.map((item, idx) => (
+            <li
+              key={idx}
+              onClick={() =>
+                addFilterToStorage({ brand: item.id }, () => {
+                  history.push("/product");
+                })
+              }
+            >
+              {item.name}
+            </li>
+          ))
         ) : (
-          brandList.data.map((item, idx) => {
-            return (
-              <span
-                key={idx}
-                style={{
-                  cursor: "pointer",
-                }}
-                onClick={() =>
-                  addFilterToStorage({ brand: item.id }, () => {
-                    history.push("/product");
-                  })
-                }
-              >
-                {" "}
-                {item.name}{" "}
-              </span>
-            );
-          })
+          <> </>
         )}
-      </Item>
-    </BB>
+      </BrandList>
+    </TopBrandListContainer>
   );
 };
 
 export default BrandNav;
 
-const BB = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
+const TopBrandListContainer = styled.div`
+  font-size: 16px;
   background-color: #fff;
   padding: 30px 20px;
-
-  & span {
-    padding: 5px;
-    margin: 2px;
-    @media screen and (max-width: 750px) {
-      border: 1px solid #ddd;
-    }
-  }
-
-  @media only screen and (max-width: 1000px) {
-    grid-template-columns: 1fr;
-  }
+  font-weight: 500;
 `;
 
-const TITLE = styled.div`
-  display: flex !important;
-  justify-content: flex-end;
-  align-items: start;
-  flex-wrap: wrap;
+const BrandList = styled.ul`
+  display: block;
+  list-style: none;
+  margin-bottom: 0;
+  text-align: center;
 
-  & span {
-    color: #ff6000;
-    font-weight: 700;
-
-    @media screen and (max-width: 1000px) {
-      &:nth-child(2) {
-        display: none;
-      }
-      &:nth-child(1) {
-        border: none;
-        border-bottom: 2px solid #ff6000;
-      }
-    }
-    @media only screen and (max-width: 1000px) {
-      border-bottom: 2px solid #ff6000;
-      margin-bottom: 10px;
-    }
-  }
-
-  @media only screen and (max-width: 1000px) {
-    justify-content: center;
-  }
-`;
-const Item = styled.div`
-  display: flex !important;
-  justify-content: start;
-  align-items: center;
-  flex-wrap: wrap;
-
-  & span {
+  & li {
+    text-transform: uppercase;
+    padding: 0 10px;
+    cursor: pointer;
+    font-weight: 500;
     color: #777;
-
-    font-weight: 400;
+    display: inline-block;
   }
 
-  & span:hover {
+  & li:first-child,
+  li:nth-child(2) {
+    font-weight: bold;
     color: #ff6000;
   }
 
-  @media only screen and (max-width: 1000px) {
-    justify-content: center;
+  @media screen and (max-width: 991px) {
+    & li:first-child {
+      display: block;
+      text-align: center;
+      border: 0;
+      border-bottom: 2px solid #ff6000;
+      width: fit-content;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    & li:nth-child(2) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    & li {
+      border: 1px solid #eee;
+      padding: 3px 8px;
+      margin: 5px;
+      font-size: 13px;
+    }
   }
 `;

@@ -120,8 +120,9 @@ const ContentSlider = () => {
             <Main>
               <MainContent>
                 <Slider {...settings}>
-                  {tagList.data.map((tag) => (
+                  {tagList.data.map((tag, idx) => (
                     <Button
+                      key={idx}
                       onClick={() =>
                         addFilterToStorage({ tag: tag.id }, () => {
                           history.push("/product");

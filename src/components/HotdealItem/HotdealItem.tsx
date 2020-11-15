@@ -81,8 +81,6 @@ const HotdealItem = ({
     }
   }
 
-  console.log({ offerProduct });
-
   const addToDrawer = () => {
     dispatch(productOperations.addProduct(offerProduct));
     dispatch(globalOperations.toggleQuickviewDrawer());
