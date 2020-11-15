@@ -25,10 +25,11 @@ const QuickviewDrawer = ({
   changeQuantity,
   addToCart,
   removeFromCart,
+  Item,
   session,
 }) => {
   const alert = useAlert();
-  const Item = useSelector((state) => state.Item);
+  // const Item = useSelector((state) => state.Item);
 
   // state for default item quantity
   const [quantity, setQuantity] = useState(1);
@@ -220,8 +221,18 @@ const QuickviewDrawer = ({
 const mapStateToProps = (state) => {
   return {
     session: state.session,
+    Item: state.Item,
   };
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
+  changeQuantity: cartOperations.changeQuantity,
+  addToCart: (value) => dispatch(cartOperations.addToCart(value)),
+  removeFromCart: (value) => dispatch(cartOperations.removeFromCart(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
 
 const QuantityCounterBox = styled.div`
   & p {
@@ -244,15 +255,6 @@ const QuantityCounterBox = styled.div`
     background-color: #eee;
   }
 `;
-
-const mapDispatchToProps = (dispatch) => ({
-  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
-  changeQuantity: cartOperations.changeQuantity,
-  addToCart: (value) => dispatch(cartOperations.addToCart(value)),
-  removeFromCart: (value) => dispatch(cartOperations.removeFromCart(value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
 
 const Text1 = styled.div`
   cursor: pointer;
@@ -395,6 +397,7 @@ const SizeContainer = styled.div`
   justify-content: start;
 
   padding: 0 0 8px 0;
+  margin-top: 10px;
 
   ${(props) => props.customStyle}
   @media screen and (max-width: 590px) {

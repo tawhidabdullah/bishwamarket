@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { createTrue } from 'typescript';
+import { createTrue } from "typescript";
 import { categoryOperations } from "../../state/ducks/category";
-
 
 // import utils
 import { addFilterToStorage } from "../../utils";
@@ -17,31 +16,40 @@ const ImageBannerCategoryItem = ({ category }) => {
     setShowMore(!showMore);
   };
 
-  const globalState = useSelector(state => state.globalState);
+  const globalState = useSelector((state) => state.globalState);
   if (globalState.openShopByCategory) {
     return (
       <CategoryItem>
         <ul className="nav-cat title-font">
-          {category.slice(0, 6).map((cat, it) => {
+          {category.slice(0, 10).map((cat, it) => {
             return (
               <li
                 style={{
-                  cursor: 'pointer'
+                  cursor: "pointer",
                 }}
-                key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
-                  history.push('/product')
-                })}>
-                <img src={cat.thumbnail || cat.cover} />
+                key={it}
+                onClick={() =>
+                  addFilterToStorage({ category: cat.id }, () => {
+                    history.push("/product");
+                  })
+                }
+              >
+                <img src={cat.icon || cat.cover} />
 
                 <a>{cat.name}</a>
               </li>
             );
           })}
 
-          <li style={{ cursor: "pointer", display: showMore ? "none" : 'block' }} >
-            <a
-              onClick={handleDisplayMoreClick}
-              className="mor-slide-click">
+          <li
+            style={{
+              cursor: "pointer",
+              display: showMore ? "none" : "block",
+              marginTop: "-10px",
+              fontWeight: 600,
+            }}
+          >
+            <a onClick={handleDisplayMoreClick} className="mor-slide-click">
               more category <i className="fa fa-angle-down pro-down"></i>
               <i
                 className="fa fa-angle-up pro-up"
@@ -49,24 +57,41 @@ const ImageBannerCategoryItem = ({ category }) => {
               ></i>
             </a>
           </li>
-          <div className="imageBannerCategoryItem" style={{ display: showMore ? "block" : 'none', visibility: showMore ? "visible" : 'hidden', cursor: "pointer", opacity: showMore ? "1" : "0.2" }}>
-            {category.slice(6).map((cat, it) => {
+          <div
+            className="imageBannerCategoryItem"
+            style={{
+              display: showMore ? "block" : "none",
+              visibility: showMore ? "visible" : "hidden",
+              cursor: "pointer",
+              opacity: showMore ? "1" : "0.2",
+            }}
+          >
+            {category.slice(8).map((cat, it) => {
               return (
                 <>
-                  <li style={{transition: "all 3s"}} key={it} onClick={() => addFilterToStorage({ 'category': cat.id }, () => {
-                    history.push('/product')
-                  })}>
-                    <img src={cat.thumbnail || cat.cover} />
+                  <li
+                    style={{ transition: "all 3s" }}
+                    key={it}
+                    onClick={() =>
+                      addFilterToStorage({ category: cat.id }, () => {
+                        history.push("/product");
+                      })
+                    }
+                  >
+                    <img src={cat.icon || cat.cover} />
 
                     <a>{cat.name}</a>
                   </li>
                 </>
               );
             })}
-            <li style={{ cursor: "pointer", display: showMore ? "block" : 'none' }} >
-              <a
-                onClick={handleDisplayMoreClick}
-                className="mor-slide-click">
+            <li
+              style={{
+                cursor: "pointer",
+                display: showMore ? "block" : "none",
+              }}
+            >
+              <a onClick={handleDisplayMoreClick} className="mor-slide-click">
                 more category <i className="fa fa-angle-up pro-up"></i>
                 <i
                   className="fa fa-angle-up pro-up"
@@ -77,14 +102,11 @@ const ImageBannerCategoryItem = ({ category }) => {
           </div>
         </ul>
       </CategoryItem>
-    )
-  }
-
-  else {
+    );
+  } else {
     return null;
   }
-}
-
+};
 
 export default ImageBannerCategoryItem;
 
@@ -119,6 +141,5 @@ const CategoryItem = styled.div`
     font-size: 14px;
     text-transform: capitalize;
     letter-spacing: 0.03em;
-
   }
 `;

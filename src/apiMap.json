@@ -8,6 +8,10 @@
       "url": "/api/component/banner",
       "method": "get"
     },
+    "mediaCollectionBanner": {
+      "url": "/api/component/mediaCollectionBanner",
+      "method": "get"
+    },
     "partners": {
       "url": "/api/component/partners",
       "method": "get"
@@ -183,11 +187,15 @@
       "method": "get"
     },
     "productList": {
-      "url": "/api/product",
+      "url": "/api/product?sort=sortValue&sortOrder=sortOrderValue&limit=limitValue",
       "method": "get"
     },
     "offerListCount": {
       "url": "/api/product?limit=limitNumber",
+      "method": "get"
+    },
+    "offerProduct": {
+      "url": "/api/product/offer",
       "method": "get"
     },
     "relatedProductList": {

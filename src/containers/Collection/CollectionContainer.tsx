@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import { SearchContain } from "../../components/Search/SearchContain";
 import { CollectionByCategory } from "../../components/Collection";
 
-import { useSelector } from "react-redux";
 const CollectionContainer = () => {
   let category = useSelector((state) => state.category);
 
@@ -22,7 +23,7 @@ const CollectionContainer = () => {
 export default CollectionContainer;
 const Main = styled.div`
   display: grid;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0px auto;
   grid-gap: 20px;
   padding: 30px 20px;

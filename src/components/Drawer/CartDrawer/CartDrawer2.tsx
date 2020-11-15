@@ -103,11 +103,13 @@ const CartDrawer = ({
 
                   <ItemInfo>
                     <ItemHeader>{item.name}</ItemHeader>
-                    <Price>&#2547;&nbsp;{item.price}</Price>
+                    <Price>৳ {item.price ? parseInt(item.price) : 0}</Price>
                   </ItemInfo>
 
                   <CartItemTotal>
-                  &#2547;&nbsp;{parseInt(item.price) * parseInt(item.quantity)}
+                    ৳{" "}
+                    {(item.price ? parseInt(item.price) : 0) *
+                      (item.quantity ? parseInt(item.quantity) : 0)}
                   </CartItemTotal>
 
                   <RemoveItem onClick={() => handleRemoveFromCart(item)}>

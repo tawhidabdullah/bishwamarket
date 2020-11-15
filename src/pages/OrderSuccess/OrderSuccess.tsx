@@ -20,6 +20,7 @@ const OrderSuccess = ({ isAuthenticated }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [order, setOrder] = useState({});
+  const [orderStatus, setOrderStatus] = useState("");
 
   const [orderHistoryState, handleOrderHistoryFetch] = useHandleFetch(
     {},
@@ -49,9 +50,12 @@ const OrderSuccess = ({ isAuthenticated }) => {
 
   useEffect(() => {
     if (orderHistoryState.done && orderHistoryState.data) {
-      setProducts(orderHistoryState.data.order.products);
-      setTotalPrice(orderHistoryState.data.order.totalPrice);
-      setOrder(orderHistoryState.data.order);
+      console.log("orderhistory", orderHistoryState.data);
+      const { order } = orderHistoryState.data;
+      setProducts(order.products);
+      setTotalPrice(order.totalPrice);
+      setOrder(order);
+      setOrderStatus(order.status.name);
 
       setDeliveryCharge(
         Object.values(orderHistoryState.data.order.deliveryRegion.charge)[0]
@@ -61,7 +65,7 @@ const OrderSuccess = ({ isAuthenticated }) => {
 
   return (
     <section>
-      <OrderSuccessMessage />
+      <OrderSuccessMessage orderStatus={orderStatus} />
       <OrderSuccessContainer>
         <CustomContainer>
           <Row>

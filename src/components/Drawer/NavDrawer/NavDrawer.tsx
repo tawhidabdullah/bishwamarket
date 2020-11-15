@@ -115,8 +115,6 @@ const NavDrawer = ({
     );
   };
 
-  console.log({ username });
-
   return (
     <Fragment>
       {/* <BackDrop show={open} clicked={handleClose} /> */}

@@ -38,7 +38,6 @@ const SearchNav = ({
     } else {
       setSubCategory([]);
     }
-    console.log(categoryListData[value].subCategory);
   };
 
   //search
@@ -62,7 +61,6 @@ const SearchNav = ({
     return location.pathname === "/";
   };
 
-  console.log("routeMatch", location);
   useEffect(() => {
     if (categoryListData && categoryListData.length > 0) {
       setSubCategory(categoryListData[0].subCategory);

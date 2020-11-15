@@ -1,16 +1,11 @@
 //@ts-nocheck
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-
-// hooks
-import { useHandleFetch } from "../../../hooks";
 
 // import components
 import FilterBox from "./FilterBox";
 
 const LeftBar = ({ ids, handleFilterProduct, filterLabels }) => {
-  
-
   return (
     <LeftContent>
       {Object.keys(filterLabels).map((filterType, idx) => (

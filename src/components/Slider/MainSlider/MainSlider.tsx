@@ -50,13 +50,13 @@ const Layout = styled.div`
 const MainContent = styled.div`
   outline: none;
   border: none;
-  max-width: 1400px;
+  /* max-width: 1400px; */
   background-color: ${(props) =>
     props.customStyles ? props.customStyles.backgroundColor : "#f2f2f2"};
 
   display: grid;
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px; */
+  /* padding-left: 15px; */
   margin-right: auto;
   margin-left: auto;
   padding: ${(props) => (props.customStyles ? props.customStyles.padding : "")};

@@ -15,7 +15,6 @@ const headerStyles = {
 };
 
 const OrderDetails = ({ products, totalPrice, deliveryCharge }) => {
-  console.log("form oroder details", products);
   return (
     <OrderDetailsContainer>
       <Header customStyle={headerStyles} content="Your Order Details" />

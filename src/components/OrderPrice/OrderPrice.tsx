@@ -19,12 +19,12 @@ const OrderPrice = ({ totalPrice, deliveryCharge }) => {
         <PriceList>
           <PriceListItem>
             Subtotal
-            <Text customStyle={textStyles}>&#2547;&nbsp;{totalPrice} </Text>
+            <Text customStyle={textStyles}>৳ {totalPrice} </Text>
           </PriceListItem>
 
           <PriceListItem>
             Shipping
-            <Text customStyle={textStyles}>&#2547;&nbsp;{deliveryCharge} </Text>
+            <Text customStyle={textStyles}>৳ {deliveryCharge} </Text>
           </PriceListItem>
 
           {/* <PriceListItem>
@@ -36,7 +36,7 @@ const OrderPrice = ({ totalPrice, deliveryCharge }) => {
       <TotalPrice>
         Total
         <Text customStyle={textStyles}>
-        &#2547;&nbsp;{parseInt(totalPrice) + parseInt(deliveryCharge)}
+          ৳ {parseInt(totalPrice) + parseInt(deliveryCharge)}
         </Text>
       </TotalPrice>
     </Fragment>

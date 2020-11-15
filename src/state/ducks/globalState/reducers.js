@@ -12,7 +12,7 @@ const initialState = {
   openQuickviewDrawer: false,
   openSettingsDrawer: false,
   openSearchDrawer: false,
-  openShopByCategory: true,
+  openShopByCategory: false,
   categories: [],
 };
 
@@ -111,6 +111,20 @@ const globalReducer = createReducer(initialState)({
       openShopByCategory: !state.openShopByCategory,
     };
   },
+
+  [types.CLOSE_SHOP_BY_CATEGORY]: (state, action) => {
+    return {
+      ...state,
+      openShopByCategory: false
+    }
+  },
+
+  [types.OPEN_SHOP_BY_CATEGORY]: (state, action) => {
+    return {
+      ...state,
+      openShopByCategory: true
+    }
+  }
 });
 
 export default globalReducer;

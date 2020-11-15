@@ -82,6 +82,7 @@ const Label = styled.label`
   padding: 10px 0;
   font-size: 15px;
   cursor: pointer;
+  white-space: nowrap;
 
   ${(props) =>
     props.customStyle && props.customStyle.label

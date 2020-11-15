@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { LeftBar } from "../../components/ProductListing/LeftBar";
 import { RightBar } from "../../components/ProductListing/RightBar";
-import { SearchContain } from "../../components/Search/SearchContain/";
 import queryString from "query-string";
 
 import { useLocation } from "react-router-dom";
@@ -13,6 +12,9 @@ import { convertParamsId } from "../../utils";
 
 // import hooks
 import { useHandleFetch } from "../../hooks";
+
+// import loader
+import { SuspenseLoader } from "../../components/Spinner";
 
 const ProductListContainer = () => {
   // this state stores existing ids in localstorage
@@ -26,7 +28,7 @@ const ProductListContainer = () => {
     Brand: [],
   });
 
-  const [productSearchState, handleProductSearchFetch] = useHandleFetch(
+  const [productListState, handleProductListFetch] = useHandleFetch(
     [],
     "filterProduct"
   );
@@ -84,8 +86,8 @@ const ProductListContainer = () => {
   let queryValue = queryString.parse(location.search).query;
 
   useEffect(() => {
-    const setSearchCategoryProducts = async () => {
-      const productRes = await handleProductSearchFetch({
+    const fetchProductList = async () => {
+      const productRes = await handleProductListFetch({
         body: params,
         urlOptions: {
           params: {
@@ -99,7 +101,7 @@ const ProductListContainer = () => {
         setproduct(productRes.data);
       }
     };
-    setSearchCategoryProducts();
+    fetchProductList();
   }, [queryValue, params]);
 
   useEffect(() => {
@@ -119,23 +121,29 @@ const ProductListContainer = () => {
   }, []);
 
   return (
-    <Main>
-      {/* <SearchContain title={"CATEGORY"} /> */}
-      <Section>
-        <LeftBar
-          filterLabels={filterLabels}
-          ids={ids}
-          handleFilterProduct={handleFilterProduct}
-        />
+    <>
+      {(productListState.isLoading ||
+        brandState.isLoading ||
+        tagState.isLoading ||
+        categoryState.isLoading) && <SuspenseLoader />}
+      <Main>
+        {/* <SearchContain title={"CATEGORY"} /> */}
+        <Section>
+          <LeftBar
+            filterLabels={filterLabels}
+            ids={ids}
+            handleFilterProduct={handleFilterProduct}
+          />
 
-        <RightBar
-          ids={ids}
-          filterLabels={filterLabels}
-          handleFilterProduct={handleFilterProduct}
-          products={searchproduct}
-        />
-      </Section>
-    </Main>
+          <RightBar
+            ids={ids}
+            filterLabels={filterLabels}
+            handleFilterProduct={handleFilterProduct}
+            products={searchproduct}
+          />
+        </Section>
+      </Main>
+    </>
   );
 };
 

@@ -1,42 +1,50 @@
-import React from "react";
-
-//con tainer
-import { ImageBanner } from "../../containers/ImageBanner";
-import { MediaBannerSlider } from "../../containers/Slider/MediaBannerSlider";
-import { ProductByCategory } from "../../containers/Slider/ProductByCategory";
-import { CategorySlider } from "../../containers/Slider/CategorySlider";
-import { SpecilaProductSlider } from "../../containers/Slider/SpecilaProductSlider";
-import ContentSlider from "../../containers/Slider/ContentSlider/ContentSlider";
-import { LatestBlog } from "../../containers/LatestBlog";
-import { CollectionMediaBanner } from "../../containers/CollectionMediaBanner";
-import { ContactBanner } from "../../components/Banner/ContactBanner";
+import React, { useLayoutEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Collection } from "../../components/Banner/CollectionBanner";
 import { CompanyBanner } from "../../components/Banner/CompanyBanner";
+import { ContactBanner } from "../../components/Banner/ContactBanner";
 
 //components
 import { BrandNav } from "../../components/Navigation/BrandNav";
 import { Service } from "../../components/Navigation/ServiceNav";
-import { DiscountBanner } from "../../components/Banner/DiscountBanner";
-import { Collection } from "../../components/Banner/CollectionBanner";
+import { CollectionMediaBanner } from "../../containers/CollectionMediaBanner";
+
+//container
+import { ImageBanner } from "../../containers/ImageBanner";
+import { CategorySlider } from "../../containers/Slider/CategorySlider";
+import ContentSlider from "../../containers/Slider/ContentSlider/ContentSlider";
+import { ProductByCategory } from "../../containers/Slider/ProductByCategory";
+import { SpecilaProductSlider } from "../../containers/Slider/SpecilaProductSlider";
+import { NewProduct } from "../../containers/NewProduct";
+
+// import redux ops
+import { globalOperations } from "../../state/ducks/globalState";
 
 const Home = () => {
- 
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    dispatch(globalOperations.openShopByCategory());
+
+    return () => dispatch(globalOperations.closeShopByCategory());
+  });
+
   return (
     <>
       <ImageBanner />
       <BrandNav />
       <Service />
-      {/* <CollectionMediaBanner /> */}
+      <CollectionMediaBanner />
       {/* <DiscountBanner /> */}
       <Collection />
 
       <ProductByCategory />
 
       <CategorySlider />
-      {/* <MediaBannerSlider />
-      <LatestBlog /> */}
 
       <ContentSlider />
-      <SpecilaProductSlider  />
+      <SpecilaProductSlider />
+      <NewProduct />
       <ContactBanner />
       <CompanyBanner />
     </>

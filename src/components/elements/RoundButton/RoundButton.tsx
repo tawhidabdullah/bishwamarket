@@ -15,15 +15,16 @@ export const Size = ({ children, customStyle, ...props }) => {
 
 const ColorContainer = styled.span`
   border-radius: 50%;
-  padding: 20px;
+  padding: 2px;
   cursor: pointer;
   border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${(props) => props.customStyle}
 `;
 
 const SizeContainer = styled(ColorContainer)`
-  width: 35px;
-  height: 35px;
   padding: 6px 10px;
   transition: 0.2s ease-in-out;
 

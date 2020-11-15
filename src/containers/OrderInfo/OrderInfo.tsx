@@ -31,7 +31,7 @@ const OrderInfo = ({ order }) => {
               <InfoListItem>
                 Ordered: {new Date(order.added).toDateString()}
               </InfoListItem>
-              <InfoListItem>Total Price: &#2547;&nbsp;{order.totalPrice}</InfoListItem>
+              <InfoListItem>Total Price: $ {order.totalPrice}</InfoListItem>
             </InfoList>
           </OrderInfoDetailsContainer>
         </Col>
@@ -57,7 +57,7 @@ const OrderInfo = ({ order }) => {
                 Address:{" "}
                 {order.shippingAddress && order.shippingAddress.address1}
               </InfoListItem>
-              <InfoListItem>Total Price: &#2547;&nbsp;{order.totalPrice}</InfoListItem>
+              <InfoListItem>Total Price: ৳ {order.totalPrice}</InfoListItem>
             </InfoList>
           </OrderInfoDetailsContainer>
         </Col>
@@ -65,7 +65,7 @@ const OrderInfo = ({ order }) => {
         <Col sm={12}>
           <OrderInfoDetails
             header="Payment Method"
-            infos="Pay on Delivery (Cash/Card). Cash on delivery (COD) availabel. Card/Net banking acceptance subject to device availability."
+            infos="Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking acceptance subject to device availability."
             customStyle={textStyles}
           />
         </Col>

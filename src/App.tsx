@@ -10,6 +10,9 @@ import GlobalStyles from "./global.styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// import suspense loader
+import { SuspenseLoader } from "./components/Spinner";
+
 // import home page on initial rendering
 import Home from "./pages/Home";
 
@@ -37,7 +40,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<SuspenseLoader />}>
           <Layout>
             <Switch>
               <Route exact path={"/"}>

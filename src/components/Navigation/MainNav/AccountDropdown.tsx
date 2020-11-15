@@ -67,7 +67,7 @@ const AccountDropdownContainer = styled.ul`
   ${DropdownContainerStyles}
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 220px;
   padding: 20px 10px;
 `;
 
