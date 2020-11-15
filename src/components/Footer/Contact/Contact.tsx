@@ -64,7 +64,7 @@ const ContactContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     padding: unset;
-    padding-left: 50px;
+    padding-left: 30px;
     padding-bottom: 20px;
   }
 `;

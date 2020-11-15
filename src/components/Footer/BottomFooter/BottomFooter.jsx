@@ -12,10 +12,10 @@ const BottomFooter = () => {
   return (
     <BottomFooterWrapper>
       <BottomFooterContainer>
-        <span>
+        <CopyrightText>
           {new Date().getFullYear()} COPY RIGHT BY BISWABAZAR POWERED BY LOTUS
           TECHNOLOGY DEVELOPMENT
-        </span>
+        </CopyrightText>
         <BottomFooterItem>
           <img src={visa} alt="" />
           <img src={mastercard} alt="" />
@@ -30,13 +30,19 @@ const BottomFooter = () => {
 
 export default BottomFooter;
 
+
+const CopyrightText = styled.span`
+  margin-bottom: 10px; 
+`;
+
 const BottomFooterWrapper = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   background-color: white;
   padding: 20px 0;
   width: 100%;
   font-family: PT Sans, sans-serif;
   color: #8d8d8d;
+  text-align: center; 
 `;
 
 const BottomFooterContainer = styled.div`
@@ -44,6 +50,8 @@ const BottomFooterContainer = styled.div`
   justify-content: space-between;
   width: 85vw;
   margin: 0 auto;
+
+ 
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

@@ -38,6 +38,20 @@ const Contact = () => {
 
 export default Contact;
 
+
+const ImageContactContainer = styled.div`
+  padding: 0 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 15px 10px;
+  }
+
+`
+
+
 const ContactContainer = styled.div`
   display: flex;
   align-items: center;
