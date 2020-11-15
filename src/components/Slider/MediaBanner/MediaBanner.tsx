@@ -69,14 +69,15 @@ const MediaBanner = ({
   return (
     <MediaBannercontainer customStyle={customStyle}>
       {product &&
-        product.map((item, idx) => (
-          <MediaBannerBox key={idx}>
+        product.map((item, idx: any) => {
+          return (
+            <MediaBannerBox key={idx}>
             <Media>
               <img
                 onClick={addToDrawer}
-                src={image}
+                src={item.cover}
                 className="img-fluid  "
-                alt="popular products"
+                alt=""
               />
 
               <MediaBody>
@@ -96,7 +97,8 @@ const MediaBanner = ({
               </MediaBody>
             </Media>
           </MediaBannerBox>
-        ))}
+          )
+        })}
 
       {/* <MediaBannerBox>
         <div className="media-view">
@@ -166,6 +168,8 @@ const Media = styled.div`
     background-color: #fff;
     margin-bottom: 5px;
     cursor: pointer;
+    height: 150px;
+    width: 150px;
   }
 `;
 

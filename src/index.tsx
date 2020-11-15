@@ -7,7 +7,7 @@ import AlertTemplate from "react-alert-template-basic";
 import { store } from "./state/store";
 
 import App from "./App";
-// import './styles/main.scss';
+import './styles/main.scss';
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
