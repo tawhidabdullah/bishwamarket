@@ -40,9 +40,9 @@ const BottomDrawer = ({
           <i className="fa fa-user"></i>
         </DrawerIcon>
 
-        <DrawerIcon onClick={() => toggleSettingsDrawer()}>
+        {/* <DrawerIcon onClick={() => toggleSettingsDrawer()}>
           <i className="fa fa-cog"></i>
-        </DrawerIcon>
+        </DrawerIcon> */}
       </BottomDrawerContainer>
     </BottomDrawerWrapper>
   );

@@ -6,7 +6,7 @@ import styled from "styled-components";
 // import hooks
 import { useQueryFetch } from "../../../hooks";
 // import backdrop element
-// import { BackDrop } from "../../elements/Backdrop";
+import { BackDrop } from "../../elements/Backdrop";
 
 // import form component
 // import { InputField } from "../../common/InputField";
@@ -28,7 +28,14 @@ const CategoryDrawer = ({ open, toggleCategoryDrawer }) => {
   const history = useHistory();
   return (
     <Fragment>
-      {/* <BackDrop show={open} clicked={handleClose} /> */}
+      <BackDrop
+        customStyle={{
+          backgroundColor: "#fff",
+          opacity: 0,
+        }}
+        show={open}
+        clicked={toggleCategoryDrawer}
+      />
       <CategoryDrawerContainer show={open}>
         <DrawerHeader>
           <HeaderText onClick={() => toggleCategoryDrawer()}>

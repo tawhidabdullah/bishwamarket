@@ -1,6 +1,4 @@
-//@ts-nocheck
 import React from "react";
-import styled from "styled-components";
 import { SearchContainer } from "../../containers/Search";
 
 const Search = () => {
@@ -8,5 +6,3 @@ const Search = () => {
 };
 
 export default Search;
-
-

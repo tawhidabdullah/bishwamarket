@@ -28,16 +28,12 @@ const SearchField = ({ setproduct }) => {
   const handle = (e) => {
     setqueryValue(e.target.value);
   };
-  
-
 
   useEffect(() => {
-   if (productSearchState.data) setproduct(productSearchState.data);
-   else{
-     setproduct([]);
-   }
-
-   
+    if (productSearchState.data) setproduct(productSearchState.data);
+    else {
+      setproduct([]);
+    }
   }, [productSearchState.isLoading]);
 
   return (
@@ -50,7 +46,8 @@ const SearchField = ({ setproduct }) => {
       />
 
       <button className="btn btn-normal">
-        <i className="fa fa-search"></i>Search
+        <i className="fa fa-search" />
+        Search
       </button>
     </InputBox>
   );
@@ -86,15 +83,17 @@ const InputBox = styled.div`
     padding: 13px 20px;
     margin-left: -2px;
     width: fit-content;
-    background-color: #00baf2;
+    background-color: #ff6000;
     outline: none;
     color: #fff;
+    font-weight: bold;
+
     & i {
       padding-right: 12px;
     }
 
     &:hover {
-      background-color: black;
+      background-color: orange;
       color: #fff;
       outline: none;
     }

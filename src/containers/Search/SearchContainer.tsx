@@ -1,51 +1,46 @@
-import React,{useEffect,useState,useRef} from 'react'
-import styled from "styled-components"
+import React, { useState } from "react";
+import styled from "styled-components";
+
+// import component
 import { SearchContain } from "../../components/Search/SearchContain/";
 import { SearchField } from "../../components/Search/SearchField";
 import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
 
+const productCardStyles = {
+  productBackgroundColor: "#fff",
+  Levelvisibility: "hidden",
+  ProductDetailVisibility: "hidden",
+  containerDirection: "row",
+  containerright: "10%",
+  containerTransform: "translateY(100%)",
+  containertop: "80%",
+  page: "search",
+};
 
+const SearchContainer = () => {
+  const [key, setkey] = useState("");
+  const [searchproduct, setproduct] = useState([]);
 
- const SearchContainer = () => {
-   const productCardStyles = {
-     productBackgroundColor: "#fff",
-     Levelvisibility: "hidden",
-     ProductDetailVisibility: "hidden",
-     containerDirection: "row",
-     containerright: "10%",
-     containerTransform: "translateY(100%)",
-     containertop: "80%",
-     page: "search",
-   };
+  return (
+    <Section>
+      <SearchContain title={"search"} />
+      <SearchField setproduct={setproduct} />
 
-   const [key,setkey]=useState("");
-   const [searchproduct, setproduct] = useState([]);
- 
-   return (
-     <Section>
-       <SearchContain title={"search"} />
-       <SearchField setproduct={setproduct} />
-      
-       <SearchProduct>
-         <Main>
-           {searchproduct.map((item) => {
-             return (
-               <ProductsByCategory
-                 customStyles={productCardStyles}
-                 item={item}
-               />
-             );
-           })}
-         </Main>
-       </SearchProduct>
-     </Section>
-   );
- };
-
-
-
-
-
+      <SearchProduct>
+        <Main>
+          {searchproduct.map((item) => {
+            return (
+              <ProductsByCategory
+                customStyles={productCardStyles}
+                item={item}
+              />
+            );
+          })}
+        </Main>
+      </SearchProduct>
+    </Section>
+  );
+};
 
 const SearchProduct = styled.div`
   max-width: 1400px;
@@ -62,9 +57,10 @@ const Main = styled.div`
   margin-left: 10px;
   margin-right: 20px;
   grid-gap: 10px;
+
   @media only screen and (max-width: 580px) {
-    grid-template-columns: 1fr;
-    grid-gap: 0px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
   @media only screen and (max-width: 980px) and (min-width: 630px) {
     grid-template-columns: repeat(3, 1fr);
@@ -87,9 +83,4 @@ const Main = styled.div`
 
 const Section = styled.div``;
 
-
-
-
 export default SearchContainer;
-
-

@@ -9,6 +9,9 @@ import { useAlert } from "react-alert";
 // menu data
 import { MenuItems } from "./NavItems";
 
+// import backdrop
+import { BackDrop } from "../../elements/Backdrop";
+
 // redux ops
 import { globalOperations } from "../../../state/ducks/globalState";
 import { sessionOperations } from "../../../state/ducks/session";
@@ -117,7 +120,11 @@ const NavDrawer = ({
 
   return (
     <Fragment>
-      {/* <BackDrop show={open} clicked={handleClose} /> */}
+      <BackDrop
+        customStyle={{ backgroundColor: "#fff", opacity: 0 }}
+        show={open}
+        clicked={toggleNavigationDrawer}
+      />
       <NavDrawerContainer show={open}>
         <DrawerHeader>
           <HeaderText onClick={() => toggleNavigationDrawer()}>
