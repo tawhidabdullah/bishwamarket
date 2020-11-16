@@ -90,17 +90,24 @@ const ImageBanner = () => {
             <div className="createLoader"></div>
           </div>
         ) : (
-          <MainSlider
-            responsive={responsive}
-            ProductsByCategory={ThemeSlider}
-            data={data}
-            customStyles={{
-              width: "100%",
+          <>
+          {bannerState.isSuccess && bannerState.data?.length > 0 && (
+          <MainSliderContainer>
+            <img src={bannerState.data?.[0].src} alt=""/>
+          </MainSliderContainer>
+        )}
+          </>
+          // <MainSlider
+          //   responsive={responsive}
+          //   ProductsByCategory={ThemeSlider}
+          //   data={data}
+          //   customStyles={{
+          //     width: "100%",
 
-              padding: "0px",
-              backgroundColor: "#f2f2f2",
-            }}
-          />
+          //     padding: "0px",
+          //     backgroundColor: "#f2f2f2",
+          //   }}
+          // />
         )}
       </SliderBanner>
 
@@ -130,7 +137,7 @@ const NavCategory = styled.div`
 const NavigationContainer = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
-  /* grid-auto-rows: minmax(170px, auto); */
+  grid-auto-rows: 574px auto;
   margin-bottom: 10px;
   justify-content: center;
   background-color: #f2f2f2;
@@ -138,6 +145,7 @@ const NavigationContainer = styled.div`
   grid-row-gap: 15px;
   grid-column-gap: 10px;
   padding-bottom: 10px;
+  align-items: start;
 
   /* @media only screen and (min-width: 1450px) {
     grid-template-columns: 25% 60% auto;
@@ -155,6 +163,19 @@ const NavigationContainer = styled.div`
   }
 `;
 
+
+const MainSliderContainer = styled.div`
+    width: 100%;
+    height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+`;
+
 const BannerSideBar = styled.div`
   display: grid;
   grid-row: 1/ -1;
@@ -165,11 +186,19 @@ const BannerSideBar = styled.div`
   @media only screen and (max-width: 1150px) {
     display: none;
   }
+  
 `;
 
 const SliderBanner = styled.div`
   margin-top: 10px;
   grid-row: 1/ 2;
+  height: 574px;
+
+  @media only screen and (max-width: 1150px) and (min-width: 580px) {
+    height: 100%; 
+  }
+
+
 `;
 
 const BottomImage = styled.div`

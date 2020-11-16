@@ -1,18 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-// import dummy image
-import Logo from "../../../assets/logo.png";
-
 // import config 
 import config from "../../../config.json";
 
 
-
 // import Component fetcher component
 import ComponentFetcher from "../../ComponentFetcher";
-
-
 
 
 const CompanyBanner = () => {

@@ -74,6 +74,12 @@ const ServiceNavContainer = styled.div`
     grid-template-columns: 1fr;
   } */
 
+
+  @media only screen and (max-width: 700px) {
+   padding: 20px 0; 
+  } 
+
+
   h5 {
     font-weight: 600;
     font-size: 1.1rem;
