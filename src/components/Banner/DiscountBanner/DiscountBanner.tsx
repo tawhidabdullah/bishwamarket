@@ -1,93 +1,83 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
-const  DiscountBanner=() =>{
-    return (
-      
-        <BannerContainer>
-          <ContentRow>
-            <div>
-              <h2>Special discout Offer for you</h2>
-            </div>
-            <h1>
-              every <span> discount </span> we{" "}
-              <span> offer is the best in market!</span>
-            </h1>
+import { Container, Row, Col } from "react-bootstrap";
 
-            <div className="rounded-contain">
-              <div className="rounded-subcontain">
-                don't just scroll, your friends have already started buying!
-              </div>
-            </div>
-          </ContentRow>
-        </BannerContainer>
-  
-    );
-}
+const DiscountBanner = () => {
+  return (
+    <DiscountBannerContainer>
+      <Container>
+        <Row>
+          <Col md={12}>
+            <InnerContainer>
+              <OfferText>Special Discout Offer For You</OfferText>
+              <DiscountText>
+                EVERY <span>DISCOUNT</span> DISCOUNT WE{" "}
+                <span> OFFER IS THE BEST IN MARKET!</span>
+              </DiscountText>
 
+              <RoundButtonContainer>
+                <RoundedButton>
+                  DON'T JUST SCROLL, YOUR FRIENDS HAVE ALREADY STARTED BUYING!
+                </RoundedButton>
+              </RoundButtonContainer>
+            </InnerContainer>
+          </Col>
+        </Row>
+      </Container>
+    </DiscountBannerContainer>
+  );
+};
 
 export default DiscountBanner;
 
-
-
-const BannerContainer = styled.div`
-  width: 100%;
-  padding: 30px 15px;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const DiscountBannerContainer = styled.div`
   background-color: #fff;
 `;
 
-const ContentRow = styled.div`
-  display: flex;
-
-  flex-wrap: wrap;
-
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const InnerContainer = styled.div`
+  padding: 47px 0;
   text-align: center;
+`;
 
-  & h2 {
-    font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320)));
-    text-transform: capitalize;
-    margin-bottom: 3px;
-    margin-top: -5px;
-    color: gray;
+const OfferText = styled.h2`
+  font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320)));
+  text-transform: capitalize;
+  margin-bottom: 3px;
+  margin-top: -5px;
+  color: rgb(119, 119, 119);
+`;
+
+const DiscountText = styled.h1`
+  font-size: calc(18px + (42 - 18) * ((100vw - 320px) / (1920 - 320)));
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #444;
+
+  & span:first-child {
+    color: #ff6000;
   }
 
-  & h1 {
-    font-size: calc(18px + (42 - 18) * ((100vw - 320px) / (1920 - 320)));
-    font-weight: normal;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: #444;
-  }
-
-  & .rounded-contain {
-    border: 2px dashed #ffa800;
-    border-radius: 50px;
-    padding: 5px;
-  }
-
-  & .rounded-subcontain {
-    background-color: #ff6000;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 22px;
-    font-weight: 600;
-    font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
-    border-radius: 50px;
-    @media screen and (max-width: 550px) {
-      padding: 10px;
-    }
-  }
-
-  & span {
+  & span:nth-child(2) {
     color: #ffa800;
     font-weight: 700;
   }
+`;
+
+const RoundButtonContainer = styled.div`
+  border: 2px dashed #ffa800;
+  border-radius: 50px;
+  padding: 5px;
+`;
+
+const RoundedButton = styled.div`
+  background-color: #ff6000;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 18px 0;
+  font-weight: 600;
+  font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+  letter-spacing: 0.08em;
+  line-height: 1;
+  border-radius: 50px;
 `;

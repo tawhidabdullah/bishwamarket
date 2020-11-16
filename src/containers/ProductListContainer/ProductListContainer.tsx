@@ -1,11 +1,12 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import queryString from "query-string";
+import { useLocation } from "react-router-dom";
+
+// import component
 import { LeftBar } from "../../components/ProductListing/LeftBar";
 import { RightBar } from "../../components/ProductListing/RightBar";
-import queryString from "query-string";
-
-import { useLocation } from "react-router-dom";
 
 // utility for converting id object to id array
 import { convertParamsId } from "../../utils";
@@ -20,7 +21,7 @@ const ProductListContainer = () => {
   // this state stores existing ids in localstorage
   const [ids, setIds] = useState([]);
 
-  const [params, setParams] = useState([]);
+  const [filterParams, setFilterParams] = useState([]);
 
   const [filterLabels, setFilterLabels] = useState({
     Tag: [],
@@ -71,7 +72,7 @@ const ProductListContainer = () => {
       );
     }
 
-    setParams(filterIds);
+    setFilterParams(filterIds);
     localStorage.setItem("filter", JSON.stringify(filterIds));
   };
 
@@ -79,7 +80,13 @@ const ProductListContainer = () => {
     if (localStorage.filter) {
       setIds(convertParamsId(JSON.parse(localStorage.filter)));
     }
-  }, [params]);
+  }, [filterParams]);
+
+  useEffect(() => {
+    if (localStorage.filter) {
+      setFilterParams(JSON.parse(localStorage.filter));
+    }
+  }, []);
 
   const location = useLocation();
   const [products, setproducts] = useState([]);
@@ -87,9 +94,8 @@ const ProductListContainer = () => {
 
   useEffect(() => {
     const fetchProductList = async () => {
-      console.log("params", params);
       const productRes = await handleProductListFetch({
-        body: params,
+        body: filterParams,
         urlOptions: {
           params: {
             queryValue,
@@ -100,12 +106,12 @@ const ProductListContainer = () => {
       if (productRes.data) {
         // console.log("productRes", productRes);
         setproducts(productRes.data);
+      } else {
+        setproducts([]);
       }
     };
     fetchProductList();
-  }, [queryValue, params]);
-
-  console.log("products", productListState);
+  }, [queryValue, filterParams]);
 
   useEffect(() => {
     const fetchLabels = async () => {

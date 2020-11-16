@@ -21,7 +21,11 @@ const MainSlider = ({
   return (
     <Layout customStyles={customStyles}>
       <MainContent customStyles={customStyles}>
-        <Slider {...settings}>
+        <Slider 
+        style={{
+          height: '100%'
+        }}
+        {...settings}>
           {props.data && props.data.length > 0
             ? props.data.map((item, idx) => {
                 return (

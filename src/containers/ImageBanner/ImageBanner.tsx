@@ -1,13 +1,13 @@
 //@ts-ignore
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
+// components
 import CollectionItem from "../../components/CollectionItem/CollectionItem";
 import { MainSlider } from "../../components/Slider/MainSlider";
 import { ThemeSlider } from "../../components/Slider/ThemeSlider";
 import { useQueryFetch } from "../../hooks";
-import { SearchNav } from "../../components/Navigation/SearchNav";
 import ImageBannerCategoryItem from "./ImageBannerCategoryItem";
-import { category } from "../../state/ducks";
 
 const ImageBanner = () => {
   //offerState
@@ -96,7 +96,7 @@ const ImageBanner = () => {
             data={data}
             customStyles={{
               width: "100%",
-
+              height: "100%",
               padding: "0px",
               backgroundColor: "#f2f2f2",
             }}
@@ -130,6 +130,7 @@ const NavCategory = styled.div`
 const NavigationContainer = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
+  grid-template-rows: 200px auto;
   /* grid-auto-rows: minmax(170px, auto); */
   margin-bottom: 10px;
   justify-content: center;
@@ -157,7 +158,7 @@ const NavigationContainer = styled.div`
 
 const BannerSideBar = styled.div`
   display: grid;
-  grid-row: 1/ -1;
+  grid-row: 1/ 2;
   grid-column: 1/2;
   margin-top: 10px;
   position: relative;
@@ -169,7 +170,7 @@ const BannerSideBar = styled.div`
 
 const SliderBanner = styled.div`
   margin-top: 10px;
-  grid-row: 1/ 2;
+  grid-row: 1 / span 2;
 `;
 
 const BottomImage = styled.div`

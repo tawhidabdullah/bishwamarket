@@ -65,7 +65,18 @@ const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
         </TitleBottom>
       </Title> */}
       <Products>
-        {products.map((item, idx) => {
+        {products.length > 0 ? (
+          products.map((item, idx) => (
+            <ProductsByCategory
+              key={idx}
+              item={item}
+              customStyles={productCardStyles}
+            />
+          ))
+        ) : (
+          <NotFoundText>No product found with this filter</NotFoundText>
+        )}
+        {/* {products.map((item, idx) => {
           return (
             <ProductsByCategory
               key={idx}
@@ -73,7 +84,7 @@ const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
               customStyles={productCardStyles}
             />
           );
-        })}
+        })} */}
       </Products>
     </RightContainer>
   );
@@ -91,79 +102,86 @@ const ButtonWrapper = styled.div`
 
 const RightContainer = styled.div``;
 
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  & h5 {
-    border: 1px solid #ddd;
-    margin-bottom: 0px;
-    border-bottom: 0px;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 0;
-    color: #333;
-  }
-`;
-const TitleBottom = styled.div`
-  border: 1px solid #ddd;
-
-  display: flex;
-  justify-content: space-around;
-
-  @media only screen and (max-width: 580px) {
-    flex-direction: column;
-  }
+const NotFoundText = styled.p`
+  grid-column: 1/-1;
+  font-size: 40px;
+  font-weight: 700;
+  color: #ff6000;
 `;
 
-const Dropdowncategory = styled.div`
-  padding-right: 30px;
-  border-right: 1px solid #ddd;
+// const Title = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
 
-  &:nth-child(2) {
-    border-right: 0px solid black;
-  }
-  & select {
-    appearance: none;
-    outline: none;
-    border: 0;
-    padding: 28px 30px;
-    border-right: 1px solid #ddd;
-    width: 100%;
+//   & h5 {
+//     border: 1px solid #ddd;
+//     margin-bottom: 0px;
+//     border-bottom: 0px;
+//     padding: 20px;
+//     text-align: center;
+//     margin-bottom: 0;
+//     color: #333;
+//   }
+// `;
+// const TitleBottom = styled.div`
+//   border: 1px solid #ddd;
 
-    background-image: url(${image1});
-    background-position-x: 100%;
-    background-position-y: 50%;
-    background-size: 10px 10px;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
-    background-attachment: scroll;
-    background-origin: initial;
+//   display: flex;
+//   justify-content: space-around;
 
-    background-color: initial;
-    text-align: center;
-    text-align-last: center;
+//   @media only screen and (max-width: 580px) {
+//     flex-direction: column;
+//   }
+// `;
 
-    text-transform: uppercase;
+// const Dropdowncategory = styled.div`
+//   padding-right: 30px;
+//   border-right: 1px solid #ddd;
 
-    border: none;
+//   &:nth-child(2) {
+//     border-right: 0px solid black;
+//   }
+//   & select {
+//     appearance: none;
+//     outline: none;
+//     border: 0;
+//     padding: 28px 30px;
+//     border-right: 1px solid #ddd;
+//     width: 100%;
 
-    & option {
-      padding: 10px;
-      margin: 10px;
-    }
-  }
+//     background-image: url(${image1});
+//     background-position-x: 100%;
+//     background-position-y: 50%;
+//     background-size: 10px 10px;
+//     background-repeat-x: no-repeat;
+//     background-repeat-y: no-repeat;
+//     background-attachment: scroll;
+//     background-origin: initial;
 
-  @media only screen and (max-width: 580px) {
-    &:nth-child(2) {
-      border-top: 1px solid #ddd;
-    }
-    &:nth-child(1) {
-      border-right: 0px solid black;
-    }
-  }
-`;
+//     background-color: initial;
+//     text-align: center;
+//     text-align-last: center;
+
+//     text-transform: uppercase;
+
+//     border: none;
+
+//     & option {
+//       padding: 10px;
+//       margin: 10px;
+//     }
+//   }
+
+//   @media only screen and (max-width: 580px) {
+//     &:nth-child(2) {
+//       border-top: 1px solid #ddd;
+//     }
+//     &:nth-child(1) {
+//       border-right: 0px solid black;
+//     }
+//   }
+// `;
 
 const Products = styled.div`
   display: grid;
