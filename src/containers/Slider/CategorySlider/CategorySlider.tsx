@@ -75,8 +75,8 @@ const CategorySlider = () => {
         data={category}
         customStyles={{
           backgroundColor: "#ff6000",
-
-          padding: "30px  70px 20px",
+          padding: "30px  50px 20px",
+          
         }}
       />
     </Section>
