@@ -82,11 +82,12 @@ const ProductListContainer = () => {
   }, [params]);
 
   const location = useLocation();
-  const [searchproduct, setproduct] = useState([]);
+  const [products, setproducts] = useState([]);
   let queryValue = queryString.parse(location.search).query;
 
   useEffect(() => {
     const fetchProductList = async () => {
+      console.log("params", params);
       const productRes = await handleProductListFetch({
         body: params,
         urlOptions: {
@@ -96,13 +97,15 @@ const ProductListContainer = () => {
         },
       });
 
-      console.log("productRes", productRes);
       if (productRes.data) {
-        setproduct(productRes.data);
+        // console.log("productRes", productRes);
+        setproducts(productRes.data);
       }
     };
     fetchProductList();
   }, [queryValue, params]);
+
+  console.log("products", productListState);
 
   useEffect(() => {
     const fetchLabels = async () => {
@@ -139,7 +142,7 @@ const ProductListContainer = () => {
             ids={ids}
             filterLabels={filterLabels}
             handleFilterProduct={handleFilterProduct}
-            products={searchproduct}
+            products={products}
           />
         </Section>
       </Main>

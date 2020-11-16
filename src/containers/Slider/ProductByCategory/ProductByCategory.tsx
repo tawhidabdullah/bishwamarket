@@ -44,6 +44,8 @@ const ProductByCategory = () => {
     [],
     "categoryProducts"
   );
+
+  
   //generating fetching url
   useEffect(() => {
     const setCategoryProducts = async () => {
@@ -71,9 +73,10 @@ const ProductByCategory = () => {
       categoryProductsState.data.data
     ) {
       setproducts(categoryProductsState.data.data);
-      let p = document.getElementsByClassName("categoryName");
-      p[indexColor].classList.add("categoryName-active");
-      p[indexColor].style.color = "#ff6000";
+      // nasty code, petition to send to gulag
+      // let p = document.getElementsByClassName("categoryName");
+      // p[indexColor].classList.add("categoryName-active");
+      // p[indexColor].style.color = "#ff6000";
     } else {
       setproducts([]);
     }
@@ -85,8 +88,8 @@ const ProductByCategory = () => {
         breakpoint: 3224,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: true,
+          slidesToScroll: 5,
+          infinite: false,
           dots: false,
           arrows: true,
         },
@@ -107,7 +110,6 @@ const ProductByCategory = () => {
           arrows: true,
         },
       },
-
       {
         breakpoint: 620,
         settings: {
@@ -130,6 +132,8 @@ const ProductByCategory = () => {
   //   setColor(index);
   // };
 
+
+
   return (
     <Section>
       {/* <MobileViewToggler onClick={() => setIsCategoryLabels((value) => !value)}>
@@ -138,7 +142,7 @@ const ProductByCategory = () => {
 
       {/* {isCategoryLabels && ( */}
       <MobileCategoryLabels>
-        {category.map((item, idx) => (
+        {category.slice(0,6).map((item, idx) => (
           <CategoryLabel
             className={
               item.id === selectedCateoryId
@@ -159,7 +163,7 @@ const ProductByCategory = () => {
       {/* )} */}
 
       <CategoryLabels>
-        {category.map((item, idx) => (
+        {category.slice(0,6).map((item, idx) => (
           <CategoryLabel
             className={
               item.id === selectedCateoryId
@@ -309,7 +313,7 @@ const CategoryLabel = styled.div`
   }
 
   &:hover {
-    color: #ffcccb;
+    color: orange;
   }
 
   @media screen and (max-width: 578px) {

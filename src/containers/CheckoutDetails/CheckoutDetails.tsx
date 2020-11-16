@@ -74,7 +74,7 @@ const CheckoutDetails = ({
             <TotalPriceItem>
               Total{" "}
               <SubTotal>
-              &#2547;&nbsp;{parseInt(totalPrice) + parseInt(shippingCost)}
+                &#2547;&nbsp;{parseInt(totalPrice) + parseInt(shippingCost)}
               </SubTotal>
             </TotalPriceItem>
           </TotalPriceList>

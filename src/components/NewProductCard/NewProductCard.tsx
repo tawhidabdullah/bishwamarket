@@ -88,7 +88,8 @@ const ImageContainer = styled.div`
   padding: 10px;
   cursor: pointer;
   width: 45%;
-  height: fit-content;
+  /* height: fit-content; */
+  height: 100%;
   margin: 0 auto;
   align-self: flex-start;
 

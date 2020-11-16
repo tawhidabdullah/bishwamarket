@@ -63,7 +63,7 @@ const HotdealItem = ({
         return regularPrice || null;
       case "offer":
         if (offerPrice) {
-          console.log("shitoff");
+          // console.log("shitoff");
         }
         return parseInt(offerPrice) || null;
       case "price":

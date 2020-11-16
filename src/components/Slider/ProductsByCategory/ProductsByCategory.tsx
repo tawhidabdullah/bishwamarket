@@ -348,9 +348,9 @@ const ProductImgbox = styled.div`
   background-color: #fff;
 
   img {
-    height: 300px;
-    width: 220px;
-    object-fit: fill;
+    height: 316px;
+    /* width: 220px; */
+    object-fit: cover;
 
     @media only screen and (max-width: 730px) and (min-width: 600px) {
       height: 260px;

@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 
+
 const MainSlider = ({
   responsive,
   ProductsByCategory,
@@ -15,7 +16,6 @@ const MainSlider = ({
     infinite: true,
     arrows: true,
     speed: 500,
-
     responsive: responsive.responsive,
   };
   return (

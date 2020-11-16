@@ -52,25 +52,27 @@ const Service = () => {
 export default Service;
 
 const ServiceNavContainer = styled.div`
-  display: grid !important;
+  /* display: grid !important; */
   background-color: #ffa800;
 
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  justify-content: space-evenly;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
 
   & h5 {
     color: ghostwhite;
     font-weight: 700;
   }
 
-  @media only screen and (max-width: 900px) and (min-width: 700px) {
+  /* @media only screen and (max-width: 900px) and (min-width: 700px) {
     grid-template-columns: 1fr 1fr;
   }
 
   @media only screen and (max-width: 700px) {
     grid-template-columns: 1fr;
-  }
+  } */
 
   h5 {
     font-weight: 600;
@@ -87,6 +89,11 @@ const ServiceNavContainer = styled.div`
     padding: 20px;
     @media only screen and (max-width: 700px) {
       flex-direction: column;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      padding: 10px;
     }
   }
 
