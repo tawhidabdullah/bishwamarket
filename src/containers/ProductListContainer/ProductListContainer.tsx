@@ -130,6 +130,8 @@ const ProductListContainer = () => {
   //   };
   //   fetchProductList();
   // }, [queryValue, filterParams]);
+  
+  const [categoryProductListData, setCategoryProductListData] = useState([]);
 
   const paginatedProductList = useQueryInfinitePaginate("filterProduct", {
     body: filterParams,
@@ -140,6 +142,36 @@ const ProductListContainer = () => {
       },
     },
   });
+
+
+  useEffect(() => {
+    if (
+      paginatedProductList.status === 'success' &&
+      paginatedProductList.data &&
+      paginatedProductList.data.length > 0
+    ) { 
+
+      const productListPage = paginatedProductList?.data.map((page, i) => {
+        const group = {
+          ...page,
+          data: page?.data && page?.data.length > 0 && page?.data.map(product => {
+            return {
+              ...product,
+            }
+          }),
+        }
+        return group
+      }); 
+      setCategoryProductListData(productListPage || []);
+    }
+    else {
+      setCategoryProductListData([])
+    }
+  }, [paginatedProductList.status, paginatedProductList.data]);
+
+
+
+
 
   useEffect(() => {
     const fetchLabels = async () => {
@@ -178,6 +210,7 @@ const ProductListContainer = () => {
             handleFilterProduct={handleFilterProduct}
             queryValue={queryValue}
             filterParams={filterParams}
+            productListData={categoryProductListData}
             paginatedProductList={paginatedProductList}
           />
         </Section>
