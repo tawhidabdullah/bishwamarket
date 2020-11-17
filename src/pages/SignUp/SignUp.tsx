@@ -138,7 +138,7 @@ const SignUp = () => {
                     (!isSubmitting && signupState.error["error"]["username"])}
                 </ErrorText>
 
-                {/* <InputField
+                <InputField
                   type="text"
                   label="City"
                   name="city"
@@ -153,9 +153,9 @@ const SignUp = () => {
                 <ErrorText>
                   {(touched.city && errors.city) ||
                     (!isSubmitting && signupState.error["error"]["city"])}
-                </ErrorText> */}
+                </ErrorText>
 
-                {/* <InputField
+                <InputField
                   type="text"
                   label="Address"
                   name="address1"
@@ -170,9 +170,9 @@ const SignUp = () => {
                 <ErrorText>
                   {(touched.address1 && errors.address1) ||
                     (!isSubmitting && signupState.error["error"]["address1"])}
-                </ErrorText> */}
+                </ErrorText>
 
-                {/* <InputField
+                <InputField
                   type="text"
                   label="Phone"
                   name="phone"
@@ -187,7 +187,7 @@ const SignUp = () => {
                 <ErrorText>
                   {(touched.phone && errors.phone) ||
                     (!isSubmitting && signupState.error["error"]["phone"])}
-                </ErrorText> */}
+                </ErrorText>
 
                 <InputField
                   type="password"

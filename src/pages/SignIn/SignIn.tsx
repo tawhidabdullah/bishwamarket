@@ -45,7 +45,6 @@ const SignIn = ({ login, cartItems, addProductsToCart }) => {
   const [getCartState, handleGetCart] = useHandleFetch({}, "getCart");
 
   const handleLoginSubmit = async (values, actions) => {
-    console.log("handleLogin values", values);
     const loginRes = await handleLoginPost({
       body: {
         username: values.email,
