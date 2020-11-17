@@ -30,6 +30,7 @@ const RightBar = ({
   filterLabels,
   handleFilterProduct,
   paginatedProductList,
+  productListData
 }) => {
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
@@ -62,7 +63,7 @@ const RightBar = ({
         <Fragment>
           <div>
             <Paginator
-              dataLen={paginatedProductList.data?.[0]?.total}
+              dataLen={productListData.length}
               fetchData={() => paginatedProductList.setPage((page) => page + 1)}
               hasMore={paginatedProductList.canFetchMore}
             >
