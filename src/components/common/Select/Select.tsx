@@ -16,7 +16,7 @@ const Select = ({ customStyle, label, options, name, handleChange }) => {
         {options &&
           options.length > 0 &&
           options.map((option, idx) => (
-            <Option key={idx} value={option._id ? option._id : option}>
+            <Option key={idx} value={option.id ? option.id : option._id}>
               {option.name ? option.name : option}
             </Option>
           ))}

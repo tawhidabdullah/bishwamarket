@@ -12,10 +12,13 @@ import { RightBar } from "../../components/ProductListing/RightBar";
 import { convertParamsId } from "../../utils";
 
 // import hooks
-import { useHandleFetch } from "../../hooks";
+import { useHandleFetch, useQueryInfinitePaginate } from "../../hooks";
 
 // import loader
 import { SuspenseLoader } from "../../components/Spinner";
+
+// import pagination hoc
+import { Paginator } from "../../hoc/Paginator";
 
 const ProductListContainer = () => {
   // this state stores existing ids in localstorage
@@ -23,16 +26,21 @@ const ProductListContainer = () => {
 
   const [filterParams, setFilterParams] = useState([]);
 
+  const location = useLocation();
+  const [products, setproducts] = useState([]);
+
+  let queryValue = queryString.parse(location.search).query;
+
   const [filterLabels, setFilterLabels] = useState({
     Tag: [],
     Category: [],
     Brand: [],
   });
 
-  const [productListState, handleProductListFetch] = useHandleFetch(
-    [],
-    "filterProduct"
-  );
+  // const [productListState, handleProductListFetch] = useHandleFetch(
+  //   [],
+  //   "filterProduct"
+  // );
 
   const [tagState, handleTagFetch] = useHandleFetch({}, "tagList");
   const [brandState, handleBrandFetch] = useHandleFetch({}, "brandList");
@@ -40,6 +48,20 @@ const ProductListContainer = () => {
     {},
     "categoryList"
   );
+
+  // const paginatedProductList = useQueryInfinitePaginate(
+  //   "filterProduct",
+  //   {
+  //     body: filterParams,
+  //     urlOptions: {
+  //       params: {
+  //         queryValue,
+  //         limitNumber: 5,
+  //       },
+  //     },
+  //   },
+
+  // );
 
   //ANCHOR filter logic
   // what to expect from this handler ?
@@ -88,30 +110,36 @@ const ProductListContainer = () => {
     }
   }, []);
 
-  const location = useLocation();
-  const [products, setproducts] = useState([]);
-  let queryValue = queryString.parse(location.search).query;
+  // useEffect(() => {
+  //   const fetchProductList = async () => {
+  //     const productRes = await handleProductListFetch({
+  //       body: filterParams,
+  //       urlOptions: {
+  //         params: {
+  //           queryValue,
+  //         },
+  //       },
+  //     });
 
-  useEffect(() => {
-    const fetchProductList = async () => {
-      const productRes = await handleProductListFetch({
-        body: filterParams,
-        urlOptions: {
-          params: {
-            queryValue,
-          },
-        },
-      });
+  //     if (productRes.data) {
+  //       // console.log("productRes", productRes);
+  //       setproducts(productRes.data);
+  //     } else {
+  //       setproducts([]);
+  //     }
+  //   };
+  //   fetchProductList();
+  // }, [queryValue, filterParams]);
 
-      if (productRes.data) {
-        // console.log("productRes", productRes);
-        setproducts(productRes.data);
-      } else {
-        setproducts([]);
-      }
-    };
-    fetchProductList();
-  }, [queryValue, filterParams]);
+  const paginatedProductList = useQueryInfinitePaginate("filterProduct", {
+    body: filterParams,
+    urlOptions: {
+      params: {
+        queryValue,
+        limitNumber: 40,
+      },
+    },
+  });
 
   useEffect(() => {
     const fetchLabels = async () => {
@@ -131,7 +159,7 @@ const ProductListContainer = () => {
 
   return (
     <>
-      {(productListState.isLoading ||
+      {(paginatedProductList.isLoading ||
         brandState.isLoading ||
         tagState.isLoading ||
         categoryState.isLoading) && <SuspenseLoader />}
@@ -148,7 +176,9 @@ const ProductListContainer = () => {
             ids={ids}
             filterLabels={filterLabels}
             handleFilterProduct={handleFilterProduct}
-            products={products}
+            queryValue={queryValue}
+            filterParams={filterParams}
+            paginatedProductList={paginatedProductList}
           />
         </Section>
       </Main>

@@ -31,7 +31,7 @@ const OrderInfo = ({ order }) => {
               <InfoListItem>
                 Ordered: {new Date(order.added).toDateString()}
               </InfoListItem>
-              <InfoListItem>Total Price: $ {order.totalPrice}</InfoListItem>
+              <InfoListItem>Total Price: ৳ {order.totalPrice}</InfoListItem>
             </InfoList>
           </OrderInfoDetailsContainer>
         </Col>

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 
-import image1 from "../../../assets/dropdown.png";
 import { ProductsByCategory } from "../../Slider/ProductsByCategory";
 
 // import button element
@@ -9,6 +8,12 @@ import { DrawerButton } from "../../common/Button/DrawerButton";
 
 // import filter drawer
 import { FilterDrawer } from "../../Drawer/FilterDrawer";
+
+// import pagination hoc
+import { Paginator } from "../../../hoc/Paginator";
+
+// import hook
+import { useQueryInfinitePaginate } from "../../../hooks";
 
 const productCardStyles = {
   productBackgroundColor: "#fff",
@@ -20,16 +25,24 @@ const productCardStyles = {
   containertop: "80%",
 };
 
-const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
+const RightBar = ({
+  ids,
+  filterLabels,
+  handleFilterProduct,
+  paginatedProductList,
+}) => {
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
 
+  console.log("paginated product list", paginatedProductList);
+
   return (
     <RightContainer>
-      <ButtonWrapper onClick={() => toggleFilterDrawer()}>
+      <ButtonWrapper>
         <DrawerButton
-          customStyle={{ padding: "8px 0", "font-weight": "bold" }}
-          wrapperStyle={{ width: "15%", margin: "unset" }}
+          onClick={() => toggleFilterDrawer()}
+          customStyle={{ padding: "8px 0", fontWeight: "bold" }}
+          wrapperStyle={{ width: "20%", margin: "unset" }}
         >
           <span>
             <i className="fa fa-filter"></i>
@@ -44,26 +57,35 @@ const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
         handleFilterProduct={handleFilterProduct}
         ids={ids}
       />
-      {/* <Title>
-        <h5>Showing Products Results</h5>
-        <TitleBottom>
-          <Dropdowncategory>
-            <select>
-              <option>50 Products Per Page</option>
-              <option>20 Products Per Page</option>
-              <option>10 Products Per Page</option>
-            </select>
-          </Dropdowncategory>
 
-          <Dropdowncategory>
-            <select>
-              <option>Sorting Products</option>
-              <option>20 Products Per Page</option>
-              <option>10 Products Per Page</option>
-            </select>
-          </Dropdowncategory>
-        </TitleBottom>
-      </Title> */}
+      {paginatedProductList.status === "success" && (
+        <Fragment>
+          <div>
+            <Paginator
+              dataLen={paginatedProductList.data?.[0]?.total}
+              fetchData={() => paginatedProductList.setPage((page) => page + 1)}
+              hasMore={paginatedProductList.canFetchMore}
+            >
+              <Products>
+                {paginatedProductList?.data.map((page, i) => (
+                  <React.Fragment key={i}>
+                    {page?.data &&
+                      page?.data.length > 0 &&
+                      page?.data.map((item, idx) => (
+                        <ProductsByCategory
+                          key={idx}
+                          item={item}
+                          customStyles={productCardStyles}
+                        />
+                      ))}
+                  </React.Fragment>
+                ))}
+              </Products>
+            </Paginator>
+          </div>
+        </Fragment>
+      )}
+      {/* 
       <Products>
         {products.length > 0 ? (
           products.map((item, idx) => (
@@ -74,18 +96,9 @@ const RightBar = ({ ids, products, filterLabels, handleFilterProduct }) => {
             />
           ))
         ) : (
-          <NotFoundText>No product found with this filter</NotFoundText>
+          <NotFoundText></NotFoundText>
         )}
-        {/* {products.map((item, idx) => {
-          return (
-            <ProductsByCategory
-              key={idx}
-              item={item}
-              customStyles={productCardStyles}
-            />
-          );
-        })} */}
-      </Products>
+      </Products> */}
     </RightContainer>
   );
 };
@@ -97,6 +110,8 @@ const ButtonWrapper = styled.div`
 
   @media screen and (max-width: 991px) {
     display: block;
+    width: 90%;
+    margin: 0 auto;
   }
 `;
 
@@ -108,80 +123,6 @@ const NotFoundText = styled.p`
   font-weight: 700;
   color: #ff6000;
 `;
-
-// const Title = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-
-//   & h5 {
-//     border: 1px solid #ddd;
-//     margin-bottom: 0px;
-//     border-bottom: 0px;
-//     padding: 20px;
-//     text-align: center;
-//     margin-bottom: 0;
-//     color: #333;
-//   }
-// `;
-// const TitleBottom = styled.div`
-//   border: 1px solid #ddd;
-
-//   display: flex;
-//   justify-content: space-around;
-
-//   @media only screen and (max-width: 580px) {
-//     flex-direction: column;
-//   }
-// `;
-
-// const Dropdowncategory = styled.div`
-//   padding-right: 30px;
-//   border-right: 1px solid #ddd;
-
-//   &:nth-child(2) {
-//     border-right: 0px solid black;
-//   }
-//   & select {
-//     appearance: none;
-//     outline: none;
-//     border: 0;
-//     padding: 28px 30px;
-//     border-right: 1px solid #ddd;
-//     width: 100%;
-
-//     background-image: url(${image1});
-//     background-position-x: 100%;
-//     background-position-y: 50%;
-//     background-size: 10px 10px;
-//     background-repeat-x: no-repeat;
-//     background-repeat-y: no-repeat;
-//     background-attachment: scroll;
-//     background-origin: initial;
-
-//     background-color: initial;
-//     text-align: center;
-//     text-align-last: center;
-
-//     text-transform: uppercase;
-
-//     border: none;
-
-//     & option {
-//       padding: 10px;
-//       margin: 10px;
-//     }
-//   }
-
-//   @media only screen and (max-width: 580px) {
-//     &:nth-child(2) {
-//       border-top: 1px solid #ddd;
-//     }
-//     &:nth-child(1) {
-//       border-right: 0px solid black;
-//     }
-//   }
-// `;
 
 const Products = styled.div`
   display: grid;

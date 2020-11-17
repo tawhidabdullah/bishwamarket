@@ -41,13 +41,6 @@ const SignUp = () => {
   const [signupState, handleSignupPost] = useHandleFetch({}, "signup");
 
   const handleSignup = async (values, actions) => {
-    // to bypass server side validation(temporarily)
-    values.country = "Bangladesh";
-    values.city = "Dhaka";
-    values.gender = "male";
-    values.phone = "123456789";
-    values.address1 = "Dhaka, Bangladesh";
-
     const signupRes = await handleSignupPost({
       body: values,
     });
@@ -56,14 +49,15 @@ const SignUp = () => {
       history.push("/signin");
       alert.success("Registration successfull");
     } else {
-      console.log(signupState);
-      if (
-        signupState.error["isError"] &&
-        !(Object.keys(signupState.error["error"]).length > 0)
-      ) {
-        actions.resetForm({});
-        alert.error("Something went wrong");
-      }
+      alert.error("Something went wrong!");
+      actions.resetForm({});
+      // if (
+      //   signupState.error["isError"] &&
+      //   !(Object.keys(signupState.error["error"]).length > 0)
+      // ) {
+      //   actions.resetForm({});
+      //   alert.error("Something went wrong");
+      // }
     }
 
     actions.setSubmitting(false);
@@ -143,6 +137,57 @@ const SignUp = () => {
                   {(touched.email && errors.email) ||
                     (!isSubmitting && signupState.error["error"]["username"])}
                 </ErrorText>
+
+                {/* <InputField
+                  type="text"
+                  label="City"
+                  name="city"
+                  placeholder="City"
+                  customStyle={LabelStyles}
+                  value={values.city}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("city");
+                  }}
+                />
+                <ErrorText>
+                  {(touched.city && errors.city) ||
+                    (!isSubmitting && signupState.error["error"]["city"])}
+                </ErrorText> */}
+
+                {/* <InputField
+                  type="text"
+                  label="Address"
+                  name="address1"
+                  placeholder="Enter address"
+                  customStyle={LabelStyles}
+                  value={values.address1}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("address1");
+                  }}
+                />
+                <ErrorText>
+                  {(touched.address1 && errors.address1) ||
+                    (!isSubmitting && signupState.error["error"]["address1"])}
+                </ErrorText> */}
+
+                {/* <InputField
+                  type="text"
+                  label="Phone"
+                  name="phone"
+                  placeholder="Enter phone number"
+                  customStyle={LabelStyles}
+                  value={values.phone}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldTouched("phone");
+                  }}
+                />
+                <ErrorText>
+                  {(touched.phone && errors.phone) ||
+                    (!isSubmitting && signupState.error["error"]["phone"])}
+                </ErrorText> */}
 
                 <InputField
                   type="password"

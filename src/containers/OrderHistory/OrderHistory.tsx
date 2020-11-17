@@ -32,8 +32,6 @@ const OrderHistory = () => {
     fetchOrderHistory();
   }, []);
 
-  console.log("order history state", orderHistoryState);
-
   return (
     <OrderHistoryContainer>
       <InnerContainer>
@@ -79,7 +77,7 @@ const OrderHistory = () => {
 
                         <MobileRow>
                           <TableText customStyle={{ color: "#000" }}>
-                            Total Price: &#2547;&nbsp;{order.totalPrice}
+                            Total Price: ৳ {order.totalPrice}
                           </TableText>
 
                           <TableText>
@@ -93,13 +91,13 @@ const OrderHistory = () => {
                         <TableText
                           customStyle={{ "font-size": "22px", color: "#000" }}
                         >
-                          &#2547;&nbsp;{order.totalPrice}
+                          ৳ {order.totalPrice}
                         </TableText>
                       </TableDataContainer>
 
                       <TableDataContainer>
                         <TableText>
-                          <strong>{order.status} </strong>
+                          <strong>{order.status.toUpperCase()} </strong>
                         </TableText>
                       </TableDataContainer>
                     </tr>

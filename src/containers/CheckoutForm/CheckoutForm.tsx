@@ -34,7 +34,7 @@ const CheckoutForm = ({
   login,
   checkout,
   checkoutState,
-  cityList
+  cityList,
 }) => {
   const alert = useAlert();
   const history = useHistory();
@@ -81,8 +81,6 @@ const CheckoutForm = ({
   // hooks for clearing out cart
   const [clearCartState, handleClearCart] = useHandleFetch({}, "clearCart");
 
-
-
   // fetch respective delivery area of a city
   useEffect(() => {
     const fetchDeliveryArea = async () => {
@@ -94,14 +92,23 @@ const CheckoutForm = ({
         },
       });
 
-      setDeliveryArea(res);
+      if (selectedCity && res.length === 0) {
+        alert.error(`delivery is not available in ${selectedCity}`);
+        setDeliveryArea([]);
+      } else {
+        setDeliveryArea(res);
+      }
     };
 
     fetchDeliveryArea();
   }, [selectedCity]);
 
   const handleCityListChange = (e) => {
-    setSelectedCity(e.target.value);
+    // const id = e.target.value;
+    const index = e.nativeEvent.target.selectedIndex;
+    const name = e.nativeEvent.target[index].text;
+
+    setSelectedCity(name);
     setDeliveryArea({});
     getShippingCost(0);
   };
@@ -137,7 +144,6 @@ const CheckoutForm = ({
       }
     }
   }, [session.isAuthenticated]);
-  
 
   // this effect sets error from checkoutState
   useEffect(() => {
@@ -150,7 +156,10 @@ const CheckoutForm = ({
   }, [checkoutState.error]);
 
   const handleCheckoutInputChange = (e) => {
-    setCheckoutBodyData({ ...checkoutBodyData, [e.target.name]: e.target.value });
+    setCheckoutBodyData({
+      ...checkoutBodyData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleCheckout = async () => {
@@ -187,6 +196,7 @@ const CheckoutForm = ({
     };
 
     const orderRes = await checkout({ body: orderData });
+
     if (
       orderRes &&
       Object.keys(orderRes).length > 0 &&
@@ -355,7 +365,9 @@ const CheckoutForm = ({
                 onChange={handleCheckoutInputChange}
               />
               <ErrorText>
-                {errors && errors.password2 && errors.password2}
+                {errors &&
+                  errors.registerError &&
+                  error.registerError.password2}
               </ErrorText>
               <p>This will create a new account with the given information</p>
             </Col>

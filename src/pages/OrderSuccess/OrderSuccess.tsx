@@ -1,14 +1,19 @@
 //@ts-nocheck
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useAlert } from "react-alert";
 import { Col, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
+
 // import component
 import { OrderSuccessMessage } from "../../components/OrderSuccessMessage";
 import { OrderDetails } from "../../containers/OrderDetails";
 import { OrderInfo } from "../../containers/OrderInfo";
+
+// import loader
+import SpinnerHOC from "../../components/Spinner/SpinnerHOC";
+
 // hook
 import { useHandleFetch } from "../../hooks";
 
@@ -50,7 +55,6 @@ const OrderSuccess = ({ isAuthenticated }) => {
 
   useEffect(() => {
     if (orderHistoryState.done && orderHistoryState.data) {
-      console.log("orderhistory", orderHistoryState.data);
       const { order } = orderHistoryState.data;
       setProducts(order.products);
       setTotalPrice(order.totalPrice);
@@ -65,24 +69,30 @@ const OrderSuccess = ({ isAuthenticated }) => {
 
   return (
     <section>
-      <OrderSuccessMessage orderStatus={orderStatus} />
-      <OrderSuccessContainer>
-        <CustomContainer>
-          <Row>
-            <Col lg={6}>
-              <OrderDetails
-                totalPrice={totalPrice}
-                deliveryCharge={deliveryCharge}
-                products={products}
-              />
-            </Col>
+      {orderHistoryState.isLoading ? (
+        <SpinnerHOC />
+      ) : (
+        <Fragment>
+          <OrderSuccessMessage orderStatus={orderStatus} />
+          <OrderSuccessContainer>
+            <CustomContainer>
+              <Row>
+                <Col lg={6}>
+                  <OrderDetails
+                    totalPrice={totalPrice}
+                    deliveryCharge={deliveryCharge}
+                    products={products}
+                  />
+                </Col>
 
-            <Col lg={6}>
-              <OrderInfo order={order} />
-            </Col>
-          </Row>
-        </CustomContainer>
-      </OrderSuccessContainer>
+                <Col lg={6}>
+                  <OrderInfo order={order} />
+                </Col>
+              </Row>
+            </CustomContainer>
+          </OrderSuccessContainer>
+        </Fragment>
+      )}
     </section>
   );
 };

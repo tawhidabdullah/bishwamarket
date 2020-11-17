@@ -1,40 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import { useParams, useLocation } from "react-router-dom";
-
-// import hooks
-import { useQueryFetch, useHandleFetch } from "../../../hooks";
-const SearchField = ({ setproduct }) => {
-  const [queryValue, setqueryValue] = useState("");
-  const [productSearchState, handleProductSearchFetch] = useHandleFetch(
-    [],
-    "productSearch"
-  );
-
-  useEffect(() => {
-    const setSearchCategoryProducts = async () => {
-      const newProductsRes = await handleProductSearchFetch({
-        urlOptions: {
-          params: {
-            queryValue,
-          },
-        },
-      });
-    };
-    setSearchCategoryProducts();
-  }, [queryValue]);
-
+const SearchField = ({ setQueryValue }) => {
   const handle = (e) => {
-    setqueryValue(e.target.value);
+    setQueryValue(e.target.value);
   };
-
-  useEffect(() => {
-    if (productSearchState.data) setproduct(productSearchState.data);
-    else {
-      setproduct([]);
-    }
-  }, [productSearchState.isLoading]);
 
   return (
     <InputBox>
@@ -64,7 +34,7 @@ const InputBox = styled.div`
   align-items: center;
 
   & input {
-    border-radius: 0 5px 5px 0;
+    /* border-radius: 0 5px 5px 0; */
     padding: 13px 20px;
     font-size: 1rem;
     line-height: 1.5;
@@ -87,6 +57,7 @@ const InputBox = styled.div`
     outline: none;
     color: #fff;
     font-weight: bold;
+    border-radius: 0;
 
     & i {
       padding-right: 12px;

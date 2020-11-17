@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+//@ts-nocheck
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // import component
 import { SearchContain } from "../../components/Search/SearchContain/";
 import { SearchField } from "../../components/Search/SearchField";
 import { ProductsByCategory } from "../../components/Slider/ProductsByCategory";
+
+import {
+  useQueryFetch,
+  useHandleFetch,
+  useQueryInfinitePaginate,
+} from "../../hooks";
+
+// import spinner
+import Spinner from "../../components/Spinner/Spinner";
+
+// import pagination hoc
+import { Paginator } from "../../hoc/Paginator";
 
 const productCardStyles = {
   productBackgroundColor: "#fff",
@@ -19,24 +32,83 @@ const productCardStyles = {
 
 const SearchContainer = () => {
   const [key, setkey] = useState("");
-  const [searchproduct, setproduct] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [queryValue, setQueryValue] = useState("");
+
+  const [productState, handleProductSearchFetch] = useHandleFetch(
+    [],
+    "productSearch"
+  );
+
+  // const paginatedProductList = useQueryInfinitePaginate("productSearch", {
+  //   urlOptions: {
+  //     params: {
+  //       queryValue,
+  //     },
+  //   },
+  // });
+
+  // console.log("paginate product list", paginatedProductList);
+
+  useEffect(() => {
+    const setSearchCategoryProducts = async () => {
+      const newProductsRes = await handleProductSearchFetch({
+        urlOptions: {
+          params: {
+            queryValue,
+          },
+        },
+      });
+
+      if (newProductsRes) {
+        setProducts(newProductsRes);
+      }
+    };
+    setSearchCategoryProducts();
+  }, [queryValue]);
 
   return (
     <Section>
       <SearchContain title={"search"} />
-      <SearchField setproduct={setproduct} />
+      <SearchField setQueryValue={setQueryValue} />
 
       <SearchProduct>
-        <Main>
-          {searchproduct.map((item) => {
-            return (
-              <ProductsByCategory
-                customStyles={productCardStyles}
-                item={item}
-              />
-            );
-          })}
-        </Main>
+        {productState.isLoading ? (
+          <Spinner />
+        ) : (
+          // <Paginator
+          //   dataLen={paginatedProductList.data?.[0]?.total}
+          //   fetchData={() => paginatedProductList.setPage((page) => page + 1)}
+          //   hasMore={paginatedProductList.canFetchMore}
+          // >
+          //   <Main>
+          //     {paginatedProductList?.data.map((page, i) => (
+          //       <React.Fragment key={i}>
+          //         {page?.data &&
+          //           page?.data.length > 0 &&
+          //           page?.data.map((item, idx) => (
+          //             <ProductsByCategory
+          //               key={idx}
+          //               item={item}
+          //               customStyles={productCardStyles}
+          //             />
+          //           ))}
+          //       </React.Fragment>
+          //     ))}
+          //   </Main>
+          // </Paginator>
+
+          <Main>
+            {products.map((item) => {
+              return (
+                <ProductsByCategory
+                  customStyles={productCardStyles}
+                  item={item}
+                />
+              );
+            })}
+          </Main>
+        )}
       </SearchProduct>
     </Section>
   );

@@ -51,22 +51,22 @@ const CheckoutDetails = ({
               cartItems.map((item, idx) => (
                 <QuantityListItem key={idx}>
                   {item.name} X {item.quantity}
-                  <span>&#2547;&nbsp;{item.quantity * item.price}</span>
+                  <span>৳ {item.quantity * item.price}</span>
                 </QuantityListItem>
               ))}
           </QuantityList>
 
           <SubTotalList>
             <SubTotalListItem>
-              SubTotal <SubTotal>&#2547;&nbsp;{totalPrice}</SubTotal>
+              SubTotal <SubTotal>৳ {totalPrice}</SubTotal>
             </SubTotalListItem>
 
             <SubTotalListItem>
-              Shipping <SubTotal>&#2547;&nbsp;{shippingCost}</SubTotal>
+              Shipping <SubTotal>৳ {shippingCost}</SubTotal>
             </SubTotalListItem>
 
             <SubTotalListItem>
-              Payment <SubTotal>&#2547;&nbsp;{shippingCost}</SubTotal>
+              Payment Method <SubTotal>Cash on Delivery</SubTotal>
             </SubTotalListItem>
           </SubTotalList>
 
@@ -74,7 +74,7 @@ const CheckoutDetails = ({
             <TotalPriceItem>
               Total{" "}
               <SubTotal>
-                &#2547;&nbsp;{parseInt(totalPrice) + parseInt(shippingCost)}
+                ৳ {parseInt(totalPrice) + parseInt(shippingCost)}
               </SubTotal>
             </TotalPriceItem>
           </TotalPriceList>
@@ -93,7 +93,7 @@ const CheckoutDetails = ({
             />
           </PaymentOptionItem> */}
 
-            <PaymentOptionItem>
+            {/* <PaymentOptionItem>
               <Checkbox
                 label="Cash on Delivery"
                 customStyle={radioButtonStyles}
@@ -104,7 +104,7 @@ const CheckoutDetails = ({
                 value="cod"
                 // checked={payment === "cod"}
               />
-            </PaymentOptionItem>
+            </PaymentOptionItem> */}
 
             {/* <PaymentOptionItem>
             <Checkbox
