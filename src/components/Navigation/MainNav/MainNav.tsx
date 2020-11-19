@@ -60,10 +60,10 @@ const MainNavContainer = styled.div`
 const LogoContainer = styled.div`
   /* width: 150px; */
   height: 70px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   cursor: pointer;
   height: 75px;
-  margin-left: 50px;
+  /* margin-left: 50px; */
 
   & img {
     width: 100%;
@@ -72,7 +72,7 @@ const LogoContainer = styled.div`
   }
 
   @media screen and (max-width: 578px) {
-    width: 30%;
+    width: 50%;
     margin-right: unset;
     margin: 0 auto;
     /* text-align: center; */
