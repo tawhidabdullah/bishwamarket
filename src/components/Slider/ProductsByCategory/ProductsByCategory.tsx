@@ -379,7 +379,7 @@ const ProductFront = styled.div`
 `;
 
 const OnSale = styled.div`
-  background-color: #ffa800;
+  background-color: #5c2c90;
   color: #fff;
   text-transform: uppercase;
   position: absolute;
@@ -456,7 +456,7 @@ const DetailRight = styled.div`
 `;
 const Rating = styled.div`
   & i {
-    color: #ffa800;
+    color: #5c2c90;
     font-size: calc(11px + (14 - 11) * ((100vw - 320px) / (1920 - 320)));
   }
 `;
@@ -469,7 +469,7 @@ const CheckPrice = styled.div`
 `;
 
 const Price = styled.div`
-  color: #ffa800;
+  color: #5c2c90;
   font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
   font-weight: 700;
 `;

@@ -63,7 +63,7 @@ const CardInfoContainer = styled.div`
     margin-top: 14px;
     font-weight: 700;
     font-size: 15px;
-    color: #ffa800;
+    color: #744ba0;
   }
 
   @media screen and (max-width: 768px) {
