@@ -45,7 +45,6 @@ const ProductByCategory = () => {
     "categoryProducts"
   );
 
-  
   //generating fetching url
   useEffect(() => {
     const setCategoryProducts = async () => {
@@ -76,7 +75,7 @@ const ProductByCategory = () => {
       // nasty code, petition to send to gulag
       // let p = document.getElementsByClassName("categoryName");
       // p[indexColor].classList.add("categoryName-active");
-      // p[indexColor].style.color = "#ff6000";
+      // p[indexColor].style.color = "#5C2C90";
     } else {
       setproducts([]);
     }
@@ -127,12 +126,10 @@ const ProductByCategory = () => {
   //   setSelectedCategoryId(id);
   //   let p = document.getElementsByClassName("categoryName");
   //   p[index].classList.add("categoryName-active");
-  //   p[index].style.color = "#ff6000";
+  //   p[index].style.color = "#5C2C90";
   //   p[indexColor].style.color = "#444";
   //   setColor(index);
   // };
-
-
 
   return (
     <Section>
@@ -142,7 +139,7 @@ const ProductByCategory = () => {
 
       {/* {isCategoryLabels && ( */}
       <MobileCategoryLabels>
-        {category.slice(0,6).map((item, idx) => (
+        {category.slice(0, 6).map((item, idx) => (
           <CategoryLabel
             className={
               item.id === selectedCateoryId
@@ -163,7 +160,7 @@ const ProductByCategory = () => {
       {/* )} */}
 
       <CategoryLabels>
-        {category.slice(0,6).map((item, idx) => (
+        {category.slice(0, 6).map((item, idx) => (
           <CategoryLabel
             className={
               item.id === selectedCateoryId

@@ -230,7 +230,7 @@ const FormContainer = styled.form`
 `;
 
 const Text = styled.p`
-  color: #ff6000;
+  color: #5c2c90;
   font-size: 14px;
   padding: 5px 0;
   ${(props) => props.customStyles};

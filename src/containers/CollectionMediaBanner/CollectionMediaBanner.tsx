@@ -158,9 +158,7 @@ const CollectionMediaBanner = () => {
               content="TODAY'S HOT OFFER"
               customStyle={{ fontSize: "20px" }}
             />
-            <Slider
-              arrows={true}
-            >
+            <Slider arrows={true}>
               {offerProductState.done &&
                 offerProductState.data &&
                 offerProductState.data.length > 0 &&
@@ -188,7 +186,7 @@ const ViewMoreText = styled.p`
   font-weight: bold;
   text-align: center;
   width: fit-content;
-  color: #ff6000;
+  color: #5c2c90;
   cursor: pointer;
   transition: ease-in-out 400ms;
   margin-top: 20px;
@@ -250,13 +248,10 @@ const MainContents = styled.div`
     width: 20px;
     height: 20px;
 
-
     @media only screen and (max-width: 580px) {
       right: 25px;
       top: -25px;
     }
-
-
   }
   & .slick-prev::before {
     color: #999;

@@ -177,7 +177,7 @@ const SignIn = ({ login, cartItems, addProductsToCart }) => {
 
           <Text
             customStyle={{
-              color: "#ff6000",
+              color: "#5C2C90",
               "font-size": "13px",
               cursor: "pointer",
               transition: "0.2s ease-in-out",
@@ -270,7 +270,7 @@ const ButtonContainer = styled.div`
   }
 
   & span {
-    color: #ff6000;
+    color: #5c2c90;
     cursor: pointer;
     letter-spacing: 0;
     font-size: 13px;

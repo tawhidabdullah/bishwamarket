@@ -20,7 +20,7 @@ const SpinnerContainer = styled.div`
   transform: translateZ(0);
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
-  background: #ff6000;
+  background: #5c2c90;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;

@@ -19,19 +19,18 @@ const DealBanner = () => {
 export default DealBanner;
 const Section = styled.div`
   height: 120px;
-  background-color: #ff6000;
+  background-color: #5c2c90;
   padding: 40px 0;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  min-width:300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 300px;
 
-@media only screen and (max-width: 900px)  {
- flex-direction:column;
- justify-content:center;
- align-items:center;
-}
-
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const BannerContaine = styled.div`
@@ -74,7 +73,7 @@ const BannerContaine = styled.div`
       width: 120px;
       text-align: center;
     }
-    @media only screen and (max-width: 580px)  {
+    @media only screen and (max-width: 580px) {
       padding: 8px 25px;
       font-size: 8px;
       width: 100px;
@@ -88,6 +87,4 @@ const BannerContaine = styled.div`
   }
 `;
 
-const Button = styled.div`
-
-`;
+const Button = styled.div``;

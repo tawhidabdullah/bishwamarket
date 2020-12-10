@@ -73,7 +73,7 @@ export const IconWrapper = styled.span`
 `;
 
 export const NavToggler = styled(IconWrapper)`
-  color: #ff6000;
+  color: #5c2c90;
   font-size: 25px;
   padding: 0 15px;
   display: none;

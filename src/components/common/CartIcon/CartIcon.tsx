@@ -50,7 +50,7 @@ const ShoppingIconContainer = styled.div`
   padding: 10px;
   text-align: center;
   z-index: 21;
-  background: #ff6000;
+  background: #5c2c90;
   opacity: 1;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 

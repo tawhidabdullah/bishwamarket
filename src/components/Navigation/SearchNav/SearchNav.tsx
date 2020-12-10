@@ -282,7 +282,7 @@ export default connect(null, mapDispatchToProps)(SearchNav);
 
 const SearchNavContainer = styled.div`
   height: 70px;
-  background-color: #ff6000;
+  background-color: #5c2c90;
   display: flex;
   align-items: center;
 

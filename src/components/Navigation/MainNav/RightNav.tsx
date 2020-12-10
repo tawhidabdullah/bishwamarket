@@ -208,12 +208,12 @@ const WishText = styled.div`
   flex-direction: column;
 
   & span:first-child {
-    color: #ff6000;
+    color: #5c2c90;
   }
 `;
 
 // const CartIcon = styled(IconWrapper)`
-//   background-color: #ff6000;
+//   background-color: #5C2C90;
 //   padding: 10px 20px;
 //   margin-left: 20px;
 //   position: relative;

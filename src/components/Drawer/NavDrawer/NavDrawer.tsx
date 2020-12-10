@@ -214,11 +214,11 @@ const HeaderText = styled.span`
 `;
 
 const ItemText = styled.span`
-  /* color: #ff6000; */
+  /* color: #5C2C90; */
   font-size: 14px;
   padding: 5px 0;
   font-weight: bold;
-  color: ${(props) => (props.active ? `#ff6000` : `#444`)};
+  color: ${(props) => (props.active ? `#5C2C90` : `#444`)};
 `;
 
 const DrawerMenuContainer = styled.div`

@@ -64,9 +64,9 @@ const CategoryContain = styled.div`
   text-align: center;
 
   &:hover ${ImgWrapper} {
-    border: 1px solid #ff6000;
+    border: 1px solid #5c2c90;
   }
   &:hover ${Button} {
-    background-color: #ff6000;
+    background-color: #5c2c90;
   }
 `;

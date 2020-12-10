@@ -1,31 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
-import image1 from "../../../assets/blog/1.jpg"
+import image1 from "../../../assets/blog/1.jpg";
 const BlogItem = () => {
   return (
-  
-      <BlogContain>
-        <BlogImage>
-          <img src={image1} alt="blog" className="img-fluid  w-100" />
-        </BlogImage>
-        <BlogDetails>
-          <h4>Latest News Post</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            eleifend a massa rhoncus
-            gravida.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
-            cristiano
-          </p>
-          <span>
-            <a href="#">read more</a>
-          </span>
-        </BlogDetails>
-        <Date>
-          <p>25 july 2018</p>
-        </Date>
-      </BlogContain>
-    
+    <BlogContain>
+      <BlogImage>
+        <img src={image1} alt="blog" className="img-fluid  w-100" />
+      </BlogImage>
+      <BlogDetails>
+        <h4>Latest News Post</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+          eleifend a massa rhoncus
+          gravida.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+          cristiano
+        </p>
+        <span>
+          <a href="#">read more</a>
+        </span>
+      </BlogDetails>
+      <Date>
+        <p>25 july 2018</p>
+      </Date>
+    </BlogContain>
   );
 };
 
@@ -46,7 +44,7 @@ const BlogImage = styled.div`
   }
   &:hover img {
     transform: scale(1.2);
-    overflow:hidden;
+    overflow: hidden;
   }
 `;
 const BlogDetails = styled.div`
@@ -68,15 +66,15 @@ const BlogDetails = styled.div`
     color: gray;
     text-transform: capitalize;
     margin-bottom: 5px;
-  
-    padding: 10px ;
+
+    padding: 10px;
   }
 
   & a {
     text-decoration: none;
     background-color: transparent;
     padding: 10px;
-    color: #ff6000;
+    color: #5c2c90;
     text-transform: capitalize;
     font-weight: 700;
 
@@ -89,7 +87,7 @@ const Date = styled.div`
   position: absolute;
   top: 5%;
   left: 0;
-  background-color: #ff6000;
+  background-color: #5c2c90;
   padding: 2px 10px;
   color: #fff;
 `;

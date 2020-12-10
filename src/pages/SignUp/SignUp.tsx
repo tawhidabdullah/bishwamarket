@@ -288,7 +288,7 @@ const FormContainer = styled.div`
 
   & span a {
     text-decoration: none;
-    color: #ff6000;
+    color: #5c2c90;
     transition: 0.2s ease-in-out;
 
     :hover {
@@ -313,7 +313,7 @@ const ButtonContainer = styled.div`
   }
 
   & span {
-    color: #ff6000;
+    color: #5c2c90;
     cursor: pointer;
     letter-spacing: 0;
     font-size: 13px;

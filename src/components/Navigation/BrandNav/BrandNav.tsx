@@ -71,7 +71,7 @@ const BrandList = styled.ul`
   & li:first-child,
   li:nth-child(2) {
     font-weight: bold;
-    color: #ff6000;
+    color: #5c2c90;
   }
 
   @media screen and (max-width: 991px) {
@@ -79,7 +79,7 @@ const BrandList = styled.ul`
       display: block;
       text-align: center;
       border: 0;
-      border-bottom: 2px solid #ff6000;
+      border-bottom: 2px solid #5c2c90;
       width: fit-content;
       margin: 0 auto;
       margin-bottom: 10px;

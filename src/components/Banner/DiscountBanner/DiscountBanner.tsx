@@ -55,7 +55,7 @@ const DiscountText = styled.h1`
   color: #444;
 
   & span:first-child {
-    color: #ff6000;
+    color: #5c2c90;
   }
 
   & span:nth-child(2) {
@@ -71,7 +71,7 @@ const RoundButtonContainer = styled.div`
 `;
 
 const RoundedButton = styled.div`
-  background-color: #ff6000;
+  background-color: #5c2c90;
   color: #fff;
   text-transform: uppercase;
   padding: 18px 0;

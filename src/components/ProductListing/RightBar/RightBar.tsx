@@ -30,7 +30,7 @@ const RightBar = ({
   filterLabels,
   handleFilterProduct,
   paginatedProductList,
-  productListData
+  productListData,
 }) => {
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
@@ -122,7 +122,7 @@ const NotFoundText = styled.p`
   grid-column: 1/-1;
   font-size: 40px;
   font-weight: 700;
-  color: #ff6000;
+  color: #5c2c90;
 `;
 
 const Products = styled.div`

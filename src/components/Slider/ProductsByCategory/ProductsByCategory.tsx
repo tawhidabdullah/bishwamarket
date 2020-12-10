@@ -404,7 +404,7 @@ const NewLevel = styled.div`
   &::before {
     width: 0;
     height: 0;
-    border-top: 60px solid #ff6000;
+    border-top: 60px solid #5c2c90;
     border-right: 60px solid transparent;
     content: "";
     position: absolute;

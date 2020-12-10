@@ -53,7 +53,7 @@ const InputBox = styled.div`
     padding: 13px 20px;
     margin-left: -2px;
     width: fit-content;
-    background-color: #ff6000;
+    background-color: #5c2c90;
     outline: none;
     color: #fff;
     font-weight: bold;

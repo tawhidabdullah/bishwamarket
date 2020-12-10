@@ -72,32 +72,32 @@ const MediaBanner = ({
         product.map((item, idx: any) => {
           return (
             <MediaBannerBox key={idx}>
-            <Media>
-              <img
-                onClick={addToDrawer}
-                src={item.cover}
-                className="img-fluid  "
-                alt=""
-              />
+              <Media>
+                <img
+                  onClick={addToDrawer}
+                  src={item.cover}
+                  className="img-fluid  "
+                  alt=""
+                />
 
-              <MediaBody>
-                <MediaContent>
-                  <div>
-                    <ProductNameLabel onClick={addToDrawer}>
-                      {item.name}
-                    </ProductNameLabel>
-                    <h6>৳ {item.price}</h6>
-                    {/* <ShoppingBag onClick={() => handleAddToCart(item)}>
+                <MediaBody>
+                  <MediaContent>
+                    <div>
+                      <ProductNameLabel onClick={addToDrawer}>
+                        {item.name}
+                      </ProductNameLabel>
+                      <h6>৳ {item.price}</h6>
+                      {/* <ShoppingBag onClick={() => handleAddToCart(item)}>
                       <span>
                         <i title="Add to Cart" className="fa fa-shopping-bag" />
                       </span>
                     </ShoppingBag> */}
-                  </div>
-                </MediaContent>
-              </MediaBody>
-            </Media>
-          </MediaBannerBox>
-          )
+                    </div>
+                  </MediaContent>
+                </MediaBody>
+              </Media>
+            </MediaBannerBox>
+          );
         })}
 
       {/* <MediaBannerBox>
@@ -187,7 +187,7 @@ const MediaContent = styled.div`
   /* height: 100px; */
 
   & h6 {
-    color: #ff6000;
+    color: #5c2c90;
     cursor: pointer;
     font-weight: 700;
     margin-top: 10px;

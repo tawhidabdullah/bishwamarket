@@ -281,7 +281,7 @@ const Price = styled.div`
     font-size: 20px;
   }
   & p del {
-    color: #ff6000;
+    color: #5c2c90;
     font-size: 12px;
   }
 
