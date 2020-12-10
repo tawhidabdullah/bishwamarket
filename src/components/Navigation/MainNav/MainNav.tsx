@@ -47,8 +47,9 @@ export default connect(null, mapDispatchToProps)(MainNav);
 
 const MainNavContainer = styled.div`
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
   padding: 20px 0;
 
@@ -62,19 +63,24 @@ const LogoContainer = styled.div`
   height: 70px;
   /* margin-right: 20px; */
   cursor: pointer;
-  height: 75px;
+  height: 65px;
   /* margin-left: 50px; */
 
   & img {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     object-fit: contain;
   }
 
   @media screen and (max-width: 578px) {
     width: 50%;
+    height: 40px;
     margin-right: unset;
     margin: 0 auto;
     /* text-align: center; */
+  }
+
+  @media screen and (max-width: 475px) {
+    height: 30px;
   }
 `;
