@@ -53,7 +53,7 @@ export default Service;
 
 const ServiceNavContainer = styled.div`
   /* display: grid !important; */
-  background-color: #ffa800;
+  background-color: #6f4a97;
 
   /* grid-template-columns: 1fr 1fr 1fr; */
   justify-content: space-evenly;
@@ -74,11 +74,9 @@ const ServiceNavContainer = styled.div`
     grid-template-columns: 1fr;
   } */
 
-
   @media only screen and (max-width: 700px) {
-   padding: 20px 0; 
-  } 
-
+    padding: 20px 0;
+  }
 
   h5 {
     font-weight: 600;

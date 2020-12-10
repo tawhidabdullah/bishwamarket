@@ -59,13 +59,13 @@ const DiscountText = styled.h1`
   }
 
   & span:nth-child(2) {
-    color: #ffa800;
+    color: #6f4a97;
     font-weight: 700;
   }
 `;
 
 const RoundButtonContainer = styled.div`
-  border: 2px dashed #ffa800;
+  border: 2px dashed #6f4a97;
   border-radius: 50px;
   padding: 5px;
 `;
