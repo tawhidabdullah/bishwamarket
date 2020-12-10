@@ -193,7 +193,7 @@ const SearchNav = ({
         )}
       </NavCategory>
       <SearchCategory>
-        <span>
+        <span onClick={handleSearch}>
           <i className="fa fa-search"></i>
         </span>
         <input
