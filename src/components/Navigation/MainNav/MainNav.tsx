@@ -81,6 +81,7 @@ const LogoContainer = styled.div`
   }
 
   @media screen and (max-width: 475px) {
+    width: 55%;
     height: 30px;
   }
 `;
