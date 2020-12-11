@@ -1,6 +1,12 @@
-//@ts-ignore
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
+//import react slick and slick-carousel
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
 
 // components
 import CollectionItem from "../../components/CollectionItem/CollectionItem";
@@ -76,6 +82,17 @@ const ImageBanner = () => {
     ],
   };
 
+  // configuration for react-slick slider
+  const settings = {
+    // dots: true,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <NavigationContainer>
       <BannerSideBar>
@@ -90,13 +107,30 @@ const ImageBanner = () => {
             <div className="createLoader"></div>
           </div>
         ) : (
-          <>
-            {bannerState.isSuccess && bannerState.data?.length > 0 && (
-              <MainSliderContainer>
-                <img src={bannerState.data?.[0].src} alt="" />
-              </MainSliderContainer>
-            )}
-          </>
+          // <>
+          //   {bannerState.isSuccess && bannerState.data?.length > 0 && (
+          //     <MainSliderContainer>
+          //       <img src={bannerState.data?.[0].src} alt="" />
+          //     </MainSliderContainer>
+          //   )}
+          // </>
+
+          <div>
+            <Slider {...settings}>
+              {bannerState.isSuccess &&
+                bannerState.data &&
+                data &&
+                data.length > 0 &&
+                data.map((item, idx) => {
+                  return (
+                    <MainSliderContainer>
+                      <img src={item.src} alt="" />
+                    </MainSliderContainer>
+                  );
+                })}
+            </Slider>
+          </div>
+
           // <MainSlider
           //   responsive={responsive}
           //   ProductsByCategory={ThemeSlider}
@@ -161,6 +195,10 @@ const NavigationContainer = styled.div`
   @media only screen and (max-width: 800px) {
     padding: 0 20px;
   }
+
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const MainSliderContainer = styled.div`
@@ -189,7 +227,7 @@ const BannerSideBar = styled.div`
 const SliderBanner = styled.div`
   margin-top: 10px;
   grid-row: 1/ 2;
-  height: 574px;
+  height: 100%;
 
   @media only screen and (max-width: 1150px) and (min-width: 580px) {
     height: 100%;
