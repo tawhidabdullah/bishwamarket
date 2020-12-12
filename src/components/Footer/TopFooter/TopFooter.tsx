@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 // import list component
 import { LinkList } from "../LinkLists";
+
+import { useQueryFetch } from "../../../hooks";
 
 // import address component
 import { Contact } from "../Contact";
 
 // import Component fetcher component
 import ComponentFetcher from "../../ComponentFetcher";
-
 
 // dummy data
 const contactList = [
@@ -30,32 +31,80 @@ const quickLink = [
 ];
 
 const TopFooter = () => {
+  const links = useQueryFetch("Links");
+  //@ts-ignore
+  useEffect(() => {}, [links.data]);
+  console.log({ links });
   return (
     <TopFooterWrapper>
       <TopFooterContainer>
         <LinkListWrapper>
           <LinkListContainer>
-          
-          <ComponentFetcher type='linkList' apiMapKey='myAccountComponentLinks'>
-            {(linkList) => <LinkList header="My Account" lists={linkList} />}
-          </ComponentFetcher>
+            <ComponentFetcher
+              type="linkList"
+              apiMapKey="myAccountComponentLinks"
+            >
+              {(linkList) => <LinkList header="My Account" lists={linkList} />}
+            </ComponentFetcher>
 
-          <ComponentFetcher type='linkList' apiMapKey='Links'>
-            {(linkList) => <LinkList header="Quick Link" lists={linkList} />}
-          </ComponentFetcher>
-
-           
-            
+            <ComponentFetcher type="linkList" apiMapKey="Links">
+              {(linkList) => <LinkList header="Quick Link" lists={linkList} />}
+            </ComponentFetcher>
           </LinkListContainer>
         </LinkListWrapper>
 
         <Contact header="CONTACT US" />
+        <PagesSection>
+          <Title>About Us</Title>
+          <Items>
+            {links &&
+              links.data &&
+              links.data.length &&
+              links.data.map((link) => {
+                return <Item>{link.name}</Item>;
+              })}
+          </Items>
+        </PagesSection>
       </TopFooterContainer>
     </TopFooterWrapper>
   );
 };
 
 export default TopFooter;
+
+const PagesSection = styled.div`
+  margin: 1.5rem 2rem;
+  padding: 1rem;
+  padding-left: 3rem;
+  border-left: 1px solid #eee;
+  @media screen and (max-width: 768px) {
+    padding-left: unset;
+    border-left: unset;
+    /* padding-left: 30px; */
+  }
+`;
+
+const Title = styled.h5`
+  font-weight: 500;
+  font-size: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+  font-family: PT Sans, sans-serif;
+`;
+
+const Items = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+`;
+
+const Item = styled.div`
+  margin-bottom: 0.5rem;
+  color: #8d8d8d;
+  font-size: 14px;
+  cursor: pointer;
+`;
 
 const TopFooterWrapper = styled.div`
   background-color: white;
@@ -72,7 +121,7 @@ const TopFooterContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    width: 100%; 
+    width: 100%;
   }
 `;
 
