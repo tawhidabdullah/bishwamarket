@@ -1,438 +1,862 @@
-// @ts-nocheck
-import React, { Fragment, useEffect, useState } from "react";
-import { useAlert } from "react-alert";
-import { InputGroup } from "react-bootstrap";
-import { connect, useSelector } from "react-redux";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import detailsImg from "../../assets/detailImg.png";
+// import StarRating from "../../components/StarRating";
+import plus from "../../assets/plus.svg";
+import minus from "../../assets/minus.svg";
+import op from "../../assets/op.jpg";
+import { Carousel } from "react-responsive-carousel";
+import { withAlert } from "react-alert";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Select from "react-select";
+// import ImageGallery from 'react-image-gallery';
+import ImageGallery from "../../components/ImageGallery";
+import ReactImageZoom from "react-image-zoom";
+import ReactHtmlParser from "html-react-parser";
+
+// import responsive carousel
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-multi-carousel/lib/styles.css";
+
 // import hooks
 import { useHandleFetch } from "../../hooks";
-// import cart store
+
+// import state
 import { cartOperations } from "../../state/ducks/cart";
-// import toggle drawer action
-import { toggleQuickviewDrawer } from "../../state/ducks/globalState/actions";
-// import drawer button
-import { DrawerButton } from "../../components/common/Button/DrawerButton";
-// import elements
-import { BackDrop } from "../../components/elements/Backdrop";
-import { Size } from "../../components/elements/RoundButton/RoundButton";
-import { Text } from "../../components/elements/Text";
-import { useProductVariation } from "../../components/Drawer/QuickviewDrawer/hooks";
 
-const QuickviewDrawer = ({
-  open,
-  toggleQuickviewDrawer,
-  cartItems,
-  changeQuantity,
-  addToCart,
-  removeFromCart,
-  Item,
-  session,
+// import utils
+import {
+  checkIfItemExistsInCartItemById,
+  getCartKeyFromCartItems,
+  checkIfTheWishListExistsInArrayById,
+  numberWithCommas,
+} from "../../utils";
+
+const ProductDescription = ({
   productDetail,
+  addToCart,
+  cartItems,
+  alert,
+  removeFromCart,
+  session,
+  changeQuantity,
+  lingual,
 }) => {
-  const alert = useAlert();
-  // const Item = useSelector((state) => state.Item);
-
-  // state for default item quantity
-  const [quantity, setQuantity] = useState(1);
-
-  // handler for increasing and decreasing quantity
-  const addQuantity = () => setQuantity(quantity + 1);
-  const minusQuantity = () => {
-    if (quantity === 1) return;
-    setQuantity(quantity - 1);
-  };
-
-  const {
-    price,
-    attributes,
-    setSelectedVariationId,
-    selectedVariationId,
-  } = useProductVariation(Item?.[0]?.pricing);
-
-  // this hook send POST request to server to add item to cart
   const [addToCartState, handleAddtoCartFetch] = useHandleFetch(
     [],
     "addtoCart"
   );
 
-  // set to default quantity after each unmount
-  useEffect(() => {
-    return () => setQuantity(1);
-  }, [open === false]);
+  const [removeFromCartState, handleRemoveFromCartFetch] = useHandleFetch(
+    [],
+    "removeFromCart"
+  );
 
-  useEffect(() => {
-    if (Item.length > 0) {
-      productDetail.quantity = 1;
+  const [addWishlistState, handleAddWishlistFetch] = useHandleFetch(
+    [],
+    "addWishlist"
+  );
+
+  const [updateCartItemState, handleUpdateCartItemFetch] = useHandleFetch(
+    [],
+    "updateCartItem"
+  );
+
+  const history = useHistory();
+  const id = productDetail.id;
+  const pricing = productDetail.pricing;
+  const price = productDetail.price;
+  const name = productDetail.name;
+  const cover = productDetail.cover;
+  const url = productDetail.url;
+  const attribute = productDetail.attribute;
+
+  const [selectedVariation, setSelectedVariation] = useState({});
+  const [modifiedPrice, setModifiedPrice] = useState("");
+  const [selectedVariationId, setSelectedVariationId] = useState("");
+
+  const getVariationbySelectedId = (pricing, variationId) => {
+    if (variationId && pricing.length > 0) {
+      return pricing.find((variation) => variation._id === variationId);
     }
-  }, [Item.length]);
+    return {};
+  };
 
-  const handleAddToCart = () => {
-    if (!productDetail.inStock) {
-      alert.error("Out of stock");
-      return;
-    }
+  const dot = (color = "#111b3d") => ({
+    alignItems: "center",
+    display: "flex",
 
-    const cartItem = {
-      id: productDetail._id,
-      product: productDetail._id,
-      variation: selectedVariationId,
-      name: productDetail.name,
-      quantity: quantity,
-      cover: productDetail.cover,
-      price,
-      url: productDetail.url,
-    };
+    ":before": {
+      backgroundColor: color,
+      borderRadius: 6,
+      content: '" "',
+      display: "block",
+      marginRight: 8,
+      // height: 10,
+      // width: 10,
+    },
+  });
 
-    addToCart && addToCart(cartItem);
-    // toggleQuickviewDrawer();
-    alert.success("Product added to the cart");
+  // const colourStyles = {
+  //     control: styles => ({
+  //         ...styles,
+  //         backgroundColor: '#222',
+  //         border: '1px solid lightgrey',
+  //         height: '35px',
+  //         minHeight: '35px',
+  //         borderRadius: '6px',
+  //         fontSize: '12px'
+  //     }),
 
+  //     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  //         const color = '#fff';
+  //         return {
+  //             ...styles,
+  //             backgroundColor: isDisabled
+  //                 ? null
+  //                 : isSelected
+  //                     ? color
+  //                     : isFocused
+  //                         ? 'rgb(247, 247, 247)'
+  //                         : 'rgb(247, 247, 247)',
+  //             color: isDisabled
+  //                 ? '#333'
+  //                 : isSelected
+  //                     ? '#333'
+  //                     : isFocused
+  //                         ? '#303a3f'
+  //                         : '#303a3f',
+  //             cursor: isDisabled ? 'not-allowed' : 'default',
+
+  //             ':active': {
+  //                 ...styles[':active'],
+  //                 backgroundColor: !isDisabled && (isSelected ? color : '#303a3f'),
+  //             },
+  //         };
+  //     },
+  //     input: styles => ({
+  //         ...styles, height: '35px',
+  //         minHeight: '35px', fontSize: '12px', color: '#fff', ...dot()
+  //     }),
+  //     placeholder: styles => ({
+  //         ...styles, height: '35px',
+  //         top: '23%',
+  //         minHeight: '35px', fontSize: '12px', color: '#fff', ...dot()
+  //     }),
+  //     singleValue: (styles, { data }) => ({
+  //         ...styles, marginTop: '-11px', marginLeft: '-2px', height: '35px',
+  //         minHeight: '35px', fontSize: '12px', color: '#fff', ...dot(data.color)
+  //     }),
+  // };
+
+  const colourStyles = {
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      padding: "0 !important",
+      position: "absolute",
+      top: "25%",
+      right: "3%",
+    }),
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: "#fff",
+      border: "1px solid lightgray",
+      height: "45px",
+      minHeight: "45px",
+      borderRadius: "3px",
+      outline: "none",
+    }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = "#A4A4A4";
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? "#fff"
+          : isFocused
+          ? color
+          : "#f7f7f7",
+        color: isDisabled
+          ? "#333"
+          : isSelected
+          ? color
+          : isFocused
+          ? "#100846"
+          : "#A4A4A4",
+        cursor: isDisabled ? "not-allowed" : "default",
+
+        ":active": {
+          ...styles[":active"],
+          backgroundColor: !isDisabled && (isSelected ? color : "#100846"),
+        },
+      };
+    },
+    menu: (provided, state) => ({
+      ...provided,
+      width: "fit-content",
+      borderBottom: "1px dotted pink",
+      color: state.selectProps.menuColor,
+      padding: 10,
+      fontSize: "14px",
+    }),
+    input: (styles) => ({
+      ...styles,
+      color: "#A4A4A4",
+      marginBottom: "1rem",
+      fontSize: "14px",
+    }),
+    placeholder: (styles) => ({ ...styles, color: "#A4A4A4" }),
+    singleValue: (styles, { data }) => ({
+      ...styles,
+      marginTop: "-12px",
+      marginLeft: "8px",
+      fontSize: "13px",
+      color: "#A4A4A4",
+    }),
+  };
+
+  const getCartItemQuantity = (givenCartItem) => {
+    const item = cartItems.find(
+      (cartItem) =>
+        cartItem.product === givenCartItem.product &&
+        cartItem.variation === givenCartItem.variation
+    );
+
+    if (item) {
+      return item.quantity;
+    } else return 1;
+  };
+
+  const images =
+    productDetail.image && productDetail.image.length > 0
+      ? productDetail.image.map((item) => {
+          return {
+            original: item.large,
+            thumbnail: item.small,
+            small: item.small,
+          };
+        })
+      : [];
+
+  const [quantity, setQuantity] = useState(
+    getCartItemQuantity({
+      product: id,
+      variation: selectedVariationId || pricing[0]._id,
+    })
+  );
+
+  const handleOnClickAddToCart = async () => {
     if (session.isAuthenticated) {
-      (async () => {
-        const addToCartRes: any = await handleAddtoCartFetch({
+      if (
+        checkIfItemExistsInCartItemById(cartItems, {
+          product: id,
+          variation: selectedVariationId || pricing[0]._id,
+        })
+      ) {
+        const removeFromCartRes = await handleRemoveFromCartFetch({
           body: {
-            items: [cartItem],
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
           },
         });
 
-        if (addToCartRes && Object.keys(addToCartRes).length === 0) {
-          removeFromCart(cartItem);
-          alert.error("Something went wrong!");
+        // @ts-ignore
+        if (removeFromCartRes) {
+          removeFromCart &&
+            removeFromCart({
+              product: id,
+              variation: selectedVariationId || pricing[0]._id,
+            });
+
+          if (lingual.isBangla) {
+            alert.success("প্রোডাক্ট ব্যাগে থেকে বাদ দেয়া হয়েছে");
+          } else {
+            alert.success("Product Has Been Removed From the Cart");
+          }
         }
-      })();
+      } else {
+        const addToCartRes = await handleAddtoCartFetch({
+          body: {
+            items: [
+              {
+                product: id,
+                quantity: quantity,
+                variation: selectedVariationId || pricing[0]._id,
+              },
+            ],
+          },
+        });
+
+        // @ts-ignore
+        if (addToCartRes && addToCartRes.type === "single") {
+          const cartItem = {
+            quantity: addToCartRes["data"]["quantity"],
+            product: addToCartRes["data"]["product"],
+            variation: addToCartRes["data"]["variation"],
+            name: addToCartRes["data"]["name"],
+            price: addToCartRes["data"]["price"],
+            totalPrice: addToCartRes["data"]["totalPrice"],
+            url: url,
+            cover: cover,
+            attribute,
+          };
+          addToCart && addToCart(cartItem);
+          if (lingual.isBangla) {
+            alert.success("প্রোডাক্ট ব্যাগে যোগ করা হয়েছে");
+          } else {
+            alert.success("Product Added To The Cart");
+          }
+        }
+      }
+    } else {
+      if (
+        checkIfItemExistsInCartItemById(cartItems, {
+          product: id,
+          variation: selectedVariationId || pricing[0]._id,
+        })
+      ) {
+        removeFromCart &&
+          removeFromCart({
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+          });
+
+        if (lingual.isBangla) {
+          alert.success("প্রোডাক্ট ব্যাগে থেকে বাদ দেয়া হয়েছে");
+        } else {
+          alert.success("Product Has Been Removed From the Cart");
+        }
+      } else {
+        const cartItem = {
+          quantity: quantity,
+          product: id,
+          variation: selectedVariationId || pricing[0]._id,
+          name: name,
+          url: url,
+          cover: cover,
+          price: modifiedPrice || price,
+          totalPrice: parseInt(modifiedPrice) || parseInt(price) * 1,
+          attribute,
+        };
+        addToCart && addToCart(cartItem);
+        if (lingual.isBangla) {
+          alert.success("প্রোডাক্ট ব্যাগে যোগ করা হয়েছে");
+        } else {
+          alert.success("Product Added To The Cart");
+        }
+      }
     }
   };
 
-  console.log({ productDetail });
+  const convertAttributeValuesToStringValue = (attribute) => {
+    if (!attribute || !(Object.values(attribute)?.length > 0)) {
+      return "";
+    }
+
+    const value = [];
+    let attributeValues = Object.values(attribute);
+
+    if (attributeValues && attributeValues.length > 0) {
+      attributeValues.forEach((attributeValue) => {
+        // @ts-ignore
+        value.push(attributeValue);
+      });
+
+      return value.join(",");
+    } else {
+      return "";
+    }
+  };
+
+  const getPricingOptions = (pricing) => {
+    if (pricing.length > 0) {
+      const pricingOptions = [];
+
+      pricing.forEach((pricingItem) => {
+        if (
+          pricingItem?.attribute &&
+          Object.values(pricingItem?.attribute).length > 0 &&
+          pricingItem._id
+        ) {
+          let pricingOption = {
+            value: pricingItem._id,
+            label: `${
+              convertAttributeValuesToStringValue(pricingItem.attribute) || ""
+            }`,
+          };
+          // @ts-ignore
+          pricingOptions.push(pricingOption);
+        }
+      });
+
+      return pricingOptions;
+    } else return false;
+  };
+
+  const pricingOptions = getPricingOptions(pricing) || [];
+
+  const handleSelectVariation = (value) => {
+    setSelectedVariationId(value.value);
+  };
+
+  useEffect(() => {
+    setQuantity(1);
+    const getPriceByVariationId = (id) => {
+      const priceItem = pricing.find((pricingItem) => pricingItem._id === id);
+
+      if (priceItem && priceItem.price.regular) {
+        return priceItem.price.offer && parseInt(priceItem.price.offer)
+          ? priceItem.price.offer
+          : priceItem.price.regular;
+      } else return false;
+    };
+
+    if (selectedVariationId) {
+      const price = getPriceByVariationId(selectedVariationId);
+      setModifiedPrice(price);
+    }
+  }, [selectedVariationId]);
+
+  const handleChangeQuantity = async (value) => {
+    if (session.isAuthenticated) {
+      if (value === "minus") {
+        if (quantity === 1) {
+          const cartItem = {
+            quantity: quantity,
+            product: id,
+            variation: selectedVariationId
+              ? selectedVariationId
+              : pricing && pricing[0] && pricing[0]._id,
+            name: name,
+            cover: cover,
+            price: modifiedPrice || price,
+            totalPrice: parseInt(modifiedPrice) || parseInt(price) * 1,
+            url: url,
+          };
+
+          const removeFromCartRes = await handleRemoveFromCartFetch({
+            body: {
+              product: id,
+              variation: selectedVariationId || pricing[0]._id,
+            },
+          });
+
+          // @ts-ignore
+          if (removeFromCartRes) {
+            removeFromCart &&
+              removeFromCart({
+                product: id,
+                variation: selectedVariationId || pricing[0]._id,
+              });
+            alert.success("Product Has Been Removed From the Cart");
+            removeFromCart && removeFromCart(cartItem);
+            return;
+          }
+          return;
+        }
+
+        const myQuantity = getCartItemQuantity({
+          product: id,
+          variation: selectedVariationId || pricing[0]._id,
+        });
+
+        const newQuantity = myQuantity - 1;
+        setQuantity(newQuantity);
+
+        changeQuantity(
+          {
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+          },
+          newQuantity
+        );
+
+        const updateCartItemRes = await handleUpdateCartItemFetch({
+          body: {
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+            quantity: newQuantity,
+          },
+        });
+      } else {
+        const variationId =
+          selectedVariationId || (pricing[0] && pricing[0]._id);
+        const variation = getVariationbySelectedId(pricing, variationId);
+        if (
+          variation?.maximumPurchaseLimit &&
+          quantity >= variation?.maximumPurchaseLimit
+        ) {
+          alert.info("Max purchase limit exceeded");
+          return;
+        }
+
+        const myQuantity = getCartItemQuantity({
+          product: id,
+          variation: selectedVariationId || pricing[0]._id,
+        });
+
+        const newQuantity = myQuantity + 1;
+        setQuantity(newQuantity);
+
+        changeQuantity(
+          {
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+          },
+          newQuantity
+        );
+
+        const updateCartItemRes = await handleUpdateCartItemFetch({
+          body: {
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+            quantity: newQuantity,
+          },
+        });
+      }
+    } else {
+      if (value === "minus") {
+        if (quantity === 1) {
+          const cartItem = {
+            quantity: quantity,
+            product: id,
+            variation: selectedVariationId
+              ? selectedVariationId
+              : pricing && pricing[0] && pricing[0]._id,
+            name: name,
+            cover: cover,
+            price: modifiedPrice || price,
+            totalPrice: parseInt(modifiedPrice) || parseInt(price) * 1,
+            url: url,
+          };
+
+          alert.success("Product Has Been Removed From the Cart");
+          removeFromCart && removeFromCart(cartItem);
+
+          return;
+        }
+
+        const newQuantity = quantity - 1;
+        setQuantity(newQuantity);
+
+        // @ts-ignore
+        return changeQuantity(
+          {
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+          },
+          newQuantity
+        );
+      } else {
+        const variationId =
+          selectedVariationId || (pricing[0] && pricing[0]._id);
+        const variation = getVariationbySelectedId(pricing, variationId);
+        if (
+          variation?.maximumPurchaseLimit &&
+          quantity >= variation?.maximumPurchaseLimit
+        ) {
+          alert.info("Max purchase limit exceeded");
+          return;
+        }
+
+        const newQuantity = quantity + 1;
+        setQuantity(newQuantity);
+        // @ts-ignore
+        return changeQuantity(
+          {
+            product: id,
+            variation: selectedVariationId || pricing[0]._id,
+          },
+          newQuantity
+        );
+      }
+    }
+  };
+
+  const getTotalProductDetailPrice = (price) => {
+    if (!price) return "";
+    return parseInt(price) * parseInt(quantity);
+  };
 
   return (
-    <Fragment>
-      <ProductDescriptionWrapper>
-        {/* <BackDrop show={open} clicked={() => toggleQuickviewDrawer()} />
-    
-          {Item.length > 0 ? (
-            <QuickviewDrawerContainer show={open}></QuickviewDrawerContainer>
-          ) : (
-            <></>
+    <div className="productDescriptionContainer">
+      <div className="productDescriptionContainer____imageContainer">
+        {productDetail.image && !productDetail.image[0] && (
+          <>
+            {/* <img src={productDetail.cover} alt=""/> */}
+
+            <ReactImageZoom img={productDetail.cover} zoomPosition="original" />
+          </>
+        )}
+
+        {productDetail.image && productDetail.image.length > 0 ? (
+          <>
+            <div className="productimg-wrapp d-flex">
+              <ImageGallery images={images} />
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
+
+      <div className="productDescriptionContainer__detailsContainer">
+        <div className="productDescriptionContainer__detailsContainer__wrapper">
+          <h4 className="title">{productDetail.name}</h4>
+
+          <h4 className="mainPrice">
+            {lingual.isBangla ? "মূল্য: " : "Price: "} ৳ &nbsp;
+            {/* {numberWithCommas(modifiedPrice) || numberWithCommas(price)} */}
+            {productDetail.regularPrice}
+          </h4>
+
+          {/* {productDetail.category && productDetail.category.length > 0 && (
+            <p className="subtitle">
+              {lingual.isBangla ? "ক্যাটেগরি: " : "Category: "}
+              {productDetail.category.map((cat) => {
+                return (
+                  <>
+                    <span
+                      onClick={() =>
+                        cat.url &&
+                        history.push(`/e/${cat.url.replace("/category/", "")}`)
+                      }
+                    >
+                      {cat.name},
+                    </span>
+                  </>
+                );
+              })}
+            </p>
           )} */}
 
-        <ImageContainer>
-          <img src={productDetail.cover} alt="quick product preview" />
-          {/* <Text clickAction={() => toggleQuickviewDrawer()}>
-            <Text1>&#10005;</Text1>
-          </Text> */}
-        </ImageContainer>
-        <DetailsContainer>
-          {/* <Text2 onClick={() => toggleQuickviewDrawer()}>&#10005;</Text2> */}
+          {/* {productDetail.tags && productDetail.tags.length > 0 && (
+            <p className="subtitle">
+              {lingual.isBangla ? "ট্যাগস: " : "Tags: "}
+              {productDetail.tags.map((tag) => {
+                return (
+                  <>
+                    <span>{tag.name},</span>
+                  </>
+                );
+              })}
+            </p>
+          )} */}
 
-          <DrawerHeader>
-            <Text customStyle={{ "font-size": "18px" }}>
-              {productDetail.name}
-            </Text>
-          </DrawerHeader>
-          <Text
-            customStyle={{
-              "font-weight": "bold",
-              "padding-top": "0",
-              "font-size": "24px",
-              padding: "20px 0",
-            }}
-          >
-            Price: &#2547;&nbsp;{productDetail.price}
-          </Text>
-
-          {productDetail.description && (
-            <ProductDetailTextContainer>
-              <Text
-                customStyle={{
-                  "font-size": "16px",
-                  "font-weight": "700",
-                  color: "#333",
-                  padding: "5px 0",
-                  "padding-bottom": "10px",
-                }}
-              >
-                Product Details
-              </Text>
-              <div
-                style={{
-                  fontSize: "14px",
-                  marginRight: "20px",
-                }}
-                dangerouslySetInnerHTML={{ __html: productDetail.description }}
-              />
-            </ProductDetailTextContainer>
+          {convertAttributeValuesToStringValue(pricing[0].attribute) && (
+            <>
+              <div className="quantity">
+                {/* <span className='label'>
+                  {lingual.isBangla ? 'ওজন: ' : 'Weight: '}
+                </span> */}
+                {convertAttributeValuesToStringValue(pricing[0].attribute) && (
+                  <div
+                    style={{
+                      width: "123px",
+                      // marginLeft: '7px',
+                    }}
+                  >
+                    <Select
+                      isSearchable={false}
+                      styles={colourStyles}
+                      onChange={(value) => handleSelectVariation(value)}
+                      defaultValue={{
+                        value: pricing[0]._id,
+                        label: convertAttributeValuesToStringValue(
+                          pricing[0].attribute
+                        ),
+                      }}
+                      // value={selectedCountryValue}
+                      // @ts-ignore
+                      options={pricingOptions.map((country) => ({
+                        value: country["value"],
+                        label: country["label"],
+                      }))}
+                    />
+                  </div>
+                )}
+              </div>
+            </>
           )}
 
-          <SizeContainer>
-            <ParentSize>
-              {attributes.length > 0 &&
-                attributes.map((attribute) => {
-                  return (
-                    <Size
-                      customStyle={{
-                        background:
-                          attribute.value === selectedVariationId
-                            ? "#ddd"
-                            : "#fff",
-                      }}
-                      onClick={() => {
-                        setSelectedVariationId(attribute.value);
-                        setQuantity(1);
-                      }}
-                    >
-                      {attribute.label}
-                    </Size>
-                  );
-                })}
-            </ParentSize>
-          </SizeContainer>
-
-          <QuantityCounterBox>
-            <p>Quantity</p>
-            <div>
-              <span onClick={addQuantity}>
-                <i className="fa fa-plus"></i>
+          <div className="quantity">
+            {/* <span className='label'>{lingual.isBangla ? 'একক' : 'Unit:'}</span>
+            &nbsp; &nbsp; */}
+            <div className="unit-border">
+              <span
+                onClick={() => {
+                  if (
+                    checkIfItemExistsInCartItemById(cartItems, {
+                      product: id,
+                      variation: selectedVariationId || pricing[0]._id,
+                    })
+                  ) {
+                    handleChangeQuantity("minus");
+                  } else {
+                    if (quantity === 1) {
+                    } else {
+                      setQuantity(quantity - 1);
+                    }
+                  }
+                }}
+                className="plus"
+              >
+                -
               </span>
-              <span>{quantity}</span>
-              <span onClick={minusQuantity}>
-                <i className="fa fa-minus"></i>
+              &nbsp; &nbsp;
+              <span className="digit">
+                {checkIfItemExistsInCartItemById(cartItems, {
+                  product: id,
+                  variation: selectedVariationId || pricing[0]._id,
+                })
+                  ? getCartItemQuantity({
+                      product: id,
+                      variation: selectedVariationId || pricing[0]._id,
+                    })
+                  : quantity}
+              </span>
+              &nbsp; &nbsp;
+              <span
+                onClick={() => {
+                  if (
+                    checkIfItemExistsInCartItemById(cartItems, {
+                      product: id,
+                      variation: selectedVariationId || pricing[0]._id,
+                    })
+                  ) {
+                    handleChangeQuantity("plus");
+                  } else {
+                    setQuantity(quantity + 1);
+                  }
+                }}
+                className="plus"
+              >
+                +
               </span>
             </div>
-          </QuantityCounterBox>
+          </div>
 
-          <SizeContainer>
-            <ButtonContainer>
-              <DrawerButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleAddToCart();
-                }}
-                customStyle={{
-                  "font-weight": "bold",
-                  "margin-right": "7px",
-                  padding: "7px",
-                }}
-                wrapperStyle={{ padding: "20px 0" }}
-              >
-                Add To Cart
-              </DrawerButton>
-            </ButtonContainer>
-          </SizeContainer>
-        </DetailsContainer>
-      </ProductDescriptionWrapper>
-    </Fragment>
+          <div className="quantity">
+            <span className="label">
+              {lingual.isBangla ? "মোট দাম: " : "Total Price: "}
+            </span>
+            &nbsp; &nbsp;
+            <span
+              style={{
+                fontWeight: 600,
+              }}
+            >
+              {/* ৳ {getTotalProductDetailPrice(modifiedPrice || price)} */}৳
+              &nbsp;{productDetail.regularPrice}
+            </span>
+          </div>
+
+          <div className="buttons">
+            {productDetail.inStock ? (
+              <>
+                <div
+                  className="buy"
+                  onClick={() => {
+                    if (
+                      checkIfItemExistsInCartItemById(cartItems, {
+                        product: id,
+                        variation: selectedVariationId || pricing[0]._id,
+                      })
+                    ) {
+                      history.push("/billing");
+                    } else {
+                      handleOnClickAddToCart();
+                      history.push("/billing");
+                    }
+                  }}
+                >
+                  {lingual.isBangla ? " এখনি কিনুন" : " Buy now"}
+                </div>
+                <div onClick={handleOnClickAddToCart} className="cart">
+                  {!addToCartState.isLoading && !removeFromCartState.isLoading && (
+                    <>
+                      {(checkIfItemExistsInCartItemById(cartItems, {
+                        product: id,
+                        variation: selectedVariationId || pricing[0]._id,
+                      }) && (
+                        <>{lingual.isBangla ? "যোগ হয়েছে" : "Added"}</>
+                      )) || (
+                        <>
+                          {lingual.isBangla
+                            ? " ব্যাগে যোগ করুন"
+                            : " Add to Cart"}
+                        </>
+                      )}
+                    </>
+                  )}
+
+                  {addToCartState.isLoading
+                    ? lingual.isBangla
+                      ? "যোগ হচ্ছে..."
+                      : "Adding..."
+                    : ""}
+                  {removeFromCartState.isLoading
+                    ? lingual.isBangla
+                      ? "রিমুভ হচ্ছে..."
+                      : "Removing..."
+                    : ""}
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  className="alertText"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  <i className="fa fa-exclamation-circle"></i>
+                  <h3>{lingual.isBangla ? "ফুরিয়ে গেছে" : `Unavailable`}</h3>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {productDetail.description && (
+        <div>
+          <div>
+            <h2
+              style={{
+                fontSize: "15px",
+                fontWeight: 600,
+                marginTop: "20px",
+                marginBottom: "15px",
+              }}
+            >
+              Description
+            </h2>
+            <p className="description">
+              {ReactHtmlParser(productDetail.description || "")}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    session: state.session,
-    Item: state.Item,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  toggleQuickviewDrawer: () => dispatch(toggleQuickviewDrawer()),
-  changeQuantity: cartOperations.changeQuantity,
-  addToCart: (value) => dispatch(cartOperations.addToCart(value)),
-  removeFromCart: (value) => dispatch(cartOperations.removeFromCart(value)),
+const mapStateToProps = (state) => ({
+  cartItems: state.cart,
+  session: state.session,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuickviewDrawer);
+const mapDispatchToProps = {
+  addToCart: cartOperations.addToCart,
+  removeFromCart: cartOperations.removeFromCart,
+  changeQuantity: cartOperations.changeQuantity,
+};
 
-const QuantityCounterBox = styled.div`
-  & p {
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-
-  & div {
-    margin-top: 10px;
-    border: 1px solid #eee;
-    width: fit-content;
-  }
-
-  & div span {
-    padding: 5px 20px;
-  }
-
-  & div span:nth-child(2n + 1) {
-    cursor: pointer;
-    background-color: #eee;
-  }
-`;
-
-const Text1 = styled.div`
-  cursor: pointer;
-  @media only screen and (min-width: 590px) {
-    display: none;
-  }
-`;
-const Text2 = styled.div`
-  cursor: pointer;
-  width: 100%;
-  text-align: right;
-  padding-right: 25px;
-
-  @media only screen and (max-width: 590px) {
-    display: none;
-  }
-`;
-
-const ProductDescriptionWrapper = styled.div`
-  height: 500px;
-  width: 100%;
-  margin-top: 3rem;
-  padding: 0 3rem;
-  background-color: white;
-  box-sizing: border-box;
-
-  display: flex;
-  justify-content: space-between;
-
-  /* @media screen and (max-width: 1200px) {
-    right: 10%;
-  }
-
-  @media screen and (max-width: 991px) {
-    right: 8%;
-  } */
-  @media screen and (max-width: 590px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-const QuickviewDrawerContainer = styled.div`
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0%;
-  height: 500px;
-  width: 70%;
-  margin: 50px auto;
-  z-index: 2000000;
-  background-color: white;
-  box-sizing: border-box;
-  transition: transform 0.5s ease-out;
-  transform: ${(props) => (props.show ? "translateY(0)" : "translateY(-120%)")};
-
-  display: flex;
-  justify-content: space-between;
-
-  @media screen and (max-width: 1200px) {
-    right: 10%;
-  }
-
-  @media screen and (max-width: 991px) {
-    right: 8%;
-  }
-  @media screen and (max-width: 590px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 45%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  & img {
-    width: 100%;
-    height: 100%;
-  }
-  @media screen and (max-width: 590px) {
-    height: 50%;
-    width: 100%;
-
-    & img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-`;
-
-const DetailsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
-  width: 50%;
-  overflow-y: auto;
-  padding-bottom: 20px;
-  padding-top: 20px;
-  @media screen and (max-width: 590px) {
-    width: 100%;
-    /* text-align: center; */
-  }
-`;
-
-const QuantityBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  width: 200px;
-`;
-
-const QuantityAction = styled(InputGroup.Text)`
-  background-color: white;
-  cursor: pointer;
-  width: 50px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: fit-content;
-`;
-
-const DrawerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  @media screen and (max-width: 590px) {
-    justify-content: center;
-  }
-`;
-
-const ColorContainer = styled.div`
-  display: flex;
-  justify-content: start;
-
-  margin-bottom: 10px;
-  @media screen and (max-width: 590px) {
-    justify-content: center;
-  }
-`;
-
-const ParentSize = styled.div`
-  display: flex;
-  justify-content: center;
-
-  & span {
-    margin-right: 20px;
-  }
-`;
-
-const ProductDetailTextContainer = styled.div`
-  padding: 20px 0;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-`;
-
-const SizeContainer = styled.div`
-  display: flex;
-  justify-content: start;
-
-  padding: 0 0 8px 0;
-  margin-top: 10px;
-
-  ${(props) => props.customStyle}
-  @media screen and (max-width: 590px) {
-    justify-content: center;
-  }
-`;
+// @ts-ignore
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  // @ts-ignore
+)(withAlert()(ProductDescription));

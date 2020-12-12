@@ -1010,30 +1010,29 @@ class Converter {
     const convertedData =
       (Object.keys(data).length > 0 && {
         ...data,
-        id: data._id || data.id || "",
-        name: data.name || "",
-        description: data.description.replace(/<[^>]+>/g, "") || "",
-        regularPrice: data.price && data.price["regular"],
-        offerPrice: data.price && data.price["offer"],
+        id: data._id || data.id || '',
+        name: data.name || '',
+        description: data.description.replace(/<[^>]+>/g, '') || '',
+        regularPrice: data.price && data.price?.['regular'],
+        offerPrice: data.price && data.price?.['offer'],
         url: data.url,
-        cover: `${config["baseURL"]}${
-          data.cover && data.cover.medium ? data.cover.medium : ""
-        }`,
+        cover: `${config['baseURL']}${data.cover && data.cover?.medium ? data.cover?.medium : ''
+          }`,
         availableStock: data.availableStock,
         minimumStock: data.minimumStock,
-        bn: data.bn || "",
+        bn: data.bn || '',
         metaTitle: data.metaTitle,
         metaTags: data.metaTags,
         metaDescription: data.metaDescription,
         unit: data.unit,
-        date: data.date || "",
-        time: data.time || "",
-        venue: data.venue || "",
-        pricing: data.pricing || "",
+        date: data.date || '',
+        time: data.time || '',
+        venue: data.venue || '',
+        pricing: data.pricing || '',
         price:
-          data.price && parseInt(data.price["offer"])
-            ? data.price["offer"]
-            : data.price["regular"],
+          data.price && parseInt(data.price?.['offer'])
+            ? data.price?.['offer']
+            : data.price?.['regular'],
         category:
           (data.category &&
             data.category.length > 0 &&
@@ -1072,8 +1071,8 @@ class Converter {
             data.image.map((img) => {
               return {
                 small: `${config.baseURL}${img.thumbnail}`,
-                large: `${config.baseURL}${img.full}`,
-              };
+                large: `${config.baseURL}${img.full}`
+              }
             })) ||
           [],
       }) ||
