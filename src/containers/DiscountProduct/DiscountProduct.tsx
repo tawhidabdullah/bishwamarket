@@ -9,7 +9,7 @@ const DiscountProduct = () => {
   const [banners, setBanners] = useState([]);
 
   // fetching offer product image
-  const offerProduct = useQueryFetch("featuredOffer");
+  const offerProduct = useQueryFetch("featuredOffer2");
 
   useEffect(() => {
     if (offerProduct.isSuccess && offerProduct.data) {

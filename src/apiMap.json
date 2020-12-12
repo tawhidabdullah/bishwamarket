@@ -20,6 +20,10 @@
       "url": "/api/component/featuredOffer",
       "method": "get"
     },
+    "featuredOffer2": {
+      "url": "/api/component/featuredOffer2",
+      "method": "get"
+    },
     "abousUsImage": {
       "url": "/api/component/banner2",
       "method": "get"

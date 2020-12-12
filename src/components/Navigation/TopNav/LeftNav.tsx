@@ -11,7 +11,7 @@ import ComponentFetcher from "../../ComponentFetcher";
 const LeftNav = () => {
   return (
     <LeftContainer>
-      {/* <ItemText>Free shipping on order over $99</ItemText> */}
+      <ItemText>Free shipping on order over $99</ItemText>
       <ComponentFetcher type="linkList" apiMapKey="appStoresLink">
         {(links) => (
           <>

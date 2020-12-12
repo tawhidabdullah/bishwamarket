@@ -1983,6 +1983,34 @@ class Converter {
 
   /**
    * @public
+   * @method featuredOffer2 convert api data from API to general format based on config server
+   * @param {Object} data response objectc from alpha
+   * @returns {Object}  converted data
+   */
+  async featuredOffer2(data) {
+    const items = data.items || [];
+
+    if (items.length > 0) {
+      const featureOfferItems = [];
+      items.forEach((featuredItem) => {
+        if (featuredItem.image && featuredItem.image[0]) {
+          featureOfferItems.push({
+            title: featuredItem.title,
+            target: featuredItem.target,
+            src:
+              featuredItem.image &&
+              featuredItem.image[0] &&
+              `${config["baseURL"]}${featuredItem.image[0].medium}`,
+          });
+        }
+      });
+
+      return featureOfferItems;
+    } else return false;
+  }
+
+  /**
+   * @public
    * @method appStoresLink convert api data from API to general format based on config server
    * @param {Object} data response objectc from alpha
    * @returns {Object}  converted data
