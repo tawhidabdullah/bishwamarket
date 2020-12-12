@@ -115,7 +115,7 @@ const ImageBanner = () => {
           //   )}
           // </>
 
-          <div>
+          <SliderWrapper>
             <Slider {...settings}>
               {bannerState.isSuccess &&
                 bannerState.data &&
@@ -129,7 +129,7 @@ const ImageBanner = () => {
                   );
                 })}
             </Slider>
-          </div>
+          </SliderWrapper>
 
           // <MainSlider
           //   responsive={responsive}
@@ -168,10 +168,48 @@ const NavCategory = styled.div`
   }
 `;
 
+const SliderWrapper = styled.div`
+  & .slick-prev {
+    left: 0;
+    z-index: 9;
+
+    /* @media only screen and (max-width: 580px) {
+      right: 55px;
+      top: -25px;
+    } */
+  }
+  & .slick-next {
+    /* top: -28px; */
+    right: 0;
+    z-index: 9;
+    /* background: transparent;
+    width: 20px;
+    height: 20px;
+
+    @media only screen and (max-width: 580px) {
+      right: 25px;
+      top: -25px;
+    } */
+  }
+  & .slick-prev::before {
+    color: #5c2c90;
+    opacity: 1;
+    font: normal normal normal 30px/1 FontAwesome;
+    content: "\f104";
+  }
+
+  .slick-next::before {
+    color: #5c2c90;
+    opacity: 1;
+    content: "\f105";
+    font: normal normal normal 30px/1 FontAwesome;
+  }
+`;
+
 const NavigationContainer = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
-  grid-auto-rows: 574px auto;
+  /* grid-auto-rows: 574px auto; */
   margin-bottom: 10px;
   justify-content: center;
   background-color: #f2f2f2;
@@ -189,16 +227,17 @@ const NavigationContainer = styled.div`
     grid-template-columns: 25% 75%;
   } */
   @media only screen and (max-width: 1150px) {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
+    display: block;
   }
 
   @media only screen and (max-width: 800px) {
     padding: 0 20px;
   }
 
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     display: block;
-  }
+  } */
 `;
 
 const MainSliderContainer = styled.div`
