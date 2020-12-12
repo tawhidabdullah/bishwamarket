@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
 
 // import  redux operations
 import { cartOperations } from "../../../state/ducks/cart";
@@ -27,6 +28,8 @@ const ProductsByCategory = ({
   // addToWishlist,
 }) => {
   const alert = useAlert();
+
+  const history = useHistory();
   // destructuring properties of product
   const { _id, name, cover, url, pricing, price, inStock } = item;
 
@@ -97,8 +100,9 @@ const ProductsByCategory = ({
   };
 
   const productDetail = () => {
-    addProduct(item);
-    toggleQuickviewDrawer();
+    // addProduct(item);
+    // toggleQuickviewDrawer();
+    history.push(item.url);
   };
   return (
     <ProductBox customStyles={customStyles}>
