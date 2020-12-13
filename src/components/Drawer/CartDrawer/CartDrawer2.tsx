@@ -170,7 +170,7 @@ const ScrollStyles = css`
 `;
 
 const CheckoutButton = styled.div`
-  background-color: #f77d0e;
+  background-color: #5c2c90;
   margin: 10px 25px;
   border-radius: 35px;
   padding: 0 0 0 20px;
@@ -181,7 +181,7 @@ const CheckoutButton = styled.div`
   transition: all 0.5s;
 
   & span:first-child {
-    color: #091436;
+    color: #fff;
     font-size: 15px;
     font-weight: 700;
   }
@@ -192,7 +192,7 @@ const CheckoutButton = styled.div`
     font-weight: 800;
     display: inline-block;
     border-radius: 40px;
-    background-color: #091436;
+    background-color: #dc9596;
     padding: 13px 25px;
     margin: 2px;
   }

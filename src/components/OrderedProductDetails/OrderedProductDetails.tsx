@@ -59,7 +59,12 @@ const CustomRow = styled(Row)`
 `;
 
 const Image = styled.img`
-  height: 130px;
+  /* height: 130px; */
+  width: 100%;
+
+  @media only screen and (max-width: 768px) {
+    height: 100px;
+  }
 `;
 
 const CustomColumn = styled(Col)`

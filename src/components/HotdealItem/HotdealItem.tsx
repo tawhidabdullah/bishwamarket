@@ -238,7 +238,7 @@ const HotdealCenter = styled.div`
 const HotRating = styled.div`
   line-height: 1;
   margin: 20px 10px;
-  color: ##5c2c90;
+  color: #5c2c90;
 `;
 const Timer = styled.div`
   & p {
