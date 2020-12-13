@@ -755,7 +755,7 @@ const ProductDescription = ({
           <div className="buttons">
             {productDetail.inStock ? (
               <>
-                <div
+                {/* <div
                   className="buy"
                   onClick={() => {
                     if (
@@ -772,7 +772,7 @@ const ProductDescription = ({
                   }}
                 >
                   {lingual.isBangla ? " এখনি কিনুন" : " Buy now"}
-                </div>
+                </div> */}
                 <div onClick={handleOnClickAddToCart} className="cart">
                   {!addToCartState.isLoading && !removeFromCartState.isLoading && (
                     <>
