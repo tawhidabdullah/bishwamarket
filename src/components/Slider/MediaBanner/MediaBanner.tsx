@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
-
+import { useHistory } from "react-router-dom";
 // import config for image url
 import config from "../../../config.json";
 
@@ -23,7 +23,7 @@ const MediaBanner = ({
   customStyle,
 }) => {
   const alert = useAlert();
-
+  const history = useHistory();
   const dispatch = useDispatch();
   // this hook add to item to cart
   const [addToCartState, handleAddtoCartPost] = useHandleFetch({}, "addToCart");
@@ -61,9 +61,10 @@ const MediaBanner = ({
     }
   };
 
-  const addToDrawer = () => {
+  const addToDrawer = (url) => {
     dispatch(productOperations.addProduct(product));
-    dispatch(globalOperations.toggleQuickviewDrawer());
+    // dispatch(globalOperations.toggleQuickviewDrawer());
+    history.push(url);
   };
 
   return (
@@ -74,7 +75,7 @@ const MediaBanner = ({
             <MediaBannerBox key={idx}>
               <Media>
                 <img
-                  onClick={addToDrawer}
+                  onClick={() => addToDrawer(item.url)}
                   src={item.cover}
                   className="img-fluid  "
                   alt=""
@@ -83,7 +84,7 @@ const MediaBanner = ({
                 <MediaBody>
                   <MediaContent>
                     <div>
-                      <ProductNameLabel onClick={addToDrawer}>
+                      <ProductNameLabel onClick={() => addToDrawer(item.url)}>
                         {item.name}
                       </ProductNameLabel>
                       <h6>৳ {item.price}</h6>

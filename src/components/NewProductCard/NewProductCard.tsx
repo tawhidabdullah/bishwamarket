@@ -1,15 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-
+import { useHistory } from "react-router-dom";
 // import redux ops
 import { globalOperations } from "../../state/ducks/globalState";
 import { productOperations } from "../../state/ducks/Item";
 
 const NewProductCard = ({ product, addProduct, toggleQuickviewDrawer }) => {
+  const history = useHistory();
   const handleAddToDrawer = () => {
     addProduct(product);
-    toggleQuickviewDrawer();
+    // toggleQuickviewDrawer();
+    history.push(product.url);
   };
 
   return (

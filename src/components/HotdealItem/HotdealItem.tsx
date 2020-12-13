@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 import html_parser from "html-react-parser";
 import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
 
 // import redux ops
 import { cartOperations } from "../../state/ducks/cart";
@@ -20,7 +21,7 @@ const HotdealItem = ({
 }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   // this hook add to item to cart
   const [addToCartState, handleAddtoCartPost] = useHandleFetch({}, "addToCart");
 
@@ -83,7 +84,8 @@ const HotdealItem = ({
 
   const addToDrawer = () => {
     dispatch(productOperations.addProduct(offerProduct));
-    dispatch(globalOperations.toggleQuickviewDrawer());
+    // dispatch(globalOperations.toggleQuickviewDrawer());
+    history.push(offerProduct.url);
   };
 
   return (
