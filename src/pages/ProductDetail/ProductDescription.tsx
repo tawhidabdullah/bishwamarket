@@ -269,11 +269,12 @@ const ProductDescription = ({
               variation: selectedVariationId || pricing[0]._id,
             });
 
-          if (lingual.isBangla) {
-            alert.success("প্রোডাক্ট ব্যাগে থেকে বাদ দেয়া হয়েছে");
-          } else {
-            alert.success("Product Has Been Removed From the Cart");
-          }
+          // if (lingual.isBangla) {
+          //   alert.success("প্রোডাক্ট ব্যাগে থেকে বাদ দেয়া হয়েছে");
+          // } else {
+          //   alert.success("Product Has Been Removed From the Cart");
+          // }
+          alert.success("Product Has Been Removed From the Cart");
         }
       } else {
         const addToCartRes = await handleAddtoCartFetch({
@@ -302,11 +303,13 @@ const ProductDescription = ({
             attribute,
           };
           addToCart && addToCart(cartItem);
-          if (lingual.isBangla) {
-            alert.success("প্রোডাক্ট ব্যাগে যোগ করা হয়েছে");
-          } else {
-            alert.success("Product Added To The Cart");
-          }
+          // if (lingual.isBangla) {
+          //   alert.success("প্রোডাক্ট ব্যাগে যোগ করা হয়েছে");
+          // } else {
+          //   alert.success("Product Added To The Cart");
+          // }
+
+          alert.success("Product Added To The Cart");
         }
       }
     } else {
@@ -322,11 +325,12 @@ const ProductDescription = ({
             variation: selectedVariationId || pricing[0]._id,
           });
 
-        if (lingual.isBangla) {
-          alert.success("প্রোডাক্ট ব্যাগে থেকে বাদ দেয়া হয়েছে");
-        } else {
-          alert.success("Product Has Been Removed From the Cart");
-        }
+        // if (lingual.isBangla) {
+        //   alert.success("প্রোডাক্ট ব্যাগে থেকে বাদ দেয়া হয়েছে");
+        // } else {
+        //   alert.success("Product Has Been Removed From the Cart");
+        // }
+        alert.success("Product Has Been Removed From the Cart");
       } else {
         const cartItem = {
           quantity: quantity,
@@ -340,11 +344,12 @@ const ProductDescription = ({
           attribute,
         };
         addToCart && addToCart(cartItem);
-        if (lingual.isBangla) {
-          alert.success("প্রোডাক্ট ব্যাগে যোগ করা হয়েছে");
-        } else {
-          alert.success("Product Added To The Cart");
-        }
+        // if (lingual.isBangla) {
+        //   alert.success("প্রোডাক্ট ব্যাগে যোগ করা হয়েছে");
+        // } else {
+        //   alert.success("Product Added To The Cart");
+        // }
+        alert.success("Product Added To The Cart");
       }
     }
   };
@@ -606,9 +611,9 @@ const ProductDescription = ({
           <h4 className="title">{productDetail.name}</h4>
 
           <h4 className="mainPrice">
-            {lingual.isBangla ? "মূল্য: " : "Price: "} ৳ &nbsp;
-            {/* {numberWithCommas(modifiedPrice) || numberWithCommas(price)} */}
-            {productDetail.regularPrice}
+            {"Price: "} ৳ &nbsp;
+            {numberWithCommas(modifiedPrice) || numberWithCommas(price)}
+            {/* {productDetail.regularPrice} */}
           </h4>
 
           {/* {productDetail.category && productDetail.category.length > 0 && (
@@ -738,17 +743,16 @@ const ProductDescription = ({
           </div>
 
           <div className="quantity">
-            <span className="label">
-              {lingual.isBangla ? "মোট দাম: " : "Total Price: "}
-            </span>
+            <span className="label">{"Total Price: "}</span>
             &nbsp; &nbsp;
             <span
               style={{
                 fontWeight: 600,
               }}
             >
-              {/* ৳ {getTotalProductDetailPrice(modifiedPrice || price)} */}৳
-              &nbsp;{productDetail.regularPrice}
+              ৳ &nbsp;{getTotalProductDetailPrice(modifiedPrice || price)}
+              {/* ৳ */}
+              {/* &nbsp;{productDetail.regularPrice} */}
             </span>
           </div>
 
@@ -779,28 +783,12 @@ const ProductDescription = ({
                       {(checkIfItemExistsInCartItemById(cartItems, {
                         product: id,
                         variation: selectedVariationId || pricing[0]._id,
-                      }) && (
-                        <>{lingual.isBangla ? "যোগ হয়েছে" : "Added"}</>
-                      )) || (
-                        <>
-                          {lingual.isBangla
-                            ? " ব্যাগে যোগ করুন"
-                            : " Add to Cart"}
-                        </>
-                      )}
+                      }) && <>{"Added"}</>) || <>{" Add to Cart"}</>}
                     </>
                   )}
 
-                  {addToCartState.isLoading
-                    ? lingual.isBangla
-                      ? "যোগ হচ্ছে..."
-                      : "Adding..."
-                    : ""}
-                  {removeFromCartState.isLoading
-                    ? lingual.isBangla
-                      ? "রিমুভ হচ্ছে..."
-                      : "Removing..."
-                    : ""}
+                  {addToCartState.isLoading ? "Adding..." : ""}
+                  {removeFromCartState.isLoading ? "Removing..." : ""}
                 </div>
               </>
             ) : (
@@ -812,7 +800,7 @@ const ProductDescription = ({
                   }}
                 >
                   <i className="fa fa-exclamation-circle"></i>
-                  <h3>{lingual.isBangla ? "ফুরিয়ে গেছে" : `Unavailable`}</h3>
+                  <h3>{`Unavailable`}</h3>
                 </div>
               </>
             )}
