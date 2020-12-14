@@ -79,10 +79,10 @@ const ImageBannerCategoryItem = ({ category }) => {
                           href="#"
                         >
                           <div className="sideDrawer2__categoryItem justify-content-between">
-                            <div className="d-flex align-items-center">
-                              {/* <div className="sideDrawer2__categoryItem-cover">
+                            <div className="d-flex align-items-center ml-2">
+                              <div className="sideDrawer2__categoryItem-cover">
                                 <img src={sub.cover || sub.icon} alt="" />
-                              </div> */}
+                              </div>
                               <h3
                                 // style={{
                                 //   ...(location.pathname &&
@@ -91,7 +91,7 @@ const ImageBannerCategoryItem = ({ category }) => {
                                 //       fontWeight: 900,
                                 //     }),
                                 // }}
-                                className="ml-5"
+                                className="ml-3 mt-4"
                               >
                                 {sub.name}{" "}
                               </h3>
