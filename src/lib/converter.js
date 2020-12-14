@@ -47,6 +47,9 @@ class Converter {
                   cover: subCat.cover
                     ? `${config["baseURL"]}${subCat.cover.medium}`
                     : "",
+                  icon: subCat.icon
+                    ? `${config["baseURL"]}${subCat.icon}`
+                    : "",
                 };
               }),
             }),

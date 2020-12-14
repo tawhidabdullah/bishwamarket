@@ -23,21 +23,90 @@ const ImageBannerCategoryItem = ({ category }) => {
         <ul className="nav-cat title-font">
           {category.slice(0, 10).map((cat, it) => {
             return (
-              <li
-                style={{
-                  cursor: "pointer",
-                }}
-                key={it}
-                onClick={() =>
-                  addFilterToStorage({ category: cat.id }, () => {
-                    history.push("/product");
-                  })
-                }
-              >
-                <img src={cat.icon || cat.cover} />
+              <div className="topCategory">
+                <li
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  key={it}
+                  onClick={() =>
+                    addFilterToStorage({ category: cat.id }, () => {
+                      history.push("/product");
+                    })
+                  }
+                >
+                  <img src={cat.icon || cat.cover} />
 
-                <a>{cat.name}</a>
-              </li>
+                  <a>{cat.name}</a>
+                  {cat.subCategory && cat.subCategory.length > 0 && (
+                    <span className="dropdownArrow ">
+                      <i className="fa fa-angle-down"></i>
+                    </span>
+                  )}
+                </li>
+                <div className="dropdown-container">
+                  {cat.subCategory &&
+                    cat.subCategory.length > 0 &&
+                    cat.subCategory.map((sub) => {
+                      return (
+                        <a
+                          // onClick={(e) => {
+                          //   e.preventDefault();
+                          //   sub.url &&
+                          //     history.push({
+                          //       pathname: `/category/${sub.url.replace(
+                          //         "/category/",
+                          //         ""
+                          //       )}`,
+                          //       state: {
+                          //         catId: sub.id,
+                          //       },
+                          //     });
+                          //   // closeSidebar();
+                          //   // closeBackdrop();
+                          // }}
+                          onClick={() =>
+                            addFilterToStorage({ category: sub.id }, () => {
+                              history.push("/product");
+                            })
+                          }
+                          className="dropdownBtn"
+                          href="#"
+                        >
+                          <div className="sideDrawer2__categoryItem justify-content-between">
+                            <div className="d-flex align-items-center">
+                              <div className="sideDrawer2__categoryItem-cover">
+                                <img src={sub.cover || sub.icon} alt="" />
+                              </div>
+                              <h3
+                                // style={{
+                                //   ...(location.pathname &&
+                                //     location.pathname === sub.url && {
+                                //       color: "#82e693",
+                                //       fontWeight: 900,
+                                //     }),
+                                // }}
+                                className="m-0"
+                              >
+                                {sub.name}{" "}
+                              </h3>
+                            </div>
+                            {/* <span className="dropdownArrow "><i className="fas fa-angle-down"></i></span> */}
+                          </div>
+                        </a>
+                      );
+                    })}
+
+                  {/* <a ref={dropRef2} onClick={() => handleClick(dropRef2)} className="dropdownBtn" href="#">Hew Sayed</a> */}
+                  {/* <div className="dropdown-container">
+                    {item.subCategory && item.subCategory.length > 0 && item.subCategory.map(sub => {
+                        return <a href="">{sub.name}</a>
+                    })}
+
+                </div> */}
+                  {/* <a href="">Sayed</a> */}
+                </div>
+              </div>
             );
           })}
 

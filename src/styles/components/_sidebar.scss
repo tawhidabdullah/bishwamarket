@@ -1,0 +1,188 @@
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  background: #ffffff;
+  padding: 25px 15px;
+  border-right: 1px solid rgb(197, 196, 196);
+  // box-shadow: 00px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  // transition-duration: 0.5s;
+  // transition: all 0.3s;
+  transition-duration: unset;
+  @media screen and (min-width: 768px) {
+    transition-duration: 0.5s;
+  }
+
+  overflow-y: auto;
+  position: fixed;
+  display: block;
+  padding-bottom: 72px;
+
+  // scrollbar styling for firefox
+  overflow-y: scroll;
+  scrollbar-color: #eee #fff;
+  scrollbar-width: thin;
+
+  //scrollbar styling for chrome
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 30px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 20px;
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+      inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  @media (max-width: 767.98px) {
+    margin-left: -250px;
+  }
+}
+
+#sidebar a,
+.dropdownBtn {
+  display: block;
+}
+.dropdown-container {
+  display: none;
+  // visibility: hidden;
+  opacity: 0;
+  padding-left: 15px;
+  border-left: 1px solid #ddd;
+  transition: all 0.8s;
+  // position: absolute;
+}
+.dropdownArrow {
+  float: right;
+  margin-top: 2px;
+}
+
+// sibling effect on hover
+// .topCategory:hover + .dropdown-container {
+//   // display: block;
+//   visibility: visible;
+//   opacity: 1;
+// }
+
+//child effect on hover
+.topCategory {
+  // position: relative;
+  &:hover {
+    .dropdown-container {
+      display: block;
+      // visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+#sidebar.activePcS {
+  margin-left: -250px !important;
+
+  // @media #{$large-mobile} {
+  //     margin-left: 0;
+  // }
+}
+
+#sidebar.activeMobileS {
+  margin-left: 0px !important;
+  padding-bottom: 72px;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+#sidebarCollapsePC,
+#sidebarCollapseMobile {
+  cursor: pointer;
+  line-height: 0px;
+}
+
+.sideBarItemsForMobile {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+  display: block;
+}
+
+.offerCount {
+  border: 1px solid #ddd;
+  padding: 4px 7px;
+  margin-top: -6px;
+  border-radius: 5px;
+}
+
+// .drawerItemsForDesktop {
+//     @media screen and (max-width: 768px) {
+//         display: none;
+//     }
+//     display: block;
+// }
+
+.ant-popover {
+  // height: 93vh;
+  top: 60px !important;
+  width: 900px;
+  position: fixed;
+  overflow-y: auto;
+
+  @media #{$laptop-device} {
+    width: 700px;
+    // height: 98vh;
+  }
+
+  @media #{$tablet-device} {
+    width: 500px;
+    // height: 103vh;
+  }
+
+  // scrollbar styling for firefox
+  overflow-y: scroll;
+  scrollbar-color: #eee #fff;
+  scrollbar-width: thin;
+
+  //scrollbar styling for chrome
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 30px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 20px;
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+      inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+}
+
+.ant-popover-arrow {
+  display: none;
+}
+.ant-popover-placement-right {
+  padding-left: 0px;
+}
+.ant-popover {
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 5px !important;
+}
+.more {
+  display: none !important;
+  @media #{$large-mobile} {
+    display: flex !important;
+  }
+}
+
+.less {
+  // display: block;
+  @media #{$large-mobile} {
+    display: none !important;
+  }
+}
