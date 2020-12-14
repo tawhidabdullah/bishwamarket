@@ -27,6 +27,9 @@ const ImageBannerCategoryItem = ({ category }) => {
                 <li
                   style={{
                     cursor: "pointer",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                   key={it}
                   onClick={() =>
@@ -35,9 +38,11 @@ const ImageBannerCategoryItem = ({ category }) => {
                     })
                   }
                 >
-                  <img src={cat.icon || cat.cover} />
+                  <div>
+                    <img src={cat.icon || cat.cover} />
 
-                  <a>{cat.name}</a>
+                    <SubCategoryItem>{cat.name}</SubCategoryItem>
+                  </div>
                   {cat.subCategory && cat.subCategory.length > 0 && (
                     <span className="dropdownArrow ">
                       <i className="fa fa-angle-down"></i>
@@ -49,7 +54,7 @@ const ImageBannerCategoryItem = ({ category }) => {
                     cat.subCategory.length > 0 &&
                     cat.subCategory.map((sub) => {
                       return (
-                        <a
+                        <SubCategoryItem
                           // onClick={(e) => {
                           //   e.preventDefault();
                           //   sub.url &&
@@ -75,9 +80,9 @@ const ImageBannerCategoryItem = ({ category }) => {
                         >
                           <div className="sideDrawer2__categoryItem justify-content-between">
                             <div className="d-flex align-items-center">
-                              <div className="sideDrawer2__categoryItem-cover">
+                              {/* <div className="sideDrawer2__categoryItem-cover">
                                 <img src={sub.cover || sub.icon} alt="" />
-                              </div>
+                              </div> */}
                               <h3
                                 // style={{
                                 //   ...(location.pathname &&
@@ -86,14 +91,14 @@ const ImageBannerCategoryItem = ({ category }) => {
                                 //       fontWeight: 900,
                                 //     }),
                                 // }}
-                                className="m-0"
+                                className="ml-5"
                               >
                                 {sub.name}{" "}
                               </h3>
                             </div>
                             {/* <span className="dropdownArrow "><i className="fas fa-angle-down"></i></span> */}
                           </div>
-                        </a>
+                        </SubCategoryItem>
                       );
                     })}
 
@@ -211,4 +216,8 @@ const CategoryItem = styled.div`
     text-transform: capitalize;
     letter-spacing: 0.03em;
   }
+`;
+
+const SubCategoryItem = styled.a`
+  text-decoration: none !important;
 `;
