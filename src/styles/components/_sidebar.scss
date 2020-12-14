@@ -60,6 +60,7 @@
 .dropdownArrow {
   float: right;
   // margin-top: 2px;
+  transition: all 0.4s;
 }
 
 // sibling effect on hover
@@ -77,6 +78,9 @@
       display: block;
       // visibility: visible;
       opacity: 1;
+    }
+    .dropdownArrow {
+      transform: rotateZ(-180deg);
     }
   }
 }
