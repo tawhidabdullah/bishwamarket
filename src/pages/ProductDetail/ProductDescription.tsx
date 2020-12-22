@@ -209,10 +209,16 @@ const ProductDescription = ({
     placeholder: (styles) => ({ ...styles, color: "#A4A4A4" }),
     singleValue: (styles, { data }) => ({
       ...styles,
-      marginTop: "-12px",
+      // marginTop: "-12px",
       marginLeft: "8px",
       fontSize: "13px",
       color: "#A4A4A4",
+    }),
+    indicatorSeparator: (styles, { data }) => ({
+      ...styles,
+      //   marginTop: "-15px",
+      backgroundColor: "transparent !important",
+      //   ...dot(data.color),
     }),
   };
 
