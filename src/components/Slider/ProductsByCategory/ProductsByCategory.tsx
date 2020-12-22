@@ -1,7 +1,7 @@
 //@ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { useHistory } from "react-router-dom";
 
@@ -17,21 +17,46 @@ import { productOperations } from "../../../state/ducks/Item";
 // hooks for fetching cart info
 import { useHandleFetch } from "../../../hooks";
 
+// import redux ops
+import Select from "react-select";
+
+// import config for image url
+import config from "../../../config.json";
+
 const ProductsByCategory = ({
   toggleQuickviewDrawer,
   addToCart,
   removeFromCart,
   addProduct,
   customStyles,
-  item,
+  product,
   session,
   // addToWishlist,
+  item, //actually product
+  isAuthenticated,
+  customStyle,
+  cartItems,
 }) => {
   const alert = useAlert();
 
   const history = useHistory();
   // destructuring properties of product
-  const { _id, name, cover, url, pricing, price, inStock } = item;
+  const {
+    _id,
+    name,
+    cover,
+    url,
+    pricing,
+    price,
+    inStock,
+    regularPrice,
+    id,
+    offerPrice,
+    availableStock,
+    offer,
+    offerTaka,
+    attribute,
+  } = item;
 
   // state for selecting product variation
   // const [selectedVariation, setSelectedVariation] = useState({});
@@ -104,14 +129,240 @@ const ProductsByCategory = ({
     // toggleQuickviewDrawer();
     history.push(item.url);
   };
+
+  const dispatch = useDispatch();
+  const handleAddToDrawer = () => {
+    addProduct(product);
+    // toggleQuickviewDrawer();
+    history.push(product.url);
+  };
+
+  const [selectedVariation, setSelectedVariation] = useState({});
+  const [modifiedPrice, setModifiedPrice] = useState("");
+  // this hook add to item to cart
+
+  const addToDrawer = (url) => {
+    dispatch(productOperations.addProduct(product));
+    // dispatch(globalOperations.toggleQuickviewDrawer());
+    history.push(url);
+  };
+
+  const dot = (color = "#111b3d") => ({
+    alignItems: "center",
+    display: "flex",
+
+    ":before": {
+      backgroundColor: color,
+      borderRadius: 6,
+      content: '" "',
+      display: "block",
+      marginRight: 8,
+      // height: 10,
+      // width: 10,
+    },
+  });
+
+  const colourStyles = {
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      padding: "0 !important",
+      position: "absolute",
+      top: "5%",
+      right: "3%",
+    }),
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: "#fff",
+      border: "1px solid rgb(241, 241, 241)",
+      height: "25px",
+      minHeight: "25px",
+      borderRadius: "6px",
+      fontSize: "12px",
+    }),
+
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = "#fefe0071;";
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? color
+          : isFocused
+          ? "rgb(247, 247, 247)"
+          : "rgb(247, 247, 247)",
+        color: isDisabled
+          ? "#333"
+          : isSelected
+          ? "#333"
+          : isFocused
+          ? "#303a3f"
+          : "#303a3f",
+        cursor: isDisabled ? "not-allowed" : "default",
+
+        ":active": {
+          ...styles[":active"],
+          backgroundColor: !isDisabled && (isSelected ? color : "#303a3f"),
+        },
+      };
+    },
+    input: (styles) => ({
+      ...styles,
+      height: "15px",
+      minHeight: "15px",
+      marginBottom: "3rem",
+      marginLeft: "-3px",
+      fontSize: "12px",
+      color: "#303a3f",
+      ...dot(),
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      height: "25px",
+      top: "23%",
+      minHeight: "25px",
+      fontSize: "12px",
+      color: "#303a3f",
+      ...dot(),
+    }),
+    singleValue: (styles, { data }) => ({
+      ...styles,
+      //   marginTop: "-15px",
+      marginLeft: "-2px",
+      height: "25px",
+      minHeight: "25px",
+      fontSize: "12px",
+      color: "#303a3f",
+      ...dot(data.color),
+    }),
+    indicatorSeparator: (styles, { data }) => ({
+      ...styles,
+      //   marginTop: "-15px",
+      backgroundColor: "transparent !important",
+      //   ...dot(data.color),
+    }),
+  };
+
+  const convertAttributeValuesToStringValue = (attribute) => {
+    const value = [];
+
+    let attributeValues = attribute && Object.values(attribute);
+    if (attributeValues && attributeValues.length > 0) {
+      attributeValues.forEach((attributeValue) => {
+        // @ts-ignore
+        value.push(attributeValue);
+      });
+
+      return value.join(",");
+    }
+  };
+
+  const getPricingOptions = (pricing) => {
+    if (pricing && pricing.length > 0) {
+      const pricingOptions = [];
+
+      pricing.forEach((pricingItem) => {
+        if (
+          pricingItem.attribute &&
+          Object.values(pricingItem.attribute).length > 0 &&
+          pricingItem._id
+        ) {
+          let pricingOption = {
+            value: pricingItem._id,
+            label: `${
+              convertAttributeValuesToStringValue(pricingItem.attribute) || ""
+            }`,
+          };
+          // @ts-ignore
+          pricingOptions.push(pricingOption);
+        }
+      });
+
+      return pricingOptions;
+    } else return false;
+  };
+
+  const pricingOptions = getPricingOptions(pricing) || [];
+
+  const handleSelectVariation = (value) => {
+    setSelectedVariationId(value.value);
+  };
+
+  useEffect(() => {
+    const getPriceByVariationId = (id) => {
+      const priceItem = pricing.find((pricingItem) => pricingItem._id === id);
+
+      if (priceItem && priceItem.price.regular) {
+        return priceItem.price.offer && parseInt(priceItem.price.offer)
+          ? priceItem.price.offer
+          : priceItem.price.regular;
+      } else return false;
+    };
+
+    if (selectedVariationId) {
+      const price = getPriceByVariationId(selectedVariationId);
+      setModifiedPrice(price);
+    }
+  }, [selectedVariationId]);
+
+  const getCartItemQuantity = (givenCartItem) => {
+    const item = cartItems.find(
+      (cartItem) =>
+        cartItem.product === givenCartItem.product &&
+        cartItem.variation === givenCartItem.variation
+    );
+
+    return item ? item.quantity : 1;
+  };
+
+  const [quantity, setQuantity] = useState(
+    getCartItemQuantity({
+      product: id,
+      variation: selectedVariationId
+        ? selectedVariationId
+        : pricing && pricing[0] && pricing[0]._id && pricing[0]._id,
+    })
+  );
+
+  const getVariationbySelectedId = (pricing, variationId) => {
+    if (variationId && pricing.length > 0) {
+      return pricing.find((variation) => variation._id === variationId);
+    }
+    return {};
+  };
+
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  const getWindowWidth = () => {
+    return Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+  };
+
+  useLayoutEffect(() => {
+    setWindowWidth(getWindowWidth());
+  }, []);
+
+  const onResize = () => {
+    window.requestAnimationFrame(() => {
+      setWindowWidth(getWindowWidth());
+    });
+  };
+
+  useLayoutEffect(() => {
+    window.addEventListener("resize", onResize);
+
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
         <ProductFront>
-          <img src={item.cover} className="img-fluid " alt="product" />
+          <img src={cover} className="img-fluid " alt="product" />
         </ProductFront>
         <ProductBack>
-          <img src={item.cover} className="img-fluid " alt="product" />
+          <img src={cover} className="img-fluid " alt="product" />
         </ProductBack>
       </ProductImgbox>
       <ProductIconContainer customStyles={customStyles}>
@@ -140,20 +391,65 @@ const ProductsByCategory = ({
       </ProductIconContainer>
       <ProductDetail customStyles={customStyles}>
         <DetailLeft customStyles={customStyles}>
-          <PriceTitel>{item && item.name ? item.name : " "}</PriceTitel>
+          <PriceTitel>{name || " "}</PriceTitel>
         </DetailLeft>
         <DetailRight>
           {/* <CheckPrice>
             &#2547;&nbsp; {item && item.regularPrice ? item.regularPrice : " "}
           </CheckPrice> */}
-          <Price>৳ {item && item.price ? item.price : ""}</Price>
+          <Price>৳ {price || ""}</Price>
         </DetailRight>
       </ProductDetail>
       {/* <NewLevel customStyles={customStyles}>
         <div>new</div>
       </NewLevel> */}
-      {item.offerTaka !== 0 && (
-        <OnSale customStyles={customStyles}>on sale</OnSale>
+      {offerTaka !== 0 && <OnSale customStyles={customStyles}>on sale</OnSale>}
+      {pricingOptions &&
+        pricingOptions.length < 2 &&
+        pricingOptions.length > 0 && (
+          <>
+            <SingleAttribute className="product-bottom-select-one">
+              <span>
+                {convertAttributeValuesToStringValue(
+                  pricing && pricing[0] && pricing[0].attribute
+                )}
+              </span>
+            </SingleAttribute>
+          </>
+        )}
+
+      {pricingOptions && pricingOptions.length > 1 && (
+        <>
+          {convertAttributeValuesToStringValue(
+            pricing && pricing[0] && pricing[0].attribute
+          ) && (
+            <div
+              style={{
+                minWidth: windowWidth > 450 ? "50%" : "60%",
+                width: windowWidth > 450 ? "85%" : "85%",
+                marginBottom: "15px",
+              }}
+            >
+              <Select
+                isSearchable={false}
+                styles={colourStyles}
+                onChange={(value) => handleSelectVariation(value)}
+                defaultValue={{
+                  value: pricing[0]._id,
+                  label: convertAttributeValuesToStringValue(
+                    pricing && pricing[0] && pricing[0].attribute
+                  ),
+                }}
+                // value={selectedCountryValue}
+                // @ts-ignore
+                options={pricingOptions.map((country) => ({
+                  value: country["value"],
+                  label: country["label"],
+                }))}
+              />
+            </div>
+          )}
+        </>
       )}
     </ProductBox>
   );
@@ -163,6 +459,8 @@ const mapStateToProps = (state) => ({
   cartItems: state.cart,
   wishList: state.wishList,
   session: state.session,
+  openQuicviewDrawer: state.globalState.openQuickviewDrawer,
+  isAuthenticated: state.session.isAuthenticated,
 });
 
 const mapDispatchToProps = {
@@ -171,11 +469,38 @@ const mapDispatchToProps = {
   addToCart: cartOperations.addToCart,
   removeFromCart: cartOperations.removeFromCart,
   addProduct: productOperations.addProduct,
+  changeQuantity: cartOperations.changeQuantity,
 
   // addToWishlist: wishListOperations.addToWishList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsByCategory);
+
+const SingleAttribute = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 50%;
+  // margin-bottom: 15px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid hsl(0, 0%, 90%);
+  text-align: center;
+  min-height: 25px;
+  height: 25px;
+  border-radius: 5px;
+  padding: 1px 3px;
+  margin: 10px auto;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    min-width: 50%;
+  }
+
+  span {
+    font-size: 12px;
+  }
+`;
 
 const ProductIconContainer = styled.div`
   display: flex;
