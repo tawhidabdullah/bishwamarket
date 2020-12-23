@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
@@ -147,6 +147,13 @@ const ProductsByCategory = ({
     history.push(url);
   };
 
+  const [AttributeId, setAttributeId] = useState("");
+
+  const determineItemStyle = (i) => {
+    const isItemSelected = AttributeId === i;
+    return isItemSelected ? "variation varActive" : "variation";
+  };
+
   const dot = (color = "#111b3d") => ({
     alignItems: "center",
     display: "flex",
@@ -285,7 +292,7 @@ const ProductsByCategory = ({
   const pricingOptions = getPricingOptions(pricing) || [];
 
   const handleSelectVariation = (value) => {
-    setSelectedVariationId(value.value);
+    setSelectedVariationId(value);
   };
 
   useEffect(() => {
@@ -355,6 +362,7 @@ const ProductsByCategory = ({
 
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
   return (
     <ProductBox customStyles={customStyles}>
       <ProductImgbox>
@@ -397,7 +405,7 @@ const ProductsByCategory = ({
           {/* <CheckPrice>
             &#2547;&nbsp; {item && item.regularPrice ? item.regularPrice : " "}
           </CheckPrice> */}
-          <Price>৳ {price || ""}</Price>
+          <Price>৳ {modifiedPrice || price}</Price>
         </DetailRight>
       </ProductDetail>
       {/* <NewLevel customStyles={customStyles}>
@@ -430,7 +438,7 @@ const ProductsByCategory = ({
                 marginBottom: "15px",
               }}
             >
-              <Select
+              {/* <Select
                 isSearchable={false}
                 styles={colourStyles}
                 onChange={(value) => handleSelectVariation(value)}
@@ -446,7 +454,24 @@ const ProductsByCategory = ({
                   value: country["value"],
                   label: country["label"],
                 }))}
-              />
+              /> */}
+              <MultipleAttribute>
+                {pricingOptions.map((variation, idx) => {
+                  return (
+                    <span
+                      className={determineItemStyle(idx)}
+                      id={`id-${idx}`}
+                      key={idx}
+                      onClick={() => {
+                        setAttributeId(idx);
+                        handleSelectVariation(variation["value"]);
+                      }}
+                    >
+                      {variation.label}
+                    </span>
+                  );
+                })}
+              </MultipleAttribute>
             </div>
           )}
         </>
@@ -475,6 +500,22 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsByCategory);
+
+const MultipleAttribute = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .variation {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 1rem;
+  }
+  .varActive {
+    /* background-color: red; */
+    border: 2px solid grey;
+  }
+`;
 
 const SingleAttribute = styled.div`
   display: flex;
@@ -620,7 +661,7 @@ const ProductBox = styled.div`
 
   position: relative;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
   width: 100%;
 
   &:hover ${ProductIconContainer} {
