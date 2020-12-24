@@ -26,7 +26,7 @@ const productCardStyles = {
   containerDirection: "row",
   containerright: "10%",
   containerTransform: "translateY(100%)",
-  containertop: "80%",
+  containertop: "70%",
   page: "search",
 };
 
