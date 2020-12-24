@@ -90,7 +90,7 @@ const ProductsByCategory = ({
       name,
       quantity: 1,
       cover,
-      price,
+      price: modifiedPrice || price,
       url,
     };
 
@@ -150,8 +150,12 @@ const ProductsByCategory = ({
   const [AttributeId, setAttributeId] = useState("");
 
   const determineItemStyle = (i) => {
+    let itemStyle = "variation";
     const isItemSelected = AttributeId === i;
-    return isItemSelected ? "variation varActive" : "variation";
+    if (isItemSelected) {
+      itemStyle += " varActive";
+    }
+    return itemStyle;
   };
 
   const dot = (color = "#111b3d") => ({

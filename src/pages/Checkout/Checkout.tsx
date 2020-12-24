@@ -17,31 +17,31 @@ const Checkout = () => {
 
   return (
     <CheckoutPage>
-      {({checkoutState,checkout, cityList}) => {
+      {({ checkoutState, checkout, cityList }) => {
         return (
           <CheckoutWrapper>
-          <Header>Billing Details</Header>
-          <Row>
-            <Col lg={6} sm={12} xs={12}>
-              <CheckoutForm
-                checkout={checkout}
-                checkoutState={checkoutState}
-                cityList={cityList}
-                getDeliveryInfo={setDeliveryInfo}
-                getShippingCost={getShippingCost}
-                customStyle={{}}
-              />
-            </Col>
-    
-            <Col lg={6} sm={12} xs={12}>
-              <CheckoutDetails
-                deliveryInfo={deliveryInfo}
-                shippingCost={shippingCost}
-              />
-            </Col>
-          </Row>
-        </CheckoutWrapper>
-        )
+            <Header>Billing Details</Header>
+            <Row>
+              <Col lg={6} sm={12} xs={12}>
+                <CheckoutForm
+                  checkout={checkout}
+                  checkoutState={checkoutState}
+                  cityList={cityList}
+                  getDeliveryInfo={setDeliveryInfo}
+                  getShippingCost={getShippingCost}
+                  customStyle={{}}
+                />
+              </Col>
+
+              <Col lg={6} sm={12} xs={12}>
+                <CheckoutDetails
+                  deliveryInfo={deliveryInfo}
+                  shippingCost={shippingCost}
+                />
+              </Col>
+            </Row>
+          </CheckoutWrapper>
+        );
       }}
     </CheckoutPage>
   );
