@@ -86,8 +86,8 @@ const ImageBanner = () => {
   const settings = {
     // dots: true,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    speed: 500,
+    autoplaySpeed: 3000,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
