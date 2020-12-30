@@ -274,7 +274,7 @@ const Main = styled.div`
   display: grid;
   justify-content: center;
   padding: 30px;
-  grid-template-columns: 300px 1fr auto;
+  grid-template-columns: repeat(2, 1fr);
   /* max-width: 1400px; */
   width: 98%;
   margin: 0 auto;
@@ -286,7 +286,7 @@ const Main = styled.div`
   }
 
   @media only screen and (min-width: 1300px) {
-    grid-template-columns: 30% 15% 55%;
+    grid-template-columns: 45% 55%;
   }
 `;
 const MainContent = styled.div`
@@ -298,10 +298,16 @@ const MainContent = styled.div`
 `;
 
 const MidContent = styled.div`
-  display: grid;
+  display: none;
   grid-template-columns: minmax(140px, 1fr);
   text-align: center;
   align-items: center;
+  @media only screen and (max-width: 1000px) and (min-width: 580px) {
+    display: grid;
+  }
+  @media only screen and (max-width: 580px) {
+    display: grid;
+  }
 `;
 
 const Jewellerybanner = styled.div`
