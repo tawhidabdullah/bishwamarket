@@ -40,8 +40,8 @@
       "url": "/api/component/appStoresLink",
       "method": "get"
     },
-    "socialLInk": {
-      "url": "/api/component/socialLInk",
+    "socialLink": {
+      "url": "/api/component/socialLink",
       "method": "get"
     },
     "promotionBanner": {

@@ -2033,11 +2033,11 @@ class Converter {
 
   /**
    * @public
-   * @method socialLInk convert api data from API to general format based on config server
+   * @method socialLink convert api data from API to general format based on config server
    * @param {Object} data response objectc from alpha
    * @returns {Object}  converted data
    */
-  async socialLInk(data) {
+  async socialLink(data) {
     const items = data.items || [];
 
     if (items.length > 0) {

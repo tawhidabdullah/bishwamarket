@@ -144,7 +144,7 @@ const ExternalLinkItem = styled.a`
 
     :hover {
       border-radius: 50%;
-      background-color: ##5c2c90;
+      background-color: #5c2c90;
       color: ghostwhite;
     }
   }
