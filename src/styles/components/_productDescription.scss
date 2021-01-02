@@ -373,6 +373,13 @@
   object-fit: contain;
 }
 
+.unsetMaxHeight {
+  img {
+    max-height: unset !important;
+    height: 768px !important;
+  }
+}
+
 .unit-border {
   display: inline-flex;
   border: 1px solid #5c2c90;

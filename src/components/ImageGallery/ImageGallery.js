@@ -11,9 +11,14 @@ export default class MyImageGallery extends React.Component {
 
   onFullScreenHandler=  (status)=> {
     if (status===true) {
-      const image= document.querySelector(".productDescriptionContainer____imageContainer").getElementsByTagName("img")[0];
-      console.log("style", image.height);
-      image.height=768;
+      const image= document.querySelector(".productDescriptionContainer____imageContainer img");
+      console.log("style", image);
+      image.style.height=768;
+      image.style.maxHeight="unset";
+
+      const oClass= document.querySelector(".onno-bosro-slide-image div img");
+      console.log(oClass, "oClass");
+      oClass.classList.add("unsetMaxHeight");
       
     }
   }
