@@ -32,8 +32,10 @@ const quickLink = [
 
 const TopFooter = () => {
   const links = useQueryFetch("Links");
+  const links2 = useQueryFetch("Links2");
   //@ts-ignore
   useEffect(() => {}, [links.data]);
+  useEffect(() => {}, [links2.data]);
   console.log({ links });
   return (
     <TopFooterWrapper>
@@ -61,6 +63,15 @@ const TopFooter = () => {
               links.data &&
               links.data.length &&
               links.data.map((link) => {
+                return <Item>{link.name}</Item>;
+              })}
+          </Items>
+          <br />
+          <Items>
+            {links2 &&
+              links2.data &&
+              links2.data.length &&
+              links2.data.map((link) => {
                 return <Item>{link.name}</Item>;
               })}
           </Items>

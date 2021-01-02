@@ -2245,6 +2245,27 @@ class Converter {
 
   /**
    * @public
+   * @method Links2 convert api data from API to general format based on config server
+   * @param {Object} data response objectc from wc
+   * @returns {Object}  converted data
+   */
+  async Links2(data) {
+    const servicesItems = data.items;
+    if (!servicesItems.length > 0) {
+      return servicesItems;
+    }
+
+    const items = servicesItems.map((item) => {
+      return {
+        target: item.target,
+        name: item.title || item.text,
+      };
+    });
+    return items;
+  }
+
+  /**
+   * @public
    * @method myAccountComponentLinks convert api data from API to general format based on config server
    * @param {Object} data response objectc from wc
    * @returns {Object}  converted data
