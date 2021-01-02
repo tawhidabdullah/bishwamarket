@@ -369,7 +369,7 @@
 
 .productDescriptionContainer____imageContainer img {
   width: 100% !important;
-  max-height: 350px;
+  max-height: 350px; // this need to be unset when user selects full screen
   object-fit: contain;
 }
 
