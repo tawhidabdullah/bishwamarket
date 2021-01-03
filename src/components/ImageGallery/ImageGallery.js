@@ -1,59 +1,95 @@
-import React from 'react';
-import ImageGallery from 'react-image-gallery';
+import React, { useState, useEffect, Children } from "react";
+import ImageGallery from "react-image-gallery";
 import ImageMagnify from "./ImageMagnify";
 
-import 'react-image-gallery/styles/scss/image-gallery.scss';
+import "react-image-gallery/styles/scss/image-gallery.scss";
 
-export default class MyImageGallery extends React.Component {
-  state = {
-    images: [],
+const mutationObserver = (targetNode, handler) => {
+  const config = { attributes: true, childList: true, subtree: true }; // filter the mutations you want to listen
+
+  const callback = function (mutationsList) {
+    for (let mutation of mutationsList) {
+      handler(mutation.oldValue);
+    }
   };
 
-  onFullScreenHandler=  (status)=> {
-    if (status===true) {
-      const image= document.querySelector(".productDescriptionContainer____imageContainer img");
-      console.log("style", image);
-      image.style.height=768;
-      image.style.maxHeight="unset";
+  const observer = new MutationObserver(callback);
 
-      const oClass= document.querySelector(".onno-bosro-slide-image div img");
-      console.log(oClass, "oClass");
+  observer.observe(targetNode, config);
+};
+
+const MyImageGallery = (props) => {
+  const [images, setimages] = useState([]);
+
+  const [Status, setStatus] = useState(false);
+
+  const [CurrentIndex, setCurrentIndex] = useState();
+
+  const onFullScreenHandler = (status) => {
+    const oClass = document.querySelector(".onno-bosro-slide-image div");
+
+    if (status === true) {
       oClass.classList.add("unsetMaxHeight");
-      
+      setStatus(true);
+    } else {
+      oClass.classList.remove("unsetMaxHeight");
+      setStatus(false);
     }
-  }
+  };
 
-  componentDidMount() {
+  const imageChangeHandler = (currentIndex) => {
+    const oClass = document.querySelector(".onno-bosro-slide-image div");
+    setCurrentIndex(currentIndex);
+    console.log({ currentIndex });
+    if(Status) {
+      debugger;
+      oClass.classList.add("unsetMaxHeight");
+
+    }else {
+      oClass.classList.remove("unsetMaxHeight");
+
+    }
+  };
+
+  useEffect(() => {
+    
+  }, [CurrentIndex]);
+
+  useEffect(() => {
     let images = [];
-    if (this.props.images instanceof Array) {
-      [...this.props.images].forEach(img => {
+    if (props.images instanceof Array) {
+      [...props.images].forEach((img) => {
         images.push({
           renderItem: () => {
             return <ImageMagnify {...img} />;
           },
           thumbnail: img.thumbnail,
-          originalClass: 'onno-bosro-slide-image',
-          thumbnailClass: 'onno-bosro-slide-thumbnail',
+          originalClass: "onno-bosro-slide-image",
+          thumbnailClass: "onno-bosro-slide-thumbnail",
         });
       });
     }
-    this.setState({
-      ...this.state,
-      images,
-    });
-  }
+    setimages(images);
+  }, []);
 
-  render() {
-    return (
-      <ImageGallery {...{
+  useEffect(() => {
+    console.log(props.imgCntr.current.childNodes[0].children.style, "imgCntr");
+  }, [Status]);
+
+  return (
+    <ImageGallery
+      {...{
         thumbnailPosition: "bottom",
         showFullscreenButton: true,
-        showPlayButton: true,
+        showPlayButton: false,
         fullscreen: true,
-        items: this.state.images,
-        onScreenChange: this.onFullScreenHandler
+        items: images,
+        onScreenChange: onFullScreenHandler,
+        useBrowserFullscreen: false,
+        onSlide: imageChangeHandler
       }}
-      />
-    );
-  }
-}
+    />
+  );
+};
+
+export default MyImageGallery;

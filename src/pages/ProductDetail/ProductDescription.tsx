@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import detailsImg from "../../assets/detailImg.png";
 // import StarRating from "../../components/StarRating";
 import plus from "../../assets/plus.svg";
@@ -590,9 +590,14 @@ const ProductDescription = ({
     return parseInt(price) * parseInt(quantity);
   };
 
+  const inputEl = useRef(null);
+
   return (
     <div className="productDescriptionContainer">
-      <div className="productDescriptionContainer____imageContainer">
+      <div
+        ref={inputEl}
+        className="productDescriptionContainer____imageContainer"
+      >
         {productDetail.image && !productDetail.image[0] && (
           <>
             {/* <img src={productDetail.cover} alt=""/> */}
@@ -604,7 +609,7 @@ const ProductDescription = ({
         {productDetail.image && productDetail.image.length > 0 ? (
           <>
             <div className="productimg-wrapp d-flex">
-              <ImageGallery images={images} />
+              <ImageGallery imgCntr={inputEl} images={images} />
             </div>
           </>
         ) : (
