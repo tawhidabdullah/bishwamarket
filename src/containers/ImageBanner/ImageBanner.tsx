@@ -246,7 +246,7 @@ const MainSliderContainer = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    height: 312px;
     object-fit: cover;
   }
 `;

@@ -5,7 +5,10 @@ import ImageMagnify from "./ImageMagnify";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 
 const mutationObserver = (targetNode, handler) => {
-  const config = { attributes: true, childList: true, subtree: true }; // filter the mutations you want to listen
+  // const config = { attributeFilter: ["class"] }; // filter the mutations you want to listen
+
+  // const config = { attributes: true, childList: true, subtree: true }; // filter the mutations you want to listen
+  const config = { childList: true }; // filter the mutations you want to listen
 
   const callback = function (mutationsList) {
     for (let mutation of mutationsList) {
@@ -23,7 +26,7 @@ const MyImageGallery = (props) => {
 
   const [Status, setStatus] = useState(false);
 
-  const [CurrentIndex, setCurrentIndex] = useState();
+  const [CurrentIndex, setCurrentIndex] = useState(0);
 
   const onFullScreenHandler = (status) => {
     const oClass = document.querySelector(".onno-bosro-slide-image div");
@@ -41,19 +44,33 @@ const MyImageGallery = (props) => {
     const oClass = document.querySelector(".onno-bosro-slide-image div");
     setCurrentIndex(currentIndex);
     console.log({ currentIndex });
-    if(Status) {
-      debugger;
+    if (Status) {
       oClass.classList.add("unsetMaxHeight");
-
-    }else {
+    } else {
       oClass.classList.remove("unsetMaxHeight");
+    }
+  };
 
+  const myHandler = () => {
+    // debugger;
+    console.log("handler");
+    const oClass = document.querySelector(".onno-bosro-slide-image div");
+    if (Status) {
+      oClass.classList.add("unsetMaxHeight");
+    } else {
+      oClass.classList.remove("unsetMaxHeight");
     }
   };
 
   useEffect(() => {
-    
-  }, [CurrentIndex]);
+    const oClass = document.querySelector(".image-gallery-slides");
+
+    console.log({ oClass });
+
+    if (Status && CurrentIndex !== 0) {
+      mutationObserver(oClass, myHandler);
+    }
+  }, [CurrentIndex, Status]);
 
   useEffect(() => {
     let images = [];
@@ -86,7 +103,7 @@ const MyImageGallery = (props) => {
         items: images,
         onScreenChange: onFullScreenHandler,
         useBrowserFullscreen: false,
-        onSlide: imageChangeHandler
+        onSlide: imageChangeHandler,
       }}
     />
   );
