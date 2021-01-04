@@ -85,6 +85,8 @@ const MyImageGallery = (props) => {
           thumbnailClass: "onno-bosro-slide-thumbnail",
         });
       });
+    } else {
+      images.push();
     }
     setimages(images);
   }, []);

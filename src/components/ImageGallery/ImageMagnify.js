@@ -6,7 +6,6 @@
 // //   return <Magnifier src={props.original} />;
 // // }
 
-
 // export default function ImageMagnify(props) {
 //   return (
 //     <ReactImageMagnify
@@ -33,14 +32,14 @@
 //   );
 // }
 
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactImageZoom from 'react-image-zoom';
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactImageZoom from "react-image-zoom";
 
 export default function ImageMagnify(props) {
   const propss = {
-      
-     img: props.original, zoomPosition: 'original'};
+    img: props.original,
+    zoomPosition: "original",
+  };
   return <ReactImageZoom {...propss} />;
 }
