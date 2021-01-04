@@ -38,7 +38,7 @@ import ReactImageZoom from "react-image-zoom";
 
 export default function ImageMagnify(props) {
   const propss = {
-    img: props.original,
+    img: props.original || props.single,
     zoomPosition: "original",
   };
   return <ReactImageZoom {...propss} />;

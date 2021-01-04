@@ -603,7 +603,8 @@ const ProductDescription = ({
             {console.log(productDetail.cover, "cover")}
 
             {/* <img src={productDetail.cover} alt=""/> */}
-            <ReactImageZoom img={productDetail.cover} zoomPosition="original" />
+            {/* <ReactImageZoom img={productDetail.cover} zoomPosition="original" /> */}
+            <ImageGallery imgCntr={inputEl} images={productDetail.cover} />
           </>
         )}
 

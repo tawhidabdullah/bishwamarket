@@ -86,7 +86,14 @@ const MyImageGallery = (props) => {
         });
       });
     } else {
-      images.push();
+      images.push({
+        renderItem: () => {
+          return <ImageMagnify single={props.images} />;
+        },
+        thumbnail: props.images,
+        originalClass: "onno-bosro-slide-image",
+        thumbnailClass: "onno-bosro-slide-thumbnail",
+      });
     }
     setimages(images);
   }, []);
