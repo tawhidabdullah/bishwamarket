@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 // import list component
@@ -31,6 +32,7 @@ const quickLink = [
 ];
 
 const TopFooter = () => {
+  const history = useHistory();
   const links = useQueryFetch("Links");
   const links2 = useQueryFetch("Links2");
   //@ts-ignore
@@ -59,11 +61,16 @@ const TopFooter = () => {
         <PagesSection>
           <Title>About Us</Title>
           <Items>
+            {console.log({ links })}
             {links &&
               links.data &&
               links.data.length &&
               links.data.map((link) => {
-                return <Item>{link.name}</Item>;
+                return (
+                  <Item onClick={() => history.push(link.target)}>
+                    {link.name}
+                  </Item>
+                );
               })}
           </Items>
           <br />
@@ -72,7 +79,11 @@ const TopFooter = () => {
               links2.data &&
               links2.data.length &&
               links2.data.map((link) => {
-                return <Item>{link.name}</Item>;
+                return (
+                  <Item onClick={() => history.push(link.target)}>
+                    {link.name}
+                  </Item>
+                );
               })}
           </Items>
         </PagesSection>

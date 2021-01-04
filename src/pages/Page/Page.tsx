@@ -1,22 +1,25 @@
 //@ts-nocheck
-import parser from 'html-react-parser';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Auxiliary from '../../hoc/Auxiliary';
-import { useQueryFetch } from '../../hooks';
-import PageBanner from './PageBanner';
-
+import parser from "html-react-parser";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import Auxiliary from "../../hoc/Auxiliary";
+import { useQueryFetch } from "../../hooks";
+import PageBanner from "./PageBanner";
 
 const Page = () => {
   const history = useHistory();
 
-  const paegDetailState = useQueryFetch('pageDetail', {
-    urlOptions: {
-      placeHolders: {
-        pageUrl: history.location.pathname,
+  const paegDetailState = useQueryFetch(
+    "pageDetail",
+    {
+      urlOptions: {
+        placeHolders: {
+          pageUrl: history.location.pathname,
+        },
       },
     },
-  },`${history.location.pathname}`);
+    `${history.location.pathname}`
+  );
 
   const [pageData, setPageData] = useState({});
 
@@ -29,6 +32,9 @@ const Page = () => {
   //   console.log("pagesResponse", response);
   // };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     // fetchPages();
 
@@ -75,7 +81,7 @@ const Page = () => {
       />
       {/* <Para /> */}
 
-      <div className='paraContainer'>{parser(pageData.content || '')}</div>
+      <div className="paraContainer">{parser(pageData.content || "")}</div>
 
       {/* <SimpleContainer /> */}
     </>

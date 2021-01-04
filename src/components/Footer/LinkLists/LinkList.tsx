@@ -1,13 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const LinkList = ({ header, lists }) => {
+  const history = useHistory();
+  console.log({ lists });
+
   return (
     <TopFooterContainer>
       <Header>{header}</Header>
       <ListContainer>
         {lists.map((list, idx) => (
-          <ListItem key={idx}>{list.name}</ListItem>
+          <ListItem onClick={() => history.push(list.target)} key={idx}>
+            {list.name}
+          </ListItem>
         ))}
       </ListContainer>
     </TopFooterContainer>
