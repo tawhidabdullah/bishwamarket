@@ -21,7 +21,7 @@ const ImageBannerCategoryItem = ({ category }) => {
     return (
       <CategoryItem>
         <ul className="nav-cat title-font">
-          {category.slice(0, 10).map((cat, it) => {
+          {category.slice(0, 9).map((cat, it) => {
             return (
               <div className="topCategory">
                 <li
