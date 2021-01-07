@@ -10,7 +10,7 @@ import { DrawerButton } from "../../common/Button/DrawerButton";
 import { FilterDrawer } from "../../Drawer/FilterDrawer";
 
 // import pagination hoc
-import { Paginator } from "../../../hoc/Paginator";
+import Paginator from "../../../hoc/Paginator";
 
 // import hook
 import { useQueryInfinitePaginate } from "../../../hooks";

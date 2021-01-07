@@ -1,0 +1,123 @@
+.categoryBannerContainer {
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    
+    &__backgroundColor {
+        // background-color: #a1a1076e;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    &__img {
+        // background-color: #50500349;
+        max-width: 698px;
+        max-height: 214px;
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+        margin: auto;
+    }
+
+    // @media only screen and (max-width: 610px) {
+    //     height: 37vh;
+    // }
+
+    &__overlay {
+        // background-color: red;
+        width: 50%;
+        margin-left: 4rem;
+        // margin-top: 10rem;
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        z-index: 3;
+        position: absolute;
+
+        @media only screen and (max-width: 610px) {
+            width: 35%;
+            margin-left: 4rem;
+            display: flex;
+            justify-content: flex-start;
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        @media #{$extra-small-mobile} {
+             margin-top: 4rem;
+        }
+
+        &__title {
+            font-size: 5rem;
+            color: #000000;
+            font-weight: 700;
+            // padding-right: 1rem;
+            @media only screen and (max-width: 610px) {
+                font-size: 3rem;
+                color: #000000;
+                font-weight: 700;
+            }
+
+            @media #{$extra-small-mobile} {
+                font-size: 2rem;
+            }
+
+        }
+
+        &__description {
+            font-size: 1.3rem;
+            color: #000000;
+            font-weight: 400;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+
+        }
+
+        &__button {
+            background-color: #ffc107;
+            /* border: 1px solid #707070; */
+            /* box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); */
+            border-radius: 5px;
+            padding: 1rem 2rem;
+            font-size: 1.6rem;
+            color: #09090A;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all .2s;
+
+            @media only screen and (max-width: 610px) {
+                padding: 0.8rem 1rem;
+                font-size: 1.2rem;
+            }
+
+            &:hover {
+                background-color: #fee500;
+            }
+
+            .btnImage {
+                height: 2.5rem;
+                margin-right: 1rem;
+
+                @media only screen and (max-width: 610px) {
+                    height: 2rem;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+    }
+}

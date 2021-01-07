@@ -47,24 +47,22 @@ const App = () => {
               <Route exact path={"/"}>
                 <Home />
               </Route>
-
               <Route exact path={"/Search"}>
                 <Search />
               </Route>
               <Route exact path="/product">
                 <ProductListing />
               </Route>
-
               <Route
                 path={"/product/:categoryName/:productName"}
                 component={ProductDetail}
               />
+              <Route path={"/category/:categoryName"} component={Category} />
 
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/forgot-password" component={ForgotPassword} />
               <Route exact path="/checkout" component={Checkout} />
-
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/collection" component={Collection} />
               <Route exact path="/wishlist" component={WishlistPage} />

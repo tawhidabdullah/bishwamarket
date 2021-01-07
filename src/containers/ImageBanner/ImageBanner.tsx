@@ -276,7 +276,8 @@ const SliderBanner = styled.div`
 const BottomImage = styled.div`
   display: grid;
   grid-template-columns: 2fr 2fr;
-  grid-auto-rows: minmax(180px, auto);
+  /* grid-auto-rows: minmax(240px, auto); */
+  grid-auto-rows: 240px;
   grid-gap: 10px;
 
   @media only screen and (max-width: 1150px) and (min-width: 580px) {

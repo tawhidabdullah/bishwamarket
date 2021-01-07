@@ -1,0 +1,188 @@
+.categoryFilteredContainer {
+    padding: 2rem 3rem 7rem 3rem;
+    display: grid;
+    grid-template-columns: 22% 76%;
+    gap: 2rem;
+    padding-bottom: 7rem;
+    // margin-bottom: 7rem;
+
+
+    @media #{$small-mobile} {
+        padding-left:  1rem;
+        padding-right:  1rem;
+    }
+
+
+    // @media only screen and (max-width: 1080px) {
+
+    //     grid-template-columns: repeat(3, 1fr);
+    //     grid-template-rows: max-content;
+
+    // }
+
+    // @media only screen and (max-width: 840px) {
+
+    //     grid-template-columns: repeat(2, 1fr);
+
+    // }
+
+    @media #{$large-mobile} {
+        grid-template-columns: 100%;
+    }
+
+    // &__sort {
+    //     grid-column: 2/-1;
+    //     grid-row: 1/2;
+
+    //     @media #{$large-mobile} {
+    //         display: none;
+    //     }
+    // }
+
+    &__filters {
+        background-color: #ffc10712;
+        grid-row: 1/-1;
+        grid-column: 1/2;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        @media #{$large-mobile} {
+            // display: none;
+            grid-column: 1/-1;
+            grid-row: 1/2;
+            flex-flow: row;
+        }
+
+        .filter {
+            width: 100%;
+            color: #09090A;
+            font-size: 2rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            margin-left: 2rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &__icon {
+                height: 2.5rem;
+                margin-right: 1rem;
+            }
+
+            @media #{$large-mobile} {
+                display: none;
+            }
+        }
+
+        .select {
+            width: 100%;
+            display: none;
+            color: #09090A;
+            font-size: 2rem;
+            font-weight: 500;
+            // margin-top: 2rem;
+            // margin-left: 2rem;
+            // display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &__icon {
+                height: 2.5rem;
+                margin-right: 1rem;
+            }
+
+            @media #{$large-mobile} {
+                display: flex;
+            }
+        }
+    }
+
+    &__products {
+        
+        grid-column: 2/-1;
+        display: grid;
+        grid-template-columns: repeat(4, 23%);
+        grid-template-rows: max-content;
+        grid-auto-rows: max-content;
+        gap: 2rem;
+
+        // @media #{$laptop-device} {
+        //     grid-template-columns: repeat(3, 1fr);
+        // }
+
+        @media #{$tablet-device} {
+            grid-template-columns: repeat(3, 31.5%);
+        }
+
+        @media #{$large-mobile} {
+            grid-column: 1/-1;
+            grid-template-columns: repeat(3, 31.5%);
+        }
+
+        @media #{$small-mobile} {
+            grid-column: 1/-1;
+            grid-template-columns: repeat(2, 48%);
+        }
+
+        &__product {
+            width: 100%;
+            // background-color: #ffc10712;
+            position: relative;
+
+        //   @media only screen and (min-width: 1201px) and (max-width: 1330px) {
+        //         width: 23rem;
+        //     }
+
+        }
+
+
+        .notFoundComponentForFilterComponent {
+            grid-column: 2/-1;
+            grid-row: 1/2;
+            text-align: left;
+    
+            // @media only screen and (max-width: 1080px) {
+            //     grid-column: 1/-1;
+            //     grid-row: 2/3;
+            //     text-align: center;
+            // }
+
+            @media #{$small-mobile} {
+                grid-column: 1/-1;
+
+            }
+        }
+    
+        .spinnerComponentForFilterComponent {
+            grid-column: 2/4;
+            grid-row: 1/2;
+    
+            // @media only screen and (max-width: 1080px) {
+            //     grid-column: 1/-1;
+            //     grid-row: 2/3;
+            // }
+
+            @media #{$tablet-device} {
+                grid-column: 2/3;
+            }
+
+            @media #{$large-mobile} {
+                grid-column: 2/3;
+
+            }
+            @media #{$small-mobile} {
+                grid-column: 1/-1;
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
+// category detail produ

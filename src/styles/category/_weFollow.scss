@@ -1,0 +1,128 @@
+.weFollowContainer {
+    display: grid;
+    // grid-template-rows: repeat(2, 46rem);
+    grid-template-columns: repeat(2, 1fr);
+    height: 46rem;
+    background-color: #FAFAFA;
+    margin-bottom: 7rem;
+
+    @media #{$extra-small-mobile} {
+        height: 29rem;
+    }
+
+    &__image {
+        // background-color: #FFFFFF;
+        // background-image: /* linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)),*/ url(../../../assets/wefol.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &__weFollow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__contents {
+            // background-color: red;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            padding: 0 9rem;
+
+            @media only screen and (max-width: 840px) {
+                padding: 0 6rem;
+            }
+
+            @media only screen and (max-width: 610px) {
+                padding: 0 2rem;
+            }
+
+            @media #{$extra-small-mobile} {
+                padding: 0;
+            }
+
+            .hd-small {
+                font-size: 1.4rem;
+                color: #707070;
+                font-weight: 600;
+            }
+
+            .title {
+                color: #444444;
+                font-size: 5rem;
+                font-weight: 700;
+                margin-top: 1rem;
+
+                @media only screen and (max-width: 840px) {
+                    font-size: 4rem;
+                }
+
+                @media only screen and (max-width: 610px) {
+                    font-size: 3rem;
+                }
+
+                @media #{$extra-small-mobile} {
+                    font-size: 1rem;
+                }
+            }
+
+            .desc {
+                font-size: 1.3rem;
+                font-weight: 400;
+                color: #707070;
+                margin-top: 1rem;
+
+                @media #{$extra-small-mobile} {
+                    font-size: 1rem;
+                }
+            }
+
+            .check {
+                font-size: 1.6rem;
+                font-weight: 600;
+                color: #09090A;
+                margin-top: 1rem;
+
+                display: flex;
+                align-items: center;
+
+                .checkIcon {
+                    margin-right: 1rem;
+                    height: 2rem;
+                }
+
+            }
+
+            .button {
+                background-color: #ffc107;
+                // border: 1px solid #707070;
+                // box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                color: #09090A;
+                font-weight: 500;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                transition: all .2s;
+                margin-top: 2rem;
+
+                @media #{$extra-small-mobile} {
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                }
+
+                &:hover {
+                    background-color: #fee500;
+                }
+    
+                .btnImage {
+                    height: 2.5rem;
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+}

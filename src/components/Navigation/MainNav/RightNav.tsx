@@ -151,6 +151,11 @@ const NavItem = styled(Link)`
       visibility: visible;
       opacity: 1;
     }
+
+    & a {
+      text-decoration: none !important;
+      color: black !important;
+    }
   }
 `;
 
