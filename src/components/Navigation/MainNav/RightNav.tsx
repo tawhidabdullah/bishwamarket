@@ -130,12 +130,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(RightNav);
 const NavItem = styled(Link)`
   cursor: pointer;
   transition: 200ms;
-  text-decoration: none;
   list-style: none;
   white-space: nowrap;
   color: black;
   position: relative;
   text-transform: uppercase;
+
+  & a {
+    text-decoration: none;
+    color: black;
+  }
 
   :hover {
     & ul {
