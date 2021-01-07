@@ -11,7 +11,14 @@ const LinkList = ({ header, lists }) => {
       <Header>{header}</Header>
       <ListContainer>
         {lists.map((list, idx) => (
-          <ListItem onClick={() => history.push(list.target)} key={idx}>
+          <ListItem
+            href={list.target}
+            onClick={(e) => {
+              e.preventDefault();
+              history.push(list.target);
+            }}
+            key={idx}
+          >
             {list.name}
           </ListItem>
         ))}
@@ -46,12 +53,16 @@ const ListContainer = styled.div`
   /* flex-wrap: wrap; */
 `;
 
-const ListItem = styled.span`
+const ListItem = styled.a`
   font-family: Raleway, sans-serif;
   padding-right: 20px;
   color: #8d8d8d;
   font-size: 14px;
   cursor: pointer;
+  text-decoration: none !important;
+  &:hover {
+    color: #5c2c90;
+  }
 
   @media screen and (max-width: 991px) {
     padding: unset;

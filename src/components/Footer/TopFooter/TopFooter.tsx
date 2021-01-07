@@ -67,7 +67,13 @@ const TopFooter = () => {
               links.data.length &&
               links.data.map((link) => {
                 return (
-                  <Item onClick={() => history.push(link.target)}>
+                  <Item
+                    href={link.target}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      history.push(link.target);
+                    }}
+                  >
                     {link.name}
                   </Item>
                 );
@@ -80,7 +86,13 @@ const TopFooter = () => {
               links2.data.length &&
               links2.data.map((link) => {
                 return (
-                  <Item onClick={() => history.push(link.target)}>
+                  <Item
+                    href={link.target}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      history.push(link.target);
+                    }}
+                  >
                     {link.name}
                   </Item>
                 );
@@ -121,11 +133,16 @@ const Items = styled.div`
   align-items: flex-start;
 `;
 
-const Item = styled.div`
+const Item = styled.a`
   margin-bottom: 0.5rem;
   color: #8d8d8d;
   font-size: 14px;
   cursor: pointer;
+  text-decoration: none !important;
+  transition: all 0.3s;
+  &:hover {
+    color: #5c2c90;
+  }
 `;
 
 const TopFooterWrapper = styled.div`
