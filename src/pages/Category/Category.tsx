@@ -205,7 +205,6 @@ const Category = ({ lingual }) => {
           )}
         </>
       )}
-
       {categoryDetailData["subCategory"] &&
         !(categoryDetailData["subCategory"].length > 0) && (
           <CategoryDetailProducts

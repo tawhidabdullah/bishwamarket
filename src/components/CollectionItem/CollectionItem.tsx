@@ -4,10 +4,18 @@ import { useHistory } from "react-router-dom";
 
 const CollectionItem = ({ item, customStyles, ...props }) => {
   const history = useHistory();
-  console.log(item, "collectionItem");
 
   return (
-    <Item onClick={() => history.push(`/category${item.target}`)}>
+    <Item
+      onClick={() => {
+        history.push({
+          pathname: `/category${item.target}`,
+          state: {
+            catId: item.id,
+          },
+        });
+      }}
+    >
       <img src={item.src} />
     </Item>
   );

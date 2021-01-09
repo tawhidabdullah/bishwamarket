@@ -1,5 +1,6 @@
 //@ts-nocheck
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 // hooks for fetching data
@@ -7,6 +8,7 @@ import { useQueryFetch } from "../../hooks";
 
 const DiscountProduct = () => {
   const [banners, setBanners] = useState([]);
+  const history = useHistory();
 
   // fetching offer product image
   const offerProduct = useQueryFetch("featuredOffer2");
@@ -17,10 +19,21 @@ const DiscountProduct = () => {
     }
   }, [offerProduct.isSuccess]);
 
+  console.log({ banners });
+
   return (
     <DiscountProductContainer>
       {banners.map((banner) => (
-        <ImageContainer>
+        <ImageContainer
+          onClick={() => {
+            history.push({
+              pathname: `/category${banner.target}`,
+              state: {
+                catId: banner.id,
+              },
+            });
+          }}
+        >
           <img src={banner.src} alt="" />
         </ImageContainer>
       ))}
