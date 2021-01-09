@@ -132,7 +132,7 @@ const ImageBannerCategoryItem = ({ category }) => {
               opacity: showMore ? "1" : "0.2",
             }}
           >
-            {category.slice(8).map((cat, it) => {
+            {category.slice(9).map((cat, it) => {
               return (
                 <Fragment key={it}>
                   <li
