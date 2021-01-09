@@ -78,24 +78,16 @@ const ImageBannerCategoryItem = ({ category }) => {
                           className="dropdownBtn"
                           href="#"
                         >
-                          <div className="sideDrawer2__categoryItem justify-content-between">
-                            <div className="d-flex align-items-center ml-2">
-                              <div className="sideDrawer2__categoryItem-cover">
-                                <img src={sub.cover || sub.icon} alt="" />
-                              </div>
-                              <h3
-                                // style={{
-                                //   ...(location.pathname &&
-                                //     location.pathname === sub.url && {
-                                //       color: "#82e693",
-                                //       fontWeight: 900,
-                                //     }),
-                                // }}
-                                className="ml-3 mt-4"
-                              >
-                                {sub.name}{" "}
-                              </h3>
+                          <div className="sideDrawer2__categoryItem">
+                            {/* <div className="d-flex align-items-center ml-2">
+                              
+                            </div> */}
+                            <div className="sideDrawer2__categoryItem-cover">
+                              <img src={sub.cover || sub.icon} alt="" />
                             </div>
+                            <span className="sideDrawer2__categoryItem__subtitle">
+                              {sub.name}{" "}
+                            </span>
                             {/* <span className="dropdownArrow "><i className="fas fa-angle-down"></i></span> */}
                           </div>
                         </SubCategoryItem>
