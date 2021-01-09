@@ -1,24 +1,13 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import { withRouter, useLocation } from "react-router-dom";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { withAlert } from "react-alert";
-import { cartOperations } from "../../state/ducks/cart";
-import Select from "react-select";
-
-import {
-  numberWithCommas,
-  checkIfItemExistsInCartItemById,
-  getCartKeyFromCartItems,
-  checkIfTheWishListExistsInArrayById,
-} from "../../utils";
-import { useHandleFetch } from "../../hooks";
-
-// import states
-import { sessionOperations } from "../../state/ducks/session";
-import { lingualOperations } from "../../state/ducks/lingual";
 
 // import lib
 import { connect } from "react-redux";
-
+import { useLocation, withRouter } from "react-router-dom";
+import Select from "react-select";
+import { useHandleFetch } from "../../hooks";
+import { cartOperations } from "../../state/ducks/cart";
+import { checkIfItemExistsInCartItemById } from "../../utils";
 interface Props {
   product: any;
   AddCartContent?: () => void;
@@ -371,9 +360,7 @@ const ProductCard = ({
         cartItem.variation === givenCartItem.variation
     );
 
-    if (item) {
-      return item.quantity;
-    } else return 1;
+    return item ? item.quantity : 1;
   };
 
   const [quantity, setQuantity] = useState(
@@ -478,7 +465,6 @@ const ProductCard = ({
           style={{
             height: "55px",
             width: "100%",
-            textAlign: "center",
           }}
         >
           <h2
@@ -519,8 +505,10 @@ const ProductCard = ({
                 <div
                   style={{
                     minWidth: windowWidth > 450 ? "50%" : "60%",
-                    width: windowWidth > 450 ? "85%" : "85%",
+                    width: windowWidth > 450 ? "100%" : "85%",
                     marginBottom: "15px",
+                    marginTop: "1rem",
+                    textAlign: "center",
                   }}
                 >
                   <Select
@@ -571,7 +559,14 @@ const ProductCard = ({
             </h2>} */}
 
           <h2 className="product-bottom-offerPrice">
-            {/* ৳ {modifiedPrice || price} */}৳ {regularPrice}
+            {/* ৳ {modifiedPrice || price} */}৳{" "}
+            {lingual.isBangla
+              ? modifiedPrice
+                ? parseInt(modifiedPrice).toLocaleString("bn")
+                : price.toLocaleString("bn")
+              : modifiedPrice
+              ? modifiedPrice
+              : price}
           </h2>
 
           {!checkIfItemExistsInCartItemById(cartItems, {
