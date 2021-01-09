@@ -476,6 +476,7 @@ const ProductCard = ({
         <div
           style={{
             height: "55px",
+            width: "100%",
           }}
         >
           <h2
