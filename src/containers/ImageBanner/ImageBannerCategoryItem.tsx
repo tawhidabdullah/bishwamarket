@@ -183,7 +183,6 @@ const CategoryItem = styled.div`
   background: #fff;
   position: absolute;
   width: 100%;
-  border: 1px solid red;
   z-index: 500;
 
   & img {
