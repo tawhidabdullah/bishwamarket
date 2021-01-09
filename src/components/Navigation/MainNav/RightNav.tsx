@@ -136,16 +136,6 @@ const NavItem = styled(Link)`
   position: relative;
   text-transform: uppercase;
 
-  & a {
-    text-decoration: none;
-    color: black;
-
-    &:hover {
-      text-decoration: none !important;
-      color: black !important;
-    }
-  }
-
   :hover {
     & ul {
       visibility: visible;
@@ -170,8 +160,8 @@ const NavItems = styled.ul`
   font-size: 15px;
 
   & a {
-    text-decoration: none;
-    color: black;
+    text-decoration: none !important;
+    color: black !important;
   }
 `;
 
