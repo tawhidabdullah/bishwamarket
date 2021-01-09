@@ -183,6 +183,8 @@ const CategoryItem = styled.div`
   background: #fff;
   position: absolute;
   width: 100%;
+  border: 1px solid red;
+  z-index: 500;
 
   & img {
     margin-right: 10px;
@@ -203,13 +205,17 @@ const CategoryItem = styled.div`
   }
 
   & a {
-    color: #444;
+    color: #444 !important;
+    text-decoration: none !important;
     font-size: 14px;
     text-transform: capitalize;
     letter-spacing: 0.03em;
   }
 `;
 
+//style is already in the parent
+
 const SubCategoryItem = styled.a`
-  text-decoration: none !important;
+  /* text-decoration: none !important;
+  border: 1px solid red; */
 `;
