@@ -41,9 +41,9 @@ const MyImageGallery = (props) => {
   };
 
   const imageChangeHandler = (currentIndex) => {
+    debugger;
     const oClass = document.querySelector(".onno-bosro-slide-image div");
     setCurrentIndex(currentIndex);
-    console.log({ currentIndex });
     if (Status) {
       oClass.classList.add("unsetMaxHeight");
     } else {
@@ -52,8 +52,6 @@ const MyImageGallery = (props) => {
   };
 
   const myHandler = () => {
-    // debugger;
-    console.log("handler");
     const oClass = document.querySelector(".onno-bosro-slide-image div");
     if (Status) {
       oClass.classList.add("unsetMaxHeight");
@@ -65,7 +63,6 @@ const MyImageGallery = (props) => {
   useEffect(() => {
     const oClass = document.querySelector(".image-gallery-slides");
 
-    console.log({ oClass });
 
     if (Status && CurrentIndex !== 0) {
       mutationObserver(oClass, myHandler);
@@ -99,7 +96,6 @@ const MyImageGallery = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(props.imgCntr.current.childNodes[0].children.style, "imgCntr");
   }, [Status]);
 
   return (

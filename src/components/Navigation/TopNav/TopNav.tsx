@@ -16,7 +16,6 @@ import youtube from "../../../assets/social/youtube.svg";
 
 const SocialIcon = ({ name, children }) => {
   const socialLInk = useQueryFetch("socialLink");
-  console.log({ socialLInk });
 
   return name ? children(socialLInk?.data?.[name]?.target) : <> </>;
 };

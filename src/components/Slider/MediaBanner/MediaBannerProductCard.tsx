@@ -38,7 +38,6 @@ const MediaBannerProductCard = ({
     inStock,
     attribute,
   } = product;
-  console.log({ product });
 
   const alert = useAlert();
   const history = useHistory();

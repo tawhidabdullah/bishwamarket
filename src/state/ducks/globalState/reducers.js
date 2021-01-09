@@ -49,7 +49,6 @@ const globalReducer = createReducer(initialState)({
   },
 
   [types.TOGGLE_SIGNIN_DRAWER]: (state, action) => {
-    console.log("from redux", state);
     return {
       ...state,
       openSigninDrawer: !state.openSigninDrawer,

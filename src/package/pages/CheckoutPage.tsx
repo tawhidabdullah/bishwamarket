@@ -29,8 +29,6 @@ const CheckoutPage = ({ children }) => {
   // hooks for getting delivery city list
   const [, handleCityListFetch] = useHandleFetch([], "cityList");
 
-  console.log({ cityList });
-
   // this effect triggers cityList fetching whenever this component mounts
   useEffect(() => {
     const fetchCityList = async () => {

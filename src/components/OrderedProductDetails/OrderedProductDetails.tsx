@@ -22,7 +22,6 @@ const textStyles = {
 };
 
 const OrderedProductDetails = ({ product }) => {
-  console.log("product", product);
   return (
     <CustomRow>
       <Col xs={3}>
