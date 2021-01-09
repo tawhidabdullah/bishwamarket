@@ -477,6 +477,7 @@ const ProductCard = ({
           style={{
             height: "55px",
             width: "100%",
+            border: "1px solid red",
           }}
         >
           <h2

@@ -159,9 +159,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  margin: 0 auto;
   margin-bottom: 5px;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
 
   // @media screen and (max-width: 768px) {
   //     width: 150px;

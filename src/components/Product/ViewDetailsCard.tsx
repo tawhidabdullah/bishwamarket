@@ -477,6 +477,8 @@ const ProductCard = ({
         <div
           style={{
             height: "55px",
+            width: "100%",
+            textAlign: "center",
           }}
         >
           <h2
