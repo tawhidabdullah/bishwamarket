@@ -201,6 +201,12 @@ const CategoryItem = styled.div`
     justify-content: start;
     align-items: center;
     padding: 10px;
+    &:hover a {
+      color: #5c2c90 !important;
+    }
+    &:hover img {
+      border: 2px solid #5c2c90;
+    }
   }
 
   & a {
