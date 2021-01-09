@@ -139,6 +139,11 @@ const NavItem = styled(Link)`
   & a {
     text-decoration: none;
     color: black;
+
+    &:hover {
+      text-decoration: none !important;
+      color: black !important;
+    }
   }
 
   :hover {
@@ -150,11 +155,6 @@ const NavItem = styled(Link)`
     & div {
       visibility: visible;
       opacity: 1;
-    }
-
-    & a {
-      text-decoration: none !important;
-      color: black !important;
     }
   }
 `;
