@@ -4,29 +4,10 @@ import ImageMagnify from "./ImageMagnify";
 
 import "react-image-gallery/styles/scss/image-gallery.scss";
 
-const mutationObserver = (targetNode, handler) => {
-  // const config = { attributeFilter: ["class"] }; // filter the mutations you want to listen
-
-  // const config = { attributes: true, childList: true, subtree: true }; // filter the mutations you want to listen
-  const config = { childList: true }; // filter the mutations you want to listen
-
-  const callback = function (mutationsList) {
-    for (let mutation of mutationsList) {
-      handler(mutation.oldValue);
-    }
-  };
-
-  const observer = new MutationObserver(callback);
-
-  observer.observe(targetNode, config);
-};
-
 const MyImageGallery = (props) => {
   const [images, setimages] = useState([]);
 
   const [Status, setStatus] = useState(false);
-
-  const [CurrentIndex, setCurrentIndex] = useState(0);
 
   const onFullScreenHandler = (status) => {
     if (status === true) {
@@ -38,15 +19,13 @@ const MyImageGallery = (props) => {
     }
   };
 
-  const imageChangeHandler = (currentIndex) => {
+  const imageChangeHandler = () => {
     if (Status) {
       addHandler();
     } else {
       removeHandler();
     }
   };
-
-  const [isSetMaxHeight, setisSetMaxHeight] = useState(false);
 
   const addHandler = () => {
     const oClass = document.querySelectorAll(".onno-bosro-slide-image div");
@@ -63,11 +42,6 @@ const MyImageGallery = (props) => {
       item.classList.remove("unsetMaxHeight");
     });
   };
-
-  useEffect(() => {
-    const slides = document.querySelectorAll(".onno-bosro-slide-image div");
-    console.log({ slides });
-  }, [isSetMaxHeight]);
 
   useEffect(() => {
     let images = [];
