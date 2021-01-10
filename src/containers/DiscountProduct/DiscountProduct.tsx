@@ -19,8 +19,6 @@ const DiscountProduct = () => {
     }
   }, [offerProduct.isSuccess]);
 
-  console.log({ banners });
-
   return (
     <DiscountProductContainer>
       {banners.map((banner) => (

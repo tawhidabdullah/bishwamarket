@@ -68,7 +68,6 @@ const SignIn = ({ login, cartItems, addProductsToCart }) => {
 
         await handleAddToCart({ body: items });
         const getCartRes = await handleGetCart({});
-        console.log("getCartRes", getCartRes);
       }
 
       login();

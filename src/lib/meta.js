@@ -21,8 +21,6 @@ function changeMeta(name, attribute, content) {
 
     return true;
   } catch (err) {
-    console.log("could not perform meta change, error: ");
-    console.log(err.message);
     return false;
   }
 }

@@ -1853,7 +1853,6 @@ class Converter {
     const item = (data.items && data.items[0]) || {};
 
     if (item && Object.keys(item).length > 0) {
-      console.log("mahItem", item);
       const image = item.image;
       const partnersImages = [];
 

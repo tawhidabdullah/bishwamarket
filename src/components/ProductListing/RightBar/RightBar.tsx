@@ -35,8 +35,6 @@ const RightBar = ({
   const [isFilterDrawer, setIsFilterDrawer] = useState(false);
   const toggleFilterDrawer = () => setIsFilterDrawer(!isFilterDrawer);
 
-  console.log("paginated product list", paginatedProductList);
-
   return (
     <RightContainer>
       <ButtonWrapper>

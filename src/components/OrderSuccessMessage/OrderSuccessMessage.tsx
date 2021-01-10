@@ -14,7 +14,6 @@ const textStyles = {
 };
 
 const OrderSuccessMessage = ({ orderStatus }) => {
-  console.log("orderstatus", orderStatus);
   return (
     <OrderSuccessMessageWrapper>
       <Container>

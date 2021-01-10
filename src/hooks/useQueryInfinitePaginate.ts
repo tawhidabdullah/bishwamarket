@@ -36,7 +36,6 @@ const useQueryPaginate = (item: TItem, options?: any, key?: string): IState => {
   } = useInfiniteQuery(
     [key || item, options],
     async (key, options: any = {}) => {
-      console.log("from hook", options);
       options = {
         ...options,
         urlOptions: {
@@ -56,7 +55,6 @@ const useQueryPaginate = (item: TItem, options?: any, key?: string): IState => {
     }
   );
 
-  console.log("page count", page);
 
   useEffect(() => {
     if (page > 1 && canFetchMore) fetchMore();

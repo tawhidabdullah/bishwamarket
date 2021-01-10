@@ -49,8 +49,6 @@ const ProductDetail = ({ lingual }) => {
     }
   }, [productDetailState.isSuccess]);
 
-  console.log({ productDetailStatelog: productDetailState });
-
   useEffect(() => {
     if (lingual.isBangla && productDetailState.isSuccess) {
       const banglaproductDetailData =

@@ -38,7 +38,6 @@ const TopFooter = () => {
   //@ts-ignore
   useEffect(() => {}, [links.data]);
   useEffect(() => {}, [links2.data]);
-  console.log({ links });
   return (
     <TopFooterWrapper>
       <TopFooterContainer>
@@ -61,7 +60,6 @@ const TopFooter = () => {
         <PagesSection>
           <Title>About Us</Title>
           <Items>
-            {console.log({ links })}
             {links &&
               links.data &&
               links.data.length &&
