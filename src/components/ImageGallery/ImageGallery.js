@@ -29,45 +29,45 @@ const MyImageGallery = (props) => {
   const [CurrentIndex, setCurrentIndex] = useState(0);
 
   const onFullScreenHandler = (status) => {
-    const oClass = document.querySelector(".onno-bosro-slide-image div");
-
     if (status === true) {
-      oClass.classList.add("unsetMaxHeight");
+      addHandler();
       setStatus(true);
     } else {
-      oClass.classList.remove("unsetMaxHeight");
+      removeHandler();
       setStatus(false);
     }
   };
 
   const imageChangeHandler = (currentIndex) => {
-    debugger;
-    const oClass = document.querySelector(".onno-bosro-slide-image div");
-    setCurrentIndex(currentIndex);
     if (Status) {
-      oClass.classList.add("unsetMaxHeight");
+      addHandler();
     } else {
-      oClass.classList.remove("unsetMaxHeight");
+      removeHandler();
     }
   };
 
-  const myHandler = () => {
-    const oClass = document.querySelector(".onno-bosro-slide-image div");
-    if (Status) {
-      oClass.classList.add("unsetMaxHeight");
-    } else {
-      oClass.classList.remove("unsetMaxHeight");
-    }
+  const [isSetMaxHeight, setisSetMaxHeight] = useState(false);
+
+  const addHandler = () => {
+    const oClass = document.querySelectorAll(".onno-bosro-slide-image div");
+    //@ts-ignore
+    Array.from(oClass).forEach(function (item) {
+      item.classList.add("unsetMaxHeight");
+    });
+  };
+
+  const removeHandler = () => {
+    const oClass = document.querySelectorAll(".onno-bosro-slide-image div");
+    //@ts-ignore
+    Array.from(oClass).forEach(function (item) {
+      item.classList.remove("unsetMaxHeight");
+    });
   };
 
   useEffect(() => {
-    const oClass = document.querySelector(".image-gallery-slides");
-
-
-    if (Status && CurrentIndex !== 0) {
-      mutationObserver(oClass, myHandler);
-    }
-  }, [CurrentIndex, Status]);
+    const slides = document.querySelectorAll(".onno-bosro-slide-image div");
+    console.log({ slides });
+  }, [isSetMaxHeight]);
 
   useEffect(() => {
     let images = [];
@@ -94,9 +94,6 @@ const MyImageGallery = (props) => {
     }
     setimages(images);
   }, []);
-
-  useEffect(() => {
-  }, [Status]);
 
   return (
     <ImageGallery
