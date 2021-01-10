@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const LinkList = ({ header, lists }) => {
   const history = useHistory();
-  console.log({ lists });
 
   return (
     <TopFooterContainer>
