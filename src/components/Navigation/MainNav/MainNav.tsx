@@ -61,9 +61,9 @@ const MainNavContainer = styled.div`
 const LogoContainer = styled.div`
   /* width: 150px; */
   height: 70px;
-  margin-right: 150px;
+  margin-right: 260px;
   cursor: pointer;
-  height: 65px;
+  height: 100px;
   /* margin-left: 50px; */
 
   & img {
@@ -73,15 +73,15 @@ const LogoContainer = styled.div`
   }
 
   @media screen and (max-width: 578px) {
-    width: 50%;
-    height: 40px;
+    width: 40%;
+    height: 90px;
     margin-right: unset;
     margin: 0 auto;
     /* text-align: center; */
   }
 
   @media screen and (max-width: 475px) {
-    width: 55%;
-    height: 30px;
+    width: 40%;
+    height: 60px;
   }
 `;
