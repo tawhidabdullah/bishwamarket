@@ -2,6 +2,9 @@
 import React, { useState, Fragment } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
+import { withAlert } from "react-alert";
+
+import { withRouter } from "react-router-dom";
 
 // import common elements
 import { Checkbox } from "../../components/common/Checkbox";
@@ -11,7 +14,26 @@ import { DeliveryAreaInfo } from "../../components/DeliveryAreaInfo";
 // import { DrawerButton } from "../../components/common/Button/DrawerButton";
 
 // reducer ops
+
 import { cartSelectors } from "../../state/ducks/cart";
+import { useHandleFetch } from "../../hooks";
+import { Spinner } from "../../components/loading";
+import { AuthButton } from "../../components/Button";
+import { cacheOperations } from "../../state/ducks/cache";
+import {
+  checkIfItemExistsInCache,
+  getDeliveryChargeTotal,
+  getCity,
+  saveCity,
+  deleteCity,
+  getCustomerData,
+  saveCustomerData,
+  deleteCustomerData,
+} from "../../utils";
+import { cartOperations } from "../../state/ducks/cart";
+import { sessionOperations } from "../../state/ducks/session";
+import PaymentForm from "./PaymentForm";
+import CheckoutCartItem from "./CheckoutCartItem";
 
 // constant  styles
 // radio buttons
@@ -30,10 +52,60 @@ const CheckoutDetails = ({
   totalPrice,
   shippingCost,
   deliveryInfo,
+  history,
+  session,
+  logout,
+  addItemToCache,
+  cache,
+  clearCart,
+  alert,
+  login,
+  lingual,
 }) => {
   const [payment, setPayment] = useState(null);
 
   const handleSetPayment = (opts) => setPayment(opts);
+
+  const [coupon, setCoupon] = useState("");
+  const [validateCoupon, handleValidateCoupon] = useHandleFetch(
+    {},
+    "validateCoupon"
+  );
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [discountPrice, setDiscountPrice] = useState(0);
+  const [showCouponPrice, setShowCouponPrice] = useState(false);
+
+  const handleCoupon = async () => {
+    const items =
+      cartItems.map((item) => {
+        return {
+          product: item.product,
+          quantity: item.quantity,
+          variation: item.variation,
+        };
+      }) || [];
+
+    const validateCouponRes = await handleValidateCoupon({
+      body: {
+        items,
+        coupon,
+      },
+    });
+
+    setCoupon("");
+
+    if (validateCouponRes && Object.keys(validateCouponRes).length > 0) {
+      setShowCouponPrice(true);
+      debugger;
+      setDiscountAmount(validateCouponRes.discountAmount);
+      setDiscountPrice(validateCouponRes.discountPrice);
+      alert.success("Coupon applied successfully");
+    } else {
+      setShowCouponPrice(false);
+      setDiscountAmount(0);
+      setDiscountPrice(0);
+    }
+  };
 
   return (
     <Fragment>
@@ -118,17 +190,140 @@ const CheckoutDetails = ({
           </PaymentOptionItem> */}
           </PaymentOptionsContainer>
         </PaymentBox>
+        <CouponBox>
+          {showCouponPrice ? (
+            <>
+              <OrderSummaryPriceContainerMain>
+                <span>Discount Amount</span>
+                <span>-৳{discountAmount}</span>
+              </OrderSummaryPriceContainerMain>
+
+              <div className="order-summaryPriceCotainerMain">
+                <span>Discount Price</span>
+                <span>৳ {discountPrice}</span>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+          <CouponContainer>
+            <CouponHeader>* Add Gift or Coupon Code</CouponHeader>
+            <CouponForm>
+              <Input
+                value={coupon}
+                onChange={(event) => setCoupon(event.target.value)}
+                type="text"
+                placeholder="i.e. A123"
+              />
+              <Button onClick={handleCoupon}>
+                {validateCoupon.isLoading ? "Applying..." : "Apply"}
+              </Button>
+            </CouponForm>
+
+            {validateCoupon.error &&
+              validateCoupon.error.error &&
+              validateCoupon.error.error.coupon && (
+                <ErrorText>{validateCoupon.error.error.coupon}</ErrorText>
+              )}
+          </CouponContainer>
+        </CouponBox>
       </CheckoutDetailsContainer>
     </Fragment>
   );
 };
 
+const mapDispatchToProps = {
+  logout: sessionOperations.logout,
+  login: sessionOperations.login,
+  addItemToCache: cacheOperations.addItemToCache,
+  clearCart: cartOperations.clearCart,
+};
+
 const mapStateToProps = (state) => ({
   cartItems: state.cart,
   totalPrice: cartSelectors.getTotalPriceOfCartItems(state.cart),
+  session: state.session,
+  cache: state.cache,
+  lingual: state.lingual,
 });
 
-export default connect(mapStateToProps)(CheckoutDetails);
+// @ts-ignore
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  // @ts-ignore
+)(withRouter(withAlert()(CheckoutDetails)));
+
+const OrderSummaryPriceContainerMain = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 0;
+
+  span {
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+  }
+`;
+
+const ErrorText = styled.p`
+  color: red;
+  padding: 5px;
+`;
+
+const CouponContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const CouponHeader = styled.div`
+  font-weight: 500;
+  padding: 8px 0;
+`;
+
+const CouponForm = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+
+  @media screen and (max-width: 578px) {
+    /* flex-wrap: wrap; */
+    // flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+  }
+`;
+
+const Input = styled.input`
+  border: 1px solid #bfbfbf;
+  padding: 4px 3px;
+  text-indent: 5px;
+  /* letter-spacing: 1.5px; */
+  outline: none;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 13px;
+
+  @media screen and (max-width: 578px) {
+    margin: 5px 0;
+  }
+`;
+
+const Button = styled.button`
+  border: none;
+  padding: 5px 25px;
+  background: #5c2c90;
+  color: #fff;
+  margin-left: 10px;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+
+  @media screen and (max-width: 578px) {
+    padding: 9px 15px;
+    font-size: 1.3rem;
+  }
+`;
 
 const ListContainerStyles = css`
   position: relative;
@@ -149,6 +344,11 @@ const CheckoutDetailsContainer = styled.div`
 `;
 
 const OrderBox = styled.div`
+  position: relative;
+  margin-bottom: 50px;
+`;
+
+const CouponBox = styled.div`
   position: relative;
   margin-bottom: 50px;
 `;

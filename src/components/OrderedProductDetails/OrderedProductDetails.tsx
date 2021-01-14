@@ -26,7 +26,7 @@ const OrderedProductDetails = ({ product }) => {
     <CustomRow>
       <Col xs={3}>
         <Image
-          src={`${config.baseURL}/${product.cover.thumbnail}`}
+          src={`${config.baseURL2}/${product.cover.thumbnail}`}
           alt="order details"
         />
       </Col>
