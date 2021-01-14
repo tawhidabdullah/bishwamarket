@@ -33,7 +33,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -42,10 +42,9 @@
     attribution=setup_tool
     page_id="117161220116079"
     theme_color="#5c2c90"
-    >
+    logged_in_greeting="Welcome to Bishwa Market Website"
+    logged_out_greeting="Welcome to Bishwa Market Website">
   </div>
-
-
       
   </head>
 
